@@ -127,6 +127,21 @@ a{color:var(--accent)}
   .brand h1{font-size:19px}
 }
 
+
+/* Gestione account collegata a Firestore */
+[hidden]{display:none!important}
+.account-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin:15px 0}
+.role-pill{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent-border);padding:9px 12px;border-radius:30px}
+.key-value{font-size:13px;color:var(--muted);margin-top:7px;overflow-wrap:anywhere}
+.key-value strong{font-weight:700;color:var(--text)}
+.member-row{padding:13px 0;border-bottom:1px solid var(--border);overflow-wrap:anywhere}
+.member-row:last-child{border-bottom:0}
+.member-uid{font-size:11px;color:var(--muted);word-break:break-all;line-height:1.4;margin:6px 0}
+.member-attrs{display:flex;gap:8px;flex-wrap:wrap}
+.member-attrs span{font-size:11px;border-radius:6px;background:var(--accent-soft);padding:4px 7px}
+.small-action{font:inherit;font-size:13px;padding:10px 12px;border:1px solid var(--accent-border);border-radius:10px;background:transparent;color:var(--text);font-weight:700;cursor:pointer}
+.hint{font-size:13px;color:var(--muted);line-height:1.6}
+
 </style>
 </head>
 <body>
@@ -139,7 +154,7 @@ a{color:var(--accent)}
 <div class="eyebrow">AREA RISERVATA</div>
 <h2 class="heading">IL TUO MENU.<br>IN ORDINE.</h2>
 <p class="lead">Gestione centralizzata del catalogo, delle fotografie, degli ingredienti e delle traduzioni.</p>
-<span class="badge"><span class="dot"></span> Primo accesso · Configurazione</span>
+<span class="badge"><span class="dot"></span> Accesso protetto · Firebase</span>
 </section>
 <section class="card" id="signedOut">
 <div class="eyebrow">01 · AUTENTICAZIONE</div>
@@ -150,27 +165,35 @@ a{color:var(--accent)}
 <p class="mini">Apri la pagina direttamente in Safari, non dal browser interno di un'altra app.</p>
 </section>
 <section class="card" id="signedIn">
-<div class="eyebrow">01 · ACCOUNT</div>
-<h2>IDENTITÀ VERIFICATA</h2>
-<div class="message success">Accesso con Google riuscito. Il profilo non ha ancora permessi amministrativi: li configureremo nel database.</div>
-<div class="user" id="account"></div>
-<div class="mini">Identificativo Firebase (UID)</div>
-<div class="user"><strong id="uid"></strong></div>
-<button class="button secondary" id="logout">Esci dall'account</button>
+  <div class="eyebrow">01 · ACCOUNT</div>
+  <h2>IDENTITÀ VERIFICATA</h2>
+  <div class="user" id="account"></div>
+  <div class="key-value">UID Firebase: <strong id="uid"></strong></div>
+  <div class="account-row"><span class="role-pill" id="roleLabel">VERIFICA PERMESSI...</span></div>
+  <div id="profileMessage" role="status" class="message">Sto verificando i permessi su Firestore...</div>
+  <button class="button secondary" id="logout" style="margin-top:16px">Esci dall'account</button>
 </section>
-<section class="card">
-<div class="eyebrow">02 · IL GESTIONALE</div>
-<h2>PROSSIME FUNZIONI</h2>
-<p>La struttura del pannello è in preparazione. Il sito del menu attualmente online non viene modificato.</p>
-<div class="tiles">
-<div class="tile"><span>Catalogo</span><small>Prodotti, prezzi e disponibilità</small></div>
-<div class="tile"><span>Ingredienti</span><small>Allergeni e filtri verificati</small></div>
-<div class="tile"><span>Fotografie</span><small>Immagini archiviate su GitHub</small></div>
-<div class="tile"><span>Accessi</span><small>Richieste e permessi autorizzati</small></div>
-</div>
-<div class="message">Per sicurezza, in questa prima versione non è possibile leggere o modificare i dati di Firestore: le regole rimangono chiuse finché non assegniamo l'amministratore principale.</div>
+<section class="card" id="ownerPanel" hidden>
+  <div class="eyebrow">02 · ACCESSI</div>
+  <h2>AMMINISTRAZIONE</h2>
+  <div class="message success">Il tuo profilo è riconosciuto come <strong>PROPRIETARIO</strong> dal database. La gestione degli accessi è riservata a questo ruolo.</div>
+  <div class="account-row"><strong>UTENTI AUTORIZZATI</strong><button class="small-action" id="refreshMembers" type="button">Aggiorna</button></div>
+  <div id="membersList" aria-live="polite" class="hint">Caricamento...</div>
+  <p class="mini">Per ora è disponibile la consultazione dei ruoli. L'approvazione delle nuove richieste sarà attivata in una fase successiva, con regole dedicate.</p>
 </section>
-<footer class="foot">The Black Stuff · Menu Management · Prima versione di accesso. Non eliminare l'app precedente: il catalogo sarà migrato in una fase successiva.</footer>
+<section class="card" id="roadmap" hidden>
+  <div class="eyebrow">03 · IL GESTIONALE</div>
+  <h2>PROSSIME FUNZIONI</h2>
+  <p>Il collegamento degli account è attivo. Stiamo preparando il catalogo condiviso: il menu dei clienti non viene ancora modificato.</p>
+  <div class="tiles">
+    <div class="tile"><span>Catalogo</span><small>Prodotti, prezzi e disponibilità</small></div>
+    <div class="tile"><span>Ingredienti</span><small>Allergeni e filtri verificati</small></div>
+    <div class="tile"><span>Fotografie</span><small>Immagini archiviate su GitHub</small></div>
+    <div class="tile"><span>Statistiche</span><small>Visite, categorie e prodotti consultati</small></div>
+  </div>
+  <div class="message">Questa versione <strong>legge i permessi</strong> da Firestore, ma non salva ancora modifiche ai prodotti.</div>
+</section>
+<footer class="foot">The Black Stuff · Menu Management · Verifica reale dei permessi su Firestore. Il catalogo sarà migrato in una fase successiva.</footer>
 </main>
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
@@ -183,7 +206,9 @@ const firebaseConfig={
  messagingSenderId:"879941411379",
  appId:"1:879941411379:web:18e94817206c119598f946"
 };
+import {getFirestore,doc,getDoc,collection,getDocs} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
 const auth=getAuth(app);
 const provider=new GoogleAuthProvider();
 provider.setCustomParameters({prompt:"select_account"});
@@ -210,10 +235,77 @@ loginBtn.addEventListener("click",async()=>{
  }finally{loginBtn.disabled=false}
 });
 $("logout").addEventListener("click",()=>signOut(auth));
-onAuthStateChanged(auth,user=>{
+const ROLE_NAMES={owner:"PROPRIETARIO",admin:"AMMINISTRATORE",collaborator:"COLLABORATORE"};
+let sessionVersion=0;
+let currentRole=null;
+function roleError(error){
+ const code=error?.code||"errore sconosciuto";
+ if(code==="permission-denied") return "Firestore ha negato la lettura. Controlla che le regole siano pubblicate e che l'ID del documento in members coincida esattamente con il tuo UID.";
+ if(code==="unavailable")return "Firestore momentaneamente non raggiungibile. Controlla la connessione e riprova.";
+ return "Impossibile verificare i permessi ("+code+").";
+}
+function setProfileMessage(message,kind=""){
+ const el=$("profileMessage");el.textContent=message;el.className="message "+kind;
+}
+function clearOwnerDashboard(){
+ $("ownerPanel").hidden=true;$("roadmap").hidden=true;$("membersList").textContent="";
+}
+async function loadMembers(){
+ if(currentRole!=="owner"||!auth.currentUser)return;
+ const list=$("membersList");list.textContent="Caricamento degli utenti...";
+ try{
+  const snapshot=await getDocs(collection(db,"members"));
+  if(currentRole!=="owner"||!auth.currentUser)return;
+  list.replaceChildren();
+  if(snapshot.empty){list.textContent="Nessun profilo trovato.";return;}
+  const docs=snapshot.docs.sort((a,b)=>a.id.localeCompare(b.id));
+  for(const item of docs){
+   const data=item.data();
+   const node=document.createElement("div");node.className="member-row";
+   const label=document.createElement("strong");label.textContent=ROLE_NAMES[data.role]||"RUOLO NON RICONOSCIUTO";
+   const uid=document.createElement("div");uid.className="member-uid";uid.textContent=item.id;
+   const info=document.createElement("div");info.className="member-attrs";
+   const state=document.createElement("span");state.textContent="Stato: "+(data.status||"non indicato");
+   info.appendChild(state);node.append(label,uid,info);list.appendChild(node);
+  }
+ }catch(error){list.textContent=roleError(error);}
+}
+$("refreshMembers").addEventListener("click",loadMembers);
+onAuthStateChanged(auth,async user=>{
+ const version=++sessionVersion;
+ currentRole=null;
  $("signedIn").classList.toggle("show",!!user);
  $("signedOut").classList.toggle("show",!user);
- if(user){$("account").textContent=(user.displayName||"Account Google")+" · "+(user.email||"");$("uid").textContent=user.uid;}
+ clearOwnerDashboard();
+ if(!user)return;
+ $("account").textContent=(user.displayName||"Account Google")+" · "+(user.email||"");
+ $("uid").textContent=user.uid;
+ $("roleLabel").textContent="VERIFICA PERMESSI...";
+ setProfileMessage("Sto controllando il tuo profilo nella raccolta members...");
+ try{
+  const snapshot=await getDoc(doc(db,"members",user.uid));
+  if(version!==sessionVersion)return;
+  if(!snapshot.exists()){
+   $("roleLabel").textContent="NON AUTORIZZATO";
+   setProfileMessage("Account Google autenticato, ma non ancora autorizzato. L'amministratore principale dovrà approvare l'accesso.");
+   return;
+  }
+  const {role,status}=snapshot.data();
+  if(status!=="active"||!ROLE_NAMES[role]){
+   $("roleLabel").textContent="ACCESSO NON ATTIVO";
+   setProfileMessage("Il profilo esiste, ma non è attivo oppure il ruolo non è riconosciuto.");
+   return;
+  }
+  currentRole=role;
+  $("roleLabel").textContent=ROLE_NAMES[role];
+  setProfileMessage("Accesso autorizzato. Il ruolo è stato verificato direttamente su Firestore.","success");
+  $("roadmap").hidden=false;
+  if(role==="owner"){$("ownerPanel").hidden=false;loadMembers();}
+ }catch(error){
+  if(version!==sessionVersion)return;
+  $("roleLabel").textContent="VERIFICA NON RIUSCITA";
+  setProfileMessage(roleError(error),"error");
+ }
 });
 getRedirectResult(auth).catch(e=>{const box=$("loginError");box.className="message error";box.textContent=explain(e)});
 </script>
