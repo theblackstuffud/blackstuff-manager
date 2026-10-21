@@ -142,13 +142,88 @@ a{color:var(--accent)}
 .small-action{font:inherit;font-size:13px;padding:10px 12px;border:1px solid var(--accent-border);border-radius:10px;background:transparent;color:var(--text);font-weight:700;cursor:pointer}
 .hint{font-size:13px;color:var(--muted);line-height:1.6}
 
+
+/* v3 · Richieste di accesso e autorizzazioni */
+.request-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:18px 0 12px}
+.request-card{border:1px solid var(--border);background:var(--card2);border-radius:14px;padding:15px;margin-bottom:10px}
+.request-name{font-size:15px;font-weight:800;margin:0 0 5px;overflow-wrap:anywhere}
+.request-meta{font-size:12px;line-height:1.6;color:var(--muted);overflow-wrap:anywhere}
+.request-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
+.request-actions .small-action{flex:1;min-width:90px;min-height:43px}
+.request-actions .primary-action{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.select-role{appearance:auto;background:var(--card);border:1px solid var(--border);border-radius:9px;padding:11px 9px;color:var(--text);font:inherit;font-size:13px;min-width:130px;flex:1}
+.status-tag{display:inline-flex;background:var(--accent-soft);border:1px solid var(--accent-border);border-radius:6px;padding:5px 8px;font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase}
+.section-divider{height:1px;background:var(--border);margin:25px 0}
+.muted-heading{font-size:13px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin:0}
+.inline-status{font-size:13px;line-height:1.5;margin:10px 0}
+.members-manager-list .request-card{margin:9px 0}
+.button-line{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
+.button-line .small-action{flex:1;min-height:40px}
+@media(max-width:400px){.request-actions{display:grid;grid-template-columns:1fr 1fr}.request-actions .select-role{grid-column:1/-1;width:100%}}
+
+
+/* v4 · Profili del personale: temi automatici e dati riservati */
+.brand{justify-content:space-between;gap:10px}
+.brand-title{display:flex;align-items:center;gap:13px;min-width:0}
+.brand-title > div{min-width:0}
+.brand-title h1{font-size:clamp(17px,4.6vw,21px)}
+.avatar-button{border:1px solid var(--accent-border);width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 auto;overflow:hidden;background:var(--accent-soft);color:var(--accent);cursor:pointer;font-weight:800;font-size:15px;letter-spacing:.03em;padding:0}
+.avatar-button img,.avatar-preview img{width:100%;height:100%;display:block;object-fit:cover}
+.person-display{font-size:clamp(20px,6vw,28px);font-weight:800;line-height:1.25;margin:10px 0 8px;overflow-wrap:anywhere}
+.person-desc{font-size:13px;color:var(--muted);line-height:1.5}
+.profile-row{display:flex;gap:13px;align-items:center;margin:12px 0}
+.avatar-preview{width:74px;height:74px;flex:0 0 74px;border:1px solid var(--accent-border);background:var(--accent-soft);color:var(--accent);border-radius:50%;display:grid;place-items:center;overflow:hidden;font-size:20px;font-weight:800}
+.profile-fields{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.field{min-width:0;display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label,.field-label{font-weight:750;letter-spacing:.04em;text-transform:uppercase;font-size:11px;color:var(--muted)}
+.field input{font:inherit;min-width:0;width:100%;min-height:45px;border:1px solid var(--border);border-radius:10px;background:var(--card2);color:var(--text);padding:10px 12px;outline-offset:2px}
+.field input:focus{outline:2px solid var(--accent-border)}
+.photo-input{max-width:100%;font-size:12px;color:var(--text);line-height:1.6}
+.photo-input::file-selector-button{padding:9px 11px;margin-right:9px;background:var(--accent-soft);color:var(--accent);border-radius:10px;border:1px solid var(--accent-border);font-weight:750}
+.profile-overlay{position:fixed;inset:0;z-index:70;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:24px 14px max(24px,env(safe-area-inset-bottom));background:rgba(10,20,13,.66);backdrop-filter:blur(5px)}
+.profile-sheet{width:min(520px,100%);background:var(--card);border:1px solid var(--border);border-radius:21px;padding:22px;box-shadow:0 28px 85px #0006;margin:auto}
+.profile-top{display:flex;gap:10px;justify-content:space-between;align-items:center}
+.icon-action{border:1px solid var(--border);background:var(--card2);color:var(--text);width:37px;height:37px;border-radius:12px;font-size:22px;cursor:pointer}
+.info-line{padding:10px 0;border-bottom:1px solid var(--border);display:grid;gap:5px;overflow-wrap:anywhere}
+.info-line:last-child{border-bottom:0}
+.info-line strong{font-size:14px;font-weight:650}
+.code-actions{display:flex;gap:10px;flex-wrap:wrap;margin:11px 0 0}
+.code-box{margin-top:10px;padding:12px;border-radius:10px;background:var(--card2);font-size:12px;word-break:break-all;font-family:ui-monospace,SFMono-Regular,monospace}
+.photo-controls{min-width:0;flex:1;display:grid;gap:6px}
+.button.compact{min-height:44px;margin-top:13px}
+.profile-link{width:100%;font-weight:750;text-transform:uppercase;letter-spacing:.03em}
+[hidden]{display:none!important}
+body.profile-open{overflow:hidden}
+@media(max-width:400px){.profile-fields{grid-template-columns:1fr}.field.full{grid-column:auto}.profile-sheet{padding:18px}.profile-overlay{padding:10px}}
+
+/* v5 · Ruoli configurabili e registro riservato delle attività */
+.permission-box{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:13px;margin-top:12px}
+.permission-title{font-size:11px;text-transform:uppercase;font-weight:800;letter-spacing:.06em;color:var(--muted);margin:0 0 9px}
+.permission-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;margin-top:10px}
+.permission-choice{display:flex;gap:8px;align-items:flex-start;font-size:12px;line-height:1.35;color:var(--text);cursor:pointer}
+.permission-choice input{accent-color:var(--accent);width:17px;height:17px;margin:0;flex:none}
+.permission-summary{display:flex;gap:6px;flex-wrap:wrap;margin:11px 0 2px}
+.permission-summary span{background:var(--accent-soft);padding:5px 7px;border-radius:6px;font-size:11px;color:var(--text)}
+.member-config{margin-top:12px;padding:13px;background:var(--card);border-radius:12px;border:1px solid var(--border)}
+.member-config .select-role{width:100%;margin-bottom:8px}
+.activity-entry{padding:14px 0;border-bottom:1px solid var(--border);display:grid;gap:6px}
+.activity-entry:last-child{border-bottom:0}
+.activity-title{font-size:13px;font-weight:800;text-transform:uppercase}
+.activity-meta{font-size:11px;color:var(--muted);line-height:1.55;overflow-wrap:anywhere}
+.activity-detail{font-size:12px;line-height:1.55;color:var(--text);white-space:pre-line;overflow-wrap:anywhere}
+.history-actions{display:flex;gap:9px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+@media(max-width:365px){.permission-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <main>
 <header class="brand">
-<img src="https://theblackstuffud.github.io/blackstuff-menu/logo.png" alt="Logo The Black Stuff" onerror="this.style.display='none'">
-<div><h1>The Black Stuff</h1><small>MENU MANAGEMENT</small></div>
+  <div class="brand-title">
+    <img src="https://theblackstuffud.github.io/blackstuff-menu/logo.png" alt="Logo The Black Stuff" onerror="this.style.display='none'">
+    <div><h1>THE BLACK STUFF</h1><small>MENU MANAGEMENT</small></div>
+  </div>
+  <button type="button" id="profileTrigger" class="avatar-button" aria-label="Apri il profilo" title="Il mio profilo" hidden>BS</button>
 </header>
 <section class="top">
 <div class="eyebrow">AREA RISERVATA</div>
@@ -166,23 +241,64 @@ a{color:var(--accent)}
 </section>
 <section class="card" id="signedIn">
   <div class="eyebrow">01 · ACCOUNT</div>
-  <h2>IDENTITÀ VERIFICATA</h2>
-  <div class="user" id="account"></div>
-  <div class="key-value">UID Firebase: <strong id="uid"></strong></div>
+  <h2>ACCESSO E IDENTITÀ</h2>
+  <div class="person-display" id="account">VERIFICA IN CORSO...</div>
+  <div class="person-desc">Per consultare tutti i dati dell'account, tocca la foto profilo in alto a destra.</div>
   <div class="account-row"><span class="role-pill" id="roleLabel">VERIFICA PERMESSI...</span></div>
   <div id="profileMessage" role="status" class="message">Sto verificando i permessi su Firestore...</div>
-  <button class="button secondary" id="logout" style="margin-top:16px">Esci dall'account</button>
+  <div id="grantedPermissions" hidden><p class="mini">AUTORIZZAZIONI ASSEGNATE</p><div class="permission-summary" id="myPermissions"></div></div>
+  <button class="button secondary" id="logout" style="margin-top:16px">ESCI DALL'ACCOUNT</button>
+</section>
+<section class="card" id="onboarding" hidden>
+  <div class="eyebrow">02 · PRIMA CONFIGURAZIONE</div>
+  <h2>CREA IL TUO PROFILO</h2>
+  <p>Completa i tuoi dati personali per essere riconosciuto all'interno del gestionale. Il tuo account rimarrà soggetto all'autorizzazione amministrativa.</p>
+  <form id="onboardingForm">
+    <div class="profile-fields">
+      <div class="field"><label for="registerFirst">NOME</label><input id="registerFirst" type="text" autocomplete="given-name" maxlength="60" required></div>
+      <div class="field"><label for="registerLast">COGNOME</label><input id="registerLast" type="text" autocomplete="family-name" maxlength="60" required></div>
+      <div class="field full"><label for="registerDob">DATA DI NASCITA</label><input id="registerDob" type="date" autocomplete="bday" required></div>
+    </div>
+    <div class="profile-row">
+      <div class="avatar-preview" id="registerPreview">BS</div>
+      <div class="photo-controls"><span class="field-label">FOTO PROFILO (FACOLTATIVA)</span><input class="photo-input" id="registerPhoto" type="file" accept="image/*"><span class="mini">La foto sarà salvata in formato ridotto e privato su Firestore, non su GitHub.</span></div>
+    </div>
+    <button type="submit" id="registerSave" class="button">SALVA IL PROFILO</button>
+    <div id="registerMessage" role="status"></div>
+  </form>
+</section>
+<section class="card" id="requestPanel" hidden>
+  <div class="eyebrow">02 · AUTORIZZAZIONI</div>
+  <h2>RICHIESTA DI ACCESSO</h2>
+  <p>Questo account Google non dispone ancora dei permessi per gestire il menu. È possibile inviare una richiesta all'amministratore principale.</p>
+  <div id="requestInfo" class="message" role="status">Verifica della richiesta...</div>
+  <button class="button" id="sendRequest" type="button" hidden style="margin-top:16px">Richiedi accesso</button>
+  <p class="mini">La richiesta non consente di leggere il catalogo riservato. L'approvazione è necessaria prima di utilizzare il gestionale.</p>
 </section>
 <section class="card" id="ownerPanel" hidden>
-  <div class="eyebrow">02 · ACCESSI</div>
-  <h2>AMMINISTRAZIONE</h2>
-  <div class="message success">Il tuo profilo è riconosciuto come <strong>PROPRIETARIO</strong> dal database. La gestione degli accessi è riservata a questo ruolo.</div>
-  <div class="account-row"><strong>UTENTI AUTORIZZATI</strong><button class="small-action" id="refreshMembers" type="button">Aggiorna</button></div>
-  <div id="membersList" aria-live="polite" class="hint">Caricamento...</div>
-  <p class="mini">Per ora è disponibile la consultazione dei ruoli. L'approvazione delle nuove richieste sarà attivata in una fase successiva, con regole dedicate.</p>
+  <div class="eyebrow">02 · CONTROLLO ACCESSI</div>
+  <h2>GESTIONE UTENTI</h2>
+  <div class="message success">Autorizzazioni di <strong>PROPRIETARIO</strong> verificate tramite Firestore. Questo ruolo gestisce richieste, ruoli, permessi e storico delle operazioni.</div>
+  <div class="request-bar"><strong class="muted-heading">RICHIESTE IN ATTESA</strong><button class="small-action" id="refreshAccess" type="button">Aggiorna</button></div>
+  <div id="requestsList" aria-live="polite" class="hint">Caricamento delle richieste...</div>
+  <p class="mini">Prima di approvare, verifica che l'indirizzo Google appartenga realmente alla persona interessata.</p>
+  <div class="section-divider"></div>
+  <div class="request-bar"><strong class="muted-heading">UTENTI REGISTRATI</strong></div>
+  <div id="membersList" class="members-manager-list" aria-live="polite">Caricamento...</div>
+  <div id="ownerNotice" role="status" aria-live="polite"></div>
+  <p class="mini">Il ruolo Proprietario non può essere modificato da questa interfaccia. Ogni modifica alle autorizzazioni verrà registrata nello storico.</p>
+</section>
+<section class="card" id="historyPanel" hidden>
+  <div class="eyebrow">03 · AREA PROPRIETARIO</div>
+  <h2>STORICO ATTIVITÀ</h2>
+  <p>Registro riservato delle modifiche con data, account responsabile e operazione effettuata. Le voci non possono essere modificate o eliminate dal pannello.</p>
+  <div class="history-actions"><span class="muted-heading">REGISTRO CRONOLOGICO</span><button type="button" class="small-action" id="refreshHistory">AGGIORNA</button></div>
+  <div id="historyList" aria-live="polite" class="hint">Caricamento dello storico...</div>
+  <button type="button" class="button secondary compact" id="moreHistory" hidden>CARICA ALTRE ATTIVITÀ</button>
+  <p class="mini">Questa versione registra profili e gestione accessi. Le modifiche a prodotti, prezzi e ingredienti saranno incluse quando attiveremo il catalogo condiviso. Lo storico non registra né espone date di nascita o fotografie.</p>
 </section>
 <section class="card" id="roadmap" hidden>
-  <div class="eyebrow">03 · IL GESTIONALE</div>
+  <div class="eyebrow">04 · IL GESTIONALE</div>
   <h2>PROSSIME FUNZIONI</h2>
   <p>Il collegamento degli account è attivo. Stiamo preparando il catalogo condiviso: il menu dei clienti non viene ancora modificato.</p>
   <div class="tiles">
@@ -191,10 +307,42 @@ a{color:var(--accent)}
     <div class="tile"><span>Fotografie</span><small>Immagini archiviate su GitHub</small></div>
     <div class="tile"><span>Statistiche</span><small>Visite, categorie e prodotti consultati</small></div>
   </div>
-  <div class="message">Questa versione <strong>legge i permessi</strong> da Firestore, ma non salva ancora modifiche ai prodotti.</div>
+  <div class="message">Questa versione gestisce <strong>utenti, ruoli, permessi e storico</strong>, ma non salva ancora modifiche ai prodotti.</div>
 </section>
-<footer class="foot">The Black Stuff · Menu Management · Verifica reale dei permessi su Firestore. Il catalogo sarà migrato in una fase successiva.</footer>
+<footer class="foot">The Black Stuff · Menu Management · Gestione accessi · Lo storico dei prodotti sarà attivato con la migrazione del catalogo.</footer>
 </main>
+<div id="profileOverlay" class="profile-overlay" role="dialog" aria-modal="true" aria-labelledby="profileTitle" hidden>
+  <section class="profile-sheet">
+    <div class="profile-top"><div class="eyebrow">AREA PERSONALE</div><button type="button" class="icon-action" id="closeProfile" aria-label="Chiudi il profilo">×</button></div>
+    <h2 id="profileTitle">IL MIO PROFILO</h2>
+    <div class="profile-row">
+      <div class="avatar-preview" id="profileAvatar">BS</div>
+      <div><div class="person-display" id="profileFullName">—</div><span class="role-pill" id="profileRole">IN VERIFICA</span></div>
+    </div>
+    <div class="info-line"><span class="field-label">EMAIL GOOGLE</span><strong id="profileEmail">—</strong></div>
+    <div class="info-line"><span class="field-label">DATA DI NASCITA</span><strong id="profileBirthDate">—</strong></div>
+    <div class="info-line"><span class="field-label">STATO ACCESSO</span><strong id="profileAccessState">—</strong></div>
+    <div class="info-line"><span class="field-label">IDENTIFICATIVO ACCOUNT (UID)</span>
+      <div class="code-actions"><button type="button" class="small-action" id="toggleCode" aria-expanded="false">VEDI CODICE</button><button type="button" class="small-action" id="copyCode" hidden>COPIA CODICE</button></div>
+      <div class="code-box" id="profileCode" hidden></div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="eyebrow">MODIFICA DATI PERSONALI</div>
+    <form id="editProfileForm">
+      <div class="profile-fields">
+        <div class="field"><label for="editFirst">NOME</label><input id="editFirst" maxlength="60" autocomplete="given-name" required></div>
+        <div class="field"><label for="editLast">COGNOME</label><input id="editLast" maxlength="60" autocomplete="family-name" required></div>
+        <div class="field full"><label for="editDob">DATA DI NASCITA</label><input id="editDob" type="date" autocomplete="bday" required></div>
+        <div class="field full"><label for="editPhoto">CAMBIA FOTO PROFILO</label><input class="photo-input" id="editPhoto" type="file" accept="image/*"></div>
+      </div>
+      <div class="button-line"><button type="button" class="small-action" id="removePhoto">RIMUOVI FOTO</button></div>
+      <button class="button compact" type="submit" id="saveProfileChanges">SALVA LE MODIFICHE</button>
+      <div id="editMessage" role="status"></div>
+    </form>
+    <p class="mini">I dati personali del profilo sono privati e non vengono pubblicati su GitHub. Il ruolo e le autorizzazioni sono gestiti separatamente.</p>
+  </section>
+</div>
+
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import {getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
@@ -206,7 +354,7 @@ const firebaseConfig={
  messagingSenderId:"879941411379",
  appId:"1:879941411379:web:18e94817206c119598f946"
 };
-import {getFirestore,doc,getDoc,collection,getDocs} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import {getFirestore,doc,getDoc,collection,getDocs,writeBatch,serverTimestamp,query,orderBy,limit,startAfter} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
 const auth=getAuth(app);
@@ -236,75 +384,462 @@ loginBtn.addEventListener("click",async()=>{
 });
 $("logout").addEventListener("click",()=>signOut(auth));
 const ROLE_NAMES={owner:"PROPRIETARIO",admin:"AMMINISTRATORE",collaborator:"COLLABORATORE"};
+const REQUEST_NAMES={pending:"IN ATTESA",approved:"APPROVATA",rejected:"RIFIUTATA"};
+const PERMISSION_LABELS={products:"PRODOTTI",prices:"PREZZI",availability:"DISPONIBILITÀ",ingredients:"INGREDIENTI E FILTRI",photos:"FOTOGRAFIE",translations:"TRADUZIONI",statistics:"STATISTICHE"};
+const PERMISSION_KEYS=Object.keys(PERMISSION_LABELS);
+const ACTION_LABELS={profile_created:"CREAZIONE PROFILO",profile_updated:"MODIFICA PROFILO",access_requested:"RICHIESTA DI ACCESSO",access_approved:"ACCESSO APPROVATO",access_rejected:"RICHIESTA RIFIUTATA",member_updated:"MODIFICA AUTORIZZAZIONI"};
+function defaultPermissions(role){return Object.fromEntries(PERMISSION_KEYS.map(k=>[k,role==="admin"||(role==="collaborator"&&k==="availability")]));}
+function normalizePermissions(p){return Object.fromEntries(PERMISSION_KEYS.map(k=>[k,p?.[k]===true]));}
+function permissionText(p){return PERMISSION_KEYS.filter(k=>p?.[k]===true).map(k=>PERMISSION_LABELS[k]).join(", ")||"NESSUN PERMESSO OPERATIVO";}
+function accessBadgeText(member){return member?.role==="owner"?"GESTIONE COMPLETA":permissionText(member?.permissions);}
+function auditEvent(action,targetType,targetId,details,before="",after=""){
+ const user=auth.currentUser;if(!user)throw Error("Accesso Google richiesto.");
+ const ref=doc(collection(db,"auditLog"));
+ return {ref,data:{actorUid:user.uid,actorEmail:user.email||"",actorName:(fullName(currentProfile)||user.displayName||"ACCOUNT GOOGLE").slice(0,120),targetId,targetType,action,details:String(details).slice(0,450),before:String(before).slice(0,600),after:String(after).slice(0,600),createdAt:serverTimestamp()}};
+}
+function addAudit(batch,event){batch.set(event.ref,event.data);}
+function makePermissionEditor(role,existing){
+ const panel=make("div","permission-box");const title=make("div","permission-title","AUTORIZZAZIONI OPERATIVE");panel.append(title);
+ const grid=make("div","permission-grid");panel.append(grid);
+ const inputs={};const state={role};
+ for(const k of PERMISSION_KEYS){const label=make("label","permission-choice"),checkbox=document.createElement("input");checkbox.type="checkbox";const v=make("span","",PERMISSION_LABELS[k]);label.append(checkbox,v);grid.append(label);inputs[k]=checkbox;}
+ function assign(p){for(const k of PERMISSION_KEYS)inputs[k].checked=p?.[k]===true;}
+ assign(existing||defaultPermissions(role));
+ return {panel,read:()=>Object.fromEntries(PERMISSION_KEYS.map(k=>[k,inputs[k].checked])),setRole:(r,reset=true)=>{state.role=r;if(reset)assign(defaultPermissions(r));}};
+}
+
 let sessionVersion=0;
 let currentRole=null;
+let busy=false;
+const make=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=String(text);return n;};
 function roleError(error){
  const code=error?.code||"errore sconosciuto";
- if(code==="permission-denied") return "Firestore ha negato la lettura. Controlla che le regole siano pubblicate e che l'ID del documento in members coincida esattamente con il tuo UID.";
- if(code==="unavailable")return "Firestore momentaneamente non raggiungibile. Controlla la connessione e riprova.";
- return "Impossibile verificare i permessi ("+code+").";
+ if(code==="permission-denied")return "Operazione negata da Firestore. Controlla che le nuove regole per i ruoli e lo storico siano state pubblicate e che il tuo profilo sia attivo.";
+ if(code==="unavailable")return "Firestore momentaneamente non raggiungibile. Riprova quando torna la connessione.";
+ return "Impossibile completare l'operazione ("+code+").";
 }
 function setProfileMessage(message,kind=""){
  const el=$("profileMessage");el.textContent=message;el.className="message "+kind;
 }
-function clearOwnerDashboard(){
- $("ownerPanel").hidden=true;$("roadmap").hidden=true;$("membersList").textContent="";
+function setOwnerNotice(message,kind=""){
+ const n=$("ownerNotice");n.textContent=message;n.className=message?"message "+kind:"";
+}
+function clearDash(){
+ $("ownerPanel").hidden=true;$("historyPanel").hidden=true;$("requestPanel").hidden=true;$("roadmap").hidden=true;$("grantedPermissions").hidden=true;
+ $("membersList").replaceChildren();$("requestsList").replaceChildren();$("historyList").replaceChildren();$("moreHistory").hidden=true;historyCursor=null;
+ $("sendRequest").hidden=true;setOwnerNotice("");
+}
+function createButton(label,action,kind=""){
+ const b=make("button","small-action "+kind,label);b.type="button";b.addEventListener("click",action);return b;
+}
+let historyCursor=null;
+let historyLoading=false;
+async function loadHistory(reset=true){
+ if(currentRole!=="owner"||!auth.currentUser||historyLoading)return;
+ const version=sessionVersion,list=$("historyList"),button=$("moreHistory");
+ historyLoading=true;button.disabled=true;
+ if(reset){historyCursor=null;list.textContent="Caricamento dello storico...";}
+ try{
+  const constraints=[orderBy("createdAt","desc"),limit(25)];
+  if(historyCursor&&!reset)constraints.splice(1,0,startAfter(historyCursor));
+  const results=await getDocs(query(collection(db,"auditLog"),...constraints));
+  if(version!==sessionVersion||currentRole!=="owner")return;
+  if(reset)list.replaceChildren();
+  if(results.empty && !historyCursor){list.textContent="Nessuna modifica registrata dopo l'attivazione dello storico.";button.hidden=true;return;}
+  for(const d of results.docs){
+   const a=d.data(),entry=make("article","activity-entry");
+   entry.append(make("div","activity-title",ACTION_LABELS[a.action]||"OPERAZIONE"));
+   const time=a.createdAt?.toDate?.();
+   const when=time?new Intl.DateTimeFormat("it-IT",{dateStyle:"medium",timeStyle:"short"}).format(time):"DATA IN ELABORAZIONE";
+   entry.append(make("div","activity-meta",`${when} · ${a.actorName||"ACCOUNT GOOGLE"} · ${a.actorEmail||""}`));
+   entry.append(make("div","activity-detail",a.details||""));
+   if(a.before || a.after){
+    const toggle=createButton("VEDI DETTAGLI",()=>{details.hidden=!details.hidden;toggle.textContent=details.hidden?"VEDI DETTAGLI":"NASCONDI DETTAGLI";});
+    const details=make("div","activity-detail",`PRIMA: ${a.before||"—"}\nDOPO: ${a.after||"—"}`);details.hidden=true;
+    entry.append(toggle,details);
+   }
+   list.append(entry);
+  }
+  historyCursor=results.docs.at(-1)||null;
+  button.hidden=results.docs.length<25;
+ }catch(e){
+  if(reset)list.textContent=roleError(e);else setOwnerNotice(roleError(e),"error");
+ }finally{historyLoading=false;button.disabled=false;}
+}
+$("refreshHistory").addEventListener("click",()=>loadHistory(true));
+$("moreHistory").addEventListener("click",()=>loadHistory(false));
+function memberSummary(role,status,p){return `RUOLO: ${ROLE_NAMES[role]||role}; STATO: ${status}; PERMESSI: ${permissionText(p)}`;}
+async function changeMember(item,changes,description){
+ const before=item.data(),after={...before,...changes},current=auth.currentUser;
+ const event=auditEvent("member_updated","member",item.id,description,memberSummary(before.role,before.status,before.permissions),memberSummary(after.role,after.status,after.permissions));
+ const batch=writeBatch(db);
+ batch.update(doc(db,"members",item.id),{...changes,updatedAt:serverTimestamp(),updatedBy:current.uid,lastAuditId:event.ref.id});
+ addAudit(batch,event);
+ await batch.commit();
 }
 async function loadMembers(){
  if(currentRole!=="owner"||!auth.currentUser)return;
- const list=$("membersList");list.textContent="Caricamento degli utenti...";
+ const version=sessionVersion,list=$("membersList");list.textContent="Caricamento degli utenti...";
  try{
   const snapshot=await getDocs(collection(db,"members"));
-  if(currentRole!=="owner"||!auth.currentUser)return;
+  if(version!==sessionVersion||currentRole!=="owner")return;
   list.replaceChildren();
-  if(snapshot.empty){list.textContent="Nessun profilo trovato.";return;}
-  const docs=snapshot.docs.sort((a,b)=>a.id.localeCompare(b.id));
-  for(const item of docs){
-   const data=item.data();
-   const node=document.createElement("div");node.className="member-row";
-   const label=document.createElement("strong");label.textContent=ROLE_NAMES[data.role]||"RUOLO NON RICONOSCIUTO";
-   const uid=document.createElement("div");uid.className="member-uid";uid.textContent=item.id;
-   const info=document.createElement("div");info.className="member-attrs";
-   const state=document.createElement("span");state.textContent="Stato: "+(data.status||"non indicato");
-   info.appendChild(state);node.append(label,uid,info);list.appendChild(node);
+  if(snapshot.empty){list.textContent="Nessun profilo registrato.";return;}
+  const entries=[...snapshot.docs].sort((a,b)=>a.id===auth.currentUser.uid?-1:b.id===auth.currentUser.uid?1:(a.data().name||a.data().email||a.id).localeCompare(b.data().name||b.data().email||b.id));
+  for(const item of entries){
+   const data=item.data(),card=make("div","request-card");
+   card.append(make("div","request-name",(item.id===auth.currentUser.uid?fullName(currentProfile):"")||data.name||data.email||"ACCOUNT REGISTRATO"));
+   card.append(make("div","request-meta",data.email||"EMAIL NON REGISTRATA"));
+   const code=make("div","member-uid",item.id);code.hidden=true;
+   const viewCode=createButton("VEDI CODICE",()=>{code.hidden=!code.hidden;viewCode.textContent=code.hidden?"VEDI CODICE":"NASCONDI CODICE";});
+   card.append(viewCode,code);
+   const attrs=make("div","member-attrs");
+   attrs.append(make("span","",ROLE_NAMES[data.role]||"RUOLO NON RICONOSCIUTO"));
+   attrs.append(make("span","",data.status==="active"?"ATTIVO":"DISABILITATO"));
+   card.append(attrs);
+   if(data.role!=="owner"){
+    card.append(make("div","permission-summary",permissionText(normalizePermissions(data.permissions))));
+    const row=make("div","button-line");
+    const manage=createButton("GESTISCI PERMESSI",()=>{config.hidden=!config.hidden;manage.textContent=config.hidden?"GESTISCI PERMESSI":"CHIUDI";});
+    row.append(manage);
+    if(data.status==="active"){
+     row.append(createButton("REVOCA ACCESSO",async()=>{
+      if(!window.confirm("Revocare l'accesso di "+(data.email||"questo account")+"?"))return;
+      await runOwnerOperation(()=>changeMember(item,{status:"revoked"},"Accesso revocato da Proprietario."),"Accesso revocato.");
+     }));
+    }else{
+     row.append(createButton("RIATTIVA ACCESSO",async()=>{
+      if(!window.confirm("Riattivare l'accesso di "+(data.email||"questo account")+"?"))return;
+      await runOwnerOperation(()=>changeMember(item,{status:"active"},"Accesso riattivato da Proprietario."),"Accesso riattivato.");
+     }));
+    }
+    card.append(row);
+    const config=make("div","member-config");config.hidden=true;
+    config.append(make("div","permission-title","RUOLO ASSEGNATO"));
+    const roleSel=make("select","select-role");roleSel.setAttribute("aria-label","Cambia ruolo");
+    for(const [value,name] of [["admin","AMMINISTRATORE"],["collaborator","COLLABORATORE"]]){
+     const opt=make("option","",name);opt.value=value;roleSel.append(opt);
+    }
+    roleSel.value=data.role;config.append(roleSel);
+    const editor=makePermissionEditor(data.role,normalizePermissions(data.permissions));
+    roleSel.addEventListener("change",()=>editor.setRole(roleSel.value));
+    config.append(editor.panel);
+    config.append(createButton("SALVA RUOLO E PERMESSI",async()=>{
+     const role=roleSel.value,permissions=editor.read();
+     if(!window.confirm("Salvare il ruolo e i permessi per "+(data.email||"questo account")+"?"))return;
+     await runOwnerOperation(()=>changeMember(item,{role,permissions},"Aggiornamento ruolo e autorizzazioni operative."),"Permessi aggiornati.");
+    },"primary-action"));
+    card.append(config);
+   }else{
+    card.append(make("p","mini","RUOLO PROPRIETARIO · CONTROLLO COMPLETO"));
+   }
+   list.append(card);
   }
  }catch(error){list.textContent=roleError(error);}
 }
-$("refreshMembers").addEventListener("click",loadMembers);
-onAuthStateChanged(auth,async user=>{
- const version=++sessionVersion;
- currentRole=null;
- $("signedIn").classList.toggle("show",!!user);
- $("signedOut").classList.toggle("show",!user);
- clearOwnerDashboard();
- if(!user)return;
- $("account").textContent=(user.displayName||"Account Google")+" · "+(user.email||"");
- $("uid").textContent=user.uid;
- $("roleLabel").textContent="VERIFICA PERMESSI...";
- setProfileMessage("Sto controllando il tuo profilo nella raccolta members...");
+async function loadRequests(){
+ if(currentRole!=="owner"||!auth.currentUser)return;
+ const version=sessionVersion,list=$("requestsList");list.textContent="Caricamento delle richieste...";
+ try{
+  const snapshot=await getDocs(collection(db,"accessRequests"));
+  if(version!==sessionVersion||currentRole!=="owner")return;
+  const pending=snapshot.docs.filter(d=>d.data().status==="pending").sort((a,b)=>{
+   return (a.data().createdAt?.toMillis?.()||0)-(b.data().createdAt?.toMillis?.()||0);
+  });
+  list.replaceChildren();
+  if(!pending.length){list.textContent="Nessuna richiesta in attesa.";return;}
+  for(const item of pending){
+   const data=item.data(),card=make("div","request-card");
+   card.append(make("div","request-name",data.name||"ACCOUNT GOOGLE"));
+   card.append(make("div","request-meta",data.email||"EMAIL NON INDICATA"));
+   const code=make("div","member-uid",item.id);code.hidden=true;
+   const showCode=createButton("VEDI CODICE",()=>{code.hidden=!code.hidden;showCode.textContent=code.hidden?"VEDI CODICE":"NASCONDI CODICE";});
+   card.append(showCode,code);
+   card.append(make("div","permission-title","SCEGLI IL RUOLO DA ASSEGNARE"));
+   const select=make("select","select-role");select.setAttribute("aria-label","Ruolo da assegnare");
+   for(const [value,name] of [["admin","AMMINISTRATORE"],["collaborator","COLLABORATORE"]]){
+    const opt=make("option","",name);opt.value=value;select.append(opt);
+   }
+   select.value="collaborator";card.append(select);
+   const editor=makePermissionEditor("collaborator");
+   select.addEventListener("change",()=>editor.setRole(select.value));
+   card.append(editor.panel);
+   const actions=make("div","request-actions");
+   actions.append(createButton("APPROVA",async()=>{
+    const role=select.value,permissions=editor.read(),email=data.email||"questo account";
+    if(!window.confirm(`Approvare ${email} come ${ROLE_NAMES[role]} con i permessi selezionati?`))return;
+    await runOwnerOperation(async()=>{
+     const uid=auth.currentUser.uid;
+     const event=auditEvent("access_approved","member",item.id,"Richiesta approvata; ruolo e permessi assegnati.","NESSUN ACCESSO",memberSummary(role,"active",permissions));
+     const batch=writeBatch(db);
+     batch.set(doc(db,"members",item.id),{name:data.name||"",email:data.email||"",role,status:"active",permissions,approvedAt:serverTimestamp(),approvedBy:uid,updatedAt:serverTimestamp(),updatedBy:uid,lastAuditId:event.ref.id});
+     batch.update(doc(db,"accessRequests",item.id),{status:"approved",reviewedAt:serverTimestamp(),reviewedBy:uid,lastAuditId:event.ref.id});
+     addAudit(batch,event);
+     await batch.commit();
+    },"Richiesta approvata con i permessi selezionati.");
+   },"primary-action"));
+   actions.append(createButton("RIFIUTA",async()=>{
+    if(!window.confirm("Rifiutare la richiesta di "+(data.email||"questo account")+"?"))return;
+    await runOwnerOperation(async()=>{
+     const event=auditEvent("access_rejected","request",item.id,"Richiesta di accesso rifiutata.","IN ATTESA","RIFIUTATA");
+     const batch=writeBatch(db);
+     batch.update(doc(db,"accessRequests",item.id),{status:"rejected",reviewedAt:serverTimestamp(),reviewedBy:auth.currentUser.uid,lastAuditId:event.ref.id});
+     addAudit(batch,event);await batch.commit();
+    },"Richiesta rifiutata.");
+   }));
+   card.append(actions);list.append(card);
+  }
+ }catch(error){list.textContent=roleError(error);}
+}
+async function refreshOwner(){await Promise.all([loadMembers(),loadRequests(),loadHistory(true)]);}
+async function runOwnerOperation(action,successMessage){
+ if(busy||currentRole!=="owner"||!auth.currentUser)return;
+ busy=true;setOwnerNotice("Salvataggio in corso...");
+ try{await action();setOwnerNotice(successMessage,"success");await refreshOwner();}
+ catch(error){setOwnerNotice(roleError(error),"error");}
+ finally{busy=false;}
+}
+$("refreshAccess").addEventListener("click",refreshOwner);
+async function updateRequestPanel(user){
+ const panel=$("requestPanel"), info=$("requestInfo"), button=$("sendRequest");
+ panel.hidden=false;button.hidden=true;info.className="message";info.textContent="Verifica delle richieste...";
+ try{
+  const r=await getDoc(doc(db,"accessRequests",user.uid));
+  if(auth.currentUser?.uid!==user.uid)return;
+  if(!r.exists()){
+   info.textContent="Nessuna richiesta inviata.";button.hidden=false;
+  }else{
+   const status=r.data().status;
+   info.textContent=status==="pending"?"RICHIESTA IN ATTESA · Un responsabile autorizzato deve approvarla.":status==="rejected"?"RICHIESTA RIFIUTATA · Contatta l'amministratore principale.":status==="approved"?"RICHIESTA APPROVATA · Ricarica la pagina per aggiornare le autorizzazioni.":"Stato non riconosciuto. Contatta l'amministratore principale.";
+  }
+ }catch(error){info.className="message error";info.textContent=roleError(error);}
+}
+$("sendRequest").addEventListener("click",async()=>{
+ const user=auth.currentUser,button=$("sendRequest"),info=$("requestInfo");
+ if(!user||busy)return;busy=true;button.disabled=true;
+ try{
+  const event=auditEvent("access_requested","request",user.uid,"Nuova richiesta di autorizzazione al gestionale.","NESSUNA RICHIESTA","IN ATTESA");
+  const batch=writeBatch(db);
+  batch.set(doc(db,"accessRequests",user.uid),{
+   name:(fullName(currentProfile)||user.displayName||"Account Google").slice(0,100),email:user.email||"",
+   status:"pending",createdAt:serverTimestamp(),lastAuditId:event.ref.id
+  });
+  addAudit(batch,event);
+  await batch.commit();
+  button.hidden=true;info.className="message success";info.textContent="Richiesta inviata correttamente. Attendi l'approvazione dell'amministratore principale.";
+ }catch(error){info.className="message error";info.textContent=roleError(error);}
+ finally{button.disabled=false;busy=false;}
+});
+
+/* Profili individuali privati: la collezione profiles e' leggibile dal solo titolare. */
+let currentProfile=null;
+let registrationPhoto="";
+let editedPhoto="";
+function fullName(person){return [person?.firstName||"",person?.lastName||""].filter(Boolean).join(" ").trim();}
+function initials(person){const parts=[person?.firstName||"",person?.lastName||""];const str=parts.filter(Boolean).map(p=>p.trim().charAt(0)).join("").toUpperCase();return str||"BS";}
+function displayAvatar(node,person){
+ node.replaceChildren();
+ if(person?.photoDataUrl && person.photoDataUrl.startsWith("data:image/jpeg;base64,")){
+  const img=document.createElement("img");img.src=person.photoDataUrl;img.alt="";node.appendChild(img);
+ }else node.textContent=initials(person);
+}
+function dobText(value){
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(value||""))return "—";
+ const [y,m,d]=value.split("-");return `${d}/${m}/${y}`;
+}
+function validDob(value){
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(value||""))return false;
+ const [y,m,d]=value.split("-").map(Number);
+ const dt=new Date(y,m-1,d);
+ const today=new Date();today.setHours(0,0,0,0);
+ return y>=1900 && dt.getFullYear()===y && dt.getMonth()===m-1 && dt.getDate()===d && dt<=today;
+}
+function profileFields(first,last,dob){
+ const firstName=first.trim().replace(/\s+/g," ");
+ const lastName=last.trim().replace(/\s+/g," ");
+ if(firstName.length<1||firstName.length>60||lastName.length<1||lastName.length>60)throw new Error("Inserisci nome e cognome validi.");
+ if(!validDob(dob))throw new Error("Controlla la data di nascita.");
+ return {firstName,lastName,birthDate:dob};
+}
+async function resizePhoto(file){
+ if(!file)throw new Error("Nessuna foto selezionata.");
+ if(!file.type.startsWith("image/"))throw new Error("Seleziona una fotografia.");
+ if(file.size>6*1024*1024)throw new Error("Scegli una foto fino a 6 MB.");
+ const url=URL.createObjectURL(file);
+ try{
+  const img=await new Promise((resolve,reject)=>{const x=new Image();x.onload=()=>resolve(x);x.onerror=()=>reject(new Error("Impossibile aprire questa fotografia."));x.src=url;});
+  const canvas=document.createElement("canvas");canvas.width=180;canvas.height=180;
+  const ctx=canvas.getContext("2d");if(!ctx)throw new Error("Elaborazione immagine non disponibile.");
+  const edge=Math.min(img.naturalWidth,img.naturalHeight);
+  ctx.fillStyle="#ffffff";ctx.fillRect(0,0,180,180);
+  ctx.drawImage(img,(img.naturalWidth-edge)/2,(img.naturalHeight-edge)/2,edge,edge,0,0,180,180);
+  let data=canvas.toDataURL("image/jpeg",.72);
+  if(data.length>65000)data=canvas.toDataURL("image/jpeg",.42);
+  if(!data.startsWith("data:image/jpeg;base64,")||data.length>68000)throw new Error("Questa immagine è troppo grande.");
+  return data;
+ }finally{URL.revokeObjectURL(url);}
+}
+function setMessage(id,message,kind=""){
+ const el=$(id);el.textContent=message;el.className=message?"message "+kind:"";
+}
+function updateSelfUI(user){
+ const name=fullName(currentProfile)||(user?.displayName||"ACCOUNT GOOGLE");
+ $("account").textContent=name.toUpperCase();
+ const avatarPerson=currentProfile||{firstName:user?.displayName||"",lastName:""};
+ displayAvatar($("profileTrigger"),avatarPerson);
+ displayAvatar($("profileAvatar"),avatarPerson);
+ $("profileFullName").textContent=name;
+ $("profileEmail").textContent=user?.email||"—";
+ $("profileBirthDate").textContent=dobText(currentProfile?.birthDate);
+ $("profileRole").textContent=ROLE_NAMES[currentRole]||(currentRole===null?"IN ATTESA DI AUTORIZZAZIONE":"NON AUTORIZZATO");
+ $("profileAccessState").textContent=currentRole?"AUTORIZZATO":"IN ATTESA / NON AUTORIZZATO";
+ $("profileCode").textContent=user?.uid||"";
+ $("editFirst").value=currentProfile?.firstName||"";
+ $("editLast").value=currentProfile?.lastName||"";
+ $("editDob").value=currentProfile?.birthDate||"";
+ editedPhoto=currentProfile?.photoDataUrl||"";
+}
+function openProfile(){
+ if(!auth.currentUser||!currentProfile){$("onboarding").scrollIntoView({behavior:"smooth"});return;}
+ updateSelfUI(auth.currentUser);
+ $("toggleCode").textContent="VEDI CODICE";$("toggleCode").setAttribute("aria-expanded","false");
+ $("profileCode").hidden=true;$("copyCode").hidden=true;setMessage("editMessage","");
+ $("profileOverlay").hidden=false;document.body.classList.add("profile-open");$("closeProfile").focus();
+}
+function closeProfile(){
+ $("profileOverlay").hidden=true;document.body.classList.remove("profile-open");
+ $("profileTrigger").focus();
+}
+$("profileTrigger").addEventListener("click",openProfile);
+$("closeProfile").addEventListener("click",closeProfile);
+$("profileOverlay").addEventListener("click",e=>{if(e.target===$("profileOverlay"))closeProfile();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("profileOverlay").hidden)closeProfile();});
+$("toggleCode").addEventListener("click",()=>{
+ const showing=!$("profileCode").hidden;
+ $("profileCode").hidden=showing;$("copyCode").hidden=showing;
+ $("toggleCode").textContent=showing?"VEDI CODICE":"NASCONDI CODICE";
+ $("toggleCode").setAttribute("aria-expanded",String(!showing));
+});
+$("copyCode").addEventListener("click",async()=>{
+ if(!auth.currentUser)return;
+ try{await navigator.clipboard.writeText(auth.currentUser.uid);$("copyCode").textContent="COPIATO";}
+ catch(e){$("copyCode").textContent="SELEZIONA IL CODICE";}
+});
+$("registerPhoto").addEventListener("change",async e=>{
+ try{if(!e.target.files[0])return;registrationPhoto=await resizePhoto(e.target.files[0]);displayAvatar($("registerPreview"),{photoDataUrl:registrationPhoto,firstName:$("registerFirst").value,lastName:$("registerLast").value});setMessage("registerMessage","");}
+ catch(error){e.target.value="";registrationPhoto="";setMessage("registerMessage",error.message,"error");}
+});
+$("editPhoto").addEventListener("change",async e=>{
+ try{if(!e.target.files[0])return;editedPhoto=await resizePhoto(e.target.files[0]);displayAvatar($("profileAvatar"),{...currentProfile,photoDataUrl:editedPhoto});setMessage("editMessage","");}
+ catch(error){e.target.value="";setMessage("editMessage",error.message,"error");}
+});
+$("removePhoto").addEventListener("click",()=>{
+ editedPhoto="";$("editPhoto").value="";
+ displayAvatar($("profileAvatar"),{...currentProfile,photoDataUrl:""});
+});
+$("onboardingForm").addEventListener("submit",async e=>{
+ e.preventDefault();const user=auth.currentUser;if(!user)return;
+ const button=$("registerSave");button.disabled=true;
+ try{
+  const fields=profileFields($("registerFirst").value,$("registerLast").value,$("registerDob").value);
+  const event=auditEvent("profile_created","profile",user.uid,"Profilo personale registrato.","PROFILO ASSENTE","PROFILO ATTIVO");
+  const batch=writeBatch(db);
+  batch.set(doc(db,"profiles",user.uid),{...fields,email:user.email||"",photoDataUrl:registrationPhoto,createdAt:serverTimestamp(),updatedAt:serverTimestamp(),lastAuditId:event.ref.id});
+  addAudit(batch,event);await batch.commit();
+  currentProfile={...fields,email:user.email||"",photoDataUrl:registrationPhoto};
+  $("onboarding").hidden=true;updateSelfUI(user);
+  setProfileMessage("Profilo registrato correttamente. Verifica delle autorizzazioni...","success");
+  await checkRole(user,sessionVersion);
+ }catch(error){setMessage("registerMessage",error?.code?roleError(error):error.message,"error");}
+ finally{button.disabled=false;}
+});
+$("editProfileForm").addEventListener("submit",async e=>{
+ e.preventDefault();const user=auth.currentUser;if(!user||!currentProfile)return;
+ const button=$("saveProfileChanges");button.disabled=true;
+ try{
+  const fields=profileFields($("editFirst").value,$("editLast").value,$("editDob").value);
+  const changed=[];
+  if(fields.firstName!==currentProfile.firstName||fields.lastName!==currentProfile.lastName)changed.push("nome e cognome");
+  if(fields.birthDate!==currentProfile.birthDate)changed.push("data di nascita");
+  if(editedPhoto!==currentProfile.photoDataUrl)changed.push("foto profilo");
+  if(changed.length===0){setMessage("editMessage","Nessuna modifica da salvare.");return;}
+  const event=auditEvent("profile_updated","profile",user.uid,"Dati aggiornati: "+changed.join(", ")+". Nessun dato sensibile nel registro.","PROFILO PRECEDENTE","PROFILO AGGIORNATO");
+  const batch=writeBatch(db);
+  batch.update(doc(db,"profiles",user.uid),{...fields,photoDataUrl:editedPhoto,updatedAt:serverTimestamp(),lastAuditId:event.ref.id});
+  addAudit(batch,event);await batch.commit();
+  currentProfile={...currentProfile,...fields,photoDataUrl:editedPhoto};
+  updateSelfUI(user);setMessage("editMessage","Profilo aggiornato.","success");
+ }catch(error){setMessage("editMessage",error?.code?roleError(error):error.message,"error");}
+ finally{button.disabled=false;}
+});
+
+async function checkRole(user,version){
  try{
   const snapshot=await getDoc(doc(db,"members",user.uid));
-  if(version!==sessionVersion)return;
+  if(version!==sessionVersion||auth.currentUser?.uid!==user.uid)return;
   if(!snapshot.exists()){
-   $("roleLabel").textContent="NON AUTORIZZATO";
-   setProfileMessage("Account Google autenticato, ma non ancora autorizzato. L'amministratore principale dovrà approvare l'accesso.");
-   return;
+   $("roleLabel").textContent="IN ATTESA DI APPROVAZIONE";
+   setProfileMessage("Identità verificata. Per accedere al gestionale occorre l'approvazione dell'amministratore principale.");
+   updateSelfUI(user);await updateRequestPanel(user);return;
   }
   const {role,status}=snapshot.data();
   if(status!=="active"||!ROLE_NAMES[role]){
    $("roleLabel").textContent="ACCESSO NON ATTIVO";
-   setProfileMessage("Il profilo esiste, ma non è attivo oppure il ruolo non è riconosciuto.");
-   return;
+   setProfileMessage("Questo account non dispone di un accesso attivo. Contatta l'amministratore principale.");
+   updateSelfUI(user);return;
   }
-  currentRole=role;
-  $("roleLabel").textContent=ROLE_NAMES[role];
-  setProfileMessage("Accesso autorizzato. Il ruolo è stato verificato direttamente su Firestore.","success");
+  currentRole=role;$("roleLabel").textContent="ACCESSO ATTIVO";
+  setProfileMessage("Accesso autorizzato. Ruolo verificato tramite Firestore.","success");
   $("roadmap").hidden=false;
-  if(role==="owner"){$("ownerPanel").hidden=false;loadMembers();}
+  updateSelfUI(user);
+  $("grantedPermissions").hidden=false;
+  const granted=$("myPermissions");granted.replaceChildren();
+  if(role==="owner")granted.append(make("span","","CONTROLLO COMPLETO"));
+  else{
+   for(const k of PERMISSION_KEYS){if(snapshot.data().permissions?.[k]===true)granted.append(make("span","",PERMISSION_LABELS[k]));}
+   if(!granted.childElementCount)granted.append(make("span","","NESSUN PERMESSO OPERATIVO"));
+  }
+  if(role==="owner"){$("ownerPanel").hidden=false;$("historyPanel").hidden=false;refreshOwner();}
  }catch(error){
   if(version!==sessionVersion)return;
   $("roleLabel").textContent="VERIFICA NON RIUSCITA";
   setProfileMessage(roleError(error),"error");
+ }
+}
+onAuthStateChanged(auth,async user=>{
+ const version=++sessionVersion;
+ currentRole=null;currentProfile=null;registrationPhoto="";editedPhoto="";
+ $("signedIn").classList.toggle("show",!!user);
+ $("signedOut").classList.toggle("show",!user);
+ $("profileTrigger").hidden=!user;
+ $("onboarding").hidden=true;
+ $("profileOverlay").hidden=true;document.body.classList.remove("profile-open");
+ clearDash();
+ if(!user)return;
+ $("account").textContent=(user.displayName||"ACCOUNT GOOGLE").toUpperCase();
+ $("roleLabel").textContent="VERIFICA DEL PROFILO...";
+ setProfileMessage("Verifica del profilo personale in corso...");
+ $("registerDob").max=new Date().toISOString().slice(0,10);
+ $("editDob").max=$("registerDob").max;
+ try{
+  const p=await getDoc(doc(db,"profiles",user.uid));
+  if(version!==sessionVersion)return;
+  if(!p.exists()){
+   $("roleLabel").textContent="PROFILO DA COMPLETARE";
+   $("onboarding").hidden=false;
+   $("registerFirst").value=user.displayName?.split(" ")[0]||"";
+   $("registerLast").value=user.displayName?.split(" ").slice(1).join(" ")||"";
+   displayAvatar($("registerPreview"),{firstName:$("registerFirst").value,lastName:$("registerLast").value});
+   setProfileMessage("Completa il profilo personale prima di proseguire.");
+   return;
+  }
+  currentProfile=p.data();
+  updateSelfUI(user);
+  await checkRole(user,version);
+ }catch(error){
+  if(version!==sessionVersion)return;
+  $("roleLabel").textContent="PROFILO NON DISPONIBILE";
+  setProfileMessage(roleError(error)+" Verifica che le regole Firestore includano la raccolta profiles.","error");
  }
 });
 getRedirectResult(auth).catch(e=>{const box=$("loginError");box.className="message error";box.textContent=explain(e)});
