@@ -6,6 +6,12 @@
 <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0d0f0e" media="(prefers-color-scheme: dark)">
 <meta name="description" content="Area riservata di gestione del menu digitale The Black Stuff.">
+<link rel="apple-touch-icon" sizes="512x512" href="./manager-icon.png?v=2">
+<link rel="icon" type="image/png" href="./manager-icon.png?v=2">
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Black Stuff">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>Black Stuff Manager · Area riservata</title>
 <style>
 
@@ -249,6 +255,8 @@ body[data-manager-ready="true"][data-manager-view="catalog"] #catalogPanel,body[
 .catalog-tools{display:grid;gap:12px;margin:20px 0}.catalog-tools input,.catalog-tools select{width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text)}
 .catalog-row{border-top:1px solid var(--border);padding:15px 0;display:flex;gap:12px;align-items:center;justify-content:space-between}.catalog-row small{display:block;color:var(--muted);margin-top:4px}
 #catalogEditor{border:1px solid var(--border);border-radius:14px;padding:18px;margin:20px 0}#catalogEditor label{display:block;margin:15px 0}#catalogEditor input[type=text]{display:block;width:100%;padding:12px;margin-top:8px}#catalogEditor input[type=checkbox]{width:auto}
+
+.product-checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}.product-checks .product-check{display:flex!important;align-items:center;gap:9px;margin:0!important;font-size:13px;padding:10px;border:1px solid var(--border);border-radius:9px}.product-check input{flex:0 0 auto}#catalogEditor input[type=text],#catalogEditor textarea,#catalogEditor select{display:block;width:100%;padding:10px;margin-top:8px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);font:inherit}#catalogEditor textarea{min-height:95px;resize:vertical}#catalogEditor details{border-bottom:1px solid var(--border);padding:14px 0}#catalogEditor summary{cursor:pointer;font-weight:700}#catalogEditor fieldset{border:0;padding:0;margin:16px 0}#catalogEditor legend{font-weight:700;margin-bottom:10px}.editor-help{font-size:12px;color:var(--muted)}.install-help{margin:16px 0;font-size:13px}.install-help summary{cursor:pointer}.catalog-sticky-actions{position:sticky;bottom:0;padding:12px 0;background:var(--bg);z-index:2}
 </style>
 </head>
 <body>
@@ -266,19 +274,20 @@ body[data-manager-ready="true"][data-manager-view="catalog"] #catalogPanel,body[
 <p class="lead">Gestione centralizzata del catalogo, delle fotografie, degli ingredienti e delle traduzioni.</p>
 <span class="badge"><span class="dot"></span> Accesso protetto · Firebase</span>
 </section>
-<section id="managerHome" aria-labelledby="managerHomeTitle"><div class="home-intro"><div class="eyebrow">IL TUO SPAZIO DI LAVORO</div><h2 id="managerHomeTitle" tabindex="-1">Da dove iniziamo?</h2><p>Scegli la sezione che ti serve.</p></div><div class="manager-grid"><button type="button" class="manager-tile primary-tile" data-manager-go="catalog"><strong>Modifica menu</strong><span>Prodotti, prezzi e disponibilità</span></button><button type="button" class="manager-tile" data-manager-go="wallet" data-owner-only hidden><strong>Portafoglio IA</strong><span>Non ancora attivato</span></button><button type="button" class="manager-tile" data-manager-go="profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg><strong>Il mio profilo</strong><span>Dati personali e fotografia</span></button><button type="button" class="manager-tile" data-manager-go="account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><strong>Il mio accesso</strong><span>Ruolo, permessi e uscita</span></button><button type="button" class="manager-tile" data-manager-go="members" data-owner-only hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M2 21v-3a7 7 0 0 1 14 0v3M16 5a3 3 0 0 1 0 6m3 10v-3a7 7 0 0 0-2-5"/></svg><strong>Utenti e permessi</strong><span>Gestisci il personale</span></button><button type="button" class="manager-tile" data-manager-go="requests" data-owner-only hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="m8 12 3 3 5-6"/></svg><strong>Richieste di accesso</strong><span>Approva o rifiuta</span></button><button type="button" class="manager-tile" data-manager-go="history" data-owner-only hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11a9 9 0 1 1 2 7M3 4v7h7m2-4v6l4 2"/></svg><strong>Storico attività</strong><span>Consulta le modifiche</span></button></div><div class="home-links"><a href="https://theblackstuffud.github.io/blackstuff-menu/" target="_blank" rel="noopener noreferrer">Apri il menu pubblico ↗</a><span>Prezzi e disponibilità collegabili a Firebase</span></div></section><nav id="managerNav" aria-label="Navigazione gestionale"><button type="button" class="small-action" id="managerBack">← Home</button><span id="managerSectionTitle"></span></nav>
+<section id="managerHome" aria-labelledby="managerHomeTitle"><div class="home-intro"><div class="eyebrow">IL TUO SPAZIO DI LAVORO</div><h2 id="managerHomeTitle" tabindex="-1">Da dove iniziamo?</h2><p>Scegli la sezione che ti serve.</p></div><div class="manager-grid"><button type="button" class="manager-tile primary-tile" data-manager-go="catalog"><strong>Modifica menu</strong><span>Schede, ingredienti e disponibilità</span></button><button type="button" class="manager-tile" data-manager-go="wallet" data-owner-only hidden><strong>Portafoglio IA</strong><span>Non ancora attivato</span></button><button type="button" class="manager-tile" data-manager-go="profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg><strong>Il mio profilo</strong><span>Dati personali e fotografia</span></button><button type="button" class="manager-tile" data-manager-go="account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><strong>Il mio accesso</strong><span>Ruolo, permessi e uscita</span></button><button type="button" class="manager-tile" data-manager-go="members" data-owner-only hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M2 21v-3a7 7 0 0 1 14 0v3M16 5a3 3 0 0 1 0 6m3 10v-3a7 7 0 0 0-2-5"/></svg><strong>Utenti e permessi</strong><span>Gestisci il personale</span></button><button type="button" class="manager-tile" data-manager-go="requests" data-owner-only hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="m8 12 3 3 5-6"/></svg><strong>Richieste di accesso</strong><span>Approva o rifiuta</span></button><button type="button" class="manager-tile" data-manager-go="history" data-owner-only hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11a9 9 0 1 1 2 7M3 4v7h7m2-4v6l4 2"/></svg><strong>Storico attività</strong><span>Consulta le modifiche</span></button></div><details class="install-help"><summary>Aggiungi il gestionale alla schermata Home</summary><p>Su iPhone apri il gestionale in Safari, premi Condividi → Aggiungi alla schermata Home → Aggiungi. L’icona sarà verde con il logo del pub. Il gestionale richiede una connessione internet.</p><p>Se avevi già aggiunto la vecchia icona, rimuovila dalla Home e aggiungi nuovamente il sito dopo l’aggiornamento.</p></details><div class="home-links"><a href="https://theblackstuffud.github.io/blackstuff-menu/" target="_blank" rel="noopener noreferrer">Apri il menu pubblico ↗</a><span>Schede prodotto collegate a Firebase</span></div></section><nav id="managerNav" aria-label="Navigazione gestionale"><button type="button" class="small-action" id="managerBack">← Home</button><span id="managerSectionTitle"></span></nav>
 <section id="catalogPanel" class="panel" aria-labelledby="catalogHeading">
 <h2 id="catalogHeading" tabindex="-1">MODIFICA MENU</h2>
-<p>Prima versione: prezzi e disponibilità. I prodotti non disponibili vengono nascosti dal menu pubblico dopo la sincronizzazione.</p>
-<p class="muted">Nomi, descrizioni, foto, ingredienti e allergeni restano quelli del menu attuale. La pubblicazione richiede anche il nuovo file del menu e le regole Firebase aggiornate.</p>
+<p>Aggiorna le informazioni che i clienti vedono nel menu.</p>
+<p class="muted">Se un prodotto non è disponibile, togli la spunta per nasconderlo dal menu.</p>
 <div id="catalogMessage" role="status" aria-live="polite"></div>
 <button type="button" class="small-action" id="catalogReload">Ricarica prodotti</button>
 <div class="catalog-tools"><label>Cerca prodotto<input id="catalogSearch" type="search" placeholder="Es. hamburger"></label></div>
 <form id="catalogEditor" hidden><h3 id="catalogProductName"></h3><p id="catalogProductId" class="muted"></p>
-<label>Prezzo in euro<input id="catalogPrice" type="text" inputmode="decimal" required maxlength="30" placeholder="12,00 oppure 3,50–6,00"></label>
+<div id="productEditorTabs"><details open><summary>Italiano</summary><label>Nome del prodotto<input type="text" id="product-name-it" maxlength="120" required></label><label>Descrizione del piatto<textarea id="product-description-it" maxlength="1000" data-recipe></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-it" maxlength="1000" data-recipe></textarea></label></details><details ><summary>English</summary><label>Nome del prodotto<input type="text" id="product-name-en" maxlength="120" ></label><label>Descrizione del piatto<textarea id="product-description-en" maxlength="1000" ></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-en" maxlength="1000" ></textarea></label></details><details ><summary>Deutsch</summary><label>Nome del prodotto<input type="text" id="product-name-de" maxlength="120" ></label><label>Descrizione del piatto<textarea id="product-description-de" maxlength="1000" ></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-de" maxlength="1000" ></textarea></label></details><details ><summary>Español</summary><label>Nome del prodotto<input type="text" id="product-name-es" maxlength="120" ></label><label>Descrizione del piatto<textarea id="product-description-es" maxlength="1000" ></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-es" maxlength="1000" ></textarea></label></details></div><p class="editor-help">Se modifichi un testo italiano senza aggiornare le sue traduzioni, quelle precedenti vengono rimosse: il menu mostrerà il nuovo testo italiano finché non inserirai le traduzioni corrette.</p><details><summary>Allergeni e preparazione</summary><p class="editor-help">Seleziona gli allergeni effettivamente presenti, inclusi salse e ingredienti composti. Le caselle vuote restano informazioni non verificate finché non confermi la revisione. Specifica nel testo ingredienti i cereali e la frutta a guscio utilizzati. Per i solfiti considera la soglia prevista dalla normativa.</p><fieldset><legend>Allergeni presenti</legend><div id="productAllergens" class="product-checks"></div></fieldset><label><input id="productReviewed" type="checkbox"> Ho verificato l’elenco completo degli allergeni della ricetta e delle materie prime</label><p id="productReviewHint" role="status" class="editor-help"></p><fieldset><legend>Può contenere / possibili tracce</legend><div id="productTraces" class="product-checks"></div></fieldset><label>Preparazione<select id="productPreparation"><option value="unknown">Da verificare</option><option value="shared-fryer">Friggitrice condivisa</option><option value="other">Altra preparazione verificata</option></select></label><label>Contaminazione crociata<select id="productCrossContact"><option value="unknown">Valutazione non completata</option><option value="possible">Rischio presente / attrezzature condivise</option><option value="assessed">Valutata: rischi noti indicati nelle possibili tracce</option></select></label><p class="editor-help">La friggitrice condivisa comporta possibile contaminazione da glutine. Non permette di proporre il prodotto per una richiesta senza glutine. Per allergie e celiachia il cliente deve sempre verificare con il personale.</p></details>
+<details><summary>Caratteristiche per la ricerca</summary><p class="editor-help">Seleziona solo caratteristiche reali. “Leggero” descrive il piatto: non indica calorie misurate. Vegetariano e vegano non equivalgono a senza allergeni.</p><div id="productTraits" class="product-checks"></div><fieldset><legend>Ingredienti di cui hai verificato l’assenza</legend><p class="editor-help">Servono a richieste come “senza cipolla”. Non selezionare un’assenza soltanto perché l’ingrediente non compare nella descrizione.</p><div id="productAbsent" class="product-checks"></div></fieldset></details><label>Prezzo in euro<input id="catalogPrice" type="text" inputmode="decimal" required maxlength="30" placeholder="12,00 oppure 3,50–6,00"></label>
 <label><input id="catalogAvailable" type="checkbox"> Disponibile nel menu</label>
-<p>“Pubblica modifica” salva su Firebase. Le copie del menu già aperte si aggiornano quando sono online e hanno caricato la nuova versione del sito.</p>
-<button type="submit" class="button" id="catalogSave">Pubblica modifica</button> <button type="button" class="small-action" id="catalogCancel">Annulla</button>
+<p>La pubblicazione aggiorna il menu dei clienti.</p>
+<div class="catalog-sticky-actions"><button type="submit" class="button" id="catalogSave">Pubblica modifica</button> <button type="button" class="small-action" id="catalogCancel">Annulla</button></div>
 </form><div id="catalogList"></div>
 </section>
 <section id="walletPanel" class="panel" aria-labelledby="walletHeading"><h2 id="walletHeading" tabindex="-1">PORTAFOGLIO IA</h2>
@@ -464,6 +473,64 @@ function makePermissionEditor(role,existing){
 
 
 
+const PRODUCT_ALLERGENS={"gluten": ["Cereali contenenti glutine", "Cereals containing gluten", "Glutenhaltiges Getreide", "Cereales con gluten"], "crustaceans": ["Crostacei", "Crustaceans", "Krebstiere", "Crustáceos"], "eggs": ["Uova", "Eggs", "Eier", "Huevos"], "fish": ["Pesce", "Fish", "Fisch", "Pescado"], "peanuts": ["Arachidi", "Peanuts", "Erdnüsse", "Cacahuetes"], "soy": ["Soia", "Soybeans", "Soja", "Soja"], "milk": ["Latte", "Milk", "Milch", "Leche"], "nuts": ["Frutta a guscio", "Nuts", "Schalenfrüchte", "Frutos de cáscara"], "celery": ["Sedano", "Celery", "Sellerie", "Apio"], "mustard": ["Senape", "Mustard", "Senf", "Mostaza"], "sesame": ["Sesamo", "Sesame", "Sesam", "Sésamo"], "sulphites": ["Anidride solforosa e solfiti", "Sulphur dioxide and sulphites", "Schwefeldioxid und Sulfite", "Dióxido de azufre y sulfitos"], "lupin": ["Lupini", "Lupin", "Lupinen", "Altramuces"], "molluscs": ["Molluschi", "Molluscs", "Weichtiere", "Moluscos"]};
+const PRODUCT_TRAITS={"fresh": {"labels": ["Fresco", "Fresh", "Frisch", "Fresco"], "aliases": ["fresco", "fresca", "freschi", "fresche", "rinfrescante", "rinfrescanti", "qualcosa di estivo", "fresh", "refreshing", "frisch", "erfrischend", "refrescante"]}, "light": {"labels": ["Leggero", "Light", "Leicht", "Ligero"], "aliases": ["leggero", "leggera", "leggeri", "leggere", "non pesante", "poco pesante", "light", "light meal", "leicht", "ligero", "ligera"]}, "comfort": {"labels": ["Comfort food", "Comfort food", "Wohlfühlessen", "Comida reconfortante"], "aliases": ["comfort food", "confort food", "comfort", "confort", "coccola", "coccole", "coccolarmi", "qualcosa che scalda", "riscaldarmi", "comforting", "warming food", "wohlfuhlessen", "reconfortante"]}, "sharing": {"labels": ["Da condividere", "To share", "Zum Teilen", "Para compartir"], "aliases": ["da condividere", "condividere", "condivisione", "dividere", "da dividere", "per il tavolo", "sharing", "to share", "share", "zum teilen", "teilen", "para compartir", "compartir"]}, "crispy": {"labels": ["Croccante", "Crispy", "Knusprig", "Crujiente"], "aliases": ["croccante", "croccanti", "croccantino", "croccantini", "crispy", "crunchy", "knusprig", "crujiente"]}, "creamy": {"labels": ["Cremoso", "Creamy", "Cremig", "Cremoso"], "aliases": ["cremoso", "cremosa", "cremosi", "cremose", "creamy", "cremig"]}, "spicy": {"labels": ["Piccante", "Spicy", "Scharf", "Picante"], "aliases": ["piccante", "piccanti", "piccantino", "piccantina", "spicy", "scharf", "picante"]}, "mild": {"labels": ["Non piccante", "Not spicy", "Nicht scharf", "No picante"], "aliases": ["non piccante", "non troppo piccante", "senza piccante", "poco piccante", "not spicy", "without spice", "mild", "nicht scharf", "no picante", "sin picante"]}, "hearty": {"labels": ["Sostanzioso", "Hearty", "Sättigend", "Contundente"], "aliases": ["sostanzioso", "sostanziosa", "sostanziosi", "abbondante", "abbondanti", "ho tanta fame", "affamato", "affamata", "riempie", "hearty", "filling", "hungry", "sattigend", "contundente"]}, "warm": {"labels": ["Caldo", "Warm", "Warm", "Caliente"], "aliases": ["caldo", "calda", "caldi", "calde", "warm", "caliente"]}, "cold": {"labels": ["Freddo", "Cold", "Kalt", "Frío"], "aliases": ["freddo", "fredda", "freddi", "fredde", "cold", "kalt", "frio", "fria"]}, "smoky": {"labels": ["Affumicato", "Smoky", "Rauchig", "Ahumado"], "aliases": ["affumicato", "affumicata", "affumicati", "smoky", "smoked", "rauchig", "ahumado", "ahumada"]}, "vegetarian": {"labels": ["Vegetariano", "Vegetarian", "Vegetarisch", "Vegetariano"], "aliases": ["vegetariano", "vegetariana", "vegetarian", "veggie", "vegetarisch", "sin carne", "senza carne", "without meat", "no meat", "ohne fleisch"]}, "vegan": {"labels": ["Vegano", "Vegan", "Vegan", "Vegano"], "aliases": ["vegano", "vegana", "vegan", "plant based"]}};
+const PRODUCT_ABSENT={"onion": ["Cipolla", "Onion", "Zwiebeln", "Cebolla"], "tomato": ["Pomodoro", "Tomato", "Tomaten", "Tomate"], "cheese": ["Formaggio", "Cheese", "Käse", "Queso"]};
+const PRODUCT_LANGS=['it','en','de','es'];
+function validProductDetails(d){
+ const keys=['version','name','description','ingredients','allergens','allergensReviewed','mayContain','crossContact','preparation','traits','absentIngredients'];
+ const map=(m,n,required=false)=>m&&typeof m==='object'&&!Array.isArray(m)&&Object.keys(m).length===4&&PRODUCT_LANGS.every(k=>typeof m[k]==='string'&&m[k].length<=n)&&(!required||m.it.trim().length>0);
+ const list=(a,allowed,max)=>Array.isArray(a)&&a.length<=max&&new Set(a).size===a.length&&a.every(v=>allowed.includes(v));
+ return !!d&&Object.keys(d).length===keys.length&&keys.every(k=>Object.hasOwn(d,k))&&d.version===1&&map(d.name,120,true)&&map(d.description,1000)&&map(d.ingredients,1000)
+ &&list(d.allergens,Object.keys(PRODUCT_ALLERGENS),14)&&typeof d.allergensReviewed==='boolean'&&list(d.mayContain,Object.keys(PRODUCT_ALLERGENS),14)
+ &&['unknown','possible','assessed'].includes(d.crossContact)&&['unknown','shared-fryer','other'].includes(d.preparation)
+ &&list(d.traits,Object.keys(PRODUCT_TRAITS),14)&&list(d.absentIngredients,Object.keys(PRODUCT_ABSENT),3)
+ &&!(d.traits.includes('spicy')&&d.traits.includes('mild'))
+ &&(d.preparation!=='shared-fryer'||(d.crossContact==='possible'&&d.mayContain.includes('gluten')));
+}
+function initialDetails(item){
+ const m=src=>Object.fromEntries(PRODUCT_LANGS.map(l=>[l,src?.[l]||'']));
+ return {version:1,name:m(item.name),description:m(item.desc),ingredients:m({}),allergens:[],allergensReviewed:false,mayContain:item.group==='fried'?['gluten']:[],crossContact:item.group==='fried'?'possible':'unknown',preparation:item.group==='fried'?'shared-fryer':'unknown',traits:[],absentIngredients:[]};
+}
+
+function productChecks(container,defs){
+ const box=$(container);box.replaceChildren();for(const [key,value] of Object.entries(defs)){const label=document.createElement('label'),input=document.createElement('input'),span=document.createElement('span');label.className='product-check';input.type='checkbox';input.value=key;span.textContent=Array.isArray(value)?value[0]:value.labels[0];label.append(input,span);box.append(label);}
+}
+function getChecks(id){return [...$(id).querySelectorAll('input:checked')].map(e=>e.value);}
+function setChecks(id,values){$(id).querySelectorAll('input').forEach(e=>e.checked=values.includes(e.value));}
+let editorBaseline=null,editorDirty=false;
+function populateDetails(item,state){
+ const d=state?.details||initialDetails(item);editorBaseline=JSON.parse(JSON.stringify(d));editorDirty=false;
+ for(const l of PRODUCT_LANGS)for(const f of ['name','description','ingredients'])$('product-'+f+'-'+l).value=d[f][l];
+ for(const [id,key] of [['productAllergens','allergens'],['productTraces','mayContain'],['productTraits','traits'],['productAbsent','absentIngredients']])setChecks(id,d[key]);
+ $('productReviewed').checked=d.allergensReviewed;$('productCrossContact').value=d.crossContact;$('productPreparation').value=d.preparation;
+ $('productReviewHint').textContent='';$('productEditorTabs').querySelectorAll('details').forEach(e=>e.open=false);$('productEditorTabs').querySelector('details').open=true;applyFryer();
+}
+function applyFryer(){
+ const fryer=$('productPreparation').value==='shared-fryer',gluten=$('productTraces').querySelector('[value=gluten]');gluten.disabled=fryer;
+ if(fryer){gluten.checked=true;$('productCrossContact').value='possible';}
+ $('productCrossContact').disabled=fryer;
+}
+function invalidateReview(){
+ $('productReviewed').checked=false;$('productCrossContact').value=$('productPreparation').value==='shared-fryer'?'possible':'unknown';setChecks('productAbsent',[]);
+ $('productReviewHint').textContent='Ricetta modificata: ricontrolla allergeni, contaminazioni e assenze dichiarate prima di riconfermarli.';
+}
+function readDetails(){
+ const d={version:1};for(const f of ['name','description','ingredients']){d[f]=Object.fromEntries(PRODUCT_LANGS.map(l=>[l,$('product-'+f+'-'+l).value.trim()]));
+  // Never show old translations as if they describe the new Italian recipe/name.
+  if(d[f].it!==editorBaseline[f].it)for(const l of ['en','de','es'])if(d[f][l]===editorBaseline[f][l])d[f][l]='';
+ }
+ d.allergens=getChecks('productAllergens');d.allergensReviewed=$('productReviewed').checked;d.mayContain=getChecks('productTraces');d.crossContact=$('productCrossContact').value;d.preparation=$('productPreparation').value;d.traits=getChecks('productTraits');d.absentIngredients=getChecks('productAbsent');
+ if(d.preparation==='shared-fryer'){d.crossContact='possible';if(!d.mayContain.includes('gluten'))d.mayContain.push('gluten');}
+ if(!validProductDetails(d))throw Error('Controlla nome, lunghezza dei testi e caratteristiche. Piccante e Non piccante non possono essere selezionati insieme.');
+ return d;
+}
+productChecks('productAllergens',PRODUCT_ALLERGENS);productChecks('productTraces',PRODUCT_ALLERGENS);productChecks('productTraits',PRODUCT_TRAITS);productChecks('productAbsent',PRODUCT_ABSENT);
+$('catalogEditor').addEventListener('input',e=>{editorDirty=true;if(e.target.matches('[data-recipe]'))invalidateReview();});
+$('productAllergens').addEventListener('change',invalidateReview);
+$('productPreparation').addEventListener('change',()=>{invalidateReview();applyFryer();});
+window.addEventListener('beforeunload',e=>{if(editorDirty&&!$('catalogEditor').hidden){e.preventDefault();e.returnValue='';}});
+
 let catalogItems=[],catalogOverrides=new Map(),catalogSelected=null,catalogEpoch=0,catalogBusy=false;
 function catalogMessage(text,error=false){$('catalogMessage').textContent=text;$('catalogMessage').className=error?'message error':'message';}
 function catalogPrice(value){
@@ -474,7 +541,7 @@ function catalogPrice(value){
  return n.map(x=>x.toFixed(2).replace('.',',')).join('–');
 }
 async function loadCatalog(){
- if(catalogBusy)return;
+ if(catalogBusy)return;if(editorDirty&&!$('catalogEditor').hidden&&!confirm('Scartare le modifiche non pubblicate e ricaricare?'))return;editorDirty=false;
  const epoch=++catalogEpoch, uid=auth.currentUser?.uid;
  catalogSelected=null;$('catalogEditor').hidden=true;catalogItems=[];renderCatalog();catalogMessage('Caricamento del menu e delle modifiche pubblicate…');
  try{
@@ -485,47 +552,48 @@ async function loadCatalog(){
   const products=JSON.parse(match[1]);
   if(!Array.isArray(products)||!products.length||products.some(x=>typeof x.id!=='string'||typeof x.name?.it!=='string'||typeof x.price!=='string')||new Set(products.map(x=>x.id)).size!==products.length)throw Error('Catalogo non valido.');
   if(epoch!==catalogEpoch||auth.currentUser?.uid!==uid||!currentRole)return;
-  catalogItems=products;catalogOverrides=new Map(snapshot.docs.map(d=>[d.id,d.data()]));renderCatalog();
+  catalogItems=products;catalogOverrides=new Map(snapshot.docs.map(d=>[d.id,d.data()]));if([...catalogOverrides.values()].some(d=>d.details&&!validProductDetails(d.details)))throw Error("Una scheda pubblicata non è valida. Verifica i dati prima di modificarla.");renderCatalog();
   catalogMessage(products.length+' prodotti caricati. '+(currentRole==='owner'?'Seleziona un prodotto per modificarlo.':'In questa prima versione la pubblicazione è riservata al proprietario.'));
  }catch(e){if(epoch===catalogEpoch)catalogMessage(e.code==='permission-denied'?'Prima installa le nuove regole Firebase fornite con questa versione.':(e.message||'Caricamento non riuscito. Riprova.'),true);}
 }
 function renderCatalog(){
  const list=$('catalogList');list.replaceChildren();const term=$('catalogSearch').value.trim().toLocaleLowerCase('it');
- for(const item of catalogItems.filter(i=>i.name.it.toLocaleLowerCase('it').includes(term))){
-  const state=catalogOverrides.get(item.id),row=make('div','catalog-row'),info=make('div','');info.append(make('strong','',item.name.it),make('small','',(state?.price||item.price)+' € · '+(state?.available===false?'Non disponibile':'Disponibile')));row.append(info);
+ for(const item of catalogItems.filter(i=>(catalogOverrides.get(i.id)?.details?.name.it||i.name.it).toLocaleLowerCase('it').includes(term))){
+  const state=catalogOverrides.get(item.id),row=make('div','catalog-row'),info=make('div','');info.append(make('strong','',state?.details?.name.it||item.name.it),make('small','',(state?.price||item.price)+' € · '+(state?.available===false?'Non disponibile':'Disponibile')));row.append(info);
   if(currentRole==='owner'){const b=make('button','small-action','Modifica');b.type='button';b.disabled=catalogBusy;b.addEventListener('click',()=>{
-   catalogSelected={item,revision:state?.revision||0};$('catalogProductName').textContent=item.name.it;$('catalogProductId').textContent='ID: '+item.id;$('catalogPrice').value=state?.price||item.price;$('catalogAvailable').checked=state?.available!==false;$('catalogEditor').hidden=false;$('catalogEditor').scrollIntoView({block:'start'});$('catalogPrice').focus();
+   if(editorDirty&&!$('catalogEditor').hidden&&!confirm('Scartare le modifiche non pubblicate?'))return;catalogSelected={item,revision:state?.revision||0};populateDetails(item,state);$('catalogProductName').textContent=state?.details?.name.it||item.name.it;$('catalogProductId').textContent='ID: '+item.id;$('catalogPrice').value=state?.price||item.price;$('catalogAvailable').checked=state?.available!==false;$('catalogEditor').hidden=false;$('catalogEditor').scrollIntoView({block:'start'});$('catalogPrice').focus();
   });row.append(b);}list.append(row);
  }
  if(catalogItems.length&&!list.childElementCount)list.append(make('p','','Nessun prodotto trovato.'));
 }
 $('catalogSearch').addEventListener('input',renderCatalog);
 $('catalogReload').addEventListener('click',loadCatalog);
-$('catalogCancel').addEventListener('click',()=>{if(catalogBusy)return;catalogSelected=null;$('catalogEditor').hidden=true;});
+$('catalogCancel').addEventListener('click',()=>{if(catalogBusy)return;if(editorDirty&&!confirm('Scartare le modifiche non pubblicate?'))return;editorDirty=false;catalogSelected=null;$('catalogEditor').hidden=true;});
 $('catalogEditor').addEventListener('submit',async event=>{
  event.preventDefault();if(catalogBusy||!catalogSelected||currentRole!=='owner')return;
  const selected=catalogSelected,uid=auth.currentUser?.uid;
  let price;try{price=catalogPrice($('catalogPrice').value);}catch(e){catalogMessage(e.message,true);return;}
- const available=$('catalogAvailable').checked;
- catalogBusy=true;$('catalogSave').disabled=true;$('catalogCancel').disabled=true;$('catalogReload').disabled=true;renderCatalog();catalogMessage('Pubblicazione in corso…');
+ const available=$('catalogAvailable').checked;let details;try{details=readDetails();}catch(e){catalogMessage(e.message,true);return;}
+ catalogBusy=true;const editable=[...$('catalogEditor').querySelectorAll('input,textarea,select')].map(el=>[el,el.disabled]);editable.forEach(([el])=>el.disabled=true);$('catalogSave').disabled=true;$('catalogCancel').disabled=true;$('catalogReload').disabled=true;renderCatalog();catalogMessage('Pubblicazione in corso…');
  try{
   const ref=doc(db,'menuUpdates',selected.item.id),change=doc(collection(db,'catalogChanges'));
   await runTransaction(db,async tx=>{
    const snap=await tx.get(ref),before=snap.exists()?snap.data():null;
    if((before?.revision||0)!==selected.revision)throw Error('Il prodotto è cambiato da un’altra sessione. Ricarica i prodotti prima di modificarlo.');
    const revision=selected.revision+1;
-   tx.set(ref,{price,available,revision,lastChangeId:change.id,updatedAt:serverTimestamp()});
-   tx.set(change,{productId:selected.item.id,actorUid:uid,beforePrice:before?.price||'',beforeAvailable:before?.available??true,afterPrice:price,afterAvailable:available,revision,createdAt:serverTimestamp()});
+   tx.set(ref,{price,available,details,revision,lastChangeId:change.id,updatedAt:serverTimestamp()});
+   tx.set(change,{productId:selected.item.id,actorUid:uid,beforePrice:before?.price||'',beforeAvailable:before?.available??true,afterPrice:price,afterAvailable:available,beforeDetails:before?.details||null,afterDetails:details,revision,createdAt:serverTimestamp()});
   });
   if(auth.currentUser?.uid!==uid)return;
-  catalogOverrides.set(selected.item.id,{price,available,revision:selected.revision+1});catalogSelected=null;$('catalogEditor').hidden=true;catalogMessage('Modifica pubblicata su Firebase. Apri il menu pubblico per verificarla.');
+  editorDirty=false;catalogOverrides.set(selected.item.id,{price,available,details,revision:selected.revision+1});catalogSelected=null;$('catalogEditor').hidden=true;catalogMessage('Modifica pubblicata su Firebase. Apri il menu pubblico per verificarla.');
  }catch(e){catalogMessage(e.code==='permission-denied'?'Pubblicazione negata: verifica le nuove regole e il ruolo proprietario. Nessuna modifica salvata.':e.message,true);}
- finally{catalogBusy=false;$('catalogSave').disabled=false;$('catalogCancel').disabled=false;$('catalogReload').disabled=false;renderCatalog();}
+ finally{catalogBusy=false;editable.forEach(([el,disabled])=>el.disabled=disabled);$('catalogSave').disabled=false;$('catalogCancel').disabled=false;$('catalogReload').disabled=false;renderCatalog();}
 });
 
 const MANAGER_VIEWS={home:'Home',catalog:'Modifica menu',wallet:'Portafoglio IA',account:'Il mio accesso',members:'Utenti e permessi',requests:'Richieste di accesso',history:'Storico attività'};
 let managerView='home';
 function showManagerView(view, push=false, focus=true){
+ if(currentRole&&managerView==='catalog'&&view!=='catalog'&&editorDirty&&!$('catalogEditor').hidden){if(!confirm('Scartare le modifiche non pubblicate?'))return;editorDirty=false;$('catalogEditor').hidden=true;}
  if(!currentRole || !MANAGER_VIEWS[view] || (['members','requests','history','wallet'].includes(view)&&currentRole!=='owner'))view='home';
  managerView=view;
  document.body.dataset.managerView=view;
@@ -573,7 +641,7 @@ function setOwnerNotice(message,kind=""){
  const n=$("ownerNotice");n.textContent=message;n.className=message?"message "+kind:"";
 }
 function clearDash(){
- catalogEpoch++;catalogItems=[];catalogSelected=null;$("catalogEditor").hidden=true;$("catalogList").replaceChildren();
+ editorDirty=false;catalogEpoch++;catalogItems=[];catalogSelected=null;$("catalogEditor").hidden=true;$("catalogList").replaceChildren();
  document.body.dataset.managerReady="false";document.body.dataset.managerView="home";managerView="home";
  $("ownerPanel").hidden=true;$("historyPanel").hidden=true;$("requestPanel").hidden=true;$("roadmap").hidden=true;$("grantedPermissions").hidden=true;
  $("membersList").replaceChildren();$("requestsList").replaceChildren();$("historyList").replaceChildren();$("moreHistory").hidden=true;historyCursor=null;
@@ -1007,5 +1075,6 @@ getRedirectResult(auth).catch(e=>{const box=$("loginError");box.className="messa
 </script>
 </body>
 </html>
+
 
 
