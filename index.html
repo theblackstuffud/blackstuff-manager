@@ -242,6 +242,13 @@ body[data-manager-view="members"] #requestsSection,body[data-manager-view="reque
 body[data-manager-ready="true"] .foot{margin-top:25px;font-size:10px}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 
+
+#catalogPanel,#walletPanel{display:none}
+body[data-manager-ready="true"][data-manager-view="catalog"] #catalogPanel,body[data-manager-ready="true"][data-manager-view="wallet"] #walletPanel{display:block}
+.manager-tile{min-height:96px;padding:13px;gap:5px}.manager-tile svg{width:19px;height:19px;margin-bottom:0}.manager-tile.primary-tile{grid-column:1/-1;min-height:74px;border-color:var(--accent)}
+.catalog-tools{display:grid;gap:12px;margin:20px 0}.catalog-tools input,.catalog-tools select{width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text)}
+.catalog-row{border-top:1px solid var(--border);padding:15px 0;display:flex;gap:12px;align-items:center;justify-content:space-between}.catalog-row small{display:block;color:var(--muted);margin-top:4px}
+#catalogEditor{border:1px solid var(--border);border-radius:14px;padding:18px;margin:20px 0}#catalogEditor label{display:block;margin:15px 0}#catalogEditor input[type=text]{display:block;width:100%;padding:12px;margin-top:8px}#catalogEditor input[type=checkbox]{width:auto}
 </style>
 </head>
 <body>
@@ -259,7 +266,25 @@ body[data-manager-ready="true"] .foot{margin-top:25px;font-size:10px}
 <p class="lead">Gestione centralizzata del catalogo, delle fotografie, degli ingredienti e delle traduzioni.</p>
 <span class="badge"><span class="dot"></span> Accesso protetto · Firebase</span>
 </section>
-<section id="managerHome" aria-labelledby="managerHomeTitle"><div class="home-intro"><div class="eyebrow">IL TUO SPAZIO DI LAVORO</div><h2 id="managerHomeTitle" tabindex="-1">Da dove iniziamo?</h2><p>Scegli la sezione che ti serve.</p></div><div class="manager-grid"><button type="button" class="manager-tile" data-manager-go="profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg><strong>Il mio profilo</strong><span>Dati personali e fotografia</span></button><button type="button" class="manager-tile" data-manager-go="account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><strong>Il mio accesso</strong><span>Ruolo, permessi e uscita</span></button><button type="button" class="manager-tile" data-manager-go="members" data-owner-only hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M2 21v-3a7 7 0 0 1 14 0v3M16 5a3 3 0 0 1 0 6m3 10v-3a7 7 0 0 0-2-5"/></svg><strong>Utenti e permessi</strong><span>Gestisci il personale</span></button><button type="button" class="manager-tile" data-manager-go="requests" data-owner-only hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="m8 12 3 3 5-6"/></svg><strong>Richieste di accesso</strong><span>Approva o rifiuta</span></button><button type="button" class="manager-tile" data-manager-go="history" data-owner-only hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11a9 9 0 1 1 2 7M3 4v7h7m2-4v6l4 2"/></svg><strong>Storico attività</strong><span>Consulta le modifiche</span></button></div><div class="home-links"><a href="https://theblackstuffud.github.io/blackstuff-menu/" target="_blank" rel="noopener noreferrer">Apri il menu pubblico ↗</a><span>Catalogo in preparazione</span></div></section><nav id="managerNav" aria-label="Navigazione gestionale"><button type="button" class="small-action" id="managerBack">← Home</button><span id="managerSectionTitle"></span></nav>
+<section id="managerHome" aria-labelledby="managerHomeTitle"><div class="home-intro"><div class="eyebrow">IL TUO SPAZIO DI LAVORO</div><h2 id="managerHomeTitle" tabindex="-1">Da dove iniziamo?</h2><p>Scegli la sezione che ti serve.</p></div><div class="manager-grid"><button type="button" class="manager-tile primary-tile" data-manager-go="catalog"><strong>Modifica menu</strong><span>Prodotti, prezzi e disponibilità</span></button><button type="button" class="manager-tile" data-manager-go="wallet" data-owner-only hidden><strong>Portafoglio IA</strong><span>Non ancora attivato</span></button><button type="button" class="manager-tile" data-manager-go="profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg><strong>Il mio profilo</strong><span>Dati personali e fotografia</span></button><button type="button" class="manager-tile" data-manager-go="account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><strong>Il mio accesso</strong><span>Ruolo, permessi e uscita</span></button><button type="button" class="manager-tile" data-manager-go="members" data-owner-only hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M2 21v-3a7 7 0 0 1 14 0v3M16 5a3 3 0 0 1 0 6m3 10v-3a7 7 0 0 0-2-5"/></svg><strong>Utenti e permessi</strong><span>Gestisci il personale</span></button><button type="button" class="manager-tile" data-manager-go="requests" data-owner-only hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="m8 12 3 3 5-6"/></svg><strong>Richieste di accesso</strong><span>Approva o rifiuta</span></button><button type="button" class="manager-tile" data-manager-go="history" data-owner-only hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11a9 9 0 1 1 2 7M3 4v7h7m2-4v6l4 2"/></svg><strong>Storico attività</strong><span>Consulta le modifiche</span></button></div><div class="home-links"><a href="https://theblackstuffud.github.io/blackstuff-menu/" target="_blank" rel="noopener noreferrer">Apri il menu pubblico ↗</a><span>Prezzi e disponibilità collegabili a Firebase</span></div></section><nav id="managerNav" aria-label="Navigazione gestionale"><button type="button" class="small-action" id="managerBack">← Home</button><span id="managerSectionTitle"></span></nav>
+<section id="catalogPanel" class="panel" aria-labelledby="catalogHeading">
+<h2 id="catalogHeading" tabindex="-1">MODIFICA MENU</h2>
+<p>Prima versione: prezzi e disponibilità. I prodotti non disponibili vengono nascosti dal menu pubblico dopo la sincronizzazione.</p>
+<p class="muted">Nomi, descrizioni, foto, ingredienti e allergeni restano quelli del menu attuale. La pubblicazione richiede anche il nuovo file del menu e le regole Firebase aggiornate.</p>
+<div id="catalogMessage" role="status" aria-live="polite"></div>
+<button type="button" class="small-action" id="catalogReload">Ricarica prodotti</button>
+<div class="catalog-tools"><label>Cerca prodotto<input id="catalogSearch" type="search" placeholder="Es. hamburger"></label></div>
+<form id="catalogEditor" hidden><h3 id="catalogProductName"></h3><p id="catalogProductId" class="muted"></p>
+<label>Prezzo in euro<input id="catalogPrice" type="text" inputmode="decimal" required maxlength="30" placeholder="12,00 oppure 3,50–6,00"></label>
+<label><input id="catalogAvailable" type="checkbox"> Disponibile nel menu</label>
+<p>“Pubblica modifica” salva su Firebase. Le copie del menu già aperte si aggiornano quando sono online e hanno caricato la nuova versione del sito.</p>
+<button type="submit" class="button" id="catalogSave">Pubblica modifica</button> <button type="button" class="small-action" id="catalogCancel">Annulla</button>
+</form><div id="catalogList"></div>
+</section>
+<section id="walletPanel" class="panel" aria-labelledby="walletHeading"><h2 id="walletHeading" tabindex="-1">PORTAFOGLIO IA</h2>
+<p><strong>IA non attivata</strong></p><p>Credito residuo: non collegato.</p><p>Questa pagina non attiva servizi e non effettua ricariche. Quando integreremo l’IA, qui mostreremo i consumi e il budget disponibile con la data dell’ultimo aggiornamento.</p>
+<p>Avvisi di credito basso: non ancora attivi. Saranno configurati con un servizio sicuro, una soglia e un canale di notifica da scegliere. Un budget interno e il saldo effettivo del fornitore verranno indicati separatamente.</p></section>
+
 <section class="card" id="signedOut">
 <div class="eyebrow">01 · AUTENTICAZIONE</div>
 <h2>ACCESSO AMMINISTRATIVO</h2>
@@ -383,7 +408,7 @@ const firebaseConfig={
  messagingSenderId:"879941411379",
  appId:"1:879941411379:web:18e94817206c119598f946"
 };
-import {getFirestore,doc,getDoc,collection,getDocs,writeBatch,serverTimestamp,query,orderBy,limit,startAfter} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import {getFirestore,doc,getDoc,collection,getDocs,writeBatch,serverTimestamp,query,orderBy,limit,startAfter,runTransaction} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
 const auth=getAuth(app);
@@ -438,10 +463,70 @@ function makePermissionEditor(role,existing){
 }
 
 
-const MANAGER_VIEWS={home:'Home',account:'Il mio accesso',members:'Utenti e permessi',requests:'Richieste di accesso',history:'Storico attività'};
+
+let catalogItems=[],catalogOverrides=new Map(),catalogSelected=null,catalogEpoch=0,catalogBusy=false;
+function catalogMessage(text,error=false){$('catalogMessage').textContent=text;$('catalogMessage').className=error?'message error':'message';}
+function catalogPrice(value){
+ const s=value.trim().replace(/\s/g,'').replace(/\./g,',').replace(/-/g,'–');
+ if(!/^\d{1,3}(?:,\d{1,2})?(?:–\d{1,3}(?:,\d{1,2})?)?$/.test(s))throw Error('Inserisci un prezzo come 12,00 oppure un intervallo come 3,50–6,00.');
+ const n=s.split('–').map(x=>Number(x.replace(',','.')));
+ if(n.some(x=>x<=0||x>999.99)||(n.length===2&&n[0]>n[1]))throw Error('Il prezzo deve essere positivo e l’intervallo crescente.');
+ return n.map(x=>x.toFixed(2).replace('.',',')).join('–');
+}
+async function loadCatalog(){
+ if(catalogBusy)return;
+ const epoch=++catalogEpoch, uid=auth.currentUser?.uid;
+ catalogSelected=null;$('catalogEditor').hidden=true;catalogItems=[];renderCatalog();catalogMessage('Caricamento del menu e delle modifiche pubblicate…');
+ try{
+  const [response,snapshot]=await Promise.all([fetch('https://theblackstuffud.github.io/blackstuff-menu/',{cache:'no-store',signal:AbortSignal.timeout(15000)}),getDocs(collection(db,'menuUpdates'))]);
+  if(!response.ok)throw Error('Il menu pubblico non è raggiungibile.');
+  const html=await response.text(),match=html.match(/const ITEMS=(\[.*?\]);\s*\n/);
+  if(!match)throw Error('Formato del menu non riconosciuto: nessun dato è stato modificato.');
+  const products=JSON.parse(match[1]);
+  if(!Array.isArray(products)||!products.length||products.some(x=>typeof x.id!=='string'||typeof x.name?.it!=='string'||typeof x.price!=='string')||new Set(products.map(x=>x.id)).size!==products.length)throw Error('Catalogo non valido.');
+  if(epoch!==catalogEpoch||auth.currentUser?.uid!==uid||!currentRole)return;
+  catalogItems=products;catalogOverrides=new Map(snapshot.docs.map(d=>[d.id,d.data()]));renderCatalog();
+  catalogMessage(products.length+' prodotti caricati. '+(currentRole==='owner'?'Seleziona un prodotto per modificarlo.':'In questa prima versione la pubblicazione è riservata al proprietario.'));
+ }catch(e){if(epoch===catalogEpoch)catalogMessage(e.code==='permission-denied'?'Prima installa le nuove regole Firebase fornite con questa versione.':(e.message||'Caricamento non riuscito. Riprova.'),true);}
+}
+function renderCatalog(){
+ const list=$('catalogList');list.replaceChildren();const term=$('catalogSearch').value.trim().toLocaleLowerCase('it');
+ for(const item of catalogItems.filter(i=>i.name.it.toLocaleLowerCase('it').includes(term))){
+  const state=catalogOverrides.get(item.id),row=make('div','catalog-row'),info=make('div','');info.append(make('strong','',item.name.it),make('small','',(state?.price||item.price)+' € · '+(state?.available===false?'Non disponibile':'Disponibile')));row.append(info);
+  if(currentRole==='owner'){const b=make('button','small-action','Modifica');b.type='button';b.disabled=catalogBusy;b.addEventListener('click',()=>{
+   catalogSelected={item,revision:state?.revision||0};$('catalogProductName').textContent=item.name.it;$('catalogProductId').textContent='ID: '+item.id;$('catalogPrice').value=state?.price||item.price;$('catalogAvailable').checked=state?.available!==false;$('catalogEditor').hidden=false;$('catalogEditor').scrollIntoView({block:'start'});$('catalogPrice').focus();
+  });row.append(b);}list.append(row);
+ }
+ if(catalogItems.length&&!list.childElementCount)list.append(make('p','','Nessun prodotto trovato.'));
+}
+$('catalogSearch').addEventListener('input',renderCatalog);
+$('catalogReload').addEventListener('click',loadCatalog);
+$('catalogCancel').addEventListener('click',()=>{if(catalogBusy)return;catalogSelected=null;$('catalogEditor').hidden=true;});
+$('catalogEditor').addEventListener('submit',async event=>{
+ event.preventDefault();if(catalogBusy||!catalogSelected||currentRole!=='owner')return;
+ const selected=catalogSelected,uid=auth.currentUser?.uid;
+ let price;try{price=catalogPrice($('catalogPrice').value);}catch(e){catalogMessage(e.message,true);return;}
+ const available=$('catalogAvailable').checked;
+ catalogBusy=true;$('catalogSave').disabled=true;$('catalogCancel').disabled=true;$('catalogReload').disabled=true;renderCatalog();catalogMessage('Pubblicazione in corso…');
+ try{
+  const ref=doc(db,'menuUpdates',selected.item.id),change=doc(collection(db,'catalogChanges'));
+  await runTransaction(db,async tx=>{
+   const snap=await tx.get(ref),before=snap.exists()?snap.data():null;
+   if((before?.revision||0)!==selected.revision)throw Error('Il prodotto è cambiato da un’altra sessione. Ricarica i prodotti prima di modificarlo.');
+   const revision=selected.revision+1;
+   tx.set(ref,{price,available,revision,lastChangeId:change.id,updatedAt:serverTimestamp()});
+   tx.set(change,{productId:selected.item.id,actorUid:uid,beforePrice:before?.price||'',beforeAvailable:before?.available??true,afterPrice:price,afterAvailable:available,revision,createdAt:serverTimestamp()});
+  });
+  if(auth.currentUser?.uid!==uid)return;
+  catalogOverrides.set(selected.item.id,{price,available,revision:selected.revision+1});catalogSelected=null;$('catalogEditor').hidden=true;catalogMessage('Modifica pubblicata su Firebase. Apri il menu pubblico per verificarla.');
+ }catch(e){catalogMessage(e.code==='permission-denied'?'Pubblicazione negata: verifica le nuove regole e il ruolo proprietario. Nessuna modifica salvata.':e.message,true);}
+ finally{catalogBusy=false;$('catalogSave').disabled=false;$('catalogCancel').disabled=false;$('catalogReload').disabled=false;renderCatalog();}
+});
+
+const MANAGER_VIEWS={home:'Home',catalog:'Modifica menu',wallet:'Portafoglio IA',account:'Il mio accesso',members:'Utenti e permessi',requests:'Richieste di accesso',history:'Storico attività'};
 let managerView='home';
 function showManagerView(view, push=false, focus=true){
- if(!currentRole || !MANAGER_VIEWS[view] || (['members','requests','history'].includes(view)&&currentRole!=='owner'))view='home';
+ if(!currentRole || !MANAGER_VIEWS[view] || (['members','requests','history','wallet'].includes(view)&&currentRole!=='owner'))view='home';
  managerView=view;
  document.body.dataset.managerView=view;
  document.body.dataset.managerReady=String(!!currentRole);
@@ -449,6 +534,7 @@ function showManagerView(view, push=false, focus=true){
  $('managerSectionTitle').textContent=MANAGER_VIEWS[view];
  $('ownerSectionTitle').textContent=view==='requests'?'RICHIESTE DI ACCESSO':'UTENTI E PERMESSI';
  if(push)window.history.pushState({managerView:view},'',view==='home'?'#/home':'#/'+view);
+ if(view==='catalog')loadCatalog();
  if(currentRole==='owner'){
   if(view==='members')loadMembers();
   if(view==='requests')loadRequests();
@@ -456,7 +542,7 @@ function showManagerView(view, push=false, focus=true){
  }
  if(focus){
   window.scrollTo({top:0,behavior:'instant'});
-  const heading=view==='home'?$('managerHomeTitle'):view==='account'?$('signedIn').querySelector('h2'):view==='history'?$('historyPanel').querySelector('h2'):$('ownerSectionTitle');
+  const heading=view==='catalog'?$('catalogHeading'):view==='wallet'?$('walletHeading'):view==='home'?$('managerHomeTitle'):view==='account'?$('signedIn').querySelector('h2'):view==='history'?$('historyPanel').querySelector('h2'):$('ownerSectionTitle');
   heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true});
  }
 }
@@ -487,6 +573,7 @@ function setOwnerNotice(message,kind=""){
  const n=$("ownerNotice");n.textContent=message;n.className=message?"message "+kind:"";
 }
 function clearDash(){
+ catalogEpoch++;catalogItems=[];catalogSelected=null;$("catalogEditor").hidden=true;$("catalogList").replaceChildren();
  document.body.dataset.managerReady="false";document.body.dataset.managerView="home";managerView="home";
  $("ownerPanel").hidden=true;$("historyPanel").hidden=true;$("requestPanel").hidden=true;$("roadmap").hidden=true;$("grantedPermissions").hidden=true;
  $("membersList").replaceChildren();$("requestsList").replaceChildren();$("historyList").replaceChildren();$("moreHistory").hidden=true;historyCursor=null;
@@ -920,4 +1007,5 @@ getRedirectResult(auth).catch(e=>{const box=$("loginError");box.className="messa
 </script>
 </body>
 </html>
+
 
