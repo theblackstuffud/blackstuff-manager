@@ -1,0 +1,19 @@
+{
+  "id": "/blackstuff-manager/",
+  "name": "Black Stuff Manager",
+  "short_name": "Black Stuff",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#09291b",
+  "theme_color": "#09291b",
+  "lang": "it",
+  "icons": [
+    {
+      "src": "./manager-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
