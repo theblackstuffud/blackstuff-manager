@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0d0f0e" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#1e2924" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
 <meta name="description" content="Area riservata di gestione del menu digitale The Black Stuff.">
 <link rel="apple-touch-icon" sizes="512x512" href="./manager-icon.png?v=2">
 <link rel="icon" type="image/png" href="./manager-icon.png?v=2">
@@ -25,7 +26,7 @@
   --accent-soft:#e8efe9;
   --accent-border:#ccd9ce;
   --text:#1e2923;
-  --muted:#637169;
+  --muted:#58665d;
   --border:#dce1d9;
   --shadow:0 12px 34px rgba(24,43,33,.065);
 }
@@ -112,16 +113,16 @@ a{color:var(--accent)}
 @media(prefers-color-scheme:dark){
   :root{
     color-scheme:dark;
-    --bg:#0d0f0e;
-    --bg-glow:#19251d;
-    --card:#171b18;
-    --card2:#1d2420;
-    --accent:#c6dbca;
-    --accent-soft:#233027;
-    --accent-border:#3b5040;
-    --text:#f2f4f0;
-    --muted:#abbab0;
-    --border:#334038;
+    --bg:#1e2924;
+    --bg-glow:#304038;
+    --card:#293730;
+    --card2:#324239;
+    --accent:#c5dfcd;
+    --accent-soft:#364d3e;
+    --accent-border:#698471;
+    --text:#f2f5f1;
+    --muted:#c1cec5;
+    --border:#526659;
     --shadow:0 12px 38px rgba(0,0,0,.19);
   }
   .button:not(.secondary){color:#13291b}
@@ -257,6 +258,16 @@ body[data-manager-ready="true"][data-manager-view="catalog"] #catalogPanel,body[
 #catalogEditor{border:1px solid var(--border);border-radius:14px;padding:18px;margin:20px 0}#catalogEditor label{display:block;margin:15px 0}#catalogEditor input[type=text]{display:block;width:100%;padding:12px;margin-top:8px}#catalogEditor input[type=checkbox]{width:auto}
 
 .product-checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}.product-checks .product-check{display:flex!important;align-items:center;gap:9px;margin:0!important;font-size:13px;padding:10px;border:1px solid var(--border);border-radius:9px}.product-check input{flex:0 0 auto}#catalogEditor input[type=text],#catalogEditor textarea,#catalogEditor select{display:block;width:100%;padding:10px;margin-top:8px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);font:inherit}#catalogEditor textarea{min-height:95px;resize:vertical}#catalogEditor details{border-bottom:1px solid var(--border);padding:14px 0}#catalogEditor summary{cursor:pointer;font-weight:700}#catalogEditor fieldset{border:0;padding:0;margin:16px 0}#catalogEditor legend{font-weight:700;margin-bottom:10px}.editor-help{font-size:12px;color:var(--muted)}.install-help{margin:16px 0;font-size:13px}.install-help summary{cursor:pointer}.catalog-sticky-actions{position:sticky;bottom:0;padding:12px 0;background:var(--bg);z-index:2}
+#productSuggestions ul{padding-left:18px}#productSuggestions li{margin:7px 0}#productSuggestions strong{color:var(--text)}.suggestion-details{border:1px solid var(--border);padding:12px!important;border-radius:10px}
+/* Tema di sistema: nessuna preferenza locale forza il chiaro o lo scuro. */
+input,textarea,select,button{font:inherit}
+input[type=checkbox]{accent-color:var(--accent)}
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:1}
+.brand-title>img{background:#09291b;border-radius:14px;padding:8px}
+.source-note,.fryer-note{padding:12px 14px;border:1px solid var(--accent-border);border-radius:10px;background:var(--accent-soft);color:var(--text);line-height:1.55}
+.fryer-note{font-size:13px}
+#productSuggestions h4{font-size:13px;margin:16px 0 6px}
+#productSuggestions a{text-underline-offset:3px}
 </style>
 </head>
 <body>
@@ -283,7 +294,7 @@ body[data-manager-ready="true"][data-manager-view="catalog"] #catalogPanel,body[
 <button type="button" class="small-action" id="catalogReload">Ricarica prodotti</button>
 <div class="catalog-tools"><label>Cerca prodotto<input id="catalogSearch" type="search" placeholder="Es. hamburger"></label></div>
 <form id="catalogEditor" hidden><h3 id="catalogProductName"></h3><p id="catalogProductId" class="muted"></p>
-<div id="productEditorTabs"><details open><summary>Italiano</summary><label>Nome del prodotto<input type="text" id="product-name-it" maxlength="120" required></label><label>Descrizione del piatto<textarea id="product-description-it" maxlength="1000" data-recipe></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-it" maxlength="1000" data-recipe></textarea></label></details><details ><summary>English</summary><label>Nome del prodotto<input type="text" id="product-name-en" maxlength="120" ></label><label>Descrizione del piatto<textarea id="product-description-en" maxlength="1000" ></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-en" maxlength="1000" ></textarea></label></details><details ><summary>Deutsch</summary><label>Nome del prodotto<input type="text" id="product-name-de" maxlength="120" ></label><label>Descrizione del piatto<textarea id="product-description-de" maxlength="1000" ></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-de" maxlength="1000" ></textarea></label></details><details ><summary>Español</summary><label>Nome del prodotto<input type="text" id="product-name-es" maxlength="120" ></label><label>Descrizione del piatto<textarea id="product-description-es" maxlength="1000" ></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-es" maxlength="1000" ></textarea></label></details></div><p class="editor-help">Se modifichi un testo italiano senza aggiornare le sue traduzioni, quelle precedenti vengono rimosse: il menu mostrerà il nuovo testo italiano finché non inserirai le traduzioni corrette.</p><details><summary>Allergeni e preparazione</summary><p class="editor-help">Seleziona gli allergeni effettivamente presenti, inclusi salse e ingredienti composti. Le caselle vuote restano informazioni non verificate finché non confermi la revisione. Specifica nel testo ingredienti i cereali e la frutta a guscio utilizzati. Per i solfiti considera la soglia prevista dalla normativa.</p><fieldset><legend>Allergeni presenti</legend><div id="productAllergens" class="product-checks"></div></fieldset><label><input id="productReviewed" type="checkbox"> Ho verificato l’elenco completo degli allergeni della ricetta e delle materie prime</label><p id="productReviewHint" role="status" class="editor-help"></p><fieldset><legend>Può contenere / possibili tracce</legend><div id="productTraces" class="product-checks"></div></fieldset><label>Preparazione<select id="productPreparation"><option value="unknown">Da verificare</option><option value="shared-fryer">Friggitrice condivisa</option><option value="other">Altra preparazione verificata</option></select></label><label>Contaminazione crociata<select id="productCrossContact"><option value="unknown">Valutazione non completata</option><option value="possible">Rischio presente / attrezzature condivise</option><option value="assessed">Valutata: rischi noti indicati nelle possibili tracce</option></select></label><p class="editor-help">La friggitrice condivisa comporta possibile contaminazione da glutine. Non permette di proporre il prodotto per una richiesta senza glutine. Per allergie e celiachia il cliente deve sempre verificare con il personale.</p></details>
+<details class="suggestion-details" open><summary>Allergeni dalla tabella e suggerimenti</summary><div id="productSuggestions" class="editor-help"></div></details><div id="productEditorTabs"><details open><summary>Italiano</summary><label>Nome del prodotto<input type="text" id="product-name-it" maxlength="120" required></label><label>Descrizione del piatto<textarea id="product-description-it" maxlength="1000" data-recipe></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-it" maxlength="1000" data-recipe></textarea></label></details><details ><summary>English</summary><label>Nome del prodotto<input type="text" id="product-name-en" maxlength="120" ></label><label>Descrizione del piatto<textarea id="product-description-en" maxlength="1000" ></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-en" maxlength="1000" ></textarea></label></details><details ><summary>Deutsch</summary><label>Nome del prodotto<input type="text" id="product-name-de" maxlength="120" ></label><label>Descrizione del piatto<textarea id="product-description-de" maxlength="1000" ></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-de" maxlength="1000" ></textarea></label></details><details ><summary>Español</summary><label>Nome del prodotto<input type="text" id="product-name-es" maxlength="120" ></label><label>Descrizione del piatto<textarea id="product-description-es" maxlength="1000" ></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-es" maxlength="1000" ></textarea></label></details></div><p class="editor-help">Se modifichi un testo italiano senza aggiornare le sue traduzioni, quelle precedenti vengono rimosse: il menu mostrerà il nuovo testo italiano finché non inserirai le traduzioni corrette.</p><details><summary>Allergeni e preparazione</summary><p class="editor-help">Seleziona gli allergeni effettivamente presenti, inclusi salse e ingredienti composti. Le caselle vuote restano informazioni non verificate finché non confermi la revisione. Specifica nel testo ingredienti i cereali e la frutta a guscio utilizzati. Per i solfiti considera la soglia prevista dalla normativa.</p><fieldset><legend>Allergeni presenti</legend><div id="productAllergens" class="product-checks"></div></fieldset><label><input id="productReviewed" type="checkbox"> Ho verificato l’elenco completo degli allergeni della ricetta e delle materie prime</label><p id="productReviewHint" role="status" class="editor-help"></p><fieldset><legend>Può contenere / possibili tracce</legend><div id="productTraces" class="product-checks"></div></fieldset><p id="productFryerNote" class="fryer-note" hidden>Friggitrice condivisa del locale: applicata automaticamente a tutti i fritti. Le possibili tracce di glutine e il rischio da attrezzature condivise sono già impostati.</p><label id="productPreparationField">Preparazione<select id="productPreparation"><option value="unknown">Da verificare</option><option value="shared-fryer">Friggitrice condivisa</option><option value="other">Altra preparazione verificata</option></select></label><label id="productCrossContactField">Contaminazione crociata<select id="productCrossContact"><option value="unknown">Valutazione non completata</option><option value="possible">Rischio presente / attrezzature condivise</option><option value="assessed">Valutata: rischi noti indicati nelle possibili tracce</option></select></label><p id="productFryerHelp" class="editor-help">La friggitrice condivisa comporta possibile contaminazione da glutine. Non permette di proporre il prodotto per una richiesta senza glutine. Per allergie e celiachia il cliente deve sempre verificare con il personale.</p></details>
 <details><summary>Caratteristiche per la ricerca</summary><p class="editor-help">Seleziona solo caratteristiche reali. “Leggero” descrive il piatto: non indica calorie misurate. Vegetariano e vegano non equivalgono a senza allergeni.</p><div id="productTraits" class="product-checks"></div><fieldset><legend>Ingredienti di cui hai verificato l’assenza</legend><p class="editor-help">Servono a richieste come “senza cipolla”. Non selezionare un’assenza soltanto perché l’ingrediente non compare nella descrizione.</p><div id="productAbsent" class="product-checks"></div></fieldset></details><label>Prezzo in euro<input id="catalogPrice" type="text" inputmode="decimal" required maxlength="30" placeholder="12,00 oppure 3,50–6,00"></label>
 <label><input id="catalogAvailable" type="checkbox"> Disponibile nel menu</label>
 <p>La pubblicazione aggiorna il menu dei clienti.</p>
@@ -488,9 +499,84 @@ function validProductDetails(d){
  &&!(d.traits.includes('spicy')&&d.traits.includes('mild'))
  &&(d.preparation!=='shared-fryer'||(d.crossContact==='possible'&&d.mayContain.includes('gluten')));
 }
+// Trascrizione per ID stabili: menu-it.pdf, pagina 7, commit ff562d35c3d6ffd03ad6aaa5c8f63506dc594376.
+// La tabella dichiara presenze; non certifica completezza, assenze o ricette successive.
+const ALLERGEN_TABLE_SOURCE='https://theblackstuffud.github.io/blackstuff-menu/menu-it.pdf#page=7';
+const ALLERGEN_TABLE_BY_ID={"cheeseburger":["gluten","sesame"],"baconburger":["gluten","sesame"],"hamburger":["gluten","sesame"],"babyburger":["gluten","sesame"],"frisburger":["gluten","mustard","sesame"],"eggburger":["gluten","eggs","sesame"],"summerburger":["gluten","sesame"],"devilburger":["gluten","sesame"],"veggyburger":["gluten","soy","sesame"],"salzburger":["gluten","eggs","sesame"],"hamburger-light":["gluten"],"irish":["gluten","eggs","milk","nuts"],"diablo":["gluten","eggs","milk","nuts"],"connemara":["gluten","eggs","milk","nuts"],"dublin":["gluten","eggs","milk","nuts"],"toast":["gluten","eggs"],"toast-farcito":["gluten","eggs"],"trancio-margherita":["gluten","milk"],"trancio-funghi-carciofini":["gluten","milk"],"trancio-speck-funghi":["gluten","milk"],"trancio-diavola":["gluten","milk"],"trancio-tonno-cipolla":["gluten","milk"],"tagliere-di-pizza-margherita":["gluten","milk"],"tagliere-di-pizza-farcito":["gluten","milk"],"hot-dog":["gluten","milk"],"coney-dog":["gluten","milk","mustard"],"alette-di-pollo":["gluten","celery"],"verdure-pastellate":["gluten","milk"],"anelli-di-cipolla":["gluten"],"mozzarelline-impanate":["gluten","milk"],"olive-ascolane":["gluten","soy","milk","celery"],"jalapenos-al-pezzo":["gluten","milk"],"nuggets-di-pollo":["gluten"],"guinness":["gluten"],"kilkenny-cream":["gluten"],"kilkenny-strong":["gluten"],"bulldog-strong-ale":["gluten"],"guinness-blonde-ipa":["gluten"],"hop-house-13":["gluten"],"maes-pils":["gluten"],"ichnusa-non-filtrata":["gluten"],"messina-cristalli-di-sale":["gluten"],"bulldog-strong-lager":["gluten"],"lagunitas-ipa":["gluten"],"crocchette-di-patate":["milk"],"fritto-misto":["celery","gluten","milk","soy"]};
+const ALLERGEN_TABLE_NOTES={"hamburger-light":"La tabella include tutti gli hamburger nei cereali e derivati ed esclude Hamburger Light solo dal sesamo. Controlla questa indicazione con la ricetta attuale.","patate-impazzite":"La tabella cita Patate Black Pepper. Il nome attuale è Patate impazzite: non sono state considerate automaticamente lo stesso prodotto.","fritto-misto":"Le spunte riuniscono gli allergeni della tabella per i componenti elencati nel menu: olive ascolane, mozzarelline impanate e crocchette di patate.","casamatta-slip":"Il menu identifica Casamatta Slip come birra senza glutine, esclusa dalla voce generale sulle birre della tabella. Le caselle vuote non attestano altre assenze."};
+function tableAllergens(item){return [...(ALLERGEN_TABLE_BY_ID[item.id]||[])];}
+
+function suggestProduct(item){
+ const normalize=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[’']/g,' ');
+ const source=[item.name?.it||'',item.desc?.it||''].join('. '),text=normalize(source),tags=(item.tags||[]).map(normalize);
+ const allergens=new Set(),traits=new Set(),evidence=[];
+ const add=(key,why)=>{allergens.add(key);evidence.push(PRODUCT_ALLERGENS[key][0]+': '+why);};
+ const food=!['beers','soft','aperitifs','long','wine'].includes(item.group);
+ // Descriptions of beer aromas are not lists of ingredients (e.g. hazelnut notes).
+ if(item.group==='beers'){
+  if(!/senza glutine|gluten.?free|glutenfrei/.test(text))add('gluten','birra: controllare cereali e scheda del produttore');
+ }else if(food){
+  const rules=[
+   ['milk',/\b(mozzarella|mozzarelline|scamorza|formaggio|formaggi|cheddar|edamer|grana|parmigiano|mascarpone|burro|panna|yogurt|ricotta)\b/],
+   ['eggs',/\b(uovo|uova|albume|tuorlo)\b/],['mustard',/\bsenape\b/],['fish',/\b(tonno|salmone|acciughe|acciuga|alici|pesce)\b/],
+   ['crustaceans',/\b(gamberi|gamberetti|gambero|scampi|granchio|crostacei)\b/],['molluscs',/\b(calamari|seppie|polpo|cozze|vongole|molluschi)\b/],
+   ['peanuts',/\barachid[ei]\b/],['nuts',/\b(noci|nocciole|nocciola|mandorle|pistacchi|anacardi)\b/],['soy',/\bsoia\b/],['celery',/\bsedano\b/],['sesame',/\bsesamo\b/],['lupin',/\blupini\b/],['sulphites',/\bsolfiti\b/]
+  ];
+  for(const [key,pattern] of rules){const hit=text.match(pattern);if(hit&&!/\b(?:senza|no)\s+$/.test(text.slice(Math.max(0,hit.index-20),hit.index)))add(key,'nel testo: '+hit[0]);}
+  const milk=text.match(/\blatte\b(?!\s+(?:di\s+)?(?:cocco|soia|mandorla|avena|riso))/);if(milk&&!/\bsenza\s+$/.test(text.slice(Math.max(0,milk.index-15),milk.index)))add('milk','nel testo: latte');
+  // Composite ingredients are candidates only. Their actual recipes must be checked.
+  if(!/senza glutine|gluten.?free/.test(text)){
+   const hit=text.match(/\b(pane|ciabatta|crostini|toast|tortilla|pizza|impanat[aeio]|pastellat[aeio])\b/);
+   if(hit)add('gluten',hit[0]+': verificare impasto o panatura');
+   else if(item.group==='pizza'||item.group==='sharing'&&tags.includes('pizza'))add('gluten','pizza: verificare impasto');
+  }
+  const sauce=text.match(/\b(maionese|salsa rosa)\b/);if(sauce)add('eggs',sauce[0]+': verificare la ricetta o l’etichetta');
+  // Ingredient tags already in the menu supply evidence, but never evidence of absence.
+  for(const [key,values] of [['milk',['mozzarella','formaggio','scamorza','grana']],['eggs',['uovo','uova']],['mustard',['senape']],['fish',['tonno','pesce']]]){
+   const tag=tags.find(t=>values.includes(t));if(tag&&!allergens.has(key))add(key,'ingrediente già indicato nel menu: '+tag);
+  }
+ }
+ for(const [key,definition] of Object.entries(PRODUCT_TRAITS)){
+  if(item.group==='beers'&&['light','mild','hearty'].includes(key))continue; // Alcohol strength is not a food characteristic.
+  const aliases=definition.aliases.map(normalize);const tag=tags.find(t=>aliases.includes(t));
+  if(tag){traits.add(key);evidence.push(definition.labels[0]+': caratteristica già indicata nel menu («'+tag+'»)');}
+ }
+ if(food){
+  for(const [key,pattern] of [['spicy',/\b(?:salsa piccante|salamino piccante|tabasco|jalapenos)\b/],['smoky',/\baffumicat[aoie]\b/],['crispy',/\bcroccant[ei]\b/]]){
+   const hit=text.match(pattern);if(hit&&!traits.has(key)){traits.add(key);evidence.push(PRODUCT_TRAITS[key].labels[0]+': nel testo «'+hit[0]+'»');}
+  }
+ }
+ if(traits.has('spicy'))traits.delete('mild');
+ return {allergens:[...allergens],traits:[...traits],evidence};
+}
+function showProductSuggestions(item,state){
+ const d=state?.details,src=d?{...item,name:d.name,desc:d.ingredients.it?d.ingredients:d.description,tags:[]}:item;
+ const suggestions=suggestProduct(src),fromTable=tableAllergens(item),box=$('productSuggestions');box.replaceChildren();
+ const title=document.createElement('strong');title.textContent=d?'Scheda salvata: allergeni e caratteristiche mantenuti':'Spunte allergeni dalla tabella del menu';box.append(title);
+ const note=document.createElement('p');note.className='source-note';note.textContent=d?'La tabella resta un riferimento: non sostituisce automaticamente una scheda già salvata. Controlla eventuali ricette cambiate.':'Le spunte allergeni iniziali riportano la tabella del menu. La conferma dell’elenco completo resta da fare; una casella vuota non significa assenza.';box.append(note);
+ const source=document.createElement('a');source.href=ALLERGEN_TABLE_SOURCE;source.target='_blank';source.rel='noopener noreferrer';source.textContent='Apri la tabella allergeni del menu · pagina 7';box.append(source);
+ const declared=document.createElement('p');declared.textContent=fromTable.length?'Indicati dalla tabella per questo prodotto: '+fromTable.map(k=>PRODUCT_ALLERGENS[k][0]).join(', ')+'.':'La tabella non assegna allergeni a questo prodotto. Occorre completare la scheda con ricetta ed etichette; non è una dichiarazione di assenza.';box.append(declared);
+ if(ALLERGEN_TABLE_NOTES[item.id]){const detail=document.createElement('p');detail.textContent=ALLERGEN_TABLE_NOTES[item.id];box.append(detail);}
+ const heading=document.createElement('h4');heading.textContent='Altri suggerimenti dai testi · da verificare';box.append(heading);
+ const hint=document.createElement('p');hint.textContent='Gli allergeni dedotti dai testi non vengono aggiunti alle spunte iniziali. Le caratteristiche sono suggerimenti. Controlla ricetta, salse ed etichette prima di aggiungere o confermare. Nessuna modifica viene pubblicata finché non premi Pubblica modifica.';box.append(hint);
+ const list=document.createElement('ul');box.append(list);
+ const empty=document.createElement('p');empty.textContent='Il testo non contiene informazioni sufficienti per proporre altri suggerimenti.';box.append(empty);
+ const renderReasons=s=>{list.replaceChildren();for(const reason of s.evidence){const li=document.createElement('li');li.textContent=reason;list.append(li);}empty.hidden=s.evidence.length>0;};renderReasons(suggestions);
+ const button=document.createElement('button');button.type='button';button.className='small-action';button.textContent='Aggiungi suggerimenti dai testi attuali';
+ button.addEventListener('click',()=>{
+  if(catalogBusy)return;
+  const s=suggestProduct({...item,name:{it:$('product-name-it').value},desc:{it:$('product-ingredients-it').value||$('product-description-it').value},tags:[]});
+  setChecks('productAllergens',[...new Set([...getChecks('productAllergens'),...s.allergens])]);
+  const traits=new Set(getChecks('productTraits'));for(const k of s.traits){if(k==='spicy'&&traits.has('mild')||k==='mild'&&traits.has('spicy'))continue;traits.add(k);}setChecks('productTraits',[...traits]);
+  invalidateReview();editorDirty=true;renderReasons(s);
+  heading.textContent='Suggerimenti aggiunti · controlla le spunte prima di confermare';
+ });box.append(button);
+}
+
 function initialDetails(item){
  const m=src=>Object.fromEntries(PRODUCT_LANGS.map(l=>[l,src?.[l]||'']));
- return {version:1,name:m(item.name),description:m(item.desc),ingredients:m({}),allergens:[],allergensReviewed:false,mayContain:item.group==='fried'?['gluten']:[],crossContact:item.group==='fried'?'possible':'unknown',preparation:item.group==='fried'?'shared-fryer':'unknown',traits:[],absentIngredients:[]};
+ const suggested=suggestProduct(item);
+ return {version:1,name:m(item.name),description:m(item.desc),ingredients:m({}),allergens:tableAllergens(item),allergensReviewed:false,mayContain:item.group==='fried'?['gluten']:[],crossContact:item.group==='fried'?'possible':'unknown',preparation:item.group==='fried'?'shared-fryer':'unknown',traits:suggested.traits,absentIngredients:[]};
 }
 
 function productChecks(container,defs){
@@ -498,15 +584,27 @@ function productChecks(container,defs){
 }
 function getChecks(id){return [...$(id).querySelectorAll('input:checked')].map(e=>e.value);}
 function setChecks(id,values){$(id).querySelectorAll('input').forEach(e=>e.checked=values.includes(e.value));}
-let editorBaseline=null,editorDirty=false;
+let editorBaseline=null,editorDirty=false,editorProductIsFried=false;
 function populateDetails(item,state){
+ editorProductIsFried=item.group==='fried';
+ showProductSuggestions(item,state);
  const d=state?.details||initialDetails(item);editorBaseline=JSON.parse(JSON.stringify(d));editorDirty=false;
  for(const l of PRODUCT_LANGS)for(const f of ['name','description','ingredients'])$('product-'+f+'-'+l).value=d[f][l];
  for(const [id,key] of [['productAllergens','allergens'],['productTraces','mayContain'],['productTraits','traits'],['productAbsent','absentIngredients']])setChecks(id,d[key]);
  $('productReviewed').checked=d.allergensReviewed;$('productCrossContact').value=d.crossContact;$('productPreparation').value=d.preparation;
- $('productReviewHint').textContent='';$('productEditorTabs').querySelectorAll('details').forEach(e=>e.open=false);$('productEditorTabs').querySelector('details').open=true;applyFryer();
+ $('productReviewHint').textContent='';$('productEditorTabs').querySelectorAll('details').forEach(e=>e.open=false);$('productEditorTabs').querySelector('details').open=true;
+ const correction=editorProductIsFried&&(d.preparation!=='shared-fryer'||d.crossContact!=='possible'||!d.mayContain.includes('gluten'));
+ applyFryer();
+ if(correction){invalidateReview();$('productReviewHint').textContent='Preparazione aggiornata alla friggitrice comune dei fritti. Ricontrolla la scheda prima di pubblicare; i dati salvati non sono ancora cambiati.';}
+
 }
 function applyFryer(){
+ if(editorProductIsFried)$('productPreparation').value='shared-fryer';
+ $('productPreparationField').hidden=editorProductIsFried;
+ $('productCrossContactField').hidden=editorProductIsFried;
+ $('productFryerNote').hidden=!editorProductIsFried;
+ $('productFryerHelp').hidden=editorProductIsFried;
+ $('productPreparation').disabled=editorProductIsFried;
  const fryer=$('productPreparation').value==='shared-fryer',gluten=$('productTraces').querySelector('[value=gluten]');gluten.disabled=fryer;
  if(fryer){gluten.checked=true;$('productCrossContact').value='possible';}
  $('productCrossContact').disabled=fryer;
@@ -516,6 +614,7 @@ function invalidateReview(){
  $('productReviewHint').textContent='Ricetta modificata: ricontrolla allergeni, contaminazioni e assenze dichiarate prima di riconfermarli.';
 }
 function readDetails(){
+ if(editorProductIsFried)applyFryer();
  const d={version:1};for(const f of ['name','description','ingredients']){d[f]=Object.fromEntries(PRODUCT_LANGS.map(l=>[l,$('product-'+f+'-'+l).value.trim()]));
   // Never show old translations as if they describe the new Italian recipe/name.
   if(d[f].it!==editorBaseline[f].it)for(const l of ['en','de','es'])if(d[f][l]===editorBaseline[f][l])d[f][l]='';
@@ -1075,6 +1174,3 @@ getRedirectResult(auth).catch(e=>{const box=$("loginError");box.className="messa
 </script>
 </body>
 </html>
-
-
-
