@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="it">
+<html lang="it" data-privacy-app="manager">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -453,6 +453,25 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
 @media(max-width:440px){.catalog-row:has(.reactivate-action){flex-wrap:wrap;gap:12px}.catalog-row:has(.reactivate-action) .catalog-row-info{flex-basis:100%}.catalog-row-actions{margin-left:auto}}
 
 </style>
+<style id="statisticsStyles">
+#statisticsPanel{display:none}body[data-manager-ready="true"][data-manager-view="statistics"] #statisticsPanel{display:block}
+.stats-intro{display:flex;justify-content:space-between;align-items:center;gap:18px;margin:30px 0 22px}.stats-intro h2{font-size:34px;letter-spacing:-.04em;margin:7px 0 10px}.stats-intro p{color:var(--muted);margin:0;line-height:1.6}
+.stats-periods{display:flex;gap:4px;padding:4px;background:var(--card2);border:1px solid var(--border);border-radius:13px;width:max-content;max-width:100%;margin-bottom:16px}.stats-periods button{border:0;background:transparent;color:var(--muted);font:inherit;font-size:13px;padding:11px 19px;border-radius:10px;min-height:44px;cursor:pointer}.stats-periods button[aria-pressed="true"]{background:var(--card);color:var(--accent);box-shadow:0 1px 5px #0001}
+.stats-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}.stats-metric{margin:0;padding:22px 19px}.stats-metric h3{font-size:13px;line-height:1.5;font-weight:550;letter-spacing:0;margin:0;color:var(--muted)}.stats-metric strong{display:block;font-size:38px;line-height:1.3;font-weight:600;letter-spacing:-.04em;margin:14px 0;color:var(--text);font-variant-numeric:tabular-nums}.stats-metric p{font-size:12px;line-height:1.55;color:var(--muted);margin:0}.stats-chart-card h3,.stats-ranking-card h3{font-size:18px;font-weight:600;letter-spacing:-.02em;margin:0 0 9px}
+.stats-hours{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px 8px;margin:22px 0}.stats-hour{min-width:0;text-align:center;color:var(--muted);font-size:10px}.stats-hour-meter{height:90px;display:flex;align-items:flex-end;justify-content:center;border-bottom:1px solid var(--border);margin:5px 0 7px}.stats-hour-meter span{display:block;width:min(22px,100%);background:var(--accent);border-radius:5px 5px 0 0;min-height:0;opacity:.8}.stats-hour-value{font-size:10px;color:var(--text);font-variant-numeric:tabular-nums;display:block;white-space:nowrap}.stats-ranking{padding:0;margin:20px 0 0;list-style:none;counter-reset:product-rank}.stats-ranking li{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:12px;align-items:center;padding:15px 0;border-bottom:1px solid var(--border);counter-increment:product-rank}.stats-ranking li:last-child{border:0}.stats-ranking li:before{content:counter(product-rank,decimal-leading-zero);font-size:11px;color:var(--muted)}.stats-rank-name{font-size:14px;overflow-wrap:anywhere;line-height:1.5}.stats-rank-count{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums}.stats-info summary{cursor:pointer;font-size:14px;line-height:1.5;padding:2px 0}.stats-info p{font-size:13px;line-height:1.7;color:var(--muted)}#statisticsMessage{line-height:1.65}#statisticsMessage.error{color:var(--danger,#bd4141)}
+@media(max-width:640px){.stats-metrics{grid-template-columns:1fr 1fr}.stats-metric:last-child{grid-column:1/-1}.stats-intro{align-items:flex-start}.stats-intro h2{font-size:30px}.stats-intro>.small-action{font-size:12px;padding:10px;max-width:100px}.stats-periods{width:100%}.stats-periods button{flex:1}.stats-metric{padding:18px 16px}.stats-metric strong{font-size:34px}.stats-hours{gap:13px 5px}.stats-hour{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.stats-hour-meter span{transition:none}}
+
+</style>
+<style id="managerInviteStyles">
+.manager-invite{padding:4px 0 25px;margin-bottom:25px;border-bottom:1px solid var(--border)}.manager-invite h3{font-size:22px;letter-spacing:-.025em;font-weight:600;margin:8px 0 12px}.manager-invite p{line-height:1.7;font-size:14px;color:var(--muted)}.manager-invite p.mini{font-size:12px}.manager-invite-actions{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 10px}.manager-invite-actions button{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px}.manager-invite-requests{display:inline-flex;gap:10px;align-items:center;background:transparent;border:0;padding:10px 0;color:var(--accent);font:inherit;font-size:13px;cursor:pointer;min-height:44px}#managerInviteLink{display:block;width:100%;box-sizing:border-box;background:var(--card2);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:12px;font:inherit;font-size:13px;margin-top:8px}#managerInviteFallback{margin-top:16px}#managerInviteStatus:empty{display:none}.manager-invite button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:390px){.manager-invite-actions{display:grid;grid-template-columns:1fr}.manager-invite-actions button{width:100%}}
+
+</style>
+<style id="privacyStyles">
+.privacy-link{appearance:none;border:0;background:transparent;color:inherit;font:inherit;font-size:12px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;min-height:44px;padding:8px 5px}.privacy-login{font-size:12px;line-height:1.6}.privacy-surface{--p-bg:#fafbf9;--p-text:#192b23;--p-muted:#526359;--p-line:#c9d3cb;--p-accent:#18553c;color:var(--p-text);background:var(--p-bg);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:14px;line-height:1.65;text-align:left;letter-spacing:normal;text-transform:none;box-sizing:border-box}.privacy-surface p{font-size:inherit;line-height:inherit;color:inherit;text-transform:none;letter-spacing:normal;margin:12px 0}.privacy-surface h2,.privacy-surface h3{font-family:inherit;color:inherit;text-transform:none;letter-spacing:normal;line-height:1.3}.privacy-surface h2{font-size:22px;margin:0}.privacy-surface h3{font-size:17px;margin:24px 0 8px}.privacy-surface a{color:var(--p-accent);text-decoration:underline}.privacy-surface button{font-family:inherit;cursor:pointer}.privacy-surface :focus-visible,.privacy-link:focus-visible{outline:3px solid #629e7b;outline-offset:3px}.privacy-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:20000;display:flex;align-items:center;justify-content:center;padding:18px}.privacy-overlay[hidden],.privacy-surface[hidden],.privacy-surface [hidden]{display:none!important}.privacy-sheet{border:1px solid var(--p-line);border-radius:24px;width:100%;max-width:720px;max-height:calc(100dvh - 36px);overflow:auto;padding:25px;overscroll-behavior:contain;box-shadow:0 18px 80px #0004}.privacy-top{display:flex;gap:18px;align-items:center;justify-content:space-between}.privacy-close{flex:none;width:44px;height:44px;border:1px solid var(--p-line);border-radius:50%;color:inherit;background:transparent;font-size:25px;line-height:1}.privacy-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}.privacy-choice{flex:1;min-width:130px;min-height:46px;border:1px solid var(--p-accent);border-radius:12px;background:transparent;color:var(--p-accent);font-size:14px;font-weight:600;padding:10px 12px}.privacy-choice:disabled{opacity:.5;cursor:default}.privacy-choice:hover:not(:disabled){background:color-mix(in srgb,var(--p-accent) 8%,transparent)}.privacy-preferences{border:1px solid var(--p-line);padding:18px;border-radius:16px;margin:20px 0}.privacy-preferences h3{margin:0}.privacy-meta{color:var(--p-muted)!important;font-size:12px!important}.privacy-menu-footer{margin:8px auto 0;max-width:440px}.privacy-sheet:focus{outline:none}@media(prefers-color-scheme:dark){.privacy-surface{--p-bg:#15251e;--p-text:#edf4ef;--p-muted:#b4c7bb;--p-line:#41594b;--p-accent:#a1d1b6}}@media(max-width:480px){.privacy-overlay{padding:9px}.privacy-sheet{padding:20px;max-height:calc(100dvh - 18px);border-radius:19px}}
+
+</style>
 </head>
 <body>
 <main>
@@ -468,6 +487,7 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="profile">Il mio profilo <span aria-hidden="true">→</span></button>
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="account">Il mio accesso <span aria-hidden="true">→</span></button>
     <div class="profile-menu-divider" role="separator" data-owner-only hidden></div>
+    <button type="button" role="menuitem" tabindex="-1" data-manager-go="statistics" data-owner-only hidden>Statistiche <span aria-hidden="true">→</span></button>
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="appearance" data-owner-only hidden>Aspetto del menu <span aria-hidden="true">→</span></button>
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="members" data-owner-only hidden>Utenti e permessi <span aria-hidden="true">→</span></button>
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="requests" data-owner-only hidden>Richieste di accesso <span aria-hidden="true">→</span></button>
@@ -497,7 +517,7 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
     <button type="button" class="button workspace-action" data-manager-go="catalog">Apri i prodotti <span aria-hidden="true">→</span></button>
     <p class="workspace-caption">Le modifiche vanno online quando premi “Pubblica modifica”.</p>
   </div>
-  <a class="public-menu-link" href="https://theblackstuffud.github.io/blackstuff-menu/" target="_blank" rel="noopener noreferrer"><span class="public-menu-copy">Anteprima menu<small>Come lo vedono i clienti</small></span><span aria-hidden="true">↗</span></a>
+  <a class="public-menu-link" href="https://theblackstuffud.github.io/blackstuff-menu/?tbs_stats=off" target="_blank" rel="noopener noreferrer"><span class="public-menu-copy">Anteprima menu<small>Come lo vedono i clienti</small></span><span aria-hidden="true">↗</span></a>
 </section>
 <nav id="managerNav" aria-label="Navigazione gestionale"><button type="button" class="small-action" id="managerBack">← Home</button><span id="managerSectionTitle"></span></nav>
 <section id="catalogPanel" class="panel" aria-labelledby="catalogHeading">
@@ -536,7 +556,8 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
 <section class="card" id="signedOut">
 <div class="eyebrow">01 · AUTENTICAZIONE</div>
 <h2>ACCESSO AMMINISTRATIVO</h2>
-<p>Accedi con il tuo account Google. L'autenticazione non concede automaticamente i permessi per modificare il menu.</p>
+<p>Puoi usare il tuo account Google per richiedere l’accesso. Dopo aver completato il profilo, premi «Richiedi accesso»: le funzioni del gestionale richiedono l’approvazione della proprietaria.</p>
+<p class="privacy-login">Prima di accedere puoi leggere come vengono trattati i tuoi dati. <button type="button" class="privacy-link" data-open-privacy>Informativa privacy</button></p>
 <button class="button" id="login">Accedi con Google</button>
 <div id="loginError" role="alert"></div>
 <p class="mini">Apri la pagina direttamente in Safari, non dal browser interno di un'altra app.</p>
@@ -559,7 +580,7 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
     <div class="profile-fields">
       <div class="field"><label for="registerFirst">NOME</label><input id="registerFirst" type="text" autocomplete="given-name" maxlength="60" required></div>
       <div class="field"><label for="registerLast">COGNOME</label><input id="registerLast" type="text" autocomplete="family-name" maxlength="60" required></div>
-      <div class="field full"><label for="registerDob">DATA DI NASCITA</label><input id="registerDob" type="date" autocomplete="bday" required></div>
+      <p class="mini">Sono richiesti solo nome e cognome. La foto è facoltativa.</p>
     </div>
     <div class="profile-row">
       <div class="avatar-preview" id="registerPreview">BS</div>
@@ -585,11 +606,44 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
   <div id="requestsList" aria-live="polite" class="hint">Caricamento delle richieste...</div>
   <p class="mini">Prima di approvare, verifica che l'indirizzo Google appartenga realmente alla persona interessata.</p>
   </div><div id="membersSection">
+  <section class="manager-invite" aria-labelledby="managerInviteHeading">
+   <div class="eyebrow">Invita un collaboratore</div><h3 id="managerInviteHeading">Condividi il Manager</h3>
+   <p>Invia il link a chi dovrà accedere. La persona entra con il proprio account Google, completa il profilo e preme «Richiedi accesso».</p>
+   <p class="mini">Condividere il link non concede permessi. La richiesta rimane in attesa della tua approvazione.</p>
+   <div class="manager-invite-actions"><button type="button" class="small-action" id="managerInviteShare"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 16V3m-4 4 4-4 4 4M7 10H4v11h16V10h-3"/></svg>Condividi il Manager</button><button type="button" class="small-action" id="managerInviteCopy">Copia link</button></div>
+   <div id="managerInviteFallback" hidden><label for="managerInviteLink" class="field-label">LINK DEL MANAGER</label><input id="managerInviteLink" type="url" readonly value="https://theblackstuffud.github.io/blackstuff-manager/"></div>
+   <p id="managerInviteStatus" class="mini" role="status" aria-live="polite"></p>
+   <button type="button" class="manager-invite-requests" data-manager-go="requests">Apri le richieste di accesso <span aria-hidden="true">→</span></button>
+  </section>
+
   <div class="request-bar"><strong class="muted-heading">UTENTI REGISTRATI</strong><button class="small-action" id="refreshMembers" type="button">Aggiorna</button></div>
   <div id="membersList" class="members-manager-list" aria-live="polite">Caricamento...</div>
   </div><div id="ownerNotice" role="status" aria-live="polite"></div>
   <p class="mini">Il ruolo Proprietario non può essere modificato da questa interfaccia. Ogni modifica alle autorizzazioni verrà registrata nello storico.</p>
 </section>
+<section id="statisticsPanel" aria-labelledby="statisticsHeading">
+ <div class="stats-intro"><div><div class="eyebrow">Il tuo menu, in numeri</div><h2 id="statisticsHeading">Statistiche</h2><p>Aperture e interessi dei clienti. Orari di Udine.</p></div><button type="button" class="small-action" id="statisticsRefresh">Aggiorna dati</button></div>
+ <div class="stats-periods" role="group" aria-label="Periodo delle statistiche"><button type="button" data-stats-days="1" aria-pressed="true">Oggi</button><button type="button" data-stats-days="7" aria-pressed="false">7 giorni</button><button type="button" data-stats-days="30" aria-pressed="false">30 giorni</button></div>
+ <div id="statisticsMessage" role="status" aria-live="polite" class="mini"></div>
+ <p class="mini" id="statisticsDates"></p>
+ <div class="stats-metrics">
+  <article class="card stats-metric"><h3>Aperture del menu</h3><strong id="statisticsVisits">—</strong><p>Ogni caricamento della pagina. Non sono persone uniche.</p></article>
+  <article class="card stats-metric"><h3>Schede aperte</h3><strong id="statisticsProducts">—</strong><p>Aperture dei dettagli dei prodotti.</p></article>
+  <article class="card stats-metric"><h3>Richieste di condivisione</h3><strong id="statisticsShares">—</strong><p>Pressioni su «Condividi menu», anche se poi annullate. Non confermano l’invio.</p><span id="statisticsCopies" class="mini"></span></article>
+ </div>
+ <section class="card stats-chart-card"><h3>A che ora viene aperto il menu</h3><p class="mini">Aperture per fascia oraria · Europe/Rome</p><div class="stats-hours" id="statisticsHours" aria-label="Aperture del menu per ora"></div><p class="mini" id="statisticsPeak"></p></section>
+ <section class="card stats-ranking-card"><h3>I 10 prodotti più aperti</h3><p class="mini">Le aperture indicano interesse, non vendite.</p><ol id="statisticsRanking" class="stats-ranking"></ol><p id="statisticsEmpty" class="mini">I prodotti compariranno dopo le prime aperture rilevate.</p></section>
+ <details class="card stats-info"><summary>Raccolta dati e significato dei numeri</summary>
+  <p id="statisticsCollectionState">Stato della raccolta da verificare.</p><button type="button" class="small-action" id="statisticsToggle" disabled>Attiva statistiche</button>
+  <p class="mini" id="statisticsSince"></p><p class="mini" id="statisticsLastSignal"></p>
+  <p>Il menu non mostra un banner: la scelta facoltativa si trova nel link Privacy in fondo alla pagina. Sono contate solo le azioni di chi ha accettato le statistiche, quindi il totale è parziale e può essere molto basso. Vengono salvati solo contatori aggregati per ora e prodotto: nessun identificativo del visitatore, nessuna ricerca digitata o cronologia individuale. Le statistiche sono visibili solo alla proprietaria.</p>
+  <p>Un ricaricamento della pagina conta come un’altra apertura. Richiudere una scheda non conta; riaprirla dopo almeno 8 secondi può contare di nuovo. Le anteprime aperte dal Manager sono escluse.</p>
+  <p>Il sito non vede le condivisioni fatte dai comandi di Safari, Chrome o delle altre app. «Copie del link» conta solo le copie riuscite con il pulsante del sito.</p>
+  <p>Questi sono conteggi indicativi: rete assente, blocchi del browser, esclusioni e limiti possono ridurli; traffico automatico può alterarli. Per contenere l’uso di Firebase, la raccolta accetta al massimo 6.000 segnali al giorno UTC, distribuiti in 8 gruppi. Non è un sistema anti-bot.</p>
+  <p>Le quote gratuite di Firebase sono condivise con il menu e il Manager. Qui non vengono attivati pagamenti. I dati iniziano dall’attivazione e non ricostruiscono le visite precedenti.</p>
+ </details>
+</section>
+
 <section id="appearancePanel" aria-labelledby="appearanceHeading">
 <div class="theme-intro"><h2 id="appearanceHeading">Aspetto del menu</h2><p>Un’atmosfera per ogni stagione.<br>Scegli quella che vedranno i tuoi clienti.</p></div>
 <form id="themeForm">
@@ -602,7 +656,7 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
 <div class="theme-actions"><button type="submit" id="themePublish" class="button" disabled>Pubblica tema</button><button type="button" id="themeReload" class="small-action">Ricarica tema</button></div>
 <div id="themeStatus" role="status" aria-live="polite"></div>
 <p class="theme-note">Si applica un tema alla volta. Prodotti, prezzi e proposte stagionali restano quelli del tuo menu.</p>
-<a class="theme-link" href="https://theblackstuffud.github.io/blackstuff-menu/" target="_blank" rel="noopener">Apri il menu pubblico ↗</a>
+<a class="theme-link" href="https://theblackstuffud.github.io/blackstuff-menu/?tbs_stats=off" target="_blank" rel="noopener">Apri il menu pubblico ↗</a>
 </form></section>
 <section class="card" id="historyPanel" hidden>
   <div class="eyebrow">03 · AREA PROPRIETARIO</div>
@@ -626,7 +680,7 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
   </div>
   <div class="message">Questa versione gestisce <strong>utenti, ruoli, permessi e storico</strong>, ma non salva ancora modifiche ai prodotti.</div>
 </section>
-<footer class="foot manager-footer"><span>The Black Stuff · Area riservata</span>
+<footer class="foot manager-footer"><span>The Black Stuff · Area riservata</span><button type="button" class="privacy-link" data-open-privacy>Privacy</button>
 <details class="app-settings" id="appSettings">
 <summary aria-label="Impostazioni e aggiornamenti" title="Impostazioni e aggiornamenti"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9.5 3-.5 2-1.7 1-2-.6-2.5 4.2 1.5 1.5v1.8l-1.5 1.5 2.5 4.2 2-.6 1.7 1 .5 2h5l.5-2 1.7-1 2 .6 2.5-4.2-1.5-1.5v-1.8l1.5-1.5-2.5-4.2-2 .6-1.7-1-.5-2Z"/><circle cx="12" cy="12" r="3"/></svg></summary>
 <div class="app-settings-panel"><strong>Aggiornamenti</strong>
@@ -644,7 +698,7 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
       <div><div class="person-display" id="profileFullName">—</div><span class="role-pill" id="profileRole">IN VERIFICA</span></div>
     </div>
     <div class="info-line"><span class="field-label">EMAIL GOOGLE</span><strong id="profileEmail">—</strong></div>
-    <div class="info-line"><span class="field-label">DATA DI NASCITA</span><strong id="profileBirthDate">—</strong></div>
+    <div class="info-line" id="profileBirthDateRow" hidden><span class="field-label">DATA DI NASCITA GIÀ SALVATA</span><strong id="profileBirthDate">—</strong></div>
     <div class="info-line"><span class="field-label">STATO ACCESSO</span><strong id="profileAccessState">—</strong></div>
     <div class="info-line"><span class="field-label">IDENTIFICATIVO ACCOUNT (UID)</span>
       <div class="code-actions"><button type="button" class="small-action" id="toggleCode" aria-expanded="false">VEDI CODICE</button><button type="button" class="small-action" id="copyCode" hidden>COPIA CODICE</button></div>
@@ -656,7 +710,7 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
       <div class="profile-fields">
         <div class="field"><label for="editFirst">NOME</label><input id="editFirst" maxlength="60" autocomplete="given-name" required></div>
         <div class="field"><label for="editLast">COGNOME</label><input id="editLast" maxlength="60" autocomplete="family-name" required></div>
-        <div class="field full"><label for="editDob">DATA DI NASCITA</label><input id="editDob" type="date" autocomplete="bday" required></div>
+
         <div class="field full"><label for="editPhoto">CAMBIA FOTO PROFILO</label><input class="photo-input" id="editPhoto" type="file" accept="image/*"></div>
       </div>
       <div class="button-line"><button type="button" class="small-action" id="removePhoto">RIMUOVI FOTO</button></div>
@@ -674,6 +728,89 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
 <p>Per utilizzare il gestionale serve una connessione internet.</p>
 <button type="button" class="button" id="closeInstallDialog">Ho capito</button>
 </section></div>
+<div id="privacyDialog" class="privacy-overlay" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" hidden><section class="privacy-sheet privacy-surface"><div class="privacy-top"><h2 id="privacyTitle" data-privacy-text="title">Privacy e preferenze</h2><button type="button" id="privacyClose" class="privacy-close" aria-label="Chiudi informativa">×</button></div><p class="privacy-meta" data-privacy-text="language">Informativa completa in italiano.</p><div lang="it"><p class="privacy-meta">Menu pubblico e Black Stuff Manager · Informativa del 26 ottobre 2026</p>
+<h3>Chi tratta i dati</h3>
+<p>Il titolare del trattamento è <strong>Blasutig Barbara</strong>, sede in <strong>Via Gorghi 3, Udine, Italia</strong>. Per informazioni e richieste sui dati personali: <a href="mailto:g.pigani@gmail.com">g.pigani@gmail.com</a>.</p>
+<h3>Menu e dati tecnici necessari</h3>
+<p>Il menu è consultabile senza account. Per mostrare pagine, fotografie, prezzi e disponibilità, il dispositivo si collega a GitHub Pages e ai servizi Google Firebase. Queste connessioni comportano dati tecnici, come indirizzo IP, informazioni del browser e orari delle richieste. GitHub dichiara di registrare gli IP per sicurezza. I dati tecnici servono a fornire il servizio e proteggerlo dagli abusi; il relativo interesse legittimo è il funzionamento sicuro del sito (art. 6, par. 1, lett. f GDPR).</p>
+<h3>Statistiche facoltative del menu</h3>
+<p>Se la raccolta è attiva, <strong>solo dopo «Accetta statistiche»</strong> il menu invia a Firebase contatori aggregati delle aperture della pagina, delle schede prodotto e dei comandi di condivisione, suddivisi per ora. Non inseriamo nei contatori identificativi dei visitatori, email, ricerche digitate o percorsi individuali. Non usiamo questi conteggi per pubblicità o profilazione. La trasmissione comporta comunque i normali dati tecnici di rete del fornitore.</p>
+<p>La finalità è capire l'utilizzo del menu e migliorarlo. La base giuridica della rilevazione facoltativa è il consenso (art. 6, par. 1, lett. a GDPR). Non compare alcun avviso automatico e il menu funziona senza accettare. Se vuoi attivare le statistiche o cambiare scelta, apri «Privacy» in fondo al menu e usa i comandi della sezione «Statistiche facoltative». La revoca interrompe i nuovi invii e non pregiudica la liceità di quelli precedenti. I conteggi già aggregati non permettono di isolare il contributo di una persona. Le preferenze di esclusione del browser riconosciute dal sito prevalgono sull'accettazione.</p>
+<p>Le condivisioni sono contate come utilizzi del comando del sito, non come messaggi consegnati. Le condivisioni dai comandi del browser non sono rilevate. La condivisione funziona anche rifiutando le statistiche; le app scelte dal visitatore applicano le proprie condizioni.</p>
+<h3>Accesso al Manager</h3>
+<p>Accedendo con Google vengono trattati l'identificativo dell'account, l'email e le informazioni di base rese disponibili da Google. L'identità di autenticazione viene creata al primo accesso, anche prima dell'approvazione. Il profilo del Manager contiene nome, cognome ed eventualmente una foto scelta dall'utente. La foto è facoltativa e rimovibile. La data di nascita non è richiesta ai nuovi profili; quelle inserite in precedenza non sono cancellate automaticamente da questo aggiornamento.</p>
+<p>Le richieste di accesso, i ruoli, le autorizzazioni e le modifiche amministrative vengono registrati. Lo storico può includere account responsabile, nome, email, data e operazione. Servono a riconoscere i collaboratori, valutare le richieste e proteggere il catalogo e gli accessi: il relativo interesse legittimo è l'amministrazione sicura dell'attività (art. 6, par. 1, lett. f GDPR). Nome, cognome e autenticazione sono necessari per richiedere l'accesso; senza questi dati il Manager non può essere utilizzato. Nessuna approvazione è automatica: decide la proprietaria.</p>
+<p>Il profilo personale è riservato al suo titolare nell'interfaccia dell'app; richieste, utenti autorizzati e storico sono consultabili dalla proprietaria secondo i permessi previsti. Chi amministra il progetto Firebase dispone inoltre degli accessi tecnici previsti dal servizio. I dati personali del Manager non sono pubblicati nel menu o nei repository GitHub.</p>
+<h3>Memorie del dispositivo</h3>
+<p>Usiamo memorie tecniche del browser per mantenere l'accesso richiesto al Manager, ricordare l'aspetto del menu e gestire gli aggiornamenti. L'accesso può restare attivo fino a «Esci dall'account», cancellazione dei dati del browser o scadenza della sessione. La memoria del tema rimane fino alla sostituzione o cancellazione; quella di controllo degli aggiornamenti dura la sessione del browser.</p>
+<p>La scelta sulle statistiche, la data e la versione dell'informativa vengono memorizzate solo nel browser, senza un codice personale. La scelta è valida per sei mesi di calendario. Alla scadenza la raccolta si interrompe senza mostrare avvisi: puoi scegliere nuovamente dalla voce «Privacy». Puoi modificare la scelta anche prima. Se il browser impedisce il salvataggio, vale solo per la pagina aperta. Cancellare le memorie del browser elimina anche la scelta. Queste memorie tecniche non richiedono un consenso separato. Non sono installati dal codice del sito strumenti pubblicitari, Google Analytics o pixel dei social.</p>
+<h3>Fornitori e trasferimenti</h3>
+<p>GitHub fornisce l'hosting delle pagine e delle immagini; Google fornisce Firebase Authentication, Firestore e le librerie necessarie. Questi servizi possono comportare trattamenti fuori dallo Spazio economico europeo. Le condizioni dei fornitori descrivono i ruoli, i responsabili e sub-responsabili, i paesi e le garanzie applicabili, comprese clausole contrattuali standard e decisioni di adeguatezza ove applicabili. Per informazioni e una copia delle garanzie pertinenti puoi contattare il titolare.</p>
+<p><a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">Informativa GitHub</a> · <a href="https://firebase.google.com/support/privacy/" target="_blank" rel="noopener noreferrer">Privacy Firebase</a> · <a href="https://firebase.google.com/terms/data-processing-terms/" target="_blank" rel="noopener noreferrer">Condizioni sul trattamento Firebase</a> · <a href="https://policies.google.com/privacy?hl=it" target="_blank" rel="noopener noreferrer">Informativa Google</a>.</p>
+<h3>Conservazione</h3>
+<p>I dati del Manager sono conservati per gestire la richiesta e, se approvata, per la durata dell'abilitazione. La conservazione ulteriore di dati necessari a sicurezza, verifiche o tutela dei diritti dipende dalla finalità concreta e dalla chiusura delle verifiche o controversie; gli eventuali obblighi di legge restano applicabili. La rimozione richiede una gestione amministrativa: revocare l'accesso non cancella automaticamente account, profilo o storico. Per chiedere la cancellazione, inclusa una data di nascita già salvata, scrivi al contatto indicato sopra.</p>
+<p>I contatori statistici sono aggregati e privi di identificativi del visitatore. La vista degli ultimi 30 giorni non comporta la cancellazione dei conteggi più vecchi: questa versione non prevede una scadenza automatica dei contatori. I fornitori gestiscono i propri dati tecnici secondo le rispettive informative. Firebase Authentication dichiara una conservazione degli IP per alcune settimane e dei dati di autenticazione fino alla richiesta di cancellazione dell'account da parte del cliente, con successivi tempi tecnici di rimozione.</p>
+<h3>I tuoi diritti</h3>
+<p>Puoi chiedere accesso, rettifica, cancellazione, limitazione e, quando applicabile, portabilità dei tuoi dati; puoi opporti ai trattamenti basati sull'interesse legittimo e revocare il consenso alle statistiche in ogni momento. Scrivi a <a href="mailto:g.pigani@gmail.com">g.pigani@gmail.com</a>. Hai diritto di proporre reclamo al <a href="https://www.garanteprivacy.it/" target="_blank" rel="noopener noreferrer">Garante per la protezione dei dati personali</a>. Non sono svolte decisioni automatizzate con effetti giuridici né profilazione pubblicitaria.</p>
+</div></section></div>
+<script id="tbsPrivacy" type="module">
+(()=>{
+ 'use strict';
+ const $=id=>document.getElementById(id),menu=document.documentElement.dataset.privacyApp==='menu';
+ const key='tbs-privacy-choice-v1',version='2026-10-26',legacyKey='tbs-statistics-excluded-v1';
+ const words={
+ it:{link:'Privacy',title:'Privacy e preferenze',accept:'Accetta statistiche',reject:'Rifiuta statistiche',closePolicy:'Chiudi informativa',preferences:'Statistiche facoltative',none:'Statistiche non consentite. Puoi scegliere liberamente.',yes:'Statistiche consentite in questo browser.',no:'Statistiche rifiutate in questo browser.',off:'La raccolta è attualmente disattivata o non disponibile.',excluded:'Statistiche escluse dalle impostazioni del browser o perché questa è un’anteprima.',memory:'Il browser non ha salvato la scelta: vale solo per questa pagina.',language:'Informativa completa in italiano.',saved:'Scelta aggiornata.',},
+ en:{link:'Privacy',title:'Privacy and preferences',accept:'Accept statistics',reject:'Reject statistics',closePolicy:'Close privacy notice',preferences:'Optional statistics',none:'Statistics are not allowed. The choice is yours.',yes:'Statistics allowed in this browser.',no:'Statistics rejected in this browser.',off:'Collection is currently disabled or unavailable.',excluded:'Statistics excluded by browser settings or because this is a preview.',memory:'Your browser did not save the choice: it applies only to this page.',language:'Full privacy notice in Italian.',saved:'Preference updated.',},
+ de:{link:'Datenschutz',title:'Datenschutz und Einstellungen',accept:'Statistik erlauben',reject:'Statistik ablehnen',closePolicy:'Datenschutzhinweise schließen',preferences:'Optionale Statistik',none:'Statistik nicht erlaubt. Du kannst frei wählen.',yes:'Statistik in diesem Browser erlaubt.',no:'Statistik in diesem Browser abgelehnt.',off:'Die Erfassung ist derzeit deaktiviert oder nicht verfügbar.',excluded:'Statistik durch Browsereinstellungen oder in dieser Vorschau ausgeschlossen.',memory:'Der Browser hat die Auswahl nicht gespeichert: Sie gilt nur für diese Seite.',language:'Vollständige Datenschutzhinweise auf Italienisch.',saved:'Auswahl aktualisiert.',},
+ es:{link:'Privacidad',title:'Privacidad y preferencias',accept:'Aceptar estadísticas',reject:'Rechazar estadísticas',closePolicy:'Cerrar aviso de privacidad',preferences:'Estadísticas opcionales',none:'Estadísticas no permitidas. Puedes elegir libremente.',yes:'Estadísticas permitidas en este navegador.',no:'Estadísticas rechazadas en este navegador.',off:'La recopilación está desactivada o no disponible.',excluded:'Estadísticas excluidas por el navegador o por ser una vista previa.',memory:'El navegador no guardó la elección: solo vale para esta página.',language:'Aviso completo en italiano.',saved:'Preferencia actualizada.',}
+ };
+ let active=false,choice=null,memoryOnly=false,returnFocus=null,bodyOverflow='',inertState=[];
+ const t=()=>words[document.documentElement.lang]||words.it;
+ const excluded=()=>navigator.globalPrivacyControl===true||navigator.doNotTrack==='1'||new URLSearchParams(location.search).get('tbs_stats')==='off';
+ function expiry(ms){const date=new Date(ms);date.setUTCMonth(date.getUTCMonth()+6);return date.getTime();}
+ function parse(value){try{const p=JSON.parse(value);if(p?.version===version&&['accepted','rejected'].includes(p.choice)&&Number.isSafeInteger(p.decidedAt)&&p.decidedAt<=Date.now()&&expiry(p.decidedAt)>Date.now())return p;}catch(_){}return null;}
+ function load(){try{choice=parse(localStorage.getItem(key));memoryOnly=false;if(!choice&&localStorage.getItem(legacyKey)==='1'){
+  choice={version,choice:'rejected',decidedAt:Date.now()};try{localStorage.setItem(key,JSON.stringify(choice));localStorage.removeItem(legacyKey);}catch(_){memoryOnly=true;}
+ }}catch(_){choice=null;memoryOnly=true;}}
+ function current(){if(choice&&expiry(choice.decidedAt)<=Date.now()){choice=null;render();}return choice;}
+ function permitted(){return menu&&!excluded()&&current()?.choice==='accepted';}
+ function render(){const x=t(),value=choice?.choice,locked=excluded();
+  document.querySelectorAll('[data-privacy-text]').forEach(el=>{el.textContent=x[el.dataset.privacyText]||'';});
+  $('privacyDialog').setAttribute('aria-label',x.title);$('privacyClose').setAttribute('aria-label',x.closePolicy);
+  if(menu){
+   $('privacyPreferenceStatus').textContent=(locked?x.excluded:value==='accepted'?x.yes:value==='rejected'?x.no:x.none)+(active?'':' '+x.off)+(memoryOnly?' '+x.memory:'');
+   $('privacyAccept').disabled=locked;
+  }
+ }
+ function announce(){window.dispatchEvent(new Event('tbs:privacy-change'));}
+ function decide(value){if(!menu||!['accepted','rejected'].includes(value)||(value==='accepted'&&excluded()))return;
+  choice={version,choice:value,decidedAt:Date.now()};memoryOnly=false;
+  try{localStorage.setItem(key,JSON.stringify(choice));localStorage.removeItem(legacyKey);}catch(_){memoryOnly=true;}
+  render();announce();$('privacyChoiceMessage').textContent=t().saved;
+ }
+ function open(){if(!$('privacyDialog').hidden)return;returnFocus=document.activeElement;bodyOverflow=document.body.style.overflow;document.body.style.overflow='hidden';
+  $('privacyDialog').hidden=false;inertState=[];for(const el of document.body.children){if(el!==$('privacyDialog')&&!['SCRIPT','STYLE'].includes(el.tagName)){inertState.push([el,el.inert]);el.inert=true;}}
+  render();$('privacyClose').focus();
+ }
+ function close(){if($('privacyDialog').hidden)return;$('privacyDialog').hidden=true;for(const [el,was]of inertState)el.inert=was;inertState=[];document.body.style.overflow=bodyOverflow;render();if(returnFocus?.isConnected)returnFocus.focus();}
+ document.querySelectorAll('[data-open-privacy]').forEach(button=>button.addEventListener('click',open));$('privacyClose').addEventListener('click',close);
+ $('privacyDialog').addEventListener('click',e=>{if(e.target===$('privacyDialog'))close();});
+ $('privacyDialog').addEventListener('keydown',e=>{
+  if(e.key==='Escape'){e.preventDefault();e.stopPropagation();close();}
+  if(e.key==='Tab'){const nodes=[...$('privacyDialog').querySelectorAll('button:not([disabled]),a[href],input:not([disabled]),[tabindex="0"]')].filter(el=>!el.closest('[hidden]'));const first=nodes[0],last=nodes[nodes.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}}
+ });
+ if(menu){
+  $('privacyAccept').addEventListener('click',()=>decide('accepted'));
+  $('privacyReject').addEventListener('click',()=>decide('rejected'));
+  window.addEventListener('storage',event=>{if(event.key!==key&&event.key!==legacyKey&&event.key!==null)return;load();render();announce();});
+  const refresh=()=>{current();render();announce();};document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')refresh();});window.addEventListener('pageshow',refresh);
+  load();
+ }
+ window.TBSPrivacy={statisticsAllowed:permitted,setStatisticsActive(value){active=value===true;current();render();},isOpen:()=>!$('privacyDialog').hidden,open};
+ new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});render();
+})();
+
+</script>
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import {getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
@@ -685,7 +822,7 @@ const firebaseConfig={
  messagingSenderId:"879941411379",
  appId:"1:879941411379:web:18e94817206c119598f946"
 };
-import {getFirestore,doc,getDoc,getDocFromServer,collection,getDocs,getDocsFromServer,writeBatch,serverTimestamp,query,orderBy,limit,startAfter,runTransaction} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import {getFirestore,doc,getDoc,getDocFromServer,collection,getDocs,getDocsFromServer,writeBatch,serverTimestamp,query,orderBy,limit,startAfter,runTransaction,where,Timestamp} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
 const auth=getAuth(app);
@@ -1185,13 +1322,139 @@ $('themeForm').addEventListener('submit',async event=>{
 });
 window.addEventListener('beforeunload',event=>{if(themeDirty||themeSaving){event.preventDefault();event.returnValue='';}});
 
-const MANAGER_VIEWS={home:'Home',catalog:'Modifica menu',appearance:'Aspetto del menu',wallet:'Portafoglio IA',account:'Il mio accesso',members:'Utenti e permessi',requests:'Richieste di accesso',history:'Storico attività'};
+// Solo contatori aggregati. Ogni chiave contiene l'ora UTC e il tipo di segnale.
+const STATS_DAY=86400000,STATS_HOUR=3600000;
+const statsDateFormatter=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Rome',year:'numeric',month:'2-digit',day:'2-digit'});
+const statsHourFormatter=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Rome',hour:'2-digit',hourCycle:'h23'});
+const statsNumber=new Intl.NumberFormat('it-IT');
+let statisticsDays=1,statisticsEpoch=0,statisticsLoading=false,statisticsSaving=false,statisticsSettingsValue=null,statisticsSettingsKnown=false,statisticsLoadedAt=0,statisticsLoadedDays=0;
+function statisticsDate(ms){const p=Object.fromEntries(statsDateFormatter.formatToParts(new Date(ms)).map(x=>[x.type,x.value]));return p.year+'-'+p.month+'-'+p.day;}
+function statisticsRange(days,now=Date.now()){
+ const to=statisticsDate(now),nominal=Date.parse(to+'T00:00:00Z');
+ const from=new Date(nominal-(days-1)*STATS_DAY).toISOString().slice(0,10);
+ return {from,to,start:Math.floor((Date.parse(from+'T00:00:00Z')-3*STATS_HOUR)/STATS_DAY)*STATS_DAY,end:Math.floor(now/STATS_DAY)*STATS_DAY};
+}
+function statisticsSummary(records,range){
+ const result={visits:0,products:0,shares:0,copies:0,hours:Array(24).fill(0),ranking:new Map(),limited:false,invalid:false,last:0};
+ for(const {id,data:d} of records){
+  const day=d?.day?.toMillis?.(),updated=d?.updatedAt?.toMillis?.();
+  if(d?.version!==1||!Number.isSafeInteger(day)||day%STATS_DAY!==0||!Number.isInteger(d.shard)||d.shard<0||d.shard>=8||id!==day+'_'+d.shard||!plainMap(d.hits)||!Number.isInteger(d.total)||d.total<1||d.total>750){result.invalid=true;continue;}
+  const entries=Object.entries(d.hits),sum=entries.reduce((n,[,count])=>n+(Number.isInteger(count)?count:NaN),0);
+  if(entries.length>750||sum!==d.total||entries.some(([key,count])=>!/^([0-9]|1[0-9]|2[0-3])_(visit|share|copy|product_[a-z0-9][a-z0-9-]{0,99})$/.test(key)||!Number.isInteger(count)||count<1||count>750)){result.invalid=true;continue;}
+  let relevant=false;
+  for(const [key,count] of entries){
+   const [,utcHour,kind,product]=key.match(/^(\d+)_(visit|share|copy|product)(?:_(.+))?$/),ms=day+Number(utcHour)*STATS_HOUR,date=statisticsDate(ms);
+   if(date<range.from||date>range.to)continue;
+   relevant=true;
+   if(kind==='visit'){result.visits+=count;result.hours[Number(statsHourFormatter.format(new Date(ms)))]+=count;}
+   if(kind==='product'){result.products+=count;result.ranking.set(product,(result.ranking.get(product)||0)+count);}
+   if(kind==='share')result.shares+=count;
+   if(kind==='copy')result.copies+=count;
+  }
+  if(relevant){result.limited ||= d.total===750;result.last=Math.max(result.last,Number.isFinite(updated)?updated:0);}
+ }
+ return result;
+}
+function statisticsMessage(text,error=false){$('statisticsMessage').textContent=text;$('statisticsMessage').className='mini'+(error?' error':'');}
+function statisticsClearNumbers(){
+ for(const id of ['statisticsVisits','statisticsProducts','statisticsShares'])$(id).textContent='—';
+ for(const id of ['statisticsCopies','statisticsPeak','statisticsDates','statisticsSince','statisticsLastSignal'])$(id).textContent='';
+ $('statisticsHours').replaceChildren();$('statisticsRanking').replaceChildren();$('statisticsEmpty').hidden=false;
+}
+function resetStatistics(){
+ statisticsEpoch++;statisticsLoading=false;statisticsSaving=false;statisticsSettingsValue=null;statisticsSettingsKnown=false;statisticsLoadedAt=0;statisticsLoadedDays=0;statisticsDays=1;
+ statisticsClearNumbers();statisticsMessage('');$('statisticsCollectionState').textContent='Stato della raccolta da verificare.';
+ $('statisticsToggle').disabled=true;$('statisticsToggle').textContent='Attiva statistiche';$('statisticsRefresh').disabled=false;
+ document.querySelectorAll('[data-stats-days]').forEach(b=>{b.disabled=false;b.setAttribute('aria-pressed',String(b.dataset.statsDays==='1'));});
+}
+function validStatisticsSettings(d){return !!d&&d.version===1&&typeof d.enabled==='boolean'&&Number.isInteger(d.revision)&&d.revision>=1&&typeof d.startedAt?.toMillis==='function'&&typeof d.updatedAt?.toMillis==='function';}
+function renderStatisticsSettings(){
+ const s=statisticsSettingsValue;
+ $('statisticsToggle').disabled=!statisticsSettingsKnown||statisticsLoading||statisticsSaving||currentRole!=='owner';
+ $('statisticsToggle').textContent=s?.enabled?'Metti in pausa':s?'Riprendi raccolta':'Attiva statistiche';
+ $('statisticsCollectionState').textContent=!statisticsSettingsKnown?'Stato della raccolta non verificato.':s?.enabled?'Raccolta attiva':s?'Raccolta in pausa. I dati precedenti restano disponibili.':'Raccolta non ancora attivata.';
+ $('statisticsSince').textContent=s?'Prima attivazione: '+new Intl.DateTimeFormat('it-IT',{timeZone:'Europe/Rome',dateStyle:'medium',timeStyle:'short'}).format(s.startedAt.toDate()):'Attiva dopo aver pubblicato anche il nuovo index del menu.';
+}
+function renderStatistics(summary,range,catalog){
+ for(const [id,value] of [['statisticsVisits',summary.visits],['statisticsProducts',summary.products],['statisticsShares',summary.shares]])$(id).textContent=statsNumber.format(value);
+ $('statisticsCopies').textContent='Copie del link: '+statsNumber.format(summary.copies);
+ const nice=s=>s.split('-').reverse().join('/');$('statisticsDates').textContent=(range.from===range.to?nice(range.to):nice(range.from)+' – '+nice(range.to))+' · giorno corrente incluso';
+ const hours=$('statisticsHours');hours.replaceChildren();const max=Math.max(1,...summary.hours);
+ for(let h=0;h<24;h++){
+  const count=summary.hours[h],label=String(h).padStart(2,'0')+':00',cell=make('div','stats-hour'),value=make('span','stats-hour-value',statsNumber.format(count)),meter=make('div','stats-hour-meter'),bar=make('span');
+  bar.style.height=(count?Math.max(3,count/max*100):0)+'%';meter.append(bar);meter.setAttribute('aria-hidden','true');
+  cell.setAttribute('aria-label',label+'–'+String((h+1)%24).padStart(2,'0')+':00: '+count+' aperture');cell.append(value,meter,make('span','',label));hours.append(cell);
+ }
+ const peak=Math.max(...summary.hours),peaks=summary.hours.map((n,h)=>n===peak?String(h).padStart(2,'0')+':00':null).filter(Boolean);
+ $('statisticsPeak').textContent=peak?'Fascia più frequentata: '+peaks.join(', ')+' · '+statsNumber.format(peak)+' aperture per fascia.':'Nessuna apertura rilevata nel periodo.';
+ const ranking=$('statisticsRanking');ranking.replaceChildren();
+ const top=[...summary.ranking].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,10);
+ for(const [id,count] of top){const row=make('li'),name=catalog?.products?.[id]?.details?.name?.it||id;row.append(make('span','stats-rank-name',name),make('span','stats-rank-count',statsNumber.format(count)));ranking.append(row);}
+ $('statisticsEmpty').hidden=top.length>0;
+ $('statisticsLastSignal').textContent=summary.last?'Ultimo segnale ricevuto nei dati del periodo: '+new Intl.DateTimeFormat('it-IT',{timeZone:'Europe/Rome',dateStyle:'medium',timeStyle:'short'}).format(new Date(summary.last)):'';
+}
+async function loadStatistics(force=false){
+ if(currentRole!=='owner'||!auth.currentUser||statisticsLoading||statisticsSaving)return;
+ if(!force&&statisticsLoadedDays===statisticsDays&&Date.now()-statisticsLoadedAt<60000)return;
+ const epoch=++statisticsEpoch,session=sessionVersion,uid=auth.currentUser.uid,days=statisticsDays,range=statisticsRange(days);
+ const alive=()=>epoch===statisticsEpoch&&session===sessionVersion&&auth.currentUser?.uid===uid&&currentRole==='owner';
+ statisticsLoading=true;statisticsSettingsKnown=false;$('statisticsRefresh').disabled=true;$('statisticsToggle').disabled=true;statisticsClearNumbers();statisticsMessage('Caricamento dei dati…');
+ try{
+  if(!navigator.onLine)throw Error('Sei offline. Collegati a internet e premi Aggiorna dati.');
+  const requests=await Promise.allSettled([
+   readWithDeadline(getDocFromServer(doc(db,'menuStatisticsSettings','current'))),
+   readWithDeadline(getDocsFromServer(query(collection(db,'menuStatistics'),where('day','>=',Timestamp.fromMillis(range.start)),where('day','<=',Timestamp.fromMillis(range.end)),orderBy('day','asc'),limit(257)))),
+   readWithDeadline(getDocFromServer(doc(db,'menuCatalog','current')))
+  ]);
+  if(!alive())return;
+  if(requests[0].status==='rejected')throw requests[0].reason;if(requests[1].status==='rejected')throw requests[1].reason;
+  const settings=requests[0].value,rows=requests[1].value,cs=requests[2].status==='fulfilled'?requests[2].value:null;
+  const s=settings.exists()?settings.data():null;if(s&&!validStatisticsSettings(s))throw Error('Impostazioni statistiche non valide. La raccolta non è stata modificata.');
+  if(rows.size>=257)throw Error('Il periodo contiene più dati del previsto. Nessun totale parziale viene mostrato.');
+  statisticsSettingsValue=s;statisticsSettingsKnown=true;
+  const summary=statisticsSummary(rows.docs.map(d=>({id:d.id,data:d.data()})),range);
+  if(summary.invalid)throw Error('Alcuni contatori non sono validi. Nessun totale parziale viene mostrato.');
+  renderStatistics(summary,range,cs?.exists()?cs.data():null);renderStatisticsSettings();statisticsLoadedAt=Date.now();statisticsLoadedDays=days;
+  statisticsMessage(summary.limited?'Uno o più gruppi hanno raggiunto il limite giornaliero: i conteggi possono essere incompleti.':!s?'Pronta per partire. Apri «Raccolta dati e significato dei numeri» per attivare le statistiche.':s.enabled?'Dati aggiornati alle '+new Intl.DateTimeFormat('it-IT',{timeZone:'Europe/Rome',hour:'2-digit',minute:'2-digit'}).format(new Date())+'.':'Raccolta in pausa: questi sono i dati già registrati.');
+  if(!cs)statisticsMessage($('statisticsMessage').textContent+' Nomi dei prodotti non aggiornati: vengono usati i loro codici.');
+ }catch(error){
+  if(!alive())return;statisticsClearNumbers();statisticsSettingsKnown=false;statisticsLoadedAt=0;
+  statisticsMessage(error?.code==='permission-denied'?'Statistiche non accessibili. Pubblica le Regole Firebase aggiornate e verifica di usare il profilo proprietaria.':error?.code?roleError(error):error.message,true);
+ }finally{if(alive()){statisticsLoading=false;$('statisticsRefresh').disabled=false;renderStatisticsSettings();}}
+}
+async function toggleStatistics(){
+ if(currentRole!=='owner'||!auth.currentUser||statisticsSaving||statisticsLoading||!statisticsSettingsKnown)return;
+ if(!navigator.onLine){statisticsMessage('Collegati a internet prima di cambiare la raccolta.',true);return;}
+ const session=sessionVersion,uid=auth.currentUser.uid,expected=statisticsSettingsValue?.revision||0,target=!statisticsSettingsValue?.enabled;
+ statisticsSaving=true;renderStatisticsSettings();$('statisticsRefresh').disabled=true;statisticsMessage('Salvataggio della scelta…');
+ try{
+  await runTransaction(db,async tx=>{
+   const ref=doc(db,'menuStatisticsSettings','current'),snap=await tx.get(ref),before=snap.exists()?snap.data():null;
+   if((before?.revision||0)!==expected)throw Error('La raccolta è stata modificata da un’altra finestra. Aggiorna i dati e riprova.');
+   tx.set(ref,{version:1,enabled:target,startedAt:before?.startedAt||serverTimestamp(),updatedAt:serverTimestamp(),revision:expected+1});
+  });
+  if(session!==sessionVersion||auth.currentUser?.uid!==uid)return;
+  statisticsSaving=false;statisticsLoadedAt=0;await loadStatistics(true);
+ }catch(error){if(session===sessionVersion&&auth.currentUser?.uid===uid){statisticsMessage(error?.code?roleError(error):error.message,true);statisticsSettingsKnown=false;}}
+ finally{if(session===sessionVersion&&auth.currentUser?.uid===uid){statisticsSaving=false;$('statisticsRefresh').disabled=false;renderStatisticsSettings();}}
+}
+$('statisticsRefresh').addEventListener('click',()=>loadStatistics(true));
+$('statisticsToggle').addEventListener('click',toggleStatistics);
+document.querySelectorAll('[data-stats-days]').forEach(button=>button.addEventListener('click',()=>{
+ if(statisticsSaving)return;const days=Number(button.dataset.statsDays);if(![1,7,30].includes(days)||days===statisticsDays)return;
+ statisticsDays=days;statisticsEpoch++;statisticsLoading=false;
+ document.querySelectorAll('[data-stats-days]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.statsDays)===days)));loadStatistics(true);
+}));
+window.addEventListener('beforeunload',event=>{if(statisticsSaving){event.preventDefault();event.returnValue='';}});
+
+const MANAGER_VIEWS={statistics:'Statistiche',home:'Home',catalog:'Modifica menu',appearance:'Aspetto del menu',wallet:'Portafoglio IA',account:'Il mio accesso',members:'Utenti e permessi',requests:'Richieste di accesso',history:'Storico attività'};
 let managerView='home';
 function showManagerView(view, push=false, focus=true){
+ if(statisticsSaving&&view!==managerView){statisticsMessage('Attendi il salvataggio della raccolta.');return;}
  if(catalogBusy&&view!==managerView){catalogMessage('Attendi il completamento della pubblicazione.');return;}
  if(managerView==='appearance'&&view!=='appearance'){if(themeSaving){themeMessage('Attendi il completamento della pubblicazione.');return;}if(themeDirty){if(!confirm('Scartare la scelta del tema non pubblicata?'))return;themeDirty=false;}}
  if(currentRole&&managerView==='catalog'&&view!=='catalog'&&editorDirty&&!$('catalogEditor').hidden){if(!confirm('Scartare le modifiche non pubblicate?'))return;editorDirty=false;$('catalogEditor').hidden=true;}
- if(!currentRole || !MANAGER_VIEWS[view] || (['members','requests','history','wallet','appearance'].includes(view)&&currentRole!=='owner'))view='home';
+ if(!currentRole || !MANAGER_VIEWS[view] || (['members','requests','history','wallet','appearance','statistics'].includes(view)&&currentRole!=='owner'))view='home';
  managerView=view;
  document.body.dataset.managerView=view;
  document.body.dataset.managerReady=String(!!currentRole);
@@ -1206,10 +1469,11 @@ function showManagerView(view, push=false, focus=true){
   if(view==='requests')loadRequests();
   if(view==='history')loadHistory(true);
   if(view==='appearance')loadMenuTheme();
+  if(view==='statistics')loadStatistics();
  }
  if(focus){
   window.scrollTo({top:0,behavior:'instant'});
-  const heading=view==='appearance'?$('appearanceHeading'):view==='catalog'?$('catalogHeading'):view==='wallet'?$('walletHeading'):view==='home'?$('managerHomeTitle'):view==='account'?$('signedIn').querySelector('h2'):view==='history'?$('historyPanel').querySelector('h2'):$('ownerSectionTitle');
+  const heading=view==='statistics'?$('statisticsHeading'):view==='appearance'?$('appearanceHeading'):view==='catalog'?$('catalogHeading'):view==='wallet'?$('walletHeading'):view==='home'?$('managerHomeTitle'):view==='account'?$('signedIn').querySelector('h2'):view==='history'?$('historyPanel').querySelector('h2'):$('ownerSectionTitle');
   heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true});
  }
 }
@@ -1241,6 +1505,8 @@ function setOwnerNotice(message,kind=""){
  const n=$("ownerNotice");n.textContent=message;n.className=message?"message "+kind:"";
 }
 function clearDash(){
+ resetManagerInvite();
+ resetStatistics();
  catalogAvailability='available';$('catalogSearch').value='';$('catalogAvailableCount').textContent='0';$('catalogInactiveCount').textContent='0';$('catalogAvailableTab').setAttribute('aria-pressed','true');$('catalogInactiveTab').setAttribute('aria-pressed','false');
  catalogBusy=false;catalogLoading=false;catalogDocument=null;catalogSource=[];catalogOverrides=new Map();photoPreviewEpoch++;historyEpoch++;historyLoading=false;$('historyKind').disabled=false;
  $('catalogSave').disabled=false;$('catalogCancel').disabled=false;$('catalogReload').disabled=false;
@@ -1439,6 +1705,33 @@ async function runOwnerOperation(action,successMessage){
 }
 $("refreshAccess").addEventListener("click",refreshOwner);
 $("refreshMembers").addEventListener("click",()=>loadMembers());
+const MANAGER_INVITE_URL='https://theblackstuffud.github.io/blackstuff-manager/';
+let managerInviteBusy=false,managerInviteEpoch=0;
+function managerInviteControls(){for(const id of ['managerInviteShare','managerInviteCopy'])$(id).disabled=managerInviteBusy;}
+function resetManagerInvite(){managerInviteEpoch++;managerInviteBusy=false;managerInviteControls();$('managerInviteStatus').textContent='';$('managerInviteFallback').hidden=true;}
+function managerInviteManual(){
+ $('managerInviteFallback').hidden=false;$('managerInviteLink').value=MANAGER_INVITE_URL;
+ $('managerInviteStatus').textContent='Seleziona e copia il link qui sotto, poi invialo alla persona interessata.';
+ $('managerInviteLink').focus();$('managerInviteLink').select();
+}
+async function managerInvite(mode){
+ if(currentRole!=='owner'||!auth.currentUser||managerInviteBusy)return;
+ const uid=auth.currentUser.uid,epoch=++managerInviteEpoch;
+ const current=()=>epoch===managerInviteEpoch&&auth.currentUser?.uid===uid&&currentRole==='owner';
+ managerInviteBusy=true;managerInviteControls();$('managerInviteStatus').textContent='';$('managerInviteFallback').hidden=true;
+ try{
+  if(mode==='share'&&typeof navigator.share==='function'){
+   try{await navigator.share({title:'The Black Stuff Manager',text:'Accedi con il tuo account Google, completa il profilo e premi «Richiedi accesso». Attendi l’approvazione della proprietaria.',url:MANAGER_INVITE_URL});if(current())$('managerInviteStatus').textContent='Link passato alla condivisione del dispositivo. Le autorizzazioni restano da approvare.';}
+   catch(error){if(!current())return;if(error?.name==='AbortError')$('managerInviteStatus').textContent='Condivisione annullata.';else managerInviteManual();}
+  }else{
+   try{if(!navigator.clipboard?.writeText)throw Error('clipboard-unavailable');await navigator.clipboard.writeText(MANAGER_INVITE_URL);if(current())$('managerInviteStatus').textContent='Link copiato. Puoi incollarlo in un messaggio.';}
+   catch(_){if(current())managerInviteManual();}
+  }
+ }finally{if(current()){managerInviteBusy=false;managerInviteControls();}}
+}
+$('managerInviteShare').addEventListener('click',()=>managerInvite('share'));
+$('managerInviteCopy').addEventListener('click',()=>managerInvite('copy'));
+
 async function updateRequestPanel(user){
  const panel=$("requestPanel"), info=$("requestInfo"), button=$("sendRequest");
  panel.hidden=false;button.hidden=true;info.className="message";info.textContent="Verifica delle richieste...";
@@ -1497,7 +1790,7 @@ function profileFields(first,last,dob){
  const firstName=first.trim().replace(/\s+/g," ");
  const lastName=last.trim().replace(/\s+/g," ");
  if(firstName.length<1||firstName.length>60||lastName.length<1||lastName.length>60)throw new Error("Inserisci nome e cognome validi.");
- if(!validDob(dob))throw new Error("Controlla la data di nascita.");
+ if(dob!==""&&!validDob(dob))throw new Error("Controlla la data di nascita.");
  return {firstName,lastName,birthDate:dob};
 }
 async function resizePhoto(file){
@@ -1536,7 +1829,7 @@ function updateSelfUI(user){
  $("profileCode").textContent=user?.uid||"";
  $("editFirst").value=currentProfile?.firstName||"";
  $("editLast").value=currentProfile?.lastName||"";
- $("editDob").value=currentProfile?.birthDate||"";
+ $("profileBirthDateRow").hidden=!currentProfile?.birthDate;
  editedPhoto=currentProfile?.photoDataUrl||"";
 }
 let profileReturnFocus=null;
@@ -1623,7 +1916,7 @@ $("onboardingForm").addEventListener("submit",async e=>{
  e.preventDefault();const user=auth.currentUser;if(!user)return;
  const button=$("registerSave");button.disabled=true;
  try{
-  const fields=profileFields($("registerFirst").value,$("registerLast").value,$("registerDob").value);
+  const fields=profileFields($("registerFirst").value,$("registerLast").value,"");
   const event=auditEvent("profile_created","profile",user.uid,"Profilo personale registrato.","PROFILO ASSENTE","PROFILO ATTIVO");
   const batch=writeBatch(db);
   batch.set(doc(db,"profiles",user.uid),{...fields,email:user.email||"",photoDataUrl:registrationPhoto,createdAt:serverTimestamp(),updatedAt:serverTimestamp(),lastAuditId:event.ref.id});
@@ -1639,7 +1932,7 @@ $("editProfileForm").addEventListener("submit",async e=>{
  e.preventDefault();const user=auth.currentUser;if(!user||!currentProfile)return;
  const button=$("saveProfileChanges");button.disabled=true;
  try{
-  const fields=profileFields($("editFirst").value,$("editLast").value,$("editDob").value);
+  const fields=profileFields($("editFirst").value,$("editLast").value,currentProfile.birthDate||"");
   const changed=[];
   if(fields.firstName!==currentProfile.firstName||fields.lastName!==currentProfile.lastName)changed.push("nome e cognome");
   if(fields.birthDate!==currentProfile.birthDate)changed.push("data di nascita");
@@ -1702,8 +1995,7 @@ onAuthStateChanged(auth,async user=>{
  $("account").textContent=(user.displayName||"ACCOUNT GOOGLE").toUpperCase();
  $("roleLabel").textContent="VERIFICA DEL PROFILO...";
  setProfileMessage("Verifica del profilo personale in corso...");
- $("registerDob").max=new Date().toISOString().slice(0,10);
- $("editDob").max=$("registerDob").max;
+
  try{
   const p=await readWithDeadline(getDocFromServer(doc(db,"profiles",user.uid)));
   if(version!==sessionVersion)return;
@@ -1729,6 +2021,7 @@ getRedirectResult(auth).catch(e=>{const box=$("loginError");box.className="messa
 
 // Apply an app update only outside all editing screens and pending saves.
 window.TBSManagerUpdates?.setCanRefresh(() => {
+ if (window.TBSPrivacy?.isOpen()) return false;
  if (themeDirty || themeSaving || themeLoading || editorDirty || catalogBusy || catalogLoading || busy || historyLoading || !$('profileMenu').hidden || !$('installDialog').hidden || !$('catalogEditor').hidden || !$('profileOverlay').hidden || !$('onboarding').hidden) return false;
  if (['login','catalogSave','registerSave','saveProfileChanges'].some(id => $(id).disabled)) return false;
  if (document.activeElement?.matches('input,textarea,select,[contenteditable="true"]')) return false;
