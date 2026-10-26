@@ -472,7 +472,7 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
 .privacy-link{appearance:none;border:0;background:transparent;color:inherit;font:inherit;font-size:12px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;min-height:44px;padding:8px 5px}.privacy-login{font-size:12px;line-height:1.6}.privacy-surface{--p-bg:#fafbf9;--p-text:#192b23;--p-muted:#526359;--p-line:#c9d3cb;--p-accent:#18553c;color:var(--p-text);background:var(--p-bg);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:14px;line-height:1.65;text-align:left;letter-spacing:normal;text-transform:none;box-sizing:border-box}.privacy-surface p{font-size:inherit;line-height:inherit;color:inherit;text-transform:none;letter-spacing:normal;margin:12px 0}.privacy-surface h2,.privacy-surface h3{font-family:inherit;color:inherit;text-transform:none;letter-spacing:normal;line-height:1.3}.privacy-surface h2{font-size:22px;margin:0}.privacy-surface h3{font-size:17px;margin:24px 0 8px}.privacy-surface a{color:var(--p-accent);text-decoration:underline}.privacy-surface button{font-family:inherit;cursor:pointer}.privacy-surface :focus-visible,.privacy-link:focus-visible{outline:3px solid #629e7b;outline-offset:3px}.privacy-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:20000;display:flex;align-items:center;justify-content:center;padding:18px}.privacy-overlay[hidden],.privacy-surface[hidden],.privacy-surface [hidden]{display:none!important}.privacy-sheet{border:1px solid var(--p-line);border-radius:24px;width:100%;max-width:720px;max-height:calc(100dvh - 36px);overflow:auto;padding:25px;overscroll-behavior:contain;box-shadow:0 18px 80px #0004}.privacy-top{display:flex;gap:18px;align-items:center;justify-content:space-between}.privacy-close{flex:none;width:44px;height:44px;border:1px solid var(--p-line);border-radius:50%;color:inherit;background:transparent;font-size:25px;line-height:1}.privacy-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}.privacy-choice{flex:1;min-width:130px;min-height:46px;border:1px solid var(--p-accent);border-radius:12px;background:transparent;color:var(--p-accent);font-size:14px;font-weight:600;padding:10px 12px}.privacy-choice:disabled{opacity:.5;cursor:default}.privacy-choice:hover:not(:disabled){background:color-mix(in srgb,var(--p-accent) 8%,transparent)}.privacy-preferences{border:1px solid var(--p-line);padding:18px;border-radius:16px;margin:20px 0}.privacy-preferences h3{margin:0}.privacy-meta{color:var(--p-muted)!important;font-size:12px!important}.privacy-menu-footer{margin:8px auto 0;max-width:440px}.privacy-sheet:focus{outline:none}@media(prefers-color-scheme:dark){.privacy-surface{--p-bg:#15251e;--p-text:#edf4ef;--p-muted:#b4c7bb;--p-line:#41594b;--p-accent:#a1d1b6}}@media(max-width:480px){.privacy-overlay{padding:9px}.privacy-sheet{padding:20px;max-height:calc(100dvh - 18px);border-radius:19px}}
 
 </style>
-</head>
+<style>.catalog-dietary{border:1px solid var(--border);border-radius:14px;padding:12px 15px;background:var(--card)}.catalog-dietary summary{cursor:pointer;font-weight:550;line-height:1.6}.catalog-dietary-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}.catalog-dietary p{font-size:12px;line-height:1.7}.catalog-dietary select{margin-top:6px}.catalog-row .catalog-dietary-badge{font-weight:600;color:var(--accent)}@media(max-width:620px){.catalog-dietary-fields{grid-template-columns:1fr}}</style></head>
 <body>
 <main>
 <header class="brand">
@@ -531,7 +531,8 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
 <button type="button" id="catalogAvailableTab" aria-pressed="true" aria-controls="catalogList">Disponibili <span id="catalogAvailableCount">0</span></button>
 <button type="button" id="catalogInactiveTab" aria-pressed="false" aria-controls="catalogList">Disattivati <span id="catalogInactiveCount">0</span></button>
 </div>
-<div class="catalog-tools"><label>Cerca prodotto<input id="catalogSearch" type="search" placeholder="Es. hamburger"></label></div>
+<div class="catalog-tools"><label>Cerca prodotto<input id="catalogSearch" type="search" placeholder="Es. hamburger"></label>
+<details class="catalog-dietary"><summary>Controllo allergeni e intolleranze</summary><div class="catalog-dietary-fields"><label>Esclusione da controllare<select id="catalogAllergen"><option value="">Tutti i prodotti</option><option value="lactose">Lattosio · esclusione prudenziale del latte</option></select></label><label>Gruppo<select id="catalogDietaryStatus"><option value="all">Tutti i gruppi</option><option value="check">Da verificare</option><option value="verified">Schede verificate per l’esclusione</option><option value="contains">Esclusi: indicazioni di presenza</option><option value="traces">Esclusi: possibili tracce</option></select></label></div><p id="catalogDietarySummary" class="muted" role="status"></p><p class="muted">I gruppi combinano schede salvate, indicazioni del PDF e ingredienti scritti nelle ricette. Non modificano le spunte. Una voce assente dalla tabella non certifica l’assenza dell’allergene. Per il lattosio si esclude prudenzialmente il latte: il PDF non ne indica il contenuto.</p></details></div>
 <form id="catalogEditor" hidden><h3 id="catalogProductName"></h3><p id="catalogProductId" class="muted"></p>
 <div class="catalog-meta">
 <label>Categoria<select id="productGroup"><option value="beers">Birre</option><option value="soft">Analcolici</option><option value="aperitifs">Aperitivi</option><option value="long">Cocktail</option><option value="wine">Vini</option><option value="grill">Griglia</option><option value="burger">Burger</option><option value="pizza">Pizza</option><option value="sandwich">Sandwich e toast</option><option value="fried">Fritti</option><option value="sharing">In compagnia</option><option value="american">American Bites</option><option value="salads">Insalate</option><option value="dessert">Dolci e fine pasto</option><option value="seasonal">Proposte stagionali</option></select></label>
@@ -903,6 +904,48 @@ function validProductDetails(d){
 const ALLERGEN_TABLE_SOURCE='https://theblackstuffud.github.io/blackstuff-menu/menu-it.pdf#page=7';
 const ALLERGEN_TABLE_BY_ID={"cheeseburger":["gluten","sesame"],"baconburger":["gluten","sesame"],"hamburger":["gluten","sesame"],"babyburger":["gluten","sesame"],"frisburger":["gluten","mustard","sesame"],"eggburger":["gluten","eggs","sesame"],"summerburger":["gluten","sesame"],"devilburger":["gluten","sesame"],"veggyburger":["gluten","soy","sesame"],"salzburger":["gluten","eggs","sesame"],"hamburger-light":["gluten"],"irish":["gluten","eggs","milk","nuts"],"diablo":["gluten","eggs","milk","nuts"],"connemara":["gluten","eggs","milk","nuts"],"dublin":["gluten","eggs","milk","nuts"],"toast":["gluten","eggs"],"toast-farcito":["gluten","eggs"],"trancio-margherita":["gluten","milk"],"trancio-funghi-carciofini":["gluten","milk"],"trancio-speck-funghi":["gluten","milk"],"trancio-diavola":["gluten","milk"],"trancio-tonno-cipolla":["gluten","milk"],"tagliere-di-pizza-margherita":["gluten","milk"],"tagliere-di-pizza-farcito":["gluten","milk"],"hot-dog":["gluten","milk"],"coney-dog":["gluten","milk","mustard"],"alette-di-pollo":["gluten","celery"],"verdure-pastellate":["gluten","milk"],"anelli-di-cipolla":["gluten"],"mozzarelline-impanate":["gluten","milk"],"olive-ascolane":["gluten","soy","milk","celery"],"jalapenos-al-pezzo":["gluten","milk"],"nuggets-di-pollo":["gluten"],"guinness":["gluten"],"kilkenny-cream":["gluten"],"kilkenny-strong":["gluten"],"bulldog-strong-ale":["gluten"],"guinness-blonde-ipa":["gluten"],"hop-house-13":["gluten"],"maes-pils":["gluten"],"ichnusa-non-filtrata":["gluten"],"messina-cristalli-di-sale":["gluten"],"bulldog-strong-lager":["gluten"],"lagunitas-ipa":["gluten"],"crocchette-di-patate":["milk"],"fritto-misto":["celery","gluten","milk","soy"]};
 const ALLERGEN_TABLE_NOTES={"hamburger-light":"La tabella include tutti gli hamburger nei cereali e derivati ed esclude Hamburger Light solo dal sesamo. Controlla questa indicazione con la ricetta attuale.","patate-impazzite":"La tabella cita Patate Black Pepper. Il nome attuale è Patate impazzite: non sono state considerate automaticamente lo stesso prodotto.","fritto-misto":"Le spunte riuniscono gli allergeni della tabella per i componenti elencati nel menu: olive ascolane, mozzarelline impanate e crocchette di patate.","casamatta-slip":"Il menu identifica Casamatta Slip come birra senza glutine, esclusa dalla voce generale sulle birre della tabella. Le caselle vuote non attestano altre assenze."};
+// Positive evidence only. A missing allergen in the PDF is never proof of absence.
+// The source table is used for unreviewed legacy records; reviewed current recipes take precedence.
+function dietaryKey(key){return key==='lactose'?'milk':key==='egg'?'eggs':key;}
+function dietaryNormalize(value){return String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[’']/g,' ').replace(/[^a-z0-9]+/g,' ').trim();}
+function dietaryEvidence(item){
+ const d=item.details,positive=new Map(),add=(key,source)=>{if(!positive.has(key))positive.set(key,[]);if(!positive.get(key).includes(source))positive.get(key).push(source);};
+ for(const key of d?.allergens||[])add(key,'scheda salvata');
+ if(!d?.allergensReviewed){
+  for(const key of ALLERGEN_TABLE_BY_ID[item.id]||[])add(key,'tabella PDF');
+  const description=dietaryNormalize([d?.name?.it||item.name?.it,d?.ingredients?.it||d?.description?.it||item.desc?.it].join(' '));
+  const beer=item.group==='beers'||item.group==='soft'&&(item.beerProfile||/\bbirra\b/.test(description));
+  if(beer&&item.id!=='casamatta-slip'&&!/\b(?:senza glutine|gluten free|glutenfrei)\b/.test(description))add('gluten','tabella PDF: tutte le birre salvo quelle senza glutine');
+ }
+ // Beer tasting notes (hazelnut, cream, chocolate, etc.) do not establish ingredients.
+ if(item.group!=='beers'&&!item.beerProfile){
+  const recipe=d?(d.ingredients?.it||d.description?.it||''):(item.desc?.it||'');
+  const text=dietaryNormalize((d?.name?.it||item.name?.it||'')+'. '+recipe);
+  const rules={milk:['latte','mozzarella','mozzarelline','scamorza','formaggio','formaggi','cheddar','edamer','grana','parmigiano','mascarpone','burro','panna','yogurt','ricotta'],eggs:['uovo','uova','albume','tuorlo'],fish:['tonno','salmone','acciuga','acciughe','alici','pesce'],crustaceans:['gambero','gamberi','gamberetti','scampi','granchio','crostacei'],molluscs:['calamari','seppie','polpo','cozze','vongole','molluschi'],peanuts:['arachide','arachidi'],nuts:['noci','nocciole','nocciola','mandorle','pistacchi','anacardi'],soy:['soia'],celery:['sedano'],mustard:['senape'],sesame:['sesamo'],lupin:['lupini'],sulphites:['solfiti']};
+  for(const [key,terms] of Object.entries(rules))for(const term of terms){
+   const pattern=new RegExp('(?:^| )('+term+')(?![a-z0-9])','g');let hit;
+   while((hit=pattern.exec(text))){
+    const start=hit.index+(hit[0].startsWith(' ')?1:0),before=text.slice(0,start),after=text.slice(start+term.length);
+    if(/(?:^| )(?:senza|no|privo di|priva di) $/.test(before))continue;
+    if(key==='milk'&&(/^(?: di)? (?:cocco|soia|mandorla|avena|riso)(?: |$)/.test(after)||/^(?: vegetale| vegano| vegana)(?: |$)/.test(after)))continue;
+    add(key,'testo della ricetta: '+term);
+   }
+  }
+ }
+ return positive;
+}
+function dietaryAssessment(item,requested){
+ const keys=[...new Set([...requested].map(dietaryKey))],d=item.details,evidence=dietaryEvidence(item);
+ if(!keys.length)return {status:'check',reasons:[],keys};
+ const present=keys.filter(k=>evidence.has(k));
+ if(present.length)return {status:'contains',keys:present,reasons:present.flatMap(k=>evidence.get(k).map(source=>({key:k,source})))};
+ const traces=keys.filter(k=>(d?.mayContain||[]).includes(k)||k==='gluten'&&(d?.preparation==='shared-fryer'||item.group==='fried'));
+ if(traces.length)return {status:'traces',keys:traces,reasons:[]};
+ const reviewed=!!d&&d.allergensReviewed===true&&d.crossContact==='assessed'&&d.preparation!=='unknown';
+ return {status:reviewed?'verified':'check',keys,reasons:[]};
+}
+function dietaryCandidate(item,keys){return ['verified','check'].includes(dietaryAssessment(item,keys).status);}
+
 function tableAllergens(item){return [...(ALLERGEN_TABLE_BY_ID[item.id]||[])];}
 
 function suggestProduct(item){
@@ -955,6 +998,8 @@ function showProductSuggestions(item,state){
  const note=document.createElement('p');note.className='source-note';note.textContent=d?'La tabella resta un riferimento: non sostituisce automaticamente una scheda già salvata. Controlla eventuali ricette cambiate.':'Le spunte allergeni iniziali riportano la tabella del menu. La conferma dell’elenco completo resta da fare; una casella vuota non significa assenza.';box.append(note);
  const source=document.createElement('a');source.href=ALLERGEN_TABLE_SOURCE;source.target='_blank';source.rel='noopener noreferrer';source.textContent='Apri la tabella allergeni del menu · pagina 7';box.append(source);
  const declared=document.createElement('p');declared.textContent=fromTable.length?'Indicati dalla tabella per questo prodotto: '+fromTable.map(k=>PRODUCT_ALLERGENS[k][0]).join(', ')+'.':'La tabella non assegna allergeni a questo prodotto. Occorre completare la scheda con ricetta ed etichette; non è una dichiarazione di assenza.';box.append(declared);
+ const missing=[...dietaryEvidence({...item,details:d}).entries()].filter(([key])=>!d?.allergens?.includes(key));
+ if(missing.length){const alert=document.createElement('p');alert.className='source-note';alert.textContent='Da controllare: '+missing.map(([key,why])=>PRODUCT_ALLERGENS[key][0]+' ('+why.join(', ')+')').join('; ')+'. Queste indicazioni escludono già il prodotto dalle ricerche relative, ma non cambiano la scheda salvata.';box.append(alert);}
  if(ALLERGEN_TABLE_NOTES[item.id]){const detail=document.createElement('p');detail.textContent=ALLERGEN_TABLE_NOTES[item.id];box.append(detail);}
  const heading=document.createElement('h4');heading.textContent='Altri suggerimenti dai testi · da verificare';box.append(heading);
  const hint=document.createElement('p');hint.textContent='Gli allergeni dedotti dai testi non vengono aggiunti alle spunte iniziali. Le caratteristiche sono suggerimenti. Controlla ricetta, salse ed etichette prima di aggiungere o confermare. Nessuna modifica viene pubblicata finché non premi Pubblica modifica.';box.append(hint);
@@ -1135,9 +1180,17 @@ function renderCatalog(){
  $('catalogAvailableTab').setAttribute('aria-pressed',String(catalogAvailability==='available'));
  $('catalogInactiveTab').setAttribute('aria-pressed',String(catalogAvailability==='inactive'));
  list.setAttribute('aria-label',catalogAvailability==='inactive'?'Prodotti disattivati':'Prodotti disponibili');
- for(const item of catalogItems.filter(i=>(i.name.it||'').toLocaleLowerCase('it').includes(term)&&(productFor(i)?.available===false)===(catalogAvailability==='inactive'))){
+ const key=$('catalogAllergen').value,selectedStatus=$('catalogDietaryStatus').value;
+ const visible=catalogItems.filter(i=>(i.name.it||'').toLocaleLowerCase('it').includes(term)&&(productFor(i)?.available===false)===(catalogAvailability==='inactive'));
+ const assessmentFor=item=>dietaryAssessment({...item,details:productFor(item)?.details||item.details||catalogOverrides.get(item.id)?.details},[key]);
+ const labels={verified:'Scheda verificata per questa esclusione',check:'Da verificare',contains:'Escluso: indicazioni di presenza',traces:'Escluso: possibili tracce'};
+ $('catalogDietaryStatus').disabled=!key;
+ const counts=Object.fromEntries(Object.keys(labels).map(status=>[status,visible.filter(item=>assessmentFor(item).status===status).length]));
+ $('catalogDietarySummary').textContent=key?`${counts.verified} schede verificate · ${counts.check} da verificare · ${counts.contains} con indicazioni di presenza · ${counts.traces} con possibili tracce. Conteggi della sezione e della ricerca attuali.`:'Scegli un allergene per dividere i prodotti in gruppi.';
+ for(const item of visible.filter(item=>!key||selectedStatus==='all'||assessmentFor(item).status===selectedStatus)){
   const p=productFor(item),row=make('div','catalog-row'),info=make('div','catalog-row-info');row.dataset.productId=item.id;
   info.append(make('strong','',item.name.it),make('small','',CATALOG_GROUPS[item.group]+' · '+item.price+' € · '+(p?.available===false?'Disattivato':'Disponibile')));row.append(info);
+  if(key){const assessment=assessmentFor(item);info.append(make('small','catalog-dietary-badge',labels[assessment.status]));if(assessment.reasons.length)info.append(make('small','',assessment.reasons.map(r=>PRODUCT_ALLERGENS[r.key][0]+': '+r.source).join(' · ')));}
   if(currentRole==='owner'&&p){
    const actions=make('div','catalog-row-actions'),button=make('button','small-action','Modifica');button.type='button';button.disabled=catalogBusy||catalogLoading;button.setAttribute('aria-label','Modifica '+item.name.it);button.addEventListener('click',()=>openCatalogProduct(item,p));actions.append(button);
    if(!p.available){const restore=make('button','small-action reactivate-action','Riattiva');restore.type='button';restore.disabled=catalogBusy||catalogLoading;restore.setAttribute('aria-label','Riattiva '+item.name.it);restore.addEventListener('click',()=>reactivateCatalogProduct(item,p));actions.append(restore);}
@@ -1221,6 +1274,8 @@ for(const [id,value] of [['catalogAvailableTab','available'],['catalogInactiveTa
   editorDirty=false;catalogSelected=null;$('catalogEditor').hidden=true;catalogAvailability=value;renderCatalog();
  });
 }
+for(const [key,labels] of Object.entries(PRODUCT_ALLERGENS)){const option=document.createElement('option');option.value=key;option.textContent=labels[0];$('catalogAllergen').append(option);}
+$('catalogAllergen').addEventListener('change',()=>{$('catalogDietaryStatus').value='all';renderCatalog();});$('catalogDietaryStatus').addEventListener('change',renderCatalog);
 $('catalogSearch').addEventListener('input',renderCatalog);$('catalogReload').addEventListener('click',loadCatalog);
 $('catalogCancel').addEventListener('click',()=>{if(catalogBusy)return;if(editorDirty&&!confirm('Scartare le modifiche non pubblicate?'))return;editorDirty=false;catalogSelected=null;$('catalogEditor').hidden=true;});
 $('productGroup').addEventListener('change',()=>{invalidateReview();updateCatalogFields();});
@@ -1507,7 +1562,7 @@ function setOwnerNotice(message,kind=""){
 function clearDash(){
  resetManagerInvite();
  resetStatistics();
- catalogAvailability='available';$('catalogSearch').value='';$('catalogAvailableCount').textContent='0';$('catalogInactiveCount').textContent='0';$('catalogAvailableTab').setAttribute('aria-pressed','true');$('catalogInactiveTab').setAttribute('aria-pressed','false');
+ catalogAvailability='available';$('catalogSearch').value='';$('catalogAllergen').value='';$('catalogDietaryStatus').value='all';$('catalogDietarySummary').textContent='';$('catalogAvailableCount').textContent='0';$('catalogInactiveCount').textContent='0';$('catalogAvailableTab').setAttribute('aria-pressed','true');$('catalogInactiveTab').setAttribute('aria-pressed','false');
  catalogBusy=false;catalogLoading=false;catalogDocument=null;catalogSource=[];catalogOverrides=new Map();photoPreviewEpoch++;historyEpoch++;historyLoading=false;$('historyKind').disabled=false;
  $('catalogSave').disabled=false;$('catalogCancel').disabled=false;$('catalogReload').disabled=false;
  $('catalogEditor').querySelectorAll('input,textarea,select,button').forEach(el=>el.disabled=false);$('catalogSetup').hidden=true;$('catalogNew').disabled=true;
