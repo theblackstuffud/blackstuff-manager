@@ -419,12 +419,17 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
 @media(max-width:360px){.theme-choice{padding:17px 13px;gap:10px}.theme-label small{font-size:11px}.theme-actions .button{min-width:100%}}
 
 </style>
+<style>
+.catalog-actions{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.catalog-setup{border:1px solid var(--accent-border);border-radius:14px;background:var(--accent-soft);padding:18px;margin:20px 0}.catalog-setup p{margin:8px 0 14px;line-height:1.5}.catalog-setup button{min-height:44px}.catalog-meta{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}.catalog-meta label{font-size:14px;display:block}.catalog-meta .full{grid-column:1/-1}.catalog-meta small{display:block;color:var(--muted);margin-top:7px}.catalog-photo-preview{width:min(100%,360px);max-height:260px;object-fit:contain;border-radius:12px;margin-top:12px}.catalog-photo-preview[hidden]{display:none!important}.catalog-row small{line-height:1.5}#catalogSetup[hidden]{display:none!important}#catalogNew:disabled{opacity:.5}@media(max-width:560px){.catalog-meta{grid-template-columns:1fr}.catalog-meta .full{grid-column:auto}}
+#catalogEditor .catalog-meta label{margin:0;min-width:0}#catalogEditor .catalog-meta input[type=number]{display:block;width:100%;margin-top:8px;padding:10px;border:1px solid var(--border);border-radius:11px;background:var(--card);color:var(--text);font:inherit;min-height:44px}#catalogEditor .catalog-meta select{appearance:none;-webkit-appearance:none;min-height:44px;padding-right:36px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%2394979b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}.catalog-meta>div.full:has(#productPhotoStatus:empty):has(#productPhotoPreview[hidden]){display:none}
+.brand-home{display:flex;align-items:center;justify-content:center;padding:0;margin:0;border:0;background:transparent;color:inherit;border-radius:12px;cursor:pointer;flex:0 0 auto;min-width:44px;min-height:44px}.brand-home img{display:block}.brand-home:hover{background:var(--accent-soft)}.brand-home:active{transform:scale(.97)}
+</style>
 </head>
 <body>
 <main>
 <header class="brand">
   <div class="brand-title">
-    <img src="https://theblackstuffud.github.io/blackstuff-menu/logo.png" alt="Logo The Black Stuff" onerror="this.style.display='none'">
+    <button type="button" id="managerLogoHome" class="brand-home" data-manager-go="home" aria-label="Torna alla Home del Manager" title="Torna alla Home"><img src="https://theblackstuffud.github.io/blackstuff-menu/logo.png" alt="" onerror="this.style.display='none'"></button>
     <div><h1>The Black Stuff</h1><small>Manager</small></div>
   </div>
   <button type="button" id="profileTrigger" class="avatar-button" aria-label="Apri il menu del profilo" title="Profilo e gestione" aria-haspopup="menu" aria-expanded="false" aria-controls="profileMenu" hidden>BS</button>
@@ -471,10 +476,20 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
 <p>Aggiorna le informazioni che i clienti vedono nel menu.</p>
 <p class="muted">Se un prodotto non è disponibile, togli la spunta per nasconderlo dal menu.</p>
 <div id="catalogMessage" role="status" aria-live="polite"></div>
-<button type="button" class="small-action" id="catalogReload">Ricarica prodotti</button>
+<div class="catalog-actions"><button type="button" class="small-action" id="catalogReload">Ricarica prodotti</button><button type="button" class="small-action" id="catalogNew" disabled>Nuovo prodotto</button></div>
+<div id="catalogSetup" class="catalog-setup" hidden><strong>Porta tutto il catalogo nel Manager</strong><p>Un solo trasferimento per gestire i prodotti senza modificare il sito. Mantiene le schede già salvate e le foto su GitHub. Se si interrompe puoi riprendere.</p><button type="button" class="small-action" id="catalogMigrate" disabled>Trasferisci il catalogo</button></div>
 <div class="catalog-tools"><label>Cerca prodotto<input id="catalogSearch" type="search" placeholder="Es. hamburger"></label></div>
 <form id="catalogEditor" hidden><h3 id="catalogProductName"></h3><p id="catalogProductId" class="muted"></p>
-<details class="suggestion-details" open><summary>Allergeni dalla tabella e suggerimenti</summary><div id="productSuggestions" class="editor-help"></div></details><div id="productEditorTabs"><details open><summary>Italiano</summary><label>Nome del prodotto<input type="text" id="product-name-it" maxlength="120" required></label><label>Descrizione del piatto<textarea id="product-description-it" maxlength="1000" data-recipe></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-it" maxlength="1000" data-recipe></textarea></label></details><details ><summary>English</summary><label>Nome del prodotto<input type="text" id="product-name-en" maxlength="120" ></label><label>Descrizione del piatto<textarea id="product-description-en" maxlength="1000" ></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-en" maxlength="1000" ></textarea></label></details><details ><summary>Deutsch</summary><label>Nome del prodotto<input type="text" id="product-name-de" maxlength="120" ></label><label>Descrizione del piatto<textarea id="product-description-de" maxlength="1000" ></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-de" maxlength="1000" ></textarea></label></details><details ><summary>Español</summary><label>Nome del prodotto<input type="text" id="product-name-es" maxlength="120" ></label><label>Descrizione del piatto<textarea id="product-description-es" maxlength="1000" ></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-es" maxlength="1000" ></textarea></label></details></div><p class="editor-help">Se modifichi un testo italiano senza aggiornare le sue traduzioni, quelle precedenti vengono rimosse: il menu mostrerà il nuovo testo italiano finché non inserirai le traduzioni corrette.</p><details><summary>Allergeni e preparazione</summary><p class="editor-help">Seleziona gli allergeni effettivamente presenti, inclusi salse e ingredienti composti. Le caselle vuote restano informazioni non verificate finché non confermi la revisione. Specifica nel testo ingredienti i cereali e la frutta a guscio utilizzati. Per i solfiti considera la soglia prevista dalla normativa.</p><fieldset><legend>Allergeni presenti</legend><div id="productAllergens" class="product-checks"></div></fieldset><label><input id="productReviewed" type="checkbox"> Ho verificato l’elenco completo degli allergeni della ricetta e delle materie prime</label><p id="productReviewHint" role="status" class="editor-help"></p><fieldset><legend>Può contenere / possibili tracce</legend><div id="productTraces" class="product-checks"></div></fieldset><p id="productFryerNote" class="fryer-note" hidden>Friggitrice condivisa del locale: applicata automaticamente a tutti i fritti. Le possibili tracce di glutine e il rischio da attrezzature condivise sono già impostati.</p><label id="productPreparationField">Preparazione<select id="productPreparation"><option value="unknown">Da verificare</option><option value="shared-fryer">Friggitrice condivisa</option><option value="other">Altra preparazione verificata</option></select></label><label id="productCrossContactField">Contaminazione crociata<select id="productCrossContact"><option value="unknown">Valutazione non completata</option><option value="possible">Rischio presente / attrezzature condivise</option><option value="assessed">Valutata: rischi noti indicati nelle possibili tracce</option></select></label><p id="productFryerHelp" class="editor-help">La friggitrice condivisa comporta possibile contaminazione da glutine. Non permette di proporre il prodotto per una richiesta senza glutine. Per allergie e celiachia il cliente deve sempre verificare con il personale.</p></details>
+<div class="catalog-meta">
+<label>Categoria<select id="productGroup"><option value="beers">Birre</option><option value="soft">Analcolici</option><option value="aperitifs">Aperitivi</option><option value="long">Cocktail</option><option value="wine">Vini</option><option value="grill">Griglia</option><option value="burger">Burger</option><option value="pizza">Pizza</option><option value="sandwich">Sandwich e toast</option><option value="fried">Fritti</option><option value="sharing">In compagnia</option><option value="american">American Bites</option><option value="salads">Insalate</option><option value="dessert">Dolci e fine pasto</option><option value="seasonal">Proposte stagionali</option></select></label>
+<label>Posizione nella categoria<input id="productPosition" type="number" min="0" max="99999" step="1" required><small>I numeri più piccoli vengono prima.</small></label>
+<label id="productBeerSectionField">Sezione birre<select id="productBeerSection"><option value="blonde">Alla spina · Bionde</option><option value="red">Alla spina · Rosse e ambrate</option><option value="ipa">Alla spina · IPA</option><option value="dark">Alla spina · Scure</option><option value="packaged">Bottiglie e lattine</option><option value="alcoholfree">Birre analcoliche</option><option value="other">Altre birre</option></select></label>
+<label>Gradazione, se pertinente<input id="productAbv" type="text" maxlength="15" placeholder="Es. 4,2%"></label>
+<label>Indicazione stagionale<select id="productSeason"><option value="">Nessuna</option><option value="winter">Inverno</option><option value="summer">Estate</option></select></label>
+<label>Foto<select id="productPhotoMode"><option value="keep">Mantieni la foto attuale</option><option value="file">Collega una foto su GitHub</option><option value="none">Nessuna foto</option></select></label>
+<div id="productPhotoPathField" class="full" hidden><label>Percorso della foto<input type="text" id="productPhotoPath" maxlength="200" placeholder="foto/analcolici/bavaria-ipa-0-0.jpeg"></label><small>Carica prima il file nel repository blackstuff-menu. Rispetta nome, cartella ed estensione.</small><button type="button" class="small-action" id="catalogPhotoCheck">Controlla foto</button></div>
+<div class="full"><p id="productPhotoStatus" class="editor-help" role="status"></p><img id="productPhotoPreview" class="catalog-photo-preview" alt="Anteprima della foto scelta" hidden></div>
+</div><details class="suggestion-details" open><summary>Allergeni dalla tabella e suggerimenti</summary><div id="productSuggestions" class="editor-help"></div></details><div id="productEditorTabs"><details open><summary>Italiano</summary><label>Nome del prodotto<input type="text" id="product-name-it" maxlength="120" required></label><label>Descrizione del piatto<textarea id="product-description-it" maxlength="1000" data-recipe></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-it" maxlength="1000" data-recipe></textarea></label></details><details ><summary>English</summary><label>Nome del prodotto<input type="text" id="product-name-en" maxlength="120" ></label><label>Descrizione del piatto<textarea id="product-description-en" maxlength="1000" ></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-en" maxlength="1000" ></textarea></label></details><details ><summary>Deutsch</summary><label>Nome del prodotto<input type="text" id="product-name-de" maxlength="120" ></label><label>Descrizione del piatto<textarea id="product-description-de" maxlength="1000" ></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-de" maxlength="1000" ></textarea></label></details><details ><summary>Español</summary><label>Nome del prodotto<input type="text" id="product-name-es" maxlength="120" ></label><label>Descrizione del piatto<textarea id="product-description-es" maxlength="1000" ></textarea></label><label>Ingredienti (se compilati, sostituiscono la descrizione)<textarea id="product-ingredients-es" maxlength="1000" ></textarea></label></details></div><p class="editor-help">Se modifichi un testo italiano senza aggiornare le sue traduzioni, quelle precedenti vengono rimosse: il menu mostrerà il nuovo testo italiano finché non inserirai le traduzioni corrette.</p><details><summary>Allergeni e preparazione</summary><p class="editor-help">Seleziona gli allergeni effettivamente presenti, inclusi salse e ingredienti composti. Le caselle vuote restano informazioni non verificate finché non confermi la revisione. Specifica nel testo ingredienti i cereali e la frutta a guscio utilizzati. Per i solfiti considera la soglia prevista dalla normativa.</p><fieldset><legend>Allergeni presenti</legend><div id="productAllergens" class="product-checks"></div></fieldset><label><input id="productReviewed" type="checkbox"> Ho verificato l’elenco completo degli allergeni della ricetta e delle materie prime</label><p id="productReviewHint" role="status" class="editor-help"></p><fieldset><legend>Può contenere / possibili tracce</legend><div id="productTraces" class="product-checks"></div></fieldset><p id="productFryerNote" class="fryer-note" hidden>Friggitrice condivisa del locale: applicata automaticamente a tutti i fritti. Le possibili tracce di glutine e il rischio da attrezzature condivise sono già impostati.</p><label id="productPreparationField">Preparazione<select id="productPreparation"><option value="unknown">Da verificare</option><option value="shared-fryer">Friggitrice condivisa</option><option value="other">Altra preparazione verificata</option></select></label><label id="productCrossContactField">Contaminazione crociata<select id="productCrossContact"><option value="unknown">Valutazione non completata</option><option value="possible">Rischio presente / attrezzature condivise</option><option value="assessed">Valutata: rischi noti indicati nelle possibili tracce</option></select></label><p id="productFryerHelp" class="editor-help">La friggitrice condivisa comporta possibile contaminazione da glutine. Non permette di proporre il prodotto per una richiesta senza glutine. Per allergie e celiachia il cliente deve sempre verificare con il personale.</p></details>
 <details><summary>Caratteristiche per la ricerca</summary><p class="editor-help">Seleziona solo caratteristiche reali. “Leggero” descrive il piatto: non indica calorie misurate. Vegetariano e vegano non equivalgono a senza allergeni.</p><div id="productTraits" class="product-checks"></div><fieldset><legend>Ingredienti di cui hai verificato l’assenza</legend><p class="editor-help">Servono a richieste come “senza cipolla”. Non selezionare un’assenza soltanto perché l’ingrediente non compare nella descrizione.</p><div id="productAbsent" class="product-checks"></div></fieldset></details><label>Prezzo in euro<input id="catalogPrice" type="text" inputmode="decimal" required maxlength="30" placeholder="12,00 oppure 3,50–6,00"></label>
 <label><input id="catalogAvailable" type="checkbox"> Disponibile nel menu</label>
 <p>La pubblicazione aggiorna il menu dei clienti.</p>
@@ -560,10 +575,11 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
   <div class="eyebrow">03 · AREA PROPRIETARIO</div>
   <h2>STORICO ATTIVITÀ</h2>
   <p>Registro riservato delle modifiche con data, account responsabile e operazione effettuata. Le voci non possono essere modificate o eliminate dal pannello.</p>
+  <div class="catalog-tools"><label for="historyKind">Attività da mostrare</label><select id="historyKind"><option value="products">Prodotti</option><option value="legacy">Prodotti prima del trasferimento</option><option value="account">Profili, accessi e temi</option></select></div>
   <div class="history-actions"><span class="muted-heading">REGISTRO CRONOLOGICO</span><button type="button" class="small-action" id="refreshHistory">AGGIORNA</button></div>
   <div id="historyList" aria-live="polite" class="hint">Caricamento dello storico...</div>
   <button type="button" class="button secondary compact" id="moreHistory" hidden>CARICA ALTRE ATTIVITÀ</button>
-  <p class="mini">Qui trovi le modifiche ai profili, agli accessi e al tema del menu. Le modifiche ai prodotti sono registrate nella cronologia di ciascuna scheda. Lo storico non registra né espone date di nascita o fotografie.</p>
+  <p class="mini">Scegli Prodotti per controllare prezzi, disponibilità e schede pubblicate, oppure Profili, accessi e temi per le altre attività. Lo storico non registra né espone date di nascita o fotografie.</p>
 </section>
 <section class="card" id="roadmap" hidden>
   <div class="eyebrow">04 · IL GESTIONALE</div>
@@ -632,7 +648,7 @@ const firebaseConfig={
  messagingSenderId:"879941411379",
  appId:"1:879941411379:web:18e94817206c119598f946"
 };
-import {getFirestore,doc,getDoc,getDocFromServer,collection,getDocs,writeBatch,serverTimestamp,query,orderBy,limit,startAfter,runTransaction} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import {getFirestore,doc,getDoc,getDocFromServer,collection,getDocs,getDocsFromServer,writeBatch,serverTimestamp,query,orderBy,limit,startAfter,runTransaction} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
 const auth=getAuth(app);
@@ -660,7 +676,12 @@ loginBtn.addEventListener("click",async()=>{
   }
  }finally{loginBtn.disabled=false}
 });
-$("logout").addEventListener("click",()=>{if(themeSaving){themeMessage('Attendi il completamento della pubblicazione.');return;}if(themeDirty&&!confirm('Uscire e scartare la scelta del tema non pubblicata?'))return;signOut(auth);});
+$("logout").addEventListener("click",async()=>{
+ if(catalogBusy){catalogMessage('Attendi il completamento della pubblicazione.');return;}
+ if(themeSaving){themeMessage('Attendi il completamento della pubblicazione.');return;}
+ if((themeDirty||editorDirty)&&!confirm('Uscire e scartare le modifiche non pubblicate?'))return;
+ try{await signOut(auth);}catch(_){setProfileMessage('Uscita non riuscita. Riprova.','error');}
+});
 const ROLE_NAMES={owner:"PROPRIETARIO",admin:"AMMINISTRATORE",collaborator:"COLLABORATORE"};
 const REQUEST_NAMES={pending:"IN ATTESA",approved:"APPROVATA",rejected:"RIFIUTATA"};
 const PERMISSION_LABELS={products:"PRODOTTI",prices:"PREZZI",availability:"DISPONIBILITÀ",ingredients:"INGREDIENTI E FILTRI",photos:"FOTOGRAFIE",translations:"TRADUZIONI",statistics:"STATISTICHE"};
@@ -832,65 +853,194 @@ productChecks('productAllergens',PRODUCT_ALLERGENS);productChecks('productTraces
 $('catalogEditor').addEventListener('input',e=>{editorDirty=true;if(e.target.matches('[data-recipe]'))invalidateReview();});
 $('productAllergens').addEventListener('change',invalidateReview);
 $('productPreparation').addEventListener('change',()=>{invalidateReview();applyFryer();});
-window.addEventListener('beforeunload',e=>{if(editorDirty&&!$('catalogEditor').hidden){e.preventDefault();e.returnValue='';}});
+window.addEventListener('beforeunload',e=>{if(catalogBusy||(editorDirty&&!$('catalogEditor').hidden)){e.preventDefault();e.returnValue='';}});
 
-let catalogItems=[],catalogOverrides=new Map(),catalogSelected=null,catalogEpoch=0,catalogBusy=false;
+const CATALOG_GROUPS={beers:'Birre',soft:'Analcolici',aperitifs:'Aperitivi',long:'Cocktail',wine:'Vini',grill:'Griglia',burger:'Burger',pizza:'Pizza',sandwich:'Sandwich e toast',fried:'Fritti',sharing:'In compagnia',american:'American Bites',salads:'Insalate',dessert:'Dolci e fine pasto',seasonal:'Proposte stagionali'};
+const CATALOG_BEER_SECTIONS={blonde:'Alla spina · Bionde',red:'Alla spina · Rosse e ambrate',ipa:'Alla spina · IPA',dark:'Alla spina · Scure',packaged:'Bottiglie e lattine',alcoholfree:'Birre analcoliche',other:'Altre birre'};
+const CATALOG_MAX_PRODUCTS=300,CATALOG_MAX_BYTES=800000;
+const catalogId=id=>typeof id==='string'&&/^[a-z0-9][a-z0-9-]{0,99}$/.test(id);
+const plainMap=x=>!!x&&typeof x==='object'&&!Array.isArray(x);
+const exactKeys=(x,keys)=>plainMap(x)&&Object.keys(x).length===keys.length&&keys.every(k=>Object.hasOwn(x,k));
+function validCatalogPrice(value){
+ if(typeof value!=='string'||!/^\d{1,3},\d{2}(?:–\d{1,3},\d{2})?$/.test(value))return false;
+ const n=value.split('–').map(v=>Number(v.replace(',','.')));return n.every(v=>v>0&&v<=999.99)&&(n.length===1||n[0]<=n[1]);
+}
+function validCatalogPhoto(p){
+ return exactKeys(p,['kind','key','group'])&&typeof p.key==='string'&&p.key.length<=200&&typeof p.group==='string'&&(
+  p.kind==='none'&&p.key===''&&p.group===''||
+  p.kind==='legacy'&&/^[a-z0-9][a-z0-9-]{0,99}$/.test(p.key)&&Object.hasOwn(CATALOG_GROUPS,p.group)||
+  p.kind==='file'&&p.group===''&&/^(?:foto\/[A-Za-z0-9_-]+\/|foto\/|popup-)[A-Za-z0-9_-]+\.(?:jpg|jpeg|png|webp)$/.test(p.key)
+ );
+}
+function validCatalogProduct(p){
+ const strings=(v,max,count)=>Array.isArray(v)&&v.length<=count&&v.every(s=>typeof s==='string'&&s.length<=max);
+ return exactKeys(p,['group','position','price','available','details','photo','tags','abv','season','beerProfile','beerSection','revision'])
+ &&Object.hasOwn(CATALOG_GROUPS,p.group)&&Number.isSafeInteger(p.position)&&p.position>=0&&p.position<=99999
+ &&validCatalogPrice(p.price)&&typeof p.available==='boolean'&&validProductDetails(p.details)&&validCatalogPhoto(p.photo)
+ &&strings(p.tags,80,16)&&typeof p.abv==='string'&&p.abv.length<=15&&['','winter','summer'].includes(p.season)
+ &&(p.beerProfile===null||exactKeys(p.beerProfile,['color','style','flavors'])&&typeof p.beerProfile.color==='string'&&p.beerProfile.color.length<=40&&typeof p.beerProfile.style==='string'&&p.beerProfile.style.length<=60&&strings(p.beerProfile.flavors,80,16))
+ &&(p.group==='beers'?Object.hasOwn(CATALOG_BEER_SECTIONS,p.beerSection):p.beerSection==='')
+ &&Number.isSafeInteger(p.revision)&&p.revision>=1
+ &&(p.group!=='fried'||p.details.preparation==='shared-fryer'&&p.details.crossContact==='possible'&&p.details.mayContain.includes('gluten'));
+}
+function validCatalogDocument(c){
+ return exactKeys(c,['version','status','products','sourceIds','revision','lastChangeId','lastProductId','updatedAt'])
+ &&c.version===1&&['importing','ready'].includes(c.status)&&plainMap(c.products)&&Object.keys(c.products).length<=CATALOG_MAX_PRODUCTS
+ &&Object.entries(c.products).every(([id,p])=>catalogId(id)&&validCatalogProduct(p))
+ &&Array.isArray(c.sourceIds)&&c.sourceIds.length>0&&c.sourceIds.length<=CATALOG_MAX_PRODUCTS&&c.sourceIds.every(catalogId)&&new Set(c.sourceIds).size===c.sourceIds.length
+ &&(c.status!=='ready'||c.sourceIds.every(id=>Object.hasOwn(c.products,id)))
+ &&Number.isSafeInteger(c.revision)&&c.revision>=1&&typeof c.lastChangeId==='string'&&c.lastChangeId.length>0&&c.lastChangeId.length<=128
+ &&(c.lastProductId===''||catalogId(c.lastProductId))&&!!c.updatedAt;
+}
+function catalogItemsFrom(c,onlyAvailable=false){
+ return Object.entries(c.products).filter(([,p])=>!onlyAvailable||p.available).sort((a,b)=>a[1].position-b[1].position||a[0].localeCompare(b[0])).map(([id,p])=>({id,group:p.group,name:p.details.name,desc:p.details.ingredients.it?p.details.ingredients:p.details.description,price:p.price,details:p.details,tags:[...p.tags,...p.details.traits.map(k=>PRODUCT_TRAITS[k].labels[0])],abv:p.abv,season:p.season,beerProfile:p.beerProfile,beerSection:p.beerSection,photo:p.photo.key,photoGroup:p.photo.group,photoKind:p.photo.kind}));
+}
+
+let catalogItems=[],catalogOverrides=new Map(),catalogSelected=null,catalogEpoch=0,catalogBusy=false,catalogLoading=false,catalogDocument=null,catalogSource=[];
 function catalogMessage(text,error=false){$('catalogMessage').textContent=text;$('catalogMessage').className=error?'message error':'message';}
 function catalogPrice(value){
  const s=value.trim().replace(/\s/g,'').replace(/\./g,',').replace(/-/g,'–');
  if(!/^\d{1,3}(?:,\d{1,2})?(?:–\d{1,3}(?:,\d{1,2})?)?$/.test(s))throw Error('Inserisci un prezzo come 12,00 oppure un intervallo come 3,50–6,00.');
- const n=s.split('–').map(x=>Number(x.replace(',','.')));
- if(n.some(x=>x<=0||x>999.99)||(n.length===2&&n[0]>n[1]))throw Error('Il prezzo deve essere positivo e l’intervallo crescente.');
- return n.map(x=>x.toFixed(2).replace('.',',')).join('–');
+ const n=s.split('–').map(v=>Number(v.replace(',','.')));
+ if(n.some(v=>v<=0||v>999.99)||(n.length===2&&n[0]>n[1]))throw Error('Il prezzo deve essere positivo e l’intervallo crescente.');
+ return n.map(v=>v.toFixed(2).replace('.',',')).join('–');
+}
+function validCatalogOverride(d){return d&&validCatalogPrice(d.price)&&typeof d.available==='boolean'&&Number.isSafeInteger(d.revision)&&d.revision>0&&typeof d.lastChangeId==='string'&&!!d.lastChangeId&&!!d.updatedAt&&(!Object.hasOwn(d,'details')||validProductDetails(d.details));}
+function readWithDeadline(promise){let timer;return Promise.race([promise,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('Connessione lenta o non disponibile. Riprova: nessun dato è stato modificato.')),16000);})]).finally(()=>clearTimeout(timer));}
+function catalogError(e){return e.code==='permission-denied'?'Operazione negata. Controlla il ruolo proprietaria e pubblica le nuove Regole Firebase del catalogo.':e.code==='unavailable'?'Connessione non disponibile. Le modifiche restano nella scheda: torna online e riprova.':e.message||'Operazione non riuscita. Riprova.';}
+function checkCatalogSize(data){if(new TextEncoder().encode(JSON.stringify(data)).length>CATALOG_MAX_BYTES)throw Error('Il catalogo ha raggiunto il limite di spazio di questa versione. Nessuna modifica pubblicata.');}
+function catalogControls(){
+ const locked=catalogBusy||catalogLoading,ready=catalogDocument?.status==='ready';
+ $('catalogReload').disabled=locked;$('catalogNew').disabled=locked||!ready||currentRole!=='owner';$('catalogNew').hidden=currentRole!=='owner';
+ $('catalogSetup').hidden=!!ready||currentRole!=='owner';$('catalogMigrate').disabled=locked||!catalogSource.length;
+ $('catalogMigrate').textContent=catalogDocument?'Riprendi trasferimento':'Trasferisci il catalogo';
+ $('catalogSave').disabled=locked;$('catalogCancel').disabled=locked;
 }
 async function loadCatalog(){
- if(catalogBusy)return;if(editorDirty&&!$('catalogEditor').hidden&&!confirm('Scartare le modifiche non pubblicate e ricaricare?'))return;editorDirty=false;
- const epoch=++catalogEpoch, uid=auth.currentUser?.uid;
- catalogSelected=null;$('catalogEditor').hidden=true;catalogItems=[];renderCatalog();catalogMessage('Caricamento del menu e delle modifiche pubblicate…');
+ if(catalogBusy||catalogLoading||!auth.currentUser||!currentRole)return;
+ if(editorDirty&&!$('catalogEditor').hidden&&!confirm('Scartare le modifiche non pubblicate e ricaricare?'))return;
+ const epoch=++catalogEpoch,uid=auth.currentUser.uid;editorDirty=false;catalogSelected=null;catalogLoading=true;catalogDocument=null;catalogSource=[];catalogItems=[];catalogOverrides=new Map();$('catalogEditor').hidden=true;renderCatalog();catalogMessage('Caricamento del catalogo…');
  try{
-  const [response,snapshot]=await Promise.all([fetch('https://theblackstuffud.github.io/blackstuff-menu/',{cache:'no-store',signal:AbortSignal.timeout(15000)}),getDocs(collection(db,'menuUpdates'))]);
-  if(!response.ok)throw Error('Il menu pubblico non è raggiungibile.');
-  const html=await response.text(),match=html.match(/const ITEMS=(\[.*?\]);\s*\n/);
-  if(!match)throw Error('Formato del menu non riconosciuto: nessun dato è stato modificato.');
-  const products=JSON.parse(match[1]);
-  if(!Array.isArray(products)||!products.length||products.some(x=>typeof x.id!=='string'||typeof x.name?.it!=='string'||typeof x.price!=='string')||new Set(products.map(x=>x.id)).size!==products.length)throw Error('Catalogo non valido.');
+  const snapshot=await readWithDeadline(getDocFromServer(doc(db,'menuCatalog','current')));
+  let data=snapshot.exists()?snapshot.data():null;
+  if(data&&!validCatalogDocument(data))throw Error('Il catalogo salvato non è valido. Nessuna modifica effettuata.');
+  let source=[];
+  if(!data||data.status!=='ready'){
+   const response=await readWithDeadline(fetch('https://theblackstuffud.github.io/blackstuff-menu/',{cache:'no-store'}));if(!response.ok)throw Error('Il menu pubblico non è raggiungibile.');
+   const html=await readWithDeadline(response.text()),match=html.match(/const ITEMS=(\[.*?\]);\s*\n/);if(!match||!html.includes('TBS_CATALOG_SEED_VERSION=1'))throw Error('Pubblica prima il nuovo index del menu e attendi che GitHub termini l’aggiornamento. Poi premi Ricarica prodotti.');
+   source=JSON.parse(match[1]);
+   if(!Array.isArray(source)||!source.length||source.length>CATALOG_MAX_PRODUCTS||source.some(i=>!catalogId(i.id)||!Object.hasOwn(CATALOG_GROUPS,i.group))||new Set(source.map(i=>i.id)).size!==source.length)throw Error('Catalogo iniziale non valido.');
+   if(data&&JSON.stringify([...data.sourceIds].sort())!==JSON.stringify(source.map(i=>i.id).sort()))throw Error('Il catalogo iniziale è cambiato durante il trasferimento. Verifica i dati prima di continuare.');
+  }
   if(epoch!==catalogEpoch||auth.currentUser?.uid!==uid||!currentRole)return;
-  catalogItems=products;catalogOverrides=new Map(snapshot.docs.map(d=>[d.id,d.data()]));if([...catalogOverrides.values()].some(d=>d.details&&!validProductDetails(d.details)))throw Error("Una scheda pubblicata non è valida. Verifica i dati prima di modificarla.");renderCatalog();
-  catalogMessage(products.length+' prodotti caricati. '+(currentRole==='owner'?'Seleziona un prodotto per modificarlo.':'In questa prima versione la pubblicazione è riservata al proprietario.'));
- }catch(e){if(epoch===catalogEpoch)catalogMessage(e.code==='permission-denied'?'Prima installa le nuove regole Firebase fornite con questa versione.':(e.message||'Caricamento non riuscito. Riprova.'),true);}
+  catalogDocument=data;catalogSource=source;catalogItems=data?.status==='ready'?catalogItemsFrom(data):source;
+  catalogMessage(data?.status==='ready'?catalogItems.length+' prodotti gestiti dal Manager.':data?'Trasferimento da completare: '+Object.keys(data.products).length+' di '+data.sourceIds.length+' prodotti.':'Il catalogo è pronto per il trasferimento. Le schede già salvate saranno mantenute.');
+ }catch(e){if(epoch===catalogEpoch&&auth.currentUser?.uid===uid)catalogMessage(catalogError(e),true);}
+ finally{if(epoch===catalogEpoch){catalogLoading=false;renderCatalog();}}
+}
+function openCatalogProduct(item,p=null){
+ if(catalogBusy||catalogLoading||catalogDocument?.status!=='ready'||currentRole!=='owner')return;
+ if(editorDirty&&!$('catalogEditor').hidden&&!confirm('Scartare le modifiche non pubblicate?'))return;
+ catalogSelected={item,revision:p?.revision||0,record:p};populateDetails(item,p?{details:p.details}:null);
+ $('catalogProductName').textContent=p?p.details.name.it:'Nuovo prodotto';$('catalogProductId').textContent=p?'ID: '+item.id:'La scheda sarà creata solo quando premi Pubblica modifica.';
+ $('catalogPrice').value=p?.price||'';$('catalogAvailable').checked=p?.available??true;
+ $('productGroup').value=p?.group||item.group;$('productPosition').value=p?.position??((Math.max(0,...Object.values(catalogDocument.products).filter(v=>v.group===item.group).map(v=>v.position)))+10);
+ $('productAbv').value=p?.abv||'';$('productSeason').value=p?.season||'';$('productBeerSection').value=p?.beerSection||'other';
+ const photo=p?.photo||{kind:'none',key:'',group:''};$('productPhotoMode').value=photo.kind==='legacy'?'keep':photo.kind;$('productPhotoPath').value=photo.kind==='file'?photo.key:'';
+ $('productPhotoMode').querySelector('[value=keep]').disabled=photo.kind!=='legacy';
+ $('productPhotoPreview').hidden=true;$('productPhotoStatus').textContent=photo.kind==='legacy'?'La foto attuale e il suo percorso vengono mantenuti.':'';
+ updateCatalogFields();$('catalogEditor').hidden=false;$('catalogEditor').scrollIntoView({block:'start'});$('product-name-it').focus();editorDirty=!p;
 }
 function renderCatalog(){
- const list=$('catalogList');list.replaceChildren();const term=$('catalogSearch').value.trim().toLocaleLowerCase('it');
- for(const item of catalogItems.filter(i=>(catalogOverrides.get(i.id)?.details?.name.it||i.name.it).toLocaleLowerCase('it').includes(term))){
-  const state=catalogOverrides.get(item.id),row=make('div','catalog-row'),info=make('div','');info.append(make('strong','',state?.details?.name.it||item.name.it),make('small','',(state?.price||item.price)+' € · '+(state?.available===false?'Non disponibile':'Disponibile')));row.append(info);
-  if(currentRole==='owner'){const b=make('button','small-action','Modifica');b.type='button';b.disabled=catalogBusy;b.addEventListener('click',()=>{
-   if(editorDirty&&!$('catalogEditor').hidden&&!confirm('Scartare le modifiche non pubblicate?'))return;catalogSelected={item,revision:state?.revision||0};populateDetails(item,state);$('catalogProductName').textContent=state?.details?.name.it||item.name.it;$('catalogProductId').textContent='ID: '+item.id;$('catalogPrice').value=state?.price||item.price;$('catalogAvailable').checked=state?.available!==false;$('catalogEditor').hidden=false;$('catalogEditor').scrollIntoView({block:'start'});$('catalogPrice').focus();
-  });row.append(b);}list.append(row);
+ catalogControls();const list=$('catalogList');list.replaceChildren();const term=$('catalogSearch').value.trim().toLocaleLowerCase('it');
+ for(const item of catalogItems.filter(i=>(i.name.it||'').toLocaleLowerCase('it').includes(term))){
+  const p=catalogDocument?.status==='ready'?catalogDocument.products[item.id]:null,row=make('div','catalog-row'),info=make('div','');
+  info.append(make('strong','',item.name.it),make('small','',CATALOG_GROUPS[item.group]+' · '+item.price+' € · '+(p?.available===false?'Non disponibile':'Disponibile')));row.append(info);
+  if(currentRole==='owner'&&p){const button=make('button','small-action','Modifica');button.type='button';button.disabled=catalogBusy||catalogLoading;button.addEventListener('click',()=>openCatalogProduct(item,p));row.append(button);}list.append(row);
  }
  if(catalogItems.length&&!list.childElementCount)list.append(make('p','','Nessun prodotto trovato.'));
 }
-$('catalogSearch').addEventListener('input',renderCatalog);
-$('catalogReload').addEventListener('click',loadCatalog);
-$('catalogCancel').addEventListener('click',()=>{if(catalogBusy)return;if(editorDirty&&!confirm('Scartare le modifiche non pubblicate?'))return;editorDirty=false;catalogSelected=null;$('catalogEditor').hidden=true;});
-$('catalogEditor').addEventListener('submit',async event=>{
- event.preventDefault();if(catalogBusy||!catalogSelected||currentRole!=='owner')return;
- const selected=catalogSelected,uid=auth.currentUser?.uid;
- let price;try{price=catalogPrice($('catalogPrice').value);}catch(e){catalogMessage(e.message,true);return;}
- const available=$('catalogAvailable').checked;let details;try{details=readDetails();}catch(e){catalogMessage(e.message,true);return;}
- catalogBusy=true;const editable=[...$('catalogEditor').querySelectorAll('input,textarea,select')].map(el=>[el,el.disabled]);editable.forEach(([el])=>el.disabled=true);$('catalogSave').disabled=true;$('catalogCancel').disabled=true;$('catalogReload').disabled=true;renderCatalog();catalogMessage('Pubblicazione in corso…');
+function updateCatalogFields(){
+ const group=$('productGroup').value;editorProductIsFried=group==='fried';applyFryer();$('productBeerSectionField').hidden=group!=='beers';
+ $('productPhotoPathField').hidden=$('productPhotoMode').value!=='file';$('productPhotoPreview').hidden=true;
+}
+function sourceBeerSection(id){return ['casamatta-slip','hop-house-13','maes-pils','ichnusa-non-filtrata','messina-cristalli-di-sale','bulldog-strong-lager'].includes(id)?'blonde':['kilkenny-cream','kilkenny-strong','bulldog-strong-ale'].includes(id)?'red':['guinness-blonde-ipa','lagunitas-ipa'].includes(id)?'ipa':id==='guinness'?'dark':'other';}
+function seedProduct(item,override,index){
+ const details=structuredClone(override?.details||initialDetails(item));if(!override?.details)details.traits=[];
+ // The shared fryer is an established property of every fried product.
+ if(item.group==='fried'&&(details.preparation!=='shared-fryer'||details.crossContact!=='possible'||!details.mayContain.includes('gluten'))){details.preparation='shared-fryer';details.crossContact='possible';details.mayContain=[...new Set([...details.mayContain,'gluten'])];details.allergensReviewed=false;}
+ const p={group:item.group,position:index*10,price:override?.price||item.price,available:override?.available??true,details,photo:item.photo?{kind:'legacy',key:item.photo,group:item.group}:{kind:'none',key:'',group:''},tags:override?.details?[]:(item.tags||[]),abv:item.abv||'',season:item.season||'',beerProfile:item.beerProfile||null,beerSection:item.group==='beers'?(item.beerSection||sourceBeerSection(item.id)):'',revision:1};
+ if(!validCatalogProduct(p))throw Error('Dati iniziali non validi per '+item.name.it+'. Trasferimento interrotto senza sovrascrivere le schede già copiate.');return p;
+}
+function catalogEvent(tx,change,action,productId,before,after,revision,uid){tx.set(change,{action,productId,actorUid:uid,before,after,catalogRevision:revision,createdAt:serverTimestamp()});}
+$('catalogMigrate').addEventListener('click',async()=>{
+ if(catalogBusy||catalogLoading||currentRole!=='owner'||!auth.currentUser||!catalogSource.length||catalogDocument?.status==='ready')return;
+ if(!navigator.onLine){catalogMessage('Per trasferire il catalogo serve una connessione.',true);return;}
+ if(!confirm('Trasferire il catalogo al Manager? Le foto restano su GitHub e le schede già salvate saranno conservate. Tieni aperta questa pagina. Se si interrompe potrai riprendere.'))return;
+ const uid=auth.currentUser.uid,epoch=catalogEpoch,source=[...catalogSource],ref=doc(db,'menuCatalog','current');const owns=()=>epoch===catalogEpoch&&auth.currentUser?.uid===uid&&currentRole==='owner';
+ const assertSession=()=>{if(!owns())throw Error('La sessione è cambiata. Accedi di nuovo e riprendi il trasferimento.');};
+ catalogBusy=true;renderCatalog();catalogMessage('Preparazione del trasferimento…');
  try{
-  const ref=doc(db,'menuUpdates',selected.item.id),change=doc(collection(db,'catalogChanges'));
-  await runTransaction(db,async tx=>{
-   const snap=await tx.get(ref),before=snap.exists()?snap.data():null;
-   if((before?.revision||0)!==selected.revision)throw Error('Il prodotto è cambiato da un’altra sessione. Ricarica i prodotti prima di modificarlo.');
-   const revision=selected.revision+1;
-   tx.set(ref,{price,available,details,revision,lastChangeId:change.id,updatedAt:serverTimestamp()});
-   tx.set(change,{productId:selected.item.id,actorUid:uid,beforePrice:before?.price||'',beforeAvailable:before?.available??true,afterPrice:price,afterAvailable:available,beforeDetails:before?.details||null,afterDetails:details,revision,createdAt:serverTimestamp()});
+  const start=doc(collection(db,'catalogEvents'));
+  await runTransaction(db,async tx=>{const snap=await tx.get(ref);assertSession();if(snap.exists()){if(!validCatalogDocument(snap.data()))throw Error('Catalogo non valido.');return;}
+   tx.set(ref,{version:1,status:'importing',products:{},sourceIds:source.map(i=>i.id),revision:1,lastChangeId:start.id,lastProductId:'',updatedAt:serverTimestamp()});catalogEvent(tx,start,'start','',null,null,1,uid);
   });
-  if(auth.currentUser?.uid!==uid)return;
-  editorDirty=false;catalogOverrides.set(selected.item.id,{price,available,details,revision:selected.revision+1});catalogSelected=null;$('catalogEditor').hidden=true;catalogMessage('Modifica pubblicata su Firebase. Apri il menu pubblico per verificarla.');
- }catch(e){catalogMessage(e.code==='permission-denied'?'Pubblicazione negata: verifica le nuove regole e il ruolo proprietario. Nessuna modifica salvata.':e.message,true);}
- finally{catalogBusy=false;editable.forEach(([el,disabled])=>el.disabled=disabled);$('catalogSave').disabled=false;$('catalogCancel').disabled=false;$('catalogReload').disabled=false;renderCatalog();}
+  // Legacy writes are locked by the Rules once this catalogue exists.
+  const legacy=await readWithDeadline(getDocsFromServer(collection(db,'menuUpdates')));assertSession();const overrides=new Map(legacy.docs.map(d=>[d.id,d.data()]));
+  if([...overrides].some(([id,v])=>!source.some(i=>i.id===id)||!validCatalogOverride(v)))throw Error('Una scheda precedente richiede verifica. Nessun dato verrà ignorato.');
+  for(let index=0;index<source.length;index++){
+   assertSession();const item=source[index],product=seedProduct(item,overrides.get(item.id),index),change=doc(collection(db,'catalogEvents'));
+   await runTransaction(db,async tx=>{const snap=await tx.get(ref);assertSession();const c=snap.data();if(!validCatalogDocument(c)||!c.sourceIds.includes(item.id))throw Error('Catalogo iniziale non corrispondente.');if(Object.hasOwn(c.products,item.id))return;if(c.status!=='importing')throw Error('Il trasferimento è già terminato: ricarica il catalogo.');
+    const next={...c,products:{...c.products,[item.id]:product},revision:c.revision+1,lastChangeId:change.id,lastProductId:item.id,updatedAt:serverTimestamp()};checkCatalogSize(next);tx.set(ref,next);catalogEvent(tx,change,'import',item.id,null,product,next.revision,uid);
+   });
+   if(owns())catalogMessage('Trasferimento: '+(index+1)+' di '+source.length+' prodotti. Le foto esistenti restano al loro posto.');
+  }
+  const finish=doc(collection(db,'catalogEvents'));
+  await runTransaction(db,async tx=>{const snap=await tx.get(ref);assertSession();const c=snap.data();if(!validCatalogDocument(c)||!c.sourceIds.every(id=>Object.hasOwn(c.products,id)))throw Error('Trasferimento incompleto: premi Riprendi.');if(c.status==='ready')return;
+   tx.set(ref,{...c,status:'ready',revision:c.revision+1,lastChangeId:finish.id,lastProductId:'',updatedAt:serverTimestamp()});catalogEvent(tx,finish,'activate','',null,null,c.revision+1,uid);
+  });
+  if(owns()){catalogBusy=false;await loadCatalog();catalogMessage('Catalogo trasferito. Ora puoi creare e modificare i prodotti dal Manager.');}
+ }catch(e){if(owns())catalogMessage(catalogError(e)+' Puoi ricaricare e riprendere il trasferimento.',true);}
+ finally{if(owns()){catalogBusy=false;renderCatalog();}}
+});
+$('catalogNew').addEventListener('click',()=>{if(catalogBusy||catalogLoading||catalogDocument?.status!=='ready')return;if(Object.keys(catalogDocument.products).length>=CATALOG_MAX_PRODUCTS){catalogMessage('Limite di 300 prodotti raggiunto.',true);return;}openCatalogProduct({id:'p-'+crypto.randomUUID(),group:'burger',name:{it:''},desc:{it:''},tags:[]});});
+$('catalogSearch').addEventListener('input',renderCatalog);$('catalogReload').addEventListener('click',loadCatalog);
+$('catalogCancel').addEventListener('click',()=>{if(catalogBusy)return;if(editorDirty&&!confirm('Scartare le modifiche non pubblicate?'))return;editorDirty=false;catalogSelected=null;$('catalogEditor').hidden=true;});
+$('productGroup').addEventListener('change',()=>{invalidateReview();updateCatalogFields();});
+$('productPhotoMode').addEventListener('change',()=>{updateCatalogFields();$('productPhotoStatus').textContent='La scelta sarà applicata quando pubblichi la scheda.';});
+let photoPreviewEpoch=0;
+$('catalogPhotoCheck').addEventListener('click',()=>{
+ const key=$('productPhotoPath').value.trim(),image=$('productPhotoPreview'),epoch=++photoPreviewEpoch;
+ if(!validCatalogPhoto({kind:'file',key,group:''})){$('productPhotoStatus').textContent='Usa un percorso come foto/analcolici/bavaria-ipa-0-0.jpeg. Solo JPG, JPEG, PNG o WebP.';return;}
+ image.hidden=true;$('productPhotoStatus').textContent='Controllo foto…';
+ image.onload=()=>{if(epoch!==photoPreviewEpoch)return;image.hidden=false;$('productPhotoStatus').textContent='Foto trovata. Sarà collegata quando pubblichi.';};
+ image.onerror=()=>{if(epoch!==photoPreviewEpoch)return;image.hidden=true;$('productPhotoStatus').textContent='Foto non trovata. Controlla nome e cartella e attendi la pubblicazione di GitHub.';};
+ image.src='https://theblackstuffud.github.io/blackstuff-menu/'+key+'?check='+Date.now();
+});
+$('catalogEditor').addEventListener('submit',async event=>{
+ event.preventDefault();if(catalogBusy||catalogLoading||!catalogSelected||catalogDocument?.status!=='ready'||currentRole!=='owner'||!auth.currentUser)return;
+ if(!navigator.onLine){catalogMessage('Sei offline. Le modifiche restano nella scheda: torna online e riprova.',true);return;}
+ const selected=catalogSelected,uid=auth.currentUser.uid,epoch=catalogEpoch,owns=()=>epoch===catalogEpoch&&auth.currentUser?.uid===uid&&currentRole==='owner';let product;
+ try{
+  const mode=$('productPhotoMode').value,group=$('productGroup').value,details=readDetails();
+  const photo=mode==='keep'?selected.record?.photo:{kind:mode,key:mode==='file'?$('productPhotoPath').value.trim():'',group:''};
+  const recipeChanged=selected.record&&['name','description','ingredients'].some(k=>JSON.stringify(details[k])!==JSON.stringify(selected.record.details[k]));
+  product={group,position:Number($('productPosition').value),price:catalogPrice($('catalogPrice').value),available:$('catalogAvailable').checked,details,photo,tags:recipeChanged?[]:selected.record?.tags||[],abv:$('productAbv').value.trim(),season:$('productSeason').value,beerProfile:recipeChanged?null:selected.record?.beerProfile||null,beerSection:group==='beers'?$('productBeerSection').value:'',revision:selected.revision+1};
+  if(!validCatalogProduct(product))throw Error('Controlla categoria, posizione, prezzo e percorso foto. Il percorso non deve contenere spazi.');
+ }catch(e){catalogMessage(e.message,true);return;}
+ catalogBusy=true;const controls=[...$('catalogEditor').querySelectorAll('input,textarea,select,button')].map(el=>[el,el.disabled]);controls.forEach(([el])=>el.disabled=true);renderCatalog();catalogMessage('Pubblicazione in corso…');
+ const waiting=setTimeout(()=>{if(owns())catalogMessage('Il salvataggio richiede più tempo. Attendi la conferma senza chiudere questa pagina.');},12000);
+ try{
+  const ref=doc(db,'menuCatalog','current'),change=doc(collection(db,'catalogEvents'));let saved;
+  await runTransaction(db,async tx=>{const snap=await tx.get(ref);if(!owns())throw Error('La sessione è cambiata. Accedi di nuovo.');const c=snap.data();
+   if(!validCatalogDocument(c)||c.status!=='ready')throw Error('Catalogo non disponibile. Ricarica i prodotti.');const before=c.products[selected.item.id]||null;
+   if((before?.revision||0)!==selected.revision)throw Error('Il prodotto è cambiato da un’altra sessione. Le tue modifiche restano qui: ricontrollale prima di ricaricare.');
+   if(!before&&Object.keys(c.products).length>=CATALOG_MAX_PRODUCTS)throw Error('Limite di 300 prodotti raggiunto.');
+   saved={...c,products:{...c.products,[selected.item.id]:product},revision:c.revision+1,lastChangeId:change.id,lastProductId:selected.item.id,updatedAt:serverTimestamp()};checkCatalogSize(saved);tx.set(ref,saved);catalogEvent(tx,change,before?'update':'create',selected.item.id,before,product,saved.revision,uid);
+  });
+  if(!owns())return;catalogDocument=saved;catalogItems=catalogItemsFrom(saved);editorDirty=false;catalogSelected=null;$('catalogEditor').hidden=true;catalogMessage('Prodotto pubblicato. Il menu dei clienti si aggiorna automaticamente.');
+ }catch(e){if(owns())catalogMessage(catalogError(e),true);}
+ finally{clearTimeout(waiting);if(owns()){catalogBusy=false;controls.forEach(([el,disabled])=>el.disabled=disabled);renderCatalog();}}
 });
 
 const MENU_THEMES={winter:{name:'Inverno',description:'Verde · Fiocchi di neve'},spring:{name:'Primavera',description:'Verde · Fiori assortiti'},summer:{name:'Estate',description:'Verde · Piccoli soli'},halloween:{name:'Halloween',description:'Arancio bruciato · Zucche'},christmas:{name:'Natale',description:'Bordeaux · Neve sui pulsanti'}};
@@ -958,6 +1108,7 @@ window.addEventListener('beforeunload',event=>{if(themeDirty||themeSaving){event
 const MANAGER_VIEWS={home:'Home',catalog:'Modifica menu',appearance:'Aspetto del menu',wallet:'Portafoglio IA',account:'Il mio accesso',members:'Utenti e permessi',requests:'Richieste di accesso',history:'Storico attività'};
 let managerView='home';
 function showManagerView(view, push=false, focus=true){
+ if(catalogBusy&&view!==managerView){catalogMessage('Attendi il completamento della pubblicazione.');return;}
  if(managerView==='appearance'&&view!=='appearance'){if(themeSaving){themeMessage('Attendi il completamento della pubblicazione.');return;}if(themeDirty){if(!confirm('Scartare la scelta del tema non pubblicata?'))return;themeDirty=false;}}
  if(currentRole&&managerView==='catalog'&&view!=='catalog'&&editorDirty&&!$('catalogEditor').hidden){if(!confirm('Scartare le modifiche non pubblicate?'))return;editorDirty=false;$('catalogEditor').hidden=true;}
  if(!currentRole || !MANAGER_VIEWS[view] || (['members','requests','history','wallet','appearance'].includes(view)&&currentRole!=='owner'))view='home';
@@ -1010,6 +1161,9 @@ function setOwnerNotice(message,kind=""){
  const n=$("ownerNotice");n.textContent=message;n.className=message?"message "+kind:"";
 }
 function clearDash(){
+ catalogBusy=false;catalogLoading=false;catalogDocument=null;catalogSource=[];catalogOverrides=new Map();photoPreviewEpoch++;historyEpoch++;historyLoading=false;$('historyKind').disabled=false;
+ $('catalogSave').disabled=false;$('catalogCancel').disabled=false;$('catalogReload').disabled=false;
+ $('catalogEditor').querySelectorAll('input,textarea,select,button').forEach(el=>el.disabled=false);$('catalogSetup').hidden=true;$('catalogNew').disabled=true;
  resetThemePanel();
  closeProfileMenu();$("installDialog").hidden=true;document.querySelectorAll('[data-owner-only]').forEach(el=>{el.hidden=true;});
  editorDirty=false;catalogEpoch++;catalogItems=[];catalogSelected=null;$("catalogEditor").hidden=true;$("catalogList").replaceChildren();
@@ -1021,42 +1175,56 @@ function clearDash(){
 function createButton(label,action,kind=""){
  const b=make("button","small-action "+kind,label);b.type="button";b.addEventListener("click",action);return b;
 }
-let historyCursor=null;
-let historyLoading=false;
+let historyCursor=null,historyLoading=false,historyEpoch=0;
+function productHistoryEntry(a){
+ const entry=make('article','activity-entry'),after=a.afterDetails,before=a.beforeDetails;
+ entry.append(make('div','activity-title',after?.name?.it||before?.name?.it||a.productId||'PRODOTTO'));
+ const date=a.createdAt?.toDate?.(),when=date?new Intl.DateTimeFormat('it-IT',{dateStyle:'medium',timeStyle:'short'}).format(date):'Data non disponibile';
+ entry.append(make('div','activity-meta',when+' · Modifica '+a.revision));
+ entry.append(make('div','activity-detail','Prezzo: '+(a.beforePrice?a.beforePrice+' €':'prima pubblicazione')+' → '+a.afterPrice+' €'));
+ entry.append(make('div','activity-detail','Disponibilità: '+(a.beforeAvailable?'disponibile':'non disponibile')+' → '+(a.afterAvailable?'disponibile':'non disponibile')));
+ const labels={name:'nome',description:'descrizione',ingredients:'ingredienti',allergens:'allergeni',allergensReviewed:'verifica allergeni',mayContain:'possibili tracce',crossContact:'contaminazioni',preparation:'preparazione',traits:'caratteristiche',absentIngredients:'assenze dichiarate'};
+ const changed=Object.keys(labels).filter(k=>JSON.stringify(before?.[k]??null)!==JSON.stringify(after?.[k]??null)).map(k=>labels[k]);
+ if(changed.length)entry.append(make('div','activity-detail','Scheda: '+changed.join(', ')+'.'));
+ const details=make('div','activity-detail','Account: '+(a.actorUid||'non disponibile')+'\nProdotto: '+(a.productId||''));details.hidden=true;
+ const toggle=createButton('VEDI DETTAGLI',()=>{details.hidden=!details.hidden;toggle.textContent=details.hidden?'VEDI DETTAGLI':'NASCONDI DETTAGLI';});entry.append(toggle,details);return entry;
+}
 async function loadHistory(reset=true){
- if(currentRole!=="owner"||!auth.currentUser||historyLoading)return;
- const version=sessionVersion,list=$("historyList"),button=$("moreHistory");
- historyLoading=true;button.disabled=true;
- if(reset){historyCursor=null;list.textContent="Caricamento dello storico...";}
+ if(currentRole!=='owner'||!auth.currentUser||historyLoading)return;
+ const epoch=++historyEpoch,version=sessionVersion,kind=$('historyKind').value,list=$('historyList'),button=$('moreHistory');
+ const current=()=>epoch===historyEpoch&&version===sessionVersion&&currentRole==='owner';
+ historyLoading=true;button.disabled=true;$('historyKind').disabled=true;
+ if(reset){historyCursor=null;list.textContent='Caricamento dello storico…';}
  try{
-  const constraints=[orderBy("createdAt","desc"),limit(25)];
+  const constraints=[orderBy('createdAt','desc'),limit(25)];
   if(historyCursor&&!reset)constraints.splice(1,0,startAfter(historyCursor));
-  const results=await getDocs(query(collection(db,"auditLog"),...constraints));
-  if(version!==sessionVersion||currentRole!=="owner")return;
+  const results=await readWithDeadline(getDocsFromServer(query(collection(db,kind==='products'?'catalogEvents':kind==='legacy'?'catalogChanges':'auditLog'),...constraints)));
+  if(!current())return;
   if(reset)list.replaceChildren();
-  if(results.empty && !historyCursor){list.textContent="Nessuna modifica registrata dopo l'attivazione dello storico.";button.hidden=true;return;}
+  if(results.empty&&!historyCursor){list.textContent=kind==='products'?'Nessuna modifica ai prodotti pubblicata.':'Nessuna attività registrata.';button.hidden=true;return;}
   for(const d of results.docs){
-   const a=d.data(),entry=make("article","activity-entry");
-   entry.append(make("div","activity-title",ACTION_LABELS[a.action]||"OPERAZIONE"));
-   const time=a.createdAt?.toDate?.();
-   const when=time?new Intl.DateTimeFormat("it-IT",{dateStyle:"medium",timeStyle:"short"}).format(time):"DATA IN ELABORAZIONE";
-   entry.append(make("div","activity-meta",`${when} · ${a.actorName||"ACCOUNT GOOGLE"} · ${a.actorEmail||""}`));
-   entry.append(make("div","activity-detail",a.details||""));
-   if(a.before || a.after){
-    const toggle=createButton("VEDI DETTAGLI",()=>{details.hidden=!details.hidden;toggle.textContent=details.hidden?"VEDI DETTAGLI":"NASCONDI DETTAGLI";});
-    const details=make("div","activity-detail",`PRIMA: ${a.before||"—"}\nDOPO: ${a.after||"—"}`);details.hidden=true;
-    entry.append(toggle,details);
+   const a=d.data();if(kind==='products'||kind==='legacy'){
+    if(kind==='legacy'){list.append(productHistoryEntry(a));continue;}
+    if(['start','activate'].includes(a.action)){const entry=make('article','activity-entry');entry.append(make('div','activity-title',a.action==='start'?'Trasferimento iniziato':'Catalogo attivato'));const date=a.createdAt?.toDate?.();entry.append(make('div','activity-meta',date?new Intl.DateTimeFormat('it-IT',{dateStyle:'medium',timeStyle:'short'}).format(date):''));list.append(entry);continue;}
+    const entry=productHistoryEntry({...a,beforeDetails:a.before?.details,afterDetails:a.after?.details,beforePrice:a.before?.price||'',afterPrice:a.after?.price||'',beforeAvailable:a.before?.available??true,afterAvailable:a.after?.available??true,revision:a.after?.revision});
+    entry.append(make('div','activity-detail',a.action==='import'?'Trasferito dal menu esistente':a.action==='create'?'Nuovo prodotto':'Scheda aggiornata'));
+    for(const [key,label] of [['group','Categoria'],['position','Posizione'],['photo','Foto'],['beerSection','Sezione birre'],['abv','Gradazione'],['season','Stagione']])if(JSON.stringify(a.before?.[key])!==JSON.stringify(a.after?.[key]))entry.append(make('div','activity-detail',label+': aggiornata'));
+    list.append(entry);continue;
    }
+   const entry=make('article','activity-entry');entry.append(make('div','activity-title',ACTION_LABELS[a.action]||'OPERAZIONE'));
+   const time=a.createdAt?.toDate?.(),when=time?new Intl.DateTimeFormat('it-IT',{dateStyle:'medium',timeStyle:'short'}).format(time):'DATA IN ELABORAZIONE';
+   entry.append(make('div','activity-meta',`${when} · ${a.actorName||'ACCOUNT GOOGLE'} · ${a.actorEmail||''}`));entry.append(make('div','activity-detail',a.details||''));
+   if(a.before||a.after){const details=make('div','activity-detail',`PRIMA: ${a.before||'—'}\nDOPO: ${a.after||'—'}`);details.hidden=true;const toggle=createButton('VEDI DETTAGLI',()=>{details.hidden=!details.hidden;toggle.textContent=details.hidden?'VEDI DETTAGLI':'NASCONDI DETTAGLI';});entry.append(toggle,details);}
    list.append(entry);
   }
-  historyCursor=results.docs.at(-1)||null;
-  button.hidden=results.docs.length<25;
- }catch(e){
-  if(reset)list.textContent=roleError(e);else setOwnerNotice(roleError(e),"error");
- }finally{historyLoading=false;button.disabled=false;}
+  historyCursor=results.docs.at(-1)||null;button.hidden=results.docs.length<25;
+ }catch(e){if(current()){if(reset)list.textContent=e.code==='unavailable'?'Connessione non disponibile. Riprova quando torni online.':roleError(e);else setOwnerNotice(roleError(e),'error');}}
+ finally{if(current()){historyLoading=false;button.disabled=false;$('historyKind').disabled=false;}}
 }
-$("refreshHistory").addEventListener("click",()=>loadHistory(true));
-$("moreHistory").addEventListener("click",()=>loadHistory(false));
+$('historyKind').addEventListener('change',()=>loadHistory(true));
+$('refreshHistory').addEventListener('click',()=>loadHistory(true));
+$('moreHistory').addEventListener('click',()=>loadHistory(false));
+
 function memberSummary(role,status,p){return `RUOLO: ${ROLE_NAMES[role]||role}; STATO: ${status}; PERMESSI: ${permissionText(p)}`;}
 async function changeMember(item,changes,description){
  const before=item.data(),after={...before,...changes},current=auth.currentUser;
@@ -1326,7 +1494,6 @@ $('profileMenu').addEventListener('keydown',e=>{
 document.addEventListener('click',e=>{if(!$('profileMenu').contains(e.target)&&!$('profileTrigger').contains(e.target))closeProfileMenu();});
 document.addEventListener('focusin',e=>{if(!$('profileMenu').contains(e.target)&&!$('profileTrigger').contains(e.target))closeProfileMenu();});
 $('profileMenuLogout').addEventListener('click',()=>{
- if(editorDirty&&!$('catalogEditor').hidden&&!confirm('Uscire e scartare le modifiche non pubblicate?'))return;
  closeProfileMenu();$('logout').click();
 });
 $('profileMenuInstall').addEventListener('click',()=>{closeProfileMenu();$('installDialog').hidden=false;$('closeInstallDialog').focus();});
@@ -1409,7 +1576,7 @@ $("editProfileForm").addEventListener("submit",async e=>{
 
 async function checkRole(user,version){
  try{
-  const snapshot=await getDoc(doc(db,"members",user.uid));
+  const snapshot=await readWithDeadline(getDocFromServer(doc(db,"members",user.uid)));
   if(version!==sessionVersion||auth.currentUser?.uid!==user.uid)return;
   if(!snapshot.exists()){
    $("roleLabel").textContent="IN ATTESA DI APPROVAZIONE";
@@ -1457,7 +1624,7 @@ onAuthStateChanged(auth,async user=>{
  $("registerDob").max=new Date().toISOString().slice(0,10);
  $("editDob").max=$("registerDob").max;
  try{
-  const p=await getDoc(doc(db,"profiles",user.uid));
+  const p=await readWithDeadline(getDocFromServer(doc(db,"profiles",user.uid)));
   if(version!==sessionVersion)return;
   if(!p.exists()){
    $("roleLabel").textContent="PROFILO DA COMPLETARE";
@@ -1481,7 +1648,7 @@ getRedirectResult(auth).catch(e=>{const box=$("loginError");box.className="messa
 
 // Apply an app update only outside all editing screens and pending saves.
 window.TBSManagerUpdates?.setCanRefresh(() => {
- if (themeDirty || themeSaving || themeLoading || editorDirty || catalogBusy || busy || historyLoading || !$('profileMenu').hidden || !$('installDialog').hidden || !$('catalogEditor').hidden || !$('profileOverlay').hidden || !$('onboarding').hidden) return false;
+ if (themeDirty || themeSaving || themeLoading || editorDirty || catalogBusy || catalogLoading || busy || historyLoading || !$('profileMenu').hidden || !$('installDialog').hidden || !$('catalogEditor').hidden || !$('profileOverlay').hidden || !$('onboarding').hidden) return false;
  if (['login','catalogSave','registerSave','saveProfileChanges'].some(id => $(id).disabled)) return false;
  if (document.activeElement?.matches('input,textarea,select,[contenteditable="true"]')) return false;
  return $('signedOut').classList.contains('show') || (!!currentRole && managerView === 'home');
