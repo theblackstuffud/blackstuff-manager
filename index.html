@@ -390,6 +390,34 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 @media(hover:hover){.workspace-action:hover{filter:brightness(1.05)}.public-menu-link:hover{border-color:var(--accent-border)}}
 @media(min-width:640px){.home-intro{padding:56px 0 32px}.menu-workspace{padding:34px}.workspace-action{max-width:340px}}
 @media(max-width:390px){.brand-title h1{font-size:18px}.home-intro{padding-top:37px}.menu-workspace{padding:25px}.public-menu-link{padding:18px}.profile-menu{width:min(310px,calc(100vw - 40px))}}
+#appearancePanel{display:none}
+body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel{display:block}
+.theme-intro{padding:30px 0 22px}
+#appearanceHeading{font-size:30px;letter-spacing:-.04em;margin:0 0 12px}
+.theme-intro p{color:var(--muted);font-size:15px;line-height:1.6;margin:0}
+#themeOptions{border:0;padding:0;margin:0;min-width:0}
+#themeOptions legend{font-size:11px;font-weight:600;letter-spacing:.07em;color:var(--muted);padding:0;margin:0 0 15px}
+.theme-options{border:1px solid var(--border);border-radius:20px;background:var(--card);overflow:hidden}
+.theme-choice{position:relative;display:flex;gap:14px;align-items:center;margin:0;padding:19px 17px;min-height:80px;cursor:pointer}
+.theme-choice+.theme-choice:before{content:"";position:absolute;left:74px;right:17px;top:0;height:1px;background:var(--border)}
+.theme-choice:has(input:checked){background:var(--accent-soft)}
+.theme-choice:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:-3px;border-radius:12px}
+.theme-swatch{width:42px;height:42px;display:grid;place-items:center;flex:0 0 42px;border-radius:12px;background:#133e29;color:#d7bb7b}
+.theme-swatch svg{width:25px;height:25px;opacity:.8}
+.theme-swatch[data-swatch="halloween"]{background:#74422a;color:#e6c68d}
+.theme-swatch[data-swatch="christmas"]{background:#652b33;color:#e2c38b}
+.theme-label{display:grid;gap:5px;flex:1;min-width:0}
+.theme-label strong{font-size:16px;font-weight:600;color:var(--text)}
+.theme-label small{font-size:12px;color:var(--muted);line-height:1.4}
+.theme-choice input{width:20px;height:20px;flex:0 0 20px;margin:0;accent-color:var(--action)}
+#themeOptions:disabled .theme-choice{cursor:default}
+.theme-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:22px}
+.theme-actions .button{flex:1;min-width:180px}
+#themeActive{font-size:12px;color:var(--muted);margin:18px 0 0;min-height:18px}
+.theme-note{font-size:12px;color:var(--muted);line-height:1.6;margin:17px 0}
+.theme-link{display:inline-block;color:var(--accent);font-size:13px;padding:12px 0;text-underline-offset:3px}
+@media(max-width:360px){.theme-choice{padding:17px 13px;gap:10px}.theme-label small{font-size:11px}.theme-actions .button{min-width:100%}}
+
 </style>
 </head>
 <body>
@@ -406,6 +434,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="profile">Il mio profilo <span aria-hidden="true">→</span></button>
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="account">Il mio accesso <span aria-hidden="true">→</span></button>
     <div class="profile-menu-divider" role="separator" data-owner-only hidden></div>
+    <button type="button" role="menuitem" tabindex="-1" data-manager-go="appearance" data-owner-only hidden>Aspetto del menu <span aria-hidden="true">→</span></button>
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="members" data-owner-only hidden>Utenti e permessi <span aria-hidden="true">→</span></button>
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="requests" data-owner-only hidden>Richieste di accesso <span aria-hidden="true">→</span></button>
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="history" data-owner-only hidden>Storico attività <span aria-hidden="true">→</span></button>
@@ -513,6 +542,20 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   </div><div id="ownerNotice" role="status" aria-live="polite"></div>
   <p class="mini">Il ruolo Proprietario non può essere modificato da questa interfaccia. Ogni modifica alle autorizzazioni verrà registrata nello storico.</p>
 </section>
+<section id="appearancePanel" aria-labelledby="appearanceHeading">
+<div class="theme-intro"><h2 id="appearanceHeading">Aspetto del menu</h2><p>Un’atmosfera per ogni stagione.<br>Scegli quella che vedranno i tuoi clienti.</p></div>
+<form id="themeForm">
+<fieldset id="themeOptions" disabled><legend>SCEGLI UN TEMA</legend><div class="theme-options"><label class="theme-choice"><span class="theme-swatch" data-swatch="winter"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -16 30 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path transform="rotate(0)" d="M0 0V-12M0-6l-3-3m3 3 3-3M0-10l-2-2m2 2 2-2"/><path transform="rotate(60)" d="M0 0V-12M0-6l-3-3m3 3 3-3M0-10l-2-2m2 2 2-2"/><path transform="rotate(120)" d="M0 0V-12M0-6l-3-3m3 3 3-3M0-10l-2-2m2 2 2-2"/><path transform="rotate(180)" d="M0 0V-12M0-6l-3-3m3 3 3-3M0-10l-2-2m2 2 2-2"/><path transform="rotate(240)" d="M0 0V-12M0-6l-3-3m3 3 3-3M0-10l-2-2m2 2 2-2"/><path transform="rotate(300)" d="M0 0V-12M0-6l-3-3m3 3 3-3M0-10l-2-2m2 2 2-2"/></g></svg></span><span class="theme-label"><strong>Inverno</strong><small>Verde · Fiocchi di neve</small></span><input type="radio" name="menuTheme" value="winter" checked></label>
+<label class="theme-choice"><span class="theme-swatch" data-swatch="spring"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -16 30 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.2"><ellipse cx="0" cy="-6" rx="3.2" ry="5.4" transform="rotate(0.0)"/><ellipse cx="0" cy="-6" rx="3.2" ry="5.4" transform="rotate(45.0)"/><ellipse cx="0" cy="-6" rx="3.2" ry="5.4" transform="rotate(90.0)"/><ellipse cx="0" cy="-6" rx="3.2" ry="5.4" transform="rotate(135.0)"/><ellipse cx="0" cy="-6" rx="3.2" ry="5.4" transform="rotate(180.0)"/><ellipse cx="0" cy="-6" rx="3.2" ry="5.4" transform="rotate(225.0)"/><ellipse cx="0" cy="-6" rx="3.2" ry="5.4" transform="rotate(270.0)"/><ellipse cx="0" cy="-6" rx="3.2" ry="5.4" transform="rotate(315.0)"/><circle r="2.2"/></g></svg></span><span class="theme-label"><strong>Primavera</strong><small>Verde · Fiori assortiti</small></span><input type="radio" name="menuTheme" value="spring"></label>
+<label class="theme-choice"><span class="theme-swatch" data-swatch="summer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -16 30 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><circle r="4.6"/><path d="M 7.00 0.00 L 11.00 0.00"/><path d="M 4.95 4.95 L 7.78 7.78"/><path d="M 0.00 7.00 L 0.00 11.00"/><path d="M -4.95 4.95 L -7.78 7.78"/><path d="M -7.00 0.00 L -11.00 0.00"/><path d="M -4.95 -4.95 L -7.78 -7.78"/><path d="M -0.00 -7.00 L -0.00 -11.00"/><path d="M 4.95 -4.95 L 7.78 -7.78"/></g></svg></span><span class="theme-label"><strong>Estate</strong><small>Verde · Piccoli soli</small></span><input type="radio" name="menuTheme" value="summer"></label>
+<label class="theme-choice"><span class="theme-swatch" data-swatch="halloween"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -16 30 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M0-8C-4-12-11-7-11 0c0 8 7 11 11 9 4 2 11-1 11-9 0-7-7-12-11-8Z"/><path d="M0-8q-1-5 3-6"/><path d="M-6-1l2-3 2 3zm8 0 2-3 2 3z" fill="currentColor" stroke="none"/><path d="M-5 4q5 5 10 0"/></g></svg></span><span class="theme-label"><strong>Halloween</strong><small>Arancio bruciato · Zucche</small></span><input type="radio" name="menuTheme" value="halloween"></label>
+<label class="theme-choice"><span class="theme-swatch" data-swatch="christmas"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -16 30 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path transform="rotate(0)" d="M0 0V-12M0-6l-3-3m3 3 3-3M0-10l-2-2m2 2 2-2"/><path transform="rotate(60)" d="M0 0V-12M0-6l-3-3m3 3 3-3M0-10l-2-2m2 2 2-2"/><path transform="rotate(120)" d="M0 0V-12M0-6l-3-3m3 3 3-3M0-10l-2-2m2 2 2-2"/><path transform="rotate(180)" d="M0 0V-12M0-6l-3-3m3 3 3-3M0-10l-2-2m2 2 2-2"/><path transform="rotate(240)" d="M0 0V-12M0-6l-3-3m3 3 3-3M0-10l-2-2m2 2 2-2"/><path transform="rotate(300)" d="M0 0V-12M0-6l-3-3m3 3 3-3M0-10l-2-2m2 2 2-2"/></g></svg></span><span class="theme-label"><strong>Natale</strong><small>Bordeaux · Neve sui pulsanti</small></span><input type="radio" name="menuTheme" value="christmas"></label></div></fieldset>
+<p id="themeActive"></p>
+<div class="theme-actions"><button type="submit" id="themePublish" class="button" disabled>Pubblica tema</button><button type="button" id="themeReload" class="small-action">Ricarica tema</button></div>
+<div id="themeStatus" role="status" aria-live="polite"></div>
+<p class="theme-note">Si applica un tema alla volta. Prodotti, prezzi e proposte stagionali restano quelli del tuo menu.</p>
+<a class="theme-link" href="https://theblackstuffud.github.io/blackstuff-menu/" target="_blank" rel="noopener">Apri il menu pubblico ↗</a>
+</form></section>
 <section class="card" id="historyPanel" hidden>
   <div class="eyebrow">03 · AREA PROPRIETARIO</div>
   <h2>STORICO ATTIVITÀ</h2>
@@ -520,7 +563,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   <div class="history-actions"><span class="muted-heading">REGISTRO CRONOLOGICO</span><button type="button" class="small-action" id="refreshHistory">AGGIORNA</button></div>
   <div id="historyList" aria-live="polite" class="hint">Caricamento dello storico...</div>
   <button type="button" class="button secondary compact" id="moreHistory" hidden>CARICA ALTRE ATTIVITÀ</button>
-  <p class="mini">Questa versione registra profili e gestione accessi. Le modifiche a prodotti, prezzi e ingredienti saranno incluse quando attiveremo il catalogo condiviso. Lo storico non registra né espone date di nascita o fotografie.</p>
+  <p class="mini">Qui trovi le modifiche ai profili, agli accessi e al tema del menu. Le modifiche ai prodotti sono registrate nella cronologia di ciascuna scheda. Lo storico non registra né espone date di nascita o fotografie.</p>
 </section>
 <section class="card" id="roadmap" hidden>
   <div class="eyebrow">04 · IL GESTIONALE</div>
@@ -589,7 +632,7 @@ const firebaseConfig={
  messagingSenderId:"879941411379",
  appId:"1:879941411379:web:18e94817206c119598f946"
 };
-import {getFirestore,doc,getDoc,collection,getDocs,writeBatch,serverTimestamp,query,orderBy,limit,startAfter,runTransaction} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import {getFirestore,doc,getDoc,getDocFromServer,collection,getDocs,writeBatch,serverTimestamp,query,orderBy,limit,startAfter,runTransaction} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
 const auth=getAuth(app);
@@ -617,12 +660,12 @@ loginBtn.addEventListener("click",async()=>{
   }
  }finally{loginBtn.disabled=false}
 });
-$("logout").addEventListener("click",()=>signOut(auth));
+$("logout").addEventListener("click",()=>{if(themeSaving){themeMessage('Attendi il completamento della pubblicazione.');return;}if(themeDirty&&!confirm('Uscire e scartare la scelta del tema non pubblicata?'))return;signOut(auth);});
 const ROLE_NAMES={owner:"PROPRIETARIO",admin:"AMMINISTRATORE",collaborator:"COLLABORATORE"};
 const REQUEST_NAMES={pending:"IN ATTESA",approved:"APPROVATA",rejected:"RIFIUTATA"};
 const PERMISSION_LABELS={products:"PRODOTTI",prices:"PREZZI",availability:"DISPONIBILITÀ",ingredients:"INGREDIENTI E FILTRI",photos:"FOTOGRAFIE",translations:"TRADUZIONI",statistics:"STATISTICHE"};
 const PERMISSION_KEYS=Object.keys(PERMISSION_LABELS);
-const ACTION_LABELS={profile_created:"CREAZIONE PROFILO",profile_updated:"MODIFICA PROFILO",access_requested:"RICHIESTA DI ACCESSO",access_approved:"ACCESSO APPROVATO",access_rejected:"RICHIESTA RIFIUTATA",member_updated:"MODIFICA AUTORIZZAZIONI"};
+const ACTION_LABELS={profile_created:"CREAZIONE PROFILO",profile_updated:"MODIFICA PROFILO",access_requested:"RICHIESTA DI ACCESSO",access_approved:"ACCESSO APPROVATO",access_rejected:"RICHIESTA RIFIUTATA",member_updated:"MODIFICA AUTORIZZAZIONI",menu_theme_updated:"TEMA DEL MENU"};
 function defaultPermissions(role){return Object.fromEntries(PERMISSION_KEYS.map(k=>[k,role==="admin"||(role==="collaborator"&&k==="availability")]));}
 function normalizePermissions(p){return Object.fromEntries(PERMISSION_KEYS.map(k=>[k,p?.[k]===true]));}
 function permissionText(p){return PERMISSION_KEYS.filter(k=>p?.[k]===true).map(k=>PERMISSION_LABELS[k]).join(", ")||"NESSUN PERMESSO OPERATIVO";}
@@ -850,11 +893,74 @@ $('catalogEditor').addEventListener('submit',async event=>{
  finally{catalogBusy=false;editable.forEach(([el,disabled])=>el.disabled=disabled);$('catalogSave').disabled=false;$('catalogCancel').disabled=false;$('catalogReload').disabled=false;renderCatalog();}
 });
 
-const MANAGER_VIEWS={home:'Home',catalog:'Modifica menu',wallet:'Portafoglio IA',account:'Il mio accesso',members:'Utenti e permessi',requests:'Richieste di accesso',history:'Storico attività'};
+const MENU_THEMES={winter:{name:'Inverno',description:'Verde · Fiocchi di neve'},spring:{name:'Primavera',description:'Verde · Fiori assortiti'},summer:{name:'Estate',description:'Verde · Piccoli soli'},halloween:{name:'Halloween',description:'Arancio bruciato · Zucche'},christmas:{name:'Natale',description:'Bordeaux · Neve sui pulsanti'}};
+let themeEpoch=0,themeLoaded=false,themeLoading=false,themeSaving=false,themeDirty=false,themeRevision=0,themePublished='winter';
+function validThemeDocument(data){return data&&data.version===1&&Object.hasOwn(MENU_THEMES,data.theme)&&Number.isSafeInteger(data.revision)&&data.revision>0&&typeof data.lastAuditId==='string'&&data.lastAuditId.length>0;}
+function selectedTheme(){return $('themeForm').querySelector('input[name="menuTheme"]:checked')?.value||'winter';}
+function themeMessage(message,error=false){$('themeStatus').textContent=message;$('themeStatus').className=message?(error?'message error':'message'):'';}
+function updateThemeControls(){
+ const disabled=currentRole!=='owner'||!themeLoaded||themeLoading||themeSaving;
+ $('themeOptions').disabled=disabled;
+ $('themePublish').disabled=disabled||!themeDirty;
+ $('themeReload').disabled=themeLoading||themeSaving;
+ $('themePublish').textContent=themeSaving?'Pubblicazione…':'Pubblica tema';
+ $('themeActive').textContent=themeLoaded?'Tema attivo: '+MENU_THEMES[themePublished].name+(themeRevision===0?' · predefinito':''):'';
+}
+function resetThemePanel(){
+ themeEpoch++;themeLoaded=false;themeLoading=false;themeSaving=false;themeDirty=false;themeRevision=0;themePublished='winter';
+ $('themeForm').querySelector('[value="winter"]').checked=true;themeMessage('');updateThemeControls();
+}
+async function loadMenuTheme(){
+ if(currentRole!=='owner'||themeSaving||themeLoading)return;
+ if(themeDirty&&!confirm('Scartare la scelta non pubblicata e ricaricare il tema?'))return;
+ const epoch=++themeEpoch,uid=auth.currentUser?.uid;
+ themeLoaded=false;themeLoading=true;themeDirty=false;updateThemeControls();themeMessage('Caricamento del tema attivo…');
+ try{
+  const snapshot=await getDocFromServer(doc(db,'menuSettings','appearance'));
+  if(epoch!==themeEpoch||auth.currentUser?.uid!==uid||currentRole!=='owner')return;
+  if(snapshot.exists()&&!validThemeDocument(snapshot.data()))throw Error('Impostazione del tema non riconosciuta. Nessun dato è stato modificato.');
+  themePublished=snapshot.exists()?snapshot.data().theme:'winter';themeRevision=snapshot.exists()?snapshot.data().revision:0;
+  $('themeForm').querySelector('[value="'+themePublished+'"]').checked=true;themeLoaded=true;
+  themeMessage('Scegli un tema e premi “Pubblica tema” per applicarlo al menu dei clienti.');
+ }catch(error){
+  if(epoch===themeEpoch)themeMessage(error.code==='permission-denied'?'Installa le Regole Firebase per i temi, poi premi “Ricarica tema”.':(error.code==='unavailable'?'Connessione non disponibile. Riprova quando torni online.':error.message||'Caricamento non riuscito.'),true);
+ }finally{if(epoch===themeEpoch){themeLoading=false;updateThemeControls();}}
+}
+$('themeForm').addEventListener('change',()=>{
+ themeDirty=selectedTheme()!==themePublished;updateThemeControls();
+ themeMessage(themeDirty?'Scelta: '+MENU_THEMES[selectedTheme()].name+'. Il menu cambia solo quando premi “Pubblica tema”.':'Il tema selezionato è già attivo.');
+});
+$('themeReload').addEventListener('click',loadMenuTheme);
+$('themeForm').addEventListener('submit',async event=>{
+ event.preventDefault();if(currentRole!=='owner'||!themeLoaded||themeLoading||themeSaving||!themeDirty)return;
+ const theme=selectedTheme(),expectedRevision=themeRevision,expectedTheme=themePublished,epoch=themeEpoch,uid=auth.currentUser?.uid;
+ if(!uid||!Object.hasOwn(MENU_THEMES,theme))return;
+ themeSaving=true;updateThemeControls();themeMessage('Pubblicazione del tema…');
+ try{
+  const ref=doc(db,'menuSettings','appearance');
+  const audit=auditEvent('menu_theme_updated','menu-settings','appearance','Tema grafico del menu: '+MENU_THEMES[theme].name+'.',MENU_THEMES[expectedTheme].name,MENU_THEMES[theme].name);
+  await runTransaction(db,async tx=>{
+   const before=await tx.get(ref),data=before.exists()?before.data():null;
+   if(data&&!validThemeDocument(data))throw Error('Impostazione non riconosciuta. Nessun dato modificato.');
+   if((data?.revision||0)!==expectedRevision||(data?.theme||'winter')!==expectedTheme)throw Error('Il tema è cambiato da un’altra sessione. Premi “Ricarica tema” prima di pubblicare.');
+   tx.set(ref,{version:1,theme,revision:expectedRevision+1,updatedAt:serverTimestamp(),lastAuditId:audit.ref.id});
+   tx.set(audit.ref,audit.data);
+  });
+  if(epoch!==themeEpoch||auth.currentUser?.uid!==uid||currentRole!=='owner')return;
+  themePublished=theme;themeRevision=expectedRevision+1;themeDirty=false;
+  themeMessage('Tema '+MENU_THEMES[theme].name+' pubblicato. Apri il menu pubblico per verificarlo.');
+ }catch(error){
+  if(epoch===themeEpoch)themeMessage(error.code==='permission-denied'?'Pubblicazione negata: controlla le Regole Firebase per i temi e il ruolo proprietario.':error.message||'Pubblicazione non riuscita. Riprova.',true);
+ }finally{if(epoch===themeEpoch){themeSaving=false;updateThemeControls();}}
+});
+window.addEventListener('beforeunload',event=>{if(themeDirty||themeSaving){event.preventDefault();event.returnValue='';}});
+
+const MANAGER_VIEWS={home:'Home',catalog:'Modifica menu',appearance:'Aspetto del menu',wallet:'Portafoglio IA',account:'Il mio accesso',members:'Utenti e permessi',requests:'Richieste di accesso',history:'Storico attività'};
 let managerView='home';
 function showManagerView(view, push=false, focus=true){
+ if(managerView==='appearance'&&view!=='appearance'){if(themeSaving){themeMessage('Attendi il completamento della pubblicazione.');return;}if(themeDirty){if(!confirm('Scartare la scelta del tema non pubblicata?'))return;themeDirty=false;}}
  if(currentRole&&managerView==='catalog'&&view!=='catalog'&&editorDirty&&!$('catalogEditor').hidden){if(!confirm('Scartare le modifiche non pubblicate?'))return;editorDirty=false;$('catalogEditor').hidden=true;}
- if(!currentRole || !MANAGER_VIEWS[view] || (['members','requests','history','wallet'].includes(view)&&currentRole!=='owner'))view='home';
+ if(!currentRole || !MANAGER_VIEWS[view] || (['members','requests','history','wallet','appearance'].includes(view)&&currentRole!=='owner'))view='home';
  managerView=view;
  document.body.dataset.managerView=view;
  document.body.dataset.managerReady=String(!!currentRole);
@@ -868,10 +974,11 @@ function showManagerView(view, push=false, focus=true){
   if(view==='members')loadMembers();
   if(view==='requests')loadRequests();
   if(view==='history')loadHistory(true);
+  if(view==='appearance')loadMenuTheme();
  }
  if(focus){
   window.scrollTo({top:0,behavior:'instant'});
-  const heading=view==='catalog'?$('catalogHeading'):view==='wallet'?$('walletHeading'):view==='home'?$('managerHomeTitle'):view==='account'?$('signedIn').querySelector('h2'):view==='history'?$('historyPanel').querySelector('h2'):$('ownerSectionTitle');
+  const heading=view==='appearance'?$('appearanceHeading'):view==='catalog'?$('catalogHeading'):view==='wallet'?$('walletHeading'):view==='home'?$('managerHomeTitle'):view==='account'?$('signedIn').querySelector('h2'):view==='history'?$('historyPanel').querySelector('h2'):$('ownerSectionTitle');
   heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true});
  }
 }
@@ -903,6 +1010,7 @@ function setOwnerNotice(message,kind=""){
  const n=$("ownerNotice");n.textContent=message;n.className=message?"message "+kind:"";
 }
 function clearDash(){
+ resetThemePanel();
  closeProfileMenu();$("installDialog").hidden=true;document.querySelectorAll('[data-owner-only]').forEach(el=>{el.hidden=true;});
  editorDirty=false;catalogEpoch++;catalogItems=[];catalogSelected=null;$("catalogEditor").hidden=true;$("catalogList").replaceChildren();
  document.body.dataset.managerReady="false";document.body.dataset.managerView="home";managerView="home";
@@ -1373,7 +1481,7 @@ getRedirectResult(auth).catch(e=>{const box=$("loginError");box.className="messa
 
 // Apply an app update only outside all editing screens and pending saves.
 window.TBSManagerUpdates?.setCanRefresh(() => {
- if (editorDirty || catalogBusy || busy || historyLoading || !$('profileMenu').hidden || !$('installDialog').hidden || !$('catalogEditor').hidden || !$('profileOverlay').hidden || !$('onboarding').hidden) return false;
+ if (themeDirty || themeSaving || themeLoading || editorDirty || catalogBusy || busy || historyLoading || !$('profileMenu').hidden || !$('installDialog').hidden || !$('catalogEditor').hidden || !$('profileOverlay').hidden || !$('onboarding').hidden) return false;
  if (['login','catalogSave','registerSave','saveProfileChanges'].some(id => $(id).disabled)) return false;
  if (document.activeElement?.matches('input,textarea,select,[contenteditable="true"]')) return false;
  return $('signedOut').classList.contains('show') || (!!currentRole && managerView === 'home');
