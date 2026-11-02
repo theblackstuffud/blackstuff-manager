@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it" data-privacy-app="manager">
 <head>
-<meta name="tbs-release" content="2026-11-02-cucina-push-v1">
+<meta name="tbs-release" content="2026-11-02-cucina-accesso-v2">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
@@ -536,7 +536,7 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
   <a class="public-menu-link" href="https://theblackstuffud.github.io/blackstuff-menu/?tbs_stats=off" target="_blank" rel="noopener noreferrer"><span class="public-menu-copy">Anteprima menu<small>Come lo vedono i clienti</small></span><span aria-hidden="true">↗</span></a>
 </section>
 <nav id="managerNav" aria-label="Navigazione gestionale"><button type="button" class="small-action" id="managerBack">← Home</button><span id="managerSectionTitle"></span></nav>
-<section id="kitchenPanel" class="panel" aria-labelledby="kHeading"><div class="k-toolbar"><h2 id="kHeading" tabindex="-1">Cucina</h2><div><button type="button" class="small-action" id="kOpenNotifications" aria-label="Notifiche cucina">Notifiche <span data-k-count class="k-alert-count">0</span></button><button type="button" class="small-action" id="kEdit" data-owner-only>Modifica</button></div></div><div id="kMessage" class="message" role="status" aria-live="polite"></div><div id="kBody"></div></section><dialog id="kMessageDialog" aria-labelledby="kMessageTitle"><h2 id="kMessageTitle">Messaggio da copiare</h2><p>Puoi correggere il testo. Le modifiche qui non cambiano la lista salvata.</p><textarea id="kMessageText" aria-label="Messaggio modificabile"></textarea><button type="button" class="button" id="kCopyMessage">Copia messaggio</button><button type="button" class="small-action" id="kCloseMessage">Chiudi</button><p id="kCopyStatus" role="status"></p></dialog>
+<section id="kitchenPanel" class="panel" aria-labelledby="kHeading"><div class="k-toolbar"><h2 id="kHeading" tabindex="-1">Cucina</h2><div><button type="button" class="small-action" id="kOpenNotifications" aria-label="Notifiche cucina">Notifiche <span data-k-count class="k-alert-count">0</span></button><button type="button" class="small-action" id="kRetry">Riprova</button><button type="button" class="small-action" id="kEdit" data-owner-only>Modifica</button></div></div><div id="kMessage" class="message" role="status" aria-live="polite"></div><div id="kBody"></div></section><dialog id="kMessageDialog" aria-labelledby="kMessageTitle"><h2 id="kMessageTitle">Messaggio da copiare</h2><p>Puoi correggere il testo. Le modifiche qui non cambiano la lista salvata.</p><textarea id="kMessageText" aria-label="Messaggio modificabile"></textarea><button type="button" class="button" id="kCopyMessage">Copia messaggio</button><button type="button" class="small-action" id="kCloseMessage">Chiudi</button><p id="kCopyStatus" role="status"></p></dialog>
 <dialog id="kPushConsent" aria-labelledby="kPushConsentTitle"><h2 id="kPushConsentTitle">Notifiche della cucina</h2><p>Ricevi un avviso quando un collega aggiorna giacenze, riordini o preparazioni. Puoi scegliere categorie e orari. Dopo Continua il dispositivo chiederà il permesso ufficiale.</p><button type="button" class="small-action" id="kPushCancel">Non ora</button><button type="button" class="button" id="kPushContinue">Continua</button></dialog>
 <section id="catalogPanel" class="panel" aria-labelledby="catalogHeading">
 <h2 id="catalogHeading" tabindex="-1">Modifica menu</h2>
@@ -2211,7 +2211,7 @@ function kitchenReset(){
  for(const off of k.off||[])off();
  if($('kMessageDialog')?.open)$('kMessageDialog').close();
  if($('kMessageText'))$('kMessageText').value='';
- k={off:[],epoch:(k.epoch||0)+1,ready:false,allowed:false,busy:false,page:'home',items:new Map(),suppliers:new Map(),stock:new Map(),orders:new Map(),tasks:new Map(),events:[],draft:new Map(),orderDraft:new Map(),messageDraft:new Map(),prefs:{stock:true,orders:true,tasks:true,clean:true,readIds:[],muted:false,quietStart:'02:00',quietEnd:'10:00'},pending:new Set(),formDirty:false};
+ k={off:[],epoch:(k.epoch||0)+1,accessState:'idle',accessError:'',failures:new Map(),ready:false,allowed:false,busy:false,page:'home',items:new Map(),suppliers:new Map(),stock:new Map(),orders:new Map(),tasks:new Map(),events:[],draft:new Map(),orderDraft:new Map(),messageDraft:new Map(),prefs:{stock:true,orders:true,tasks:true,clean:true,readIds:[],muted:false,quietStart:'02:00',quietEnd:'10:00'},pending:new Set(),formDirty:false};
  if($('kBody'))$('kBody').replaceChildren();kBadge();
 }
 kitchenReset();
@@ -2219,23 +2219,46 @@ const ke=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&g
 const kNum=n=>Number(n).toLocaleString('it-IT',{maximumFractionDigits:3});
 const kTime=t=>t?.toDate?new Intl.DateTimeFormat('it-IT',{dateStyle:'short',timeStyle:'short',timeZone:'Europe/Rome'}).format(t.toDate()):'In attesa di conferma';
 function kButton(text,action,cls='small-action'){return `<button type="button" class="${cls}" data-k="${ke(action)}" ${k.busy?'disabled':''}>${ke(text)}</button>`;}
-function kError(error){return error?.code==='permission-denied'?'Cucina non autorizzata: verifica accesso personale e blocco aggiuntivo delle regole Firebase.':error?.message||'Operazione non riuscita. Riprova.';}
+function kError(error){return error?.code==='permission-denied'?'La richiesta è stata negata dalle regole Firebase.':error?.code==='unavailable'?'Connessione a Firebase non disponibile. Controlla la rete e riprova.':error?.message||'Operazione non riuscita. Riprova.';}
 function kNotice(text,error=false){$('kMessage').textContent=text;$('kMessage').className='message'+(error?' error':'');}
 function kitchenUnsaved(){return k.busy||k.draft.size>0||k.orderDraft.size>0||k.formDirty||k.messageDraft.size>0;}
 function kitchenMayLeave(){if(k.busy){kNotice('Attendi la conferma del salvataggio.');return false;}if(k.formDirty){if(!confirm('Scartare la scheda non salvata e cambiare sezione?'))return false;k.formDirty=false;k.page='home';}return !kitchenUnsaved()||confirm('I controlli e le quantità non salvati restano aperti in questa sessione. Vuoi cambiare sezione?');}
 function kUnread(){return k.events.filter(e=>e.notify&&e.actorUid!==auth.currentUser?.uid&&k.prefs[e.kind]!==false&&!k.prefs.readIds.includes(e.id));}
-function kBadge(){const n=k.ready?kUnread().length:0;for(const el of document.querySelectorAll('[data-k-count]'))el.textContent=String(n);$('kHomeButton').hidden=!k.allowed&&currentRole!=='owner';}
+function kBadge(){const n=k.ready?kUnread().length:0;for(const el of document.querySelectorAll('[data-k-count]'))el.textContent=String(n);$('kHomeButton').hidden=!currentRole;}
+function kitchenAccessStopped(message,state='denied'){
+ kitchenReset();k.accessState=state;k.accessError=message;
+ kNotice(message,true);kBadge();if(managerView==='kitchen')kRender();
+}
 async function kitchenStart(){
  kitchenReset();const epoch=k.epoch,uid=auth.currentUser?.uid;if(!uid||!currentRole)return;
  const live=()=>epoch===k.epoch&&auth.currentUser?.uid===uid;
+ k.accessState='checking';kNotice('Verifica accesso e collegamento ai dati cucina…');if(managerView==='kitchen')kRender();
+ let stage='profilo del personale';
  try{
-  const permission=await getDocFromServer(doc(db,'kitchenAccess',uid));if(!live())return;
-  k.allowed=currentRole==='owner'||permission.data()?.operate===true;kBadge();
-  if(!k.allowed){if(managerView==='kitchen')kRender();return;}
-  // Listener del proprio profilo: revoca e sospensione fermano le letture cucina.
-  k.off.push(onSnapshot(doc(db,'members',uid),s=>{if(live()&&(!s.exists()||s.data().status!=='active'||s.data().role!==currentRole)){kitchenReset();kNotice('Accesso cambiato. Accedi di nuovo.',true);}},()=>{if(live())kitchenReset();}));
-  k.off.push(onSnapshot(doc(db,'kitchenAccess',uid),s=>{if(live()&&currentRole!=='owner'&&s.data()?.operate!==true){kitchenReset();kNotice('Accesso alla cucina revocato.',true);}},()=>{if(live())kitchenReset();}));
+  const member=await readWithDeadline(getDocFromServer(doc(db,'members',uid)));if(!live())return;
+  if(!member.exists()||member.data().status!=='active'||!['owner','admin','collaborator'].includes(member.data().role)){
+   kitchenAccessStopped('Il tuo account non dispone di un accesso attivo al gestionale. Contatta la proprietaria.');return;
+  }
+  if(member.data().role!==currentRole){kitchenAccessStopped('Il tuo ruolo è cambiato. Esci dal gestionale e accedi di nuovo.');return;}
+  // The owner already has kitchen authority through members. No kitchenAccess record is required.
+  if(member.data().role==='owner')k.allowed=true;
+  else{
+   stage='autorizzazione cucina';const permission=await readWithDeadline(getDocFromServer(doc(db,'kitchenAccess',uid)));if(!live())return;
+   k.allowed=permission.exists()&&permission.data().operate===true;
+   if(!k.allowed){k.accessState='denied';k.accessError='Accesso cucina non ancora abilitato per questo account. La proprietaria può abilitarlo da Cucina → Modifica → Accessi.';kNotice(k.accessError,true);kBadge();kRender();return;}
+  }
+  k.accessState='loading';kBadge();
+  // Only confirmed server snapshots can revoke a session. Empty cache snapshots are not authority.
+  k.off.push(onSnapshot(doc(db,'members',uid),{includeMetadataChanges:true},s=>{
+   if(!live()||s.metadata.fromCache||s.metadata.hasPendingWrites)return;
+   if(!s.exists()||s.data().status!=='active'||s.data().role!==currentRole)kitchenAccessStopped('Accesso o ruolo cambiato. Esci dal gestionale e accedi di nuovo.');
+  },error=>{if(live())kitchenAccessStopped('Non riesco a verificare il profilo del personale. '+kError(error),'error');}));
+  if(currentRole!=='owner')k.off.push(onSnapshot(doc(db,'kitchenAccess',uid),{includeMetadataChanges:true},s=>{
+   if(!live()||s.metadata.fromCache||s.metadata.hasPendingWrites)return;
+   if(!s.exists()||s.data().operate!==true)kitchenAccessStopped('L’accesso alla cucina è stato revocato. Contatta la proprietaria.');
+  },error=>{if(live())kitchenAccessStopped('Non riesco a verificare l’autorizzazione cucina. '+kError(error),'error');}));
   const names={kitchenItems:'items',kitchenSuppliers:'suppliers',kitchenStock:'stock',kitchenOrders:'orders',kitchenTasks:'tasks',kitchenEvents:'events',kitchenPreferences:'prefs'};
+  const labels={items:'articoli',suppliers:'fornitori',stock:'giacenze',orders:'riordini',tasks:'attività',events:'notifiche interne',prefs:'preferenze personali'};
   k.pending=new Set(Object.values(names));
   for(const [col,key] of Object.entries(names)){
    const ref=key==='prefs'?doc(db,col,uid):key==='events'?query(collection(db,col),orderBy('createdAt','desc'),limit(100)):collection(db,col);
@@ -2244,13 +2267,23 @@ async function kitchenStart(){
     if(key==='prefs')k.prefs={...k.prefs,...(snapshot.exists()?snapshot.data():{})};
     else if(key==='events')k.events=snapshot.docs.map(d=>({id:d.id,...d.data()}));
     else k[key]=new Map(snapshot.docs.map(d=>[d.id,{...d.data(),id:d.id}]));
-    k.pending.delete(key);k.ready=k.pending.size===0;kBadge();
+    k.failures.delete(key);k.pending.delete(key);k.ready=k.pending.size===0&&k.failures.size===0;kBadge();
+    if(k.ready){k.accessState='ready';if(!k.connectionAnnounced){k.connectionAnnounced=true;kNotice('Cucina collegata.');}}
     if(k.ready&&!k.pushBooted){k.pushBooted=true;void kpInit();}
     if(k.ready&&!k.pushLinkHandled){k.pushLinkHandled=true;const url=new URL(location.href),target=url.searchParams.get('kitchenView');if(['stock','cart','tasks','clean','notifications'].includes(target)){k.page=target;const eid=url.searchParams.get('kitchenEvent');if(eid&&/^[a-zA-Z0-9_-]{1,128}$/.test(eid))void kMarkRead([eid],k.epoch).catch(()=>{});url.searchParams.delete('kitchenView');url.searchParams.delete('kitchenEvent');history.replaceState(history.state,'',url.pathname+url.search+url.hash);}}
     if(managerView==='kitchen'&&!['item','supplier','access'].includes(k.page)&&!k.busy&&!k.formDirty&&!k.messageDraft.size&&!document.activeElement?.closest('#kBody input,#kBody textarea,#kBody select'))kRender();
-   },error=>{if(live()){k.ready=false;kNotice(kError(error),true);kBadge();kRender();}}));
+   },error=>{
+    if(!live())return;k.ready=false;k.accessState='error';k.failures.set(key,{label:labels[key],collection:col,code:error.code||'unknown'});
+    k.accessError=error.code==='permission-denied'
+     ?'Accesso al gestionale verificato, ma le regole Firebase non consentono di leggere '+labels[key]+'. Pubblica le regole complete Cucina e notifiche nel progetto black-stuff-manager, poi premi Riprova.'
+     :'Non riesco a caricare '+labels[key]+'. '+kError(error);
+    kNotice(k.accessError,true);kBadge();if(!k.formDirty)kRender();
+   }));
   }
- }catch(error){if(live()){kNotice(kError(error),true);kRender();}}
+ }catch(error){if(live()){
+  k.ready=false;k.accessState='error';k.accessError='Non riesco a verificare '+stage+'. '+kError(error);
+  kNotice(k.accessError,true);kBadge();kRender();
+ }}
 }
 function kActive(){return [...k.items.values()].filter(i=>i.active).sort((a,b)=>K_CATS.indexOf(a.category)-K_CATS.indexOf(b.category)||a.name.localeCompare(b.name,'it'));}
 function kActiveOrders(){return [...k.orders.values()].filter(o=>o.status==='draft'||o.status==='sent');}
@@ -2258,8 +2291,15 @@ function kDateInput(value){return value||'';}
 function kStepper(id,value,step,type,label){return `<div class="k-step"><button type="button" data-k-step="${ke(id)}" data-type="${type}" data-dir="-1" aria-label="Diminuisci ${ke(label)}" ${k.busy?'disabled':''}>−</button><input type="number" inputmode="decimal" min="0" max="100000" step="${step}" value="${value??''}" placeholder="—" aria-label="${ke(label)}" data-k-qty="${ke(id)}" data-type="${type}" ${k.busy?'disabled':''}><button type="button" data-k-step="${ke(id)}" data-type="${type}" data-dir="1" aria-label="Aumenta ${ke(label)}" ${k.busy?'disabled':''}>+</button></div>`;}
 function kBack(){return kButton('← Cucina','home');}
 function kRender(){
- const body=$('kBody');if(!k.allowed){body.innerHTML='<p>Accesso cucina non abilitato. La proprietaria può autorizzarti da Cucina → Modifica → Accessi.</p>';return;}
- if(!k.ready){body.innerHTML='<p>Connessione alla cucina in corso…</p>'+kButton('Riprova connessione','reload');return;}
+ const body=$('kBody');
+ if(k.accessState==='error'){
+  const details=[...k.failures.values()].map(f=>f.collection+' · '+f.code).join(' / ');
+  body.innerHTML='<p>'+ke(k.accessError||'Collegamento alla cucina non riuscito.')+'</p>'+(details?'<p class="mini">Dettaglio: '+ke(details)+'</p>':'')+kButton('Riprova connessione','reload','button');return;
+ }
+ if(k.accessState==='denied'){
+  body.innerHTML='<p>'+ke(k.accessError||'Accesso cucina non abilitato per questo account.')+'</p>'+kButton('Ricontrolla accesso','reload');return;
+ }
+ if(!k.allowed||!k.ready){body.innerHTML='<p>Verifica accesso e collegamento alla cucina…</p>'+kButton('Riprova connessione','reload');return;}
  let h='';const title={home:'Cucina',stock:'Giacenze',cart:'Carrello riordini',tasks:'Cose da fare',clean:'Pulizie',settings:'Modifica',notifications:'Notifiche',preferences:'Preferenze notifiche',item:'Scheda articolo',supplier:'Fornitore',access:'Accessi cucina'}[k.page]||'Cucina';
  $('kHeading').textContent=title;
  if(k.page!=='home')h+=kBack();
@@ -2422,6 +2462,7 @@ $('kBody').addEventListener('submit',async event=>{
   const p={pushEnabled:fields.pushEnabled==='on',stock:fields.stock==='on',orders:fields.orders==='on',tasks:fields.tasks==='on',clean:fields.clean==='on',muted:fields.muted==='on',quietStart:fields.quietStart,quietEnd:fields.quietEnd};await kRun(epoch=>kPrefsSave(p,epoch));
  }
 });
+$('kRetry').addEventListener('click',async()=>{if(k.busy){kNotice('Attendi il salvataggio.');return;}if(kitchenUnsaved()&&!confirm('Scartare le modifiche locali e ricollegare la cucina?'))return;await kitchenStart();});
 $('kOpenNotifications').addEventListener('click',()=>{if(!kitchenMayLeave())return;k.formDirty=false;k.page='notifications';showManagerView('kitchen',true);kRender();});
 $('kEdit').addEventListener('click',()=>{if(!kitchenMayLeave())return;k.formDirty=false;k.page='settings';kRender();});
 $('kCopyMessage').addEventListener('click',async()=>{const text=$('kMessageText').value;try{await navigator.clipboard.writeText(text);$('kCopyStatus').textContent='Copiato. Incolla il messaggio su WhatsApp.';}catch(_){$('kMessageText').focus();$('kMessageText').select();$('kCopyStatus').textContent='Copia non disponibile: seleziona il testo e scegli Copia.';}});
@@ -2585,4 +2626,5 @@ window.TBSManagerUpdates?.setCanRefresh(() => {
 </script>
 </body>
 </html>
+
 
