@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it" data-privacy-app="manager">
 <head>
-<meta name="tbs-release" content="2026-11-02-cucina-preparazioni-v3">
+<meta name="tbs-release" content="2026-11-02-catalogo-completamento-v5">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
@@ -487,7 +487,8 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
 .k-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.k-toolbar h2{margin:0}.k-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.k-tile{background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:17px;padding:22px 17px;text-align:left;min-height:120px;cursor:pointer}.k-tile strong{display:block;font-size:17px}.k-tile small{display:block;color:var(--muted);margin:9px 0}.k-tile span{color:var(--accent)}
 #kHomeButton{margin-top:16px}#kitchenPanel .k-row{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:16px 0;border-bottom:1px solid var(--border)}.k-label{flex:1;min-width:130px}.k-label strong{display:block}.k-label small,#kitchenPanel article>small{display:block;color:var(--muted);font-size:12px;line-height:1.5;margin-top:5px;overflow-wrap:anywhere}.k-step{display:flex;align-items:center;border:1px solid var(--border);border-radius:12px;background:var(--card)}.k-step button{width:44px;height:46px;border:0;background:transparent;color:var(--text);font-size:22px;cursor:pointer}.k-step input{width:65px!important;min-width:0;height:46px;padding:3px!important;text-align:center;font-size:16px;border:0!important;background:transparent!important;color:var(--text);margin:0!important}.k-step input::-webkit-inner-spin-button{appearance:none}.k-category{margin:18px 0;border-bottom:1px solid var(--border);padding:10px 0}.k-category summary{font-weight:650;padding:10px 0;cursor:pointer}.k-group{padding:20px 0;border-bottom:1px solid var(--border)}#kitchenPanel .small-action{min-height:44px;margin:5px 6px 5px 0}#kitchenPanel .button{margin:15px 0;width:100%}.k-form{margin-top:20px}.k-form label{display:block;font-size:14px;margin:14px 0}.k-form input,.k-form select,.k-form textarea{width:100%;font:inherit;font-size:16px;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);margin-top:7px}.k-form textarea{min-height:105px}.k-form .k-check{display:flex;align-items:center;gap:12px}.k-form .k-check input{width:22px;height:22px;margin:0}#kMessageDialog{width:min(540px,calc(100% - 30px));border:1px solid var(--border);border-radius:20px;background:var(--card);color:var(--text);padding:24px}#kMessageDialog::backdrop{background:rgba(0,0,0,.45)}#kMessageDialog textarea{width:100%;min-height:230px;background:var(--card2);color:var(--text);font:inherit;font-size:16px;line-height:1.6;border:1px solid var(--border);padding:14px;border-radius:12px;margin:12px 0}.k-alert-count{font-variant-numeric:tabular-nums}#kBody{overflow-wrap:anywhere}#kitchenPanel .k-form button:disabled{opacity:.55}@media(max-width:360px){.k-tiles{grid-template-columns:1fr}.k-step input{width:55px!important}}
 </style>
-<style>#kPushConsent{width:min(500px,calc(100% - 30px));background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:18px;padding:24px}#kPushConsent::backdrop{background:rgba(0,0,0,.45)}#kPushControls .small-action{display:inline-block}</style></head>
+<style id="catalogQualityStyle">.catalog-quality[hidden],#catalogQualityClear[hidden],#catalogQualityStatus[hidden]{display:none!important}.catalog-quality{max-width:100%;white-space:normal;text-align:left}.catalog-quality[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--text)}#catalogQualityStatus{line-height:1.6}</style>
+</head>
 <body>
 <main>
 <header class="brand">
@@ -537,13 +538,13 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
 </section>
 <nav id="managerNav" aria-label="Navigazione gestionale"><button type="button" class="small-action" id="managerBack">← Home</button><span id="managerSectionTitle"></span></nav>
 <section id="kitchenPanel" class="panel" aria-labelledby="kHeading"><div class="k-toolbar"><h2 id="kHeading" tabindex="-1">Cucina</h2><div><button type="button" class="small-action" id="kOpenNotifications" aria-label="Notifiche cucina">Notifiche <span data-k-count class="k-alert-count">0</span></button><button type="button" class="small-action" id="kRetry">Riprova</button><button type="button" class="small-action" id="kEdit" data-owner-only>Modifica</button></div></div><div id="kMessage" class="message" role="status" aria-live="polite"></div><div id="kBody"></div></section><dialog id="kMessageDialog" aria-labelledby="kMessageTitle"><h2 id="kMessageTitle">Messaggio da copiare</h2><p>Puoi correggere il testo. Le modifiche qui non cambiano la lista salvata.</p><textarea id="kMessageText" aria-label="Messaggio modificabile"></textarea><button type="button" class="button" id="kCopyMessage">Copia messaggio</button><button type="button" class="small-action" id="kCloseMessage">Chiudi</button><p id="kCopyStatus" role="status"></p></dialog>
-<dialog id="kPushConsent" aria-labelledby="kPushConsentTitle"><h2 id="kPushConsentTitle">Notifiche della cucina</h2><p>Ricevi un avviso quando un collega aggiorna giacenze, riordini o preparazioni. Puoi scegliere categorie e orari. Dopo Continua il dispositivo chiederà il permesso ufficiale.</p><button type="button" class="small-action" id="kPushCancel">Non ora</button><button type="button" class="button" id="kPushContinue">Continua</button></dialog>
+
 <section id="catalogPanel" class="panel" aria-labelledby="catalogHeading">
 <h2 id="catalogHeading" tabindex="-1">Modifica menu</h2>
 <p>Aggiorna le informazioni che i clienti vedono nel menu.</p>
 <p class="muted">I prodotti non disponibili restano nella sezione Disattivati, pronti da riattivare.</p>
 <div id="catalogMessage" role="status" aria-live="polite"></div>
-<div class="catalog-actions"><button type="button" class="small-action" id="catalogReload">Ricarica prodotti</button><button type="button" class="small-action" id="catalogNew" disabled>Nuovo prodotto</button></div>
+<div class="catalog-actions"><button type="button" class="small-action" id="catalogReload">Ricarica prodotti</button><button type="button" class="small-action" id="catalogNew" disabled>Nuovo prodotto</button><button type="button" class="small-action catalog-quality" id="catalogPendingAllergens" aria-pressed="false" aria-controls="catalogList" hidden>Allergeni da verificare</button><button type="button" class="small-action catalog-quality" id="catalogPendingTraits" aria-pressed="false" aria-controls="catalogList" hidden>Caratteristiche ricerca da completare</button><button type="button" class="small-action" id="catalogQualityClear" hidden>Torna alla lista precedente</button></div><p id="catalogQualityStatus" class="mini" role="status" aria-live="polite" hidden></p>
 <div id="catalogSetup" class="catalog-setup" hidden><strong>Porta tutto il catalogo nel Manager</strong><p>Un solo trasferimento per gestire i prodotti senza modificare il sito. Mantiene le schede già salvate e le foto su GitHub. Se si interrompe puoi riprendere.</p><button type="button" class="small-action" id="catalogMigrate" disabled>Trasferisci il catalogo</button></div>
 <div class="catalog-status-switch" role="group" aria-label="Disponibilità dei prodotti">
 <button type="button" id="catalogAvailableTab" aria-pressed="true" aria-controls="catalogList">Disponibili <span id="catalogAvailableCount">0</span></button>
@@ -871,7 +872,7 @@ $("logout").addEventListener("click",async()=>{
  if(catalogBusy){catalogMessage('Attendi il completamento della pubblicazione.');return;}
  if(themeSaving){themeMessage('Attendi il completamento della pubblicazione.');return;}
  if((themeDirty||editorDirty)&&!confirm('Uscire e scartare le modifiche non pubblicate?'))return;
- try{await kpLogout();await signOut(auth);}catch(_){setProfileMessage('Uscita non riuscita. Riprova.','error');}
+ try{await signOut(auth);}catch(_){setProfileMessage('Uscita non riuscita. Riprova.','error');}
 });
 const ROLE_NAMES={owner:"PROPRIETARIO",admin:"AMMINISTRATORE",collaborator:"COLLABORATORE"};
 const REQUEST_NAMES={pending:"IN ATTESA",approved:"APPROVATA",rejected:"RIFIUTATA"};
@@ -1199,25 +1200,72 @@ function openCatalogProduct(item,p=null){
  $('productPhotoPreview').hidden=true;$('productPhotoStatus').textContent=photo.kind==='legacy'?'La foto attuale e il suo percorso vengono mantenuti.':'';
  updateCatalogFields();$('catalogEditor').hidden=false;$('catalogEditor').scrollIntoView({block:'start'});$('product-name-it').focus();editorDirty=!p;
 }
+// Scorciatoie di completamento: leggono solo le spunte salvate nelle schede.
+let catalogQuality='all',catalogQualityReturn=null;
+function catalogNeedsAllergens(product){return product?.details?.allergensReviewed!==true;}
+function catalogNeedsTraits(product){return !Array.isArray(product?.details?.traits)||product.details.traits.length===0;}
+function captureCatalogFilters(){return {availability:catalogAvailability,search:$('catalogSearch').value,allergen:$('catalogAllergen').value,status:$('catalogDietaryStatus').value,review:$('catalogVerification').value};}
+function restoreCatalogFilters(){
+ if(catalogQualityReturn){const f=catalogQualityReturn;catalogAvailability=f.availability;$('catalogSearch').value=f.search;$('catalogAllergen').value=f.allergen;$('catalogDietaryStatus').value=f.status;$('catalogVerification').value=f.review;}
+ catalogQualityReturn=null;
+}
+function catalogQualityCounts(){
+ const products=catalogDocument?.status==='ready'?Object.values(catalogDocument.products):[];
+ return {allergens:products.filter(catalogNeedsAllergens).length,traits:products.filter(catalogNeedsTraits).length};
+}
+function catalogQualityControls(){
+ const counts=catalogQualityCounts(),ready=catalogDocument?.status==='ready',locked=catalogBusy||catalogLoading;
+ if(catalogQuality!=='all'&&counts[catalogQuality]===0){catalogQuality='all';restoreCatalogFilters();}
+ for(const [key,id,label] of [['allergens','catalogPendingAllergens','Allergeni da verificare'],['traits','catalogPendingTraits','Caratteristiche ricerca da completare']]){
+  const button=$(id);button.hidden=!ready||counts[key]===0;button.disabled=!ready||locked;button.textContent=label+' ('+counts[key]+')';button.setAttribute('aria-pressed',String(catalogQuality===key));
+ }
+ $('catalogQualityClear').hidden=catalogQuality==='all';$('catalogQualityClear').disabled=locked;
+ $('catalogQualityStatus').hidden=catalogQuality==='all';
+ return counts;
+}
+function resetCatalogQuality(){
+ catalogQuality='all';catalogQualityReturn=null;
+ for(const id of ['catalogPendingAllergens','catalogPendingTraits','catalogQualityClear','catalogQualityStatus'])$(id).hidden=true;
+ $('catalogQualityStatus').textContent='';
+}
+function selectCatalogQuality(value){
+ if(catalogBusy||catalogLoading||catalogDocument?.status!=='ready')return;
+ if(editorDirty&&!$('catalogEditor').hidden&&!confirm('Scartare le modifiche non pubblicate prima di cambiare filtro?'))return;
+ editorDirty=false;catalogSelected=null;$('catalogEditor').hidden=true;
+ const next=value===catalogQuality?'all':value;
+ if(next==='all'){catalogQuality='all';restoreCatalogFilters();}
+ else{
+  if(catalogQuality==='all')catalogQualityReturn=captureCatalogFilters();catalogQuality=next;
+  $('catalogSearch').value='';$('catalogAllergen').value='';$('catalogDietaryStatus').value='all';$('catalogVerification').value='all';
+ }
+ renderCatalog();
+ if(catalogQuality==='all')$('catalogSearch').focus({preventScroll:true});
+}
+$('catalogPendingAllergens').addEventListener('click',()=>selectCatalogQuality('allergens'));
+$('catalogPendingTraits').addEventListener('click',()=>selectCatalogQuality('traits'));
+$('catalogQualityClear').addEventListener('click',()=>selectCatalogQuality('all'));
+
 function renderCatalog(){
- catalogControls();const list=$('catalogList');list.replaceChildren();const term=$('catalogSearch').value.trim().toLocaleLowerCase('it');
+ catalogControls();const qualityCounts=catalogQualityControls();const list=$('catalogList');list.replaceChildren();const term=$('catalogSearch').value.trim().toLocaleLowerCase('it');
  const productFor=item=>catalogDocument?.status==='ready'?catalogDocument.products[item.id]:null;
  const inactive=catalogItems.filter(item=>productFor(item)?.available===false).length;
  $('catalogAvailableCount').textContent=String(catalogItems.length-inactive);$('catalogInactiveCount').textContent=String(inactive);
- $('catalogAvailableTab').setAttribute('aria-pressed',String(catalogAvailability==='available'));
- $('catalogInactiveTab').setAttribute('aria-pressed',String(catalogAvailability==='inactive'));
- list.setAttribute('aria-label',catalogAvailability==='inactive'?'Prodotti disattivati':'Prodotti disponibili');
+ $('catalogAvailableTab').setAttribute('aria-pressed',String(catalogQuality==='all'&&catalogAvailability==='available'));
+ $('catalogInactiveTab').setAttribute('aria-pressed',String(catalogQuality==='all'&&catalogAvailability==='inactive'));
+ list.setAttribute('aria-label',catalogQuality==='all'?(catalogAvailability==='inactive'?'Prodotti disattivati':'Prodotti disponibili'):(catalogQuality==='allergens'?'Prodotti con allergeni da verificare':'Prodotti senza caratteristiche ricerca selezionate'));
  const key=$('catalogAllergen').value,selectedStatus=$('catalogDietaryStatus').value,reviewFilter=$('catalogVerification').value;
- const visible=catalogItems.filter(i=>(i.name.it||'').toLocaleLowerCase('it').includes(term)&&(productFor(i)?.available===false)===(catalogAvailability==='inactive')&&(reviewFilter==='all'||catalogFood(i)&&(productFor(i)?.details.allergensReviewed===true)===(reviewFilter==='verified')));
+ const visible=catalogItems.filter(i=>(i.name.it||'').toLocaleLowerCase('it').includes(term)&&(catalogQuality==='all'?(productFor(i)?.available===false)===(catalogAvailability==='inactive'):(catalogQuality==='allergens'?catalogNeedsAllergens(productFor(i)):catalogNeedsTraits(productFor(i))))&&(reviewFilter==='all'||catalogFood(i)&&(productFor(i)?.details.allergensReviewed===true)===(reviewFilter==='verified')));
  const assessmentFor=item=>dietaryAssessment({...item,details:productFor(item)?.details||item.details||catalogOverrides.get(item.id)?.details},[key]);
  const labels={verified:'Ingredienti e preparazione valutati',check:'Dati o preparazione da completare',contains:'Escluso: indicazioni di presenza',traces:'Escluso: possibili tracce'};
  $('catalogDietaryStatus').disabled=!key;
+ if(catalogQuality!=='all')$('catalogQualityStatus').textContent=(catalogQuality==='allergens'?'Allergeni non ancora verificati':'Nessuna caratteristica di ricerca selezionata')+' · '+visible.filter(item=>!key||selectedStatus==='all'||assessmentFor(item).status===selectedStatus).length+' prodotti mostrati su '+qualityCounts[catalogQuality]+' da completare. Comprende prodotti disponibili e disattivati.'+(catalogQuality==='traits'?' Seleziona solo caratteristiche realmente pertinenti: non è necessario spuntarne una se nessuna descrive il prodotto.':' La presenza di spunte allergeni non equivale alla conferma della verifica.');
  const counts=Object.fromEntries(Object.keys(labels).map(status=>[status,visible.filter(item=>assessmentFor(item).status===status).length]));
  $('catalogDietarySummary').textContent=key?`${counts.verified} con ingredienti e preparazione valutati · ${counts.check} con dati o preparazione da completare · ${counts.contains} con indicazioni di presenza · ${counts.traces} con possibili tracce. Conteggi della sezione e della ricerca attuali.`:`${visible.filter(item=>productFor(item)?.details.allergensReviewed===true).length} schede con allergeni verificati su ${visible.length} prodotti mostrati. Scegli un allergene per controllare l’esclusione.`;
  for(const item of visible.filter(item=>!key||selectedStatus==='all'||assessmentFor(item).status===selectedStatus)){
   const p=productFor(item),row=make('div','catalog-row'),info=make('div','catalog-row-info');row.dataset.productId=item.id;
   info.append(make('strong','',item.name.it),make('small','',CATALOG_GROUPS[item.group]+' · '+item.price+' € · '+(p?.available===false?'Disattivato':'Disponibile')));row.append(info);
-  if(catalogFood(item))info.append(make('small','catalog-verification-state',p?.details.allergensReviewed?'✓ Allergeni verificati':'Verifica allergeni da completare'));
+  if(catalogFood(item)||catalogQuality==='allergens')info.append(make('small','catalog-verification-state',p?.details.allergensReviewed?'✓ Allergeni verificati':'Verifica allergeni da completare'));
+  if(catalogQuality==='traits')info.append(make('small','catalog-verification-state','Caratteristiche ricerca: nessuna selezionata'));
   if(key){const assessment=assessmentFor(item);info.append(make('small','catalog-dietary-badge',labels[assessment.status]));if(assessment.reasons.length)info.append(make('small','',assessment.reasons.map(r=>PRODUCT_ALLERGENS[r.key][0]+': '+r.source).join(' · ')));}
   if(currentRole==='owner'&&p){
    const actions=make('div','catalog-row-actions'),button=make('button','small-action','Modifica');button.type='button';button.disabled=catalogBusy||catalogLoading;button.setAttribute('aria-label','Modifica '+item.name.it);button.addEventListener('click',()=>openCatalogProduct(item,p));actions.append(button);
@@ -1331,9 +1379,9 @@ $('catalogMigrate').addEventListener('click',async()=>{
 $('catalogNew').addEventListener('click',()=>{if(catalogBusy||catalogLoading||catalogDocument?.status!=='ready')return;if(Object.keys(catalogDocument.products).length>=CATALOG_MAX_PRODUCTS){catalogMessage('Limite di 300 prodotti raggiunto.',true);return;}openCatalogProduct({id:'p-'+crypto.randomUUID(),group:'burger',name:{it:''},desc:{it:''},tags:[]});});
 for(const [id,value] of [['catalogAvailableTab','available'],['catalogInactiveTab','inactive']]){
  $(id).addEventListener('click',()=>{
-  if(catalogBusy||catalogLoading||catalogAvailability===value)return;
+  if(catalogBusy||catalogLoading||(catalogAvailability===value&&catalogQuality==='all'))return;
   if(editorDirty&&!$('catalogEditor').hidden&&!confirm('Scartare le modifiche non pubblicate?'))return;
-  editorDirty=false;catalogSelected=null;$('catalogEditor').hidden=true;catalogAvailability=value;renderCatalog();
+  editorDirty=false;catalogSelected=null;$('catalogEditor').hidden=true;catalogQuality='all';restoreCatalogFilters();catalogAvailability=value;renderCatalog();
  });
 }
 for(const [key,labels] of Object.entries(PRODUCT_ALLERGENS)){const option=document.createElement('option');option.value=key;option.textContent=labels[0];$('catalogAllergen').append(option);}
@@ -1630,6 +1678,7 @@ function setOwnerNotice(message,kind=""){
  const n=$("ownerNotice");n.textContent=message;n.className=message?"message "+kind:"";
 }
 function clearDash(){
+ resetCatalogQuality();
  kitchenReset();
  resetManagerInvite();
  resetStatistics();
@@ -2109,91 +2158,88 @@ async function checkRole(user,version){
   setProfileMessage(roleError(error),"error");
  }
 }
-// Push cucina — Firebase SDK 11.6.0, compatibile con il Manager esistente.
-let kp={epoch:0,config:null,id:null,messaging:null,off:null,registration:null};
-const KP_DB='blackstuff-manager-kitchen-push-v1';
-function kpRawStore(mode,value){return new Promise((resolve,reject)=>{const opening=indexedDB.open(KP_DB,1);opening.onupgradeneeded=()=>opening.result.createObjectStore('state');opening.onerror=()=>reject(opening.error);opening.onsuccess=()=>{const database=opening.result,tx=database.transaction('state',mode==='get'?'readonly':'readwrite'),store=tx.objectStore('state');let result;const req=mode==='get'?store.get('binding'):store.put(value,'binding');req.onsuccess=()=>result=req.result;tx.oncomplete=()=>{database.close();resolve(result)};tx.onerror=()=>{database.close();reject(tx.error)};};});}
-let kpQueue=Promise.resolve();
-function kpStore(mode,value){const next=kpQueue.then(()=>kpRawStore(mode,value));kpQueue=next.catch(()=>{});return next;}
-const kpOpt=uid=>'tbs-kitchen-push-optin:'+uid;
-function kpRemember(uid,enabled){try{localStorage.setItem(kpOpt(uid),enabled?'1':'0')}catch(_){}}
-function kpWanted(uid){try{return localStorage.getItem(kpOpt(uid))==='1'}catch(_){return false}}
-function kpSuspend(){kp.epoch++;kp.id=null;kp.off?.();kp.off=null;void kpStore('put',{enabled:false}).catch(()=>{});}
-function kpSupport(){
- if(!window.isSecureContext||!('serviceWorker'in navigator)||!('PushManager'in window)||!('Notification'in window)||!('indexedDB'in window))return 'Questo browser non supporta le notifiche push del gestionale.';
- const ios=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
- if(ios&&!window.matchMedia('(display-mode: standalone)').matches&&!navigator.standalone)return 'Su iPhone: Safari → Condividi → Aggiungi alla schermata Home. Apri poi il Manager dalla sua icona.';
- if(Notification.permission==='denied')return 'Notifiche bloccate. Riabilitale dalle impostazioni del browser o dell’app, poi riapri il Manager.';
- return '';
+// Consegne interne — Spark, nessun servizio push o pianificazione a pagamento.
+let kh={timer:null,epoch:0,working:false,lastTick:0,lastAttempt:0,attemptDay:'',submission:null,draft:null};
+function khReset(){clearInterval(kh.timer);kh={timer:null,epoch:kh.epoch+1,working:false,lastTick:0,lastAttempt:0,attemptDay:'',submission:null,draft:null};}
+function khParts(date=new Date()){
+ return Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Rome',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(date).map(x=>[x.type,x.value]));
 }
-async function kpCall(name,data){const {getFunctions,httpsCallable}=await import('https://www.gstatic.com/firebasejs/11.6.0/firebase-functions.js');return (await httpsCallable(getFunctions(app,'europe-west1'),name)(data)).data;}
-function kpRender(){
- const host=$('kPushControls');if(!host)return;const reason=kpSupport();
- host.replaceChildren();const status=make('p','',reason||(!kp.config?.enabled?'Invio push non ancora attivato dalla proprietaria.':kp.id?'Notifiche abilitate su questo dispositivo.':'Puoi attivare le notifiche su questo dispositivo.'));
- host.append(status);
- const enable=createButton('Attiva notifiche',()=>{$('kPushConsent').showModal();});enable.disabled=!!reason||kp.config?.enabled!==true||!!kp.id;host.append(enable);
- const disable=createButton('Disattiva su questo dispositivo',()=>kpDisable());disable.disabled=!kp.id;host.append(disable);
- host.append(createButton('Gestisci i miei dispositivi',()=>kpDevices()));
- host.append(make('p','mini','Le push mostrano un avviso generico. I dettagli sono nel Manager. La consegna dipende dal dispositivo e dalla rete.'));
- const devices=make('div','');devices.id='kPushDeviceList';host.append(devices);
+function khDayAdd(day,delta){const d=new Date(day+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+delta);return d.toISOString().slice(0,10);}
+function khWorkDay(date=new Date()){const p=khParts(date),day=p.year+'-'+p.month+'-'+p.day;return Number(p.hour)<4?khDayAdd(day,-1):day;}
+function khFinishedDay(date=new Date()){return khDayAdd(khWorkDay(date),-1);}
+function khNoteDay(date=new Date()){const hour=Number(khParts(date).hour);return hour>=4&&hour<12?khFinishedDay(date):khWorkDay(date);}
+function khCutoff(day){
+ const next=khDayAdd(day,1),[y,m,d]=next.split('-').map(Number),wall=Date.UTC(y,m-1,d,4,0);let candidate=wall;
+ for(let i=0;i<4;i++){const p=khParts(new Date(candidate)),observed=Date.UTC(Number(p.year),Number(p.month)-1,Number(p.day),Number(p.hour),Number(p.minute));const revised=candidate+(wall-observed);if(revised===candidate)break;candidate=revised;}
+ return candidate;
 }
-async function kpInit(){
- const uid=auth.currentUser?.uid,epoch=++kp.epoch;if(!uid||!k.allowed)return;
+function khLabel(day){return new Intl.DateTimeFormat('it-IT',{weekday:'long',day:'numeric',month:'long',timeZone:'Europe/Rome'}).format(new Date(day+'T12:00:00Z'));}
+function khPending(){return [...k.tasks.values()].filter(t=>t.status!=='done').sort((a,b)=>(a.due||'9999').localeCompare(b.due||'9999')||a.title.localeCompare(b.title,'it'));}
+function khOrders(){return kActiveOrders().filter(o=>o.status==='draft');}
+function khRender(){
+ const day=khFinishedDay(),report=k.reports.get(day),notes=[...k.shiftNotes.values()].filter(n=>n.shiftDate===day).sort((a,b)=>(a.createdAt?.toMillis?.()||0)-(b.createdAt?.toMillis?.()||0));
+ let h=kBack()+`<h3>Consegne del turno di ${ke(khLabel(day))}</h3>`;
+ if(report){h+=`<p>${report.generation==='manual'?'Chiusura confermata da '+ke(report.createdByName):report.generation==='automatic'?'Riepilogo automatico delle 4:00':'Riepilogo creato alla prima apertura successiva alle 4:00'}<br>Aggiornato: ${ke(kTime(report.createdAt))}</p>`;}
+ else h+='<p>Riepilogo non ancora registrato. Le attività qui sotto mostrano comunque la situazione aggiornata.</p>';
+ h+='<h3>Da completare</h3><p class="mini">Lista condivisa aggiornata: le attività restano qui anche nei turni successivi, finché non vengono completate.</p>';
+ const tasks=khPending();
+ if(!tasks.length)h+='<p>Nessuna attività aperta registrata.</p>';
+ for(const task of tasks)h+=`<article class="k-group"><strong>${ke(task.title)}</strong><small>${task.kind==='clean'?'Pulizia':'Preparazione / attività'} · ${ke(task.assignee||'Non assegnata')}${task.due?' · Scadenza '+ke(task.due):''}</small>${task.notes?'<p>'+ke(task.notes)+'</p>':''}<small>Aggiornata da ${ke(task.updatedByName||'personale')} · ${ke(kTime(task.updatedAt))}</small>${task.status==='doing'?'<small>In lavorazione</small>':kButton('Prendi in carico','task:'+task.id+':doing')}${kButton('Completata','task:'+task.id+':done')}</article>`;
+ h+='<h3>Riordini da completare</h3>';
+ const orders=khOrders();h+=orders.length?'<p>'+orders.map(o=>ke(o.name)+(o.mode==='qty'?' · '+(o.qty>0?kNum(o.qty)+' '+ke(o.unit):'quantità da scegliere'):'')).join('<br>')+'</p>'+kButton('Apri carrello','cart'):'<p>Nessun riordino da inviare registrato.</p>';
+ h+='<h3>Note lasciate dal turno precedente</h3>';
+ if(!notes.length)h+='<p>Nessuna nota lasciata per questo turno.</p>';
+ for(const note of notes)h+=`<article class="k-group"><strong>${ke(note.createdByName)}</strong><small>${ke(kTime(note.createdAt))}</small><p style="white-space:pre-wrap">${ke(note.text)}</p></article>`;
+ h+='<form id="khFinishForm" class="k-form"><h3>Lascia le consegne di fine turno</h3><label>Giorno di inizio turno<input type="date" name="shiftDate" required value="'+ke(kh.draft?.shiftDate||khNoteDay())+'"></label><label>Note per chi entra dopo<textarea name="note" maxlength="2000" placeholder="Es. manca la salsa Cesar; controllare la consegna; completare una preparazione…">'+ke(kh.draft?.note||'')+'</textarea></label><p class="mini">Le attività e i riordini aperti vengono riportati automaticamente. Per aggiungere una cosa da fare, usa il pulsante qui sotto.</p>'+kButton('Aggiungi una cosa da fare','tasks')+'<button class="button" type="submit">Conferma fine turno e lascia consegne</button></form>';
+ if(report&&report.taskIds.length)h+='<details class="k-category"><summary>Attività presenti quando è stato creato il riepilogo</summary>'+report.taskIds.map(id=>{const t=k.tasks.get(id);return '<p>'+ke(t?.title||'Attività '+id)+' · '+(t?.status==='done'?'completata successivamente':t?'ancora aperta':'non disponibile')+'</p>';}).join('')+'</details>';
+ const recent=[...k.reports.values()].filter(r=>r.shiftDate!==day).sort((a,b)=>b.shiftDate.localeCompare(a.shiftDate));
+ if(recent.length)h+='<details class="k-category"><summary>Ultimi riepiloghi</summary>'+recent.map(r=>'<p>Turno '+ke(khLabel(r.shiftDate))+' · '+ke(kTime(r.createdAt))+' · '+r.taskIds.length+' attività aperte alla rilevazione</p>').join('')+'</details>';
+ return h;
+}
+async function khWrite(day,generation,note,epoch,submission){
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(day)||!Number.isFinite(khCutoff(day)))throw Error('Data turno non valida.');
+ const cutoff=khCutoff(day),now=Date.now();if(cutoff<now-14*86400000||cutoff>now+2*86400000)throw Error('Scegli un turno negli ultimi 14 giorni o quello attuale.');
+ const taskIds=khPending().map(t=>t.id),orderIds=khOrders().map(o=>o.id);if(taskIds.length>150||orderIds.length>150)throw Error('Troppe voci aperte per un unico riepilogo. Completa o archivia le attività precedenti.');
+ const reportRef=doc(db,'kitchenShiftReports',day),noteRef=doc(db,'kitchenShiftNotes',submission),event=doc(collection(db,'kitchenEvents'));
+ return runTransaction(db,async tx=>{
+  const [existing,noteExists,tasks,orders]=await Promise.all([tx.get(reportRef),tx.get(noteRef),Promise.all(taskIds.map(id=>tx.get(doc(db,'kitchenTasks',id)))),Promise.all(orderIds.map(id=>tx.get(doc(db,'kitchenOrders',id))))]);kAssert(epoch);
+  const selectedTasks=tasks.filter(s=>s.exists()&&s.data().status!=='done').map(s=>s.id),selectedOrders=orders.filter(s=>s.exists()&&s.data().status==='draft').map(s=>s.id);
+  const name=(auth.currentUser.displayName||'Personale').slice(0,100);let changed=false;
+  if(!existing.exists()){
+   tx.set(reportRef,{shiftDate:day,cutoff:Timestamp.fromMillis(cutoff),generation,taskIds:selectedTasks,orderIds:selectedOrders,createdAt:serverTimestamp(),createdBy:auth.currentUser.uid,createdByName:name,...kMeta(null,event)});changed=true;
+  }
+  if(note&&!noteExists.exists()){
+   tx.set(noteRef,{shiftDate:day,text:note,createdAt:serverTimestamp(),createdBy:auth.currentUser.uid,createdByName:name,...kMeta(null,event)});changed=true;
+  }
+  if(changed)kEvent(tx,event,'handover','Consegne di turno aggiornate','Turno '+day+': '+selectedTasks.length+' attività e '+selectedOrders.length+' riordini ancora aperti'+(note?'. Nuova nota lasciata.':'.'),'handover');
+  return changed;
+ });
+}
+function khSchedule(){
+ if(kh.timer)return;kh.lastTick=Date.now();void khMaybeAuto();kh.timer=setInterval(()=>void khMaybeAuto(),60000);
+}
+async function khMaybeAuto(){
+ const now=Date.now(),before=kh.lastTick;kh.lastTick=now;
+ if(!k.allowed||!k.ready||!navigator.onLine||document.visibilityState!=='visible'||kh.working||kitchenUnsaved()||!k.items.size)return;
+ const day=khFinishedDay(),cutoff=khCutoff(day);if(k.reports.has(day))return;
+ if(kh.attemptDay===day&&now-kh.lastAttempt<300000)return;
+ kh.attemptDay=day;kh.lastAttempt=now;kh.working=true;const epoch=k.epoch,version=kh.epoch;
  try{
-  const snap=await getDocFromServer(doc(db,'kitchenPushConfig','public'));if(epoch!==kp.epoch||auth.currentUser?.uid!==uid)return;
-  kp.config=snap.exists()?snap.data():null;
-  if(kp.config?.enabled&&kpWanted(uid)&&!kpSupport()&&Notification.permission==='granted')await kpEnable(false);
- }catch(_){if(epoch===kp.epoch)kp.config=null;}
- kpRender();
+  const mode=before>0&&before<cutoff&&now-cutoff<120000?'automatic':'first-open';
+  await khWrite(day,mode,'',epoch,'auto-'+day);
+ }catch(error){if(epoch===k.epoch)kNotice('Riepilogo non ancora salvato. '+kError(error)+' Puoi usare Conferma fine turno quando sei online.',true);}
+ finally{if(version===kh.epoch)kh.working=false;}
 }
-async function kpEnable(ask){
- const uid=auth.currentUser?.uid,epoch=kp.epoch;
- if(!uid||!k.allowed)return;const reason=kpSupport();if(reason){kNotice(reason,true);return;}
- if(!kp.config?.enabled||typeof kp.config.vapidKey!=='string'||!/^[A-Za-z0-9_-]{80,200}$/.test(kp.config.vapidKey)){kNotice('Configurazione push incompleta. Serve la chiave pubblica Web Push di Firebase.',true);return;}
- // This call is made directly from the Continua click, before any asynchronous work.
- const permission=ask?await Notification.requestPermission():Notification.permission;
- if(permission!=='granted'){kNotice(permission==='denied'?'Permesso negato. Puoi cambiarlo dalle impostazioni.':'Permesso non concesso: le notifiche interne restano disponibili.',true);kpRender();return;}
- try{
-  const sdk=await import('https://www.gstatic.com/firebasejs/11.6.0/firebase-messaging.js');
-  if(!await sdk.isSupported())throw Error('Firebase Messaging non è supportato da questo browser.');
-  const registration=await navigator.serviceWorker.register('./firebase-messaging-sw.js',{scope:'./'});await navigator.serviceWorker.ready;
-  kp.registration=registration;kp.messaging=sdk.getMessaging(app);
-  const token=await sdk.getToken(kp.messaging,{vapidKey:kp.config.vapidKey,serviceWorkerRegistration:registration});if(!token)throw Error('Registrazione del dispositivo non riuscita.');
-  if(epoch!==kp.epoch||auth.currentUser?.uid!==uid||!k.allowed)return;
-  const bindingId=crypto.randomUUID();await kpStore('put',{enabled:false});
-  const registered=await kpCall('registerKitchenDevice',{token,bindingId,label:(/iPhone|iPad/.test(navigator.userAgent)?'iPhone / iPad':/Android/.test(navigator.userAgent)?'Android':'Browser computer')});
-  if(epoch!==kp.epoch||auth.currentUser?.uid!==uid||!k.allowed)return;
-  if(ask){const pref=doc(db,'kitchenPreferences',uid);await runTransaction(db,async tx=>{const snap=await tx.get(pref);if(epoch!==kp.epoch||auth.currentUser?.uid!==uid||!k.allowed)throw Error('Sessione cambiata.');const old=snap.data()||{};tx.set(pref,{stock:true,orders:true,tasks:true,clean:true,muted:false,quietStart:'02:00',quietEnd:'10:00',readIds:[],...old,pushEnabled:true,revision:(old.revision||0)+1,updatedAt:serverTimestamp()});});}
-  if(epoch!==kp.epoch||auth.currentUser?.uid!==uid||!k.allowed)return;
-  await kpStore('put',{enabled:true,uid,bindingId,deviceId:registered.id});kp.id=registered.id;kpRemember(uid,true);
-  kp.off?.();kp.off=sdk.onMessage(kp.messaging,message=>{const d=message.data;if(d?.uid===auth.currentUser?.uid&&d.bindingId===bindingId&&Number(d.expiresAt)>Date.now()&&k.allowed)kNotice('Nuova attività in cucina. Apri Notifiche per i dettagli.');});
-  if(ask)kNotice('Notifiche attivate su questo dispositivo.');kpRender();
- }catch(error){await kpStore('put',{enabled:false}).catch(()=>{});kp.id=null;kpRemember(uid,false);kNotice('Push non attivate: '+(error.message||'verifica configurazione e backend.'),true);kpRender();}
-}
-async function kpDisable(){
- const uid=auth.currentUser?.uid;if(!uid)return;const id=kp.id||((await kpStore('get').catch(()=>null))?.deviceId);
- await kpStore('put',{enabled:false});kpRemember(uid,false);kp.id=null;kp.off?.();kp.off=null;kpRender();
- try{if(id)await kpCall('manageKitchenDevices',{action:'remove',id});kNotice('Notifiche disattivate su questo dispositivo.');}catch(_){kNotice('Dispositivo silenziato localmente. La rimozione dal server non è riuscita: riprova da Gestisci dispositivi.',true);}
-}
-async function kpLogout(){
- const uid=auth.currentUser?.uid;const binding=await kpStore('get').catch(()=>null);kpSuspend();if(uid)kpRemember(uid,false);
- // Sign-out is never held up indefinitely by network cleanup. Local binding is already disabled.
- if(binding?.deviceId)await Promise.race([kpCall('manageKitchenDevices',{action:'remove',id:binding.deviceId}).catch(()=>{}),new Promise(r=>setTimeout(r,2500))]);
-}
-async function kpDevices(){
- const host=$('kPushDeviceList');if(!host)return;host.textContent='Caricamento…';const epoch=kp.epoch;
- try{const {devices}=await kpCall('manageKitchenDevices',{action:'list'});if(epoch!==kp.epoch)return;host.replaceChildren();if(!devices.length)host.append(make('p','','Nessun dispositivo registrato.'));
-  for(const d of devices){const row=make('div','k-row');row.append(make('span','',d.label+(d.id===kp.id?' · Questo dispositivo':'')));row.append(createButton('Rimuovi',async()=>{try{if(d.id===kp.id)await kpDisable();else await kpCall('manageKitchenDevices',{action:'remove',id:d.id});await kpDevices();}catch(error){kNotice(error.message,true);}}));host.append(row);}
- }catch(error){host.textContent='Elenco non disponibile: verifica che il backend sia stato pubblicato.';}
-}
-$('kPushContinue').addEventListener('click',()=>{$('kPushConsent').close();void kpEnable(true);});
-$('kPushCancel').addEventListener('click',()=>$('kPushConsent').close());
-
-if('serviceWorker' in navigator)navigator.serviceWorker.addEventListener('message',async event=>{
- const d=event.data;if(d?.type!=='kitchen-open'||event.source?.scriptURL!==new URL('./firebase-messaging-sw.js',location.href).href||d.uid!==auth.currentUser?.uid||!k.allowed)return;
- const binding=await kpStore('get').catch(()=>null);if(!binding?.enabled||binding.bindingId!==d.bindingId)return;
- if(managerView==='kitchen'&&!kitchenMayLeave())return;showManagerView('kitchen',true);if(managerView!=='kitchen')return;k.page=['stock','cart','tasks','clean'].includes(d.target)?d.target:'notifications';kRender();if(/^[a-zA-Z0-9_-]{1,128}$/.test(d.eventId))void kMarkRead([d.eventId],k.epoch).catch(()=>{});
+$('kBody').addEventListener('input',event=>{const form=event.target.closest('#khFinishForm');if(form)kh.draft=Object.fromEntries(new FormData(form));});
+$('kBody').addEventListener('change',event=>{const form=event.target.closest('#khFinishForm');if(form)kh.draft=Object.fromEntries(new FormData(form));});
+$('kBody').addEventListener('submit',async event=>{
+ if(event.target.id!=='khFinishForm')return;event.preventDefault();if(k.busy)return;
+ const values=Object.fromEntries(new FormData(event.target)),note=String(values.note||'').trim(),day=values.shiftDate;
+ const signature=day+'\n'+note;if(kh.submission?.signature!==signature)kh.submission={signature,id:crypto.randomUUID()};
+ await kRun(async epoch=>{await khWrite(day,'manual',note,epoch,kh.submission.id);k.formDirty=false;kh.submission=null;kh.draft=null;});
 });
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')void khMaybeAuto();});
+window.addEventListener('online',()=>void khMaybeAuto());
 
 // Cucina v1 — dati privati, nessuna modifica al catalogo pubblico.
 const K_SEEDS=[{"id": "lattuga", "name": "Lattuga", "category": "Verdura", "stockUnit": "pezzi", "orderUnit": "cassette", "supplierId": "veg", "mode": "name", "stockStep": 1, "orderStep": 1, "messageName": "lattuga", "bundle": "", "active": true}, {"id": "pomodori", "name": "Pomodori", "category": "Verdura", "stockUnit": "pezzi", "orderUnit": "cassette", "supplierId": "veg", "mode": "name", "stockStep": 1, "orderStep": 1, "messageName": "pomodori", "bundle": "", "active": true}, {"id": "pomodorini", "name": "Pomodorini", "category": "Verdura", "stockUnit": "cassette", "orderUnit": "cassette", "supplierId": "veg", "mode": "name", "stockStep": 1, "orderStep": 1, "messageName": "pomodorini", "bundle": "", "active": true}, {"id": "rucola", "name": "Rucola", "category": "Verdura", "stockUnit": "cassette", "orderUnit": "cassette", "supplierId": "veg", "mode": "name", "stockStep": 1, "orderStep": 1, "messageName": "rucola", "bundle": "", "active": true}, {"id": "cipolle", "name": "Cipolle", "category": "Verdura", "stockUnit": "cassette", "orderUnit": "cassette", "supplierId": "veg", "mode": "name", "stockStep": 1, "orderStep": 1, "messageName": "cipolle", "bundle": "", "active": true}, {"id": "cetrioli", "name": "Cetrioli", "category": "Verdura", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "veg", "mode": "name", "stockStep": 1, "orderStep": 1, "messageName": "cetrioli", "bundle": "", "active": true}, {"id": "arance", "name": "Arance", "category": "Verdura", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "veg", "mode": "name", "stockStep": 1, "orderStep": 1, "messageName": "arance", "bundle": "", "active": true}, {"id": "limoni", "name": "Limoni", "category": "Verdura", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "veg", "mode": "name", "stockStep": 1, "orderStep": 1, "messageName": "limoni", "bundle": "", "active": true}, {"id": "lime", "name": "Lime", "category": "Verdura", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "veg", "mode": "name", "stockStep": 1, "orderStep": 1, "messageName": "lime", "bundle": "", "active": true}, {"id": "verdure-grigliate", "name": "Verdure grigliate", "category": "Verdura", "stockUnit": "sacchetti porzionati sottovuoto", "orderUnit": "", "supplierId": "veg", "mode": "bundle", "stockStep": 1, "orderStep": 1, "messageName": "verdure grigliate", "bundle": "melanzane\nzucchine\n2 peperoni rossi\n2 peperoni gialli", "active": true}, {"id": "mozzarella", "name": "Mozzarella", "category": "Formaggi", "stockUnit": "pacchi", "orderUnit": "pacchi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "mozzarella", "bundle": "", "active": true}, {"id": "scamorza", "name": "Scamorza", "category": "Formaggi", "stockUnit": "pacchi", "orderUnit": "pacchi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "scamorza", "bundle": "", "active": true}, {"id": "cheddar", "name": "Cheddar", "category": "Formaggi", "stockUnit": "pacchi", "orderUnit": "pacchi", "supplierId": "madia", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "cheddar", "bundle": "", "active": true}, {"id": "edamer", "name": "Edamer", "category": "Formaggi", "stockUnit": "pacchi", "orderUnit": "pacchi", "supplierId": "madia", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "edamer", "bundle": "", "active": true}, {"id": "speck", "name": "Speck", "category": "Salumi", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "speck", "bundle": "", "active": true}, {"id": "salame", "name": "Salame", "category": "Salumi", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "salame", "bundle": "", "active": true}, {"id": "prosciutto-crudo-duro", "name": "Prosciutto crudo duro", "category": "Salumi", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "prosciutto crudo duro", "bundle": "", "active": true}, {"id": "prosciutto-cotto", "name": "Prosciutto cotto", "category": "Salumi", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "claudio", "mode": "name", "stockStep": 1, "orderStep": 1, "messageName": "cotto", "bundle": "", "active": true}, {"id": "ribs", "name": "Ribs", "category": "Carne", "stockUnit": "pezzi", "orderUnit": "cartoni", "supplierId": "claudio", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "ribs", "bundle": "", "active": true}, {"id": "pulled-pork", "name": "Pulled pork", "category": "Carne", "stockUnit": "pezzi", "orderUnit": "cartoni", "supplierId": "claudio", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "pulled pork", "bundle": "", "active": true}, {"id": "polli", "name": "Polli", "category": "Carne", "stockUnit": "pezzi", "orderUnit": "", "supplierId": "samu", "mode": "name", "stockStep": 1, "orderStep": 1, "messageName": "polli", "bundle": "", "active": true}, {"id": "carne", "name": "Carne", "category": "Carne", "stockUnit": "kg", "orderUnit": "", "supplierId": "samu", "mode": "name", "stockStep": 0.1, "orderStep": 1, "messageName": "congelato", "bundle": "", "active": true}, {"id": "tagliate", "name": "Tagliate", "category": "Carne", "stockUnit": "monoporzioni sottovuoto", "orderUnit": "pezzi di carne", "supplierId": "madia", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "tagliate", "bundle": "", "active": true}, {"id": "cotoletta", "name": "Cotoletta", "category": "Carne", "stockUnit": "sacchi", "orderUnit": "sacchi", "supplierId": "madia", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "cotoletta", "bundle": "", "active": true}, {"id": "wurstel", "name": "Wurstel", "category": "Carne", "stockUnit": "pacchi", "orderUnit": "cartoni", "supplierId": "madia", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "wurstel", "bundle": "", "active": true}, {"id": "fusi", "name": "Fusi", "category": "Carne", "stockUnit": "sacchi", "orderUnit": "sacchi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "fusi", "bundle": "", "active": true}, {"id": "alette", "name": "Alette", "category": "Carne", "stockUnit": "sacchi", "orderUnit": "sacchi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "alette", "bundle": "", "active": true}, {"id": "tiramisu-normale", "name": "Tiramisù normale", "category": "Preparazioni", "stockUnit": "monoporzioni", "orderUnit": "", "supplierId": "", "mode": "prep", "stockStep": 1, "orderStep": 1, "messageName": "tiramisù normale", "bundle": "", "active": true}, {"id": "tiramisu-lotus", "name": "Tiramisù Lotus", "category": "Preparazioni", "stockUnit": "monoporzioni", "orderUnit": "", "supplierId": "", "mode": "prep", "stockStep": 1, "orderStep": 1, "messageName": "tiramisù lotus", "bundle": "", "active": true}, {"id": "panna-cotta", "name": "Panna cotta", "category": "Preparazioni", "stockUnit": "monoporzioni", "orderUnit": "", "supplierId": "", "mode": "prep", "stockStep": 1, "orderStep": 1, "messageName": "panna cotta", "bundle": "", "active": true}, {"id": "tartufi-bianchi", "name": "Tartufi bianchi", "category": "Dolci", "stockUnit": "pezzi", "orderUnit": "cartoni", "supplierId": "madia", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "tartufi bianchi", "bundle": "", "active": true}, {"id": "tartufi-neri", "name": "Tartufi neri", "category": "Dolci", "stockUnit": "pezzi", "orderUnit": "cartoni", "supplierId": "madia", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "tartufi neri", "bundle": "", "active": true}, {"id": "tortini", "name": "Tortini", "category": "Dolci", "stockUnit": "pezzi", "orderUnit": "cartoni", "supplierId": "madia", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "tortini", "bundle": "", "active": true}, {"id": "topping-cioccolato", "name": "Topping cioccolato", "category": "Dolci", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "topping cioccolato", "bundle": "", "active": true}, {"id": "topping-caramello-salato", "name": "Topping caramello salato", "category": "Dolci", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "topping caramello salato", "bundle": "", "active": true}, {"id": "topping-frutti-di-bosco", "name": "Topping frutti di bosco", "category": "Dolci", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "topping frutti di bosco", "bundle": "", "active": true}, {"id": "panna-spray", "name": "Panna spray", "category": "Dolci", "stockUnit": "pezzi", "orderUnit": "cartoni", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "panna spray", "bundle": "", "active": true}, {"id": "frutti-di-bosco-congelati", "name": "Frutti di bosco congelati", "category": "Dolci", "stockUnit": "sacchetti", "orderUnit": "sacchetti", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "frutti di bosco congelati", "bundle": "", "active": true}, {"id": "cacao-in-polvere", "name": "Cacao in polvere", "category": "Dolci", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "cacao in polvere", "bundle": "", "active": true}, {"id": "panna-fresca", "name": "Panna fresca", "category": "Dolci", "stockUnit": "litri", "orderUnit": "litri", "supplierId": "group", "mode": "qty", "stockStep": 0.1, "orderStep": 0.1, "messageName": "panna fresca", "bundle": "", "active": true}, {"id": "preparato-panna-cotta", "name": "Preparato panna cotta", "category": "Dolci", "stockUnit": "confezioni", "orderUnit": "confezioni", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "preparato panna cotta", "bundle": "", "active": true}, {"id": "preparato-tiramisu", "name": "Preparato tiramisù", "category": "Dolci", "stockUnit": "confezioni", "orderUnit": "confezioni", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "preparato tiramisù", "bundle": "", "active": true}, {"id": "savoiardi", "name": "Savoiardi", "category": "Dolci", "stockUnit": "confezioni", "orderUnit": "confezioni", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "savoiardi", "bundle": "", "active": true}, {"id": "veggy-burger", "name": "Veggy burger", "category": "Ingredienti", "stockUnit": "confezioni", "orderUnit": "confezioni", "supplierId": "group", "mode": "qty", "stockStep": 0.5, "orderStep": 1, "messageName": "veggy burger", "bundle": "", "active": true}, {"id": "tonno", "name": "Tonno", "category": "Ingredienti", "stockUnit": "pezzi", "orderUnit": "confezioni", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "tonno", "bundle": "", "active": true}, {"id": "carciofi", "name": "Carciofi", "category": "Ingredienti", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "carciofi", "bundle": "", "active": true}, {"id": "funghi", "name": "Funghi", "category": "Ingredienti", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "funghi", "bundle": "", "active": true}, {"id": "bacon", "name": "Bacon", "category": "Ingredienti", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "bacon", "bundle": "", "active": true}, {"id": "latte", "name": "Latte", "category": "Ingredienti", "stockUnit": "pezzi", "orderUnit": "cartoni", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "latte", "bundle": "", "active": true}, {"id": "olio", "name": "Olio", "category": "Ingredienti", "stockUnit": "bottiglie", "orderUnit": "bottiglie", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "olio", "bundle": "", "active": true}, {"id": "olio-friggitrice-5-l", "name": "Olio friggitrice 5 L", "category": "Ingredienti", "stockUnit": "taniche", "orderUnit": "taniche", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "olio friggitrice 5 l", "bundle": "", "active": true}, {"id": "olio-friggitrice-10-l", "name": "Olio friggitrice 10 L", "category": "Ingredienti", "stockUnit": "taniche", "orderUnit": "taniche", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "olio friggitrice 10 l", "bundle": "", "active": true}, {"id": "sale-cucina", "name": "Sale cucina", "category": "Ingredienti", "stockUnit": "confezioni", "orderUnit": "cartoni", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "sale cucina", "bundle": "", "active": true}, {"id": "uova", "name": "Uova", "category": "Ingredienti", "stockUnit": "pezzi", "orderUnit": "confezioni", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "uova", "bundle": "", "active": true}, {"id": "cipolla-caramellata", "name": "Cipolla caramellata", "category": "Preparazioni", "stockUnit": "sacchetti sottovuoto", "orderUnit": "", "supplierId": "", "mode": "prep", "stockStep": 1, "orderStep": 1, "messageName": "cipolla caramellata", "bundle": "", "active": true}, {"id": "origano", "name": "Origano", "category": "Ingredienti", "stockUnit": "confezioni", "orderUnit": "confezioni", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "origano", "bundle": "", "active": true}, {"id": "salsa-rosa", "name": "Salsa rosa", "category": "Salse", "stockUnit": "pezzi", "orderUnit": "cartoni", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "salsa rosa", "bundle": "", "active": true}, {"id": "salsa-bbq", "name": "Salsa BBQ", "category": "Salse", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "salsa bbq", "bundle": "", "active": true}, {"id": "senape", "name": "Senape", "category": "Salse", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "senape", "bundle": "", "active": true}, {"id": "maionese", "name": "Maionese", "category": "Salse", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "maionese", "bundle": "", "active": true}, {"id": "salsa-cesar", "name": "Salsa Cesar", "category": "Salse", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "salsa cesar", "bundle": "", "active": true}, {"id": "ketchup", "name": "Ketchup", "category": "Salse", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "ketchup", "bundle": "", "active": true}, {"id": "salsa-piccante", "name": "Salsa piccante", "category": "Salse", "stockUnit": "pezzi", "orderUnit": "cartoni", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "salsa piccante", "bundle": "", "active": true}, {"id": "salsa-worchester", "name": "Salsa Worchester", "category": "Salse", "stockUnit": "pezzi", "orderUnit": "pezzi", "supplierId": "madia", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "salsa worchester", "bundle": "", "active": true}, {"id": "salsa-coleslaw", "name": "Salsa coleslaw", "category": "Preparazioni", "stockUnit": "sacchetti sottovuoto", "orderUnit": "", "supplierId": "", "mode": "prep", "stockStep": 1, "orderStep": 1, "messageName": "salsa coleslaw", "bundle": "", "active": true}, {"id": "chili", "name": "Chili", "category": "Preparazioni", "stockUnit": "scatole", "orderUnit": "", "supplierId": "", "mode": "prep", "stockStep": 0.5, "orderStep": 1, "messageName": "chili", "bundle": "", "active": true}, {"id": "polpette", "name": "Polpette", "category": "Preparazioni", "stockUnit": "monoporzioni sottovuoto", "orderUnit": "", "supplierId": "", "mode": "prep", "stockStep": 1, "orderStep": 1, "messageName": "polpette", "bundle": "", "active": true}, {"id": "zuppa-di-zucca", "name": "Zuppa di zucca", "category": "Preparazioni", "stockUnit": "monoporzioni sottovuoto", "orderUnit": "", "supplierId": "", "mode": "prep", "stockStep": 1, "orderStep": 1, "messageName": "zuppa di zucca", "bundle": "", "active": true}, {"id": "guinness-pie-wrap", "name": "Guinness pie wrap", "category": "Preparazioni", "stockUnit": "monoporzioni sottovuoto", "orderUnit": "", "supplierId": "", "mode": "prep", "stockStep": 1, "orderStep": 1, "messageName": "guinness pie wrap", "bundle": "", "active": true}, {"id": "pane-hamburger", "name": "Pane hamburger", "category": "Pane", "stockUnit": "sacchetti", "orderUnit": "", "supplierId": "", "mode": "auto", "stockStep": 1, "orderStep": 1, "messageName": "pane hamburger", "bundle": "", "active": true}, {"id": "pizza", "name": "Pizza", "category": "Pane", "stockUnit": "taglieri", "orderUnit": "", "supplierId": "", "mode": "auto", "stockStep": 1, "orderStep": 1, "messageName": "pizza", "bundle": "", "active": true}, {"id": "pane-ciabatta", "name": "Pane ciabatta", "category": "Pane", "stockUnit": "pezzi", "orderUnit": "sacchi", "supplierId": "madia", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "pane ciabatta", "bundle": "", "active": true}, {"id": "pane-hot-dog", "name": "Pane hot dog", "category": "Pane", "stockUnit": "sacchetti", "orderUnit": "sacchetti", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "pane hot dog", "bundle": "", "active": true}, {"id": "patate-fritte", "name": "Patate fritte", "category": "Fritti", "stockUnit": "pezzi", "orderUnit": "cartoni", "supplierId": "madia", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "patate fritte", "bundle": "", "active": true}, {"id": "anelli-di-cipolla", "name": "Anelli di cipolla", "category": "Fritti", "stockUnit": "pezzi", "orderUnit": "cartoni", "supplierId": "madia", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "anelli di cipolla", "bundle": "", "active": true}, {"id": "olive-ascolane", "name": "Olive ascolane", "category": "Fritti", "stockUnit": "pezzi", "orderUnit": "cartoni", "supplierId": "madia", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "olive ascolane", "bundle": "", "active": true}, {"id": "nuggets-di-pollo", "name": "Nuggets di pollo", "category": "Fritti", "stockUnit": "pezzi", "orderUnit": "cartoni", "supplierId": "madia", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "nuggets di pollo", "bundle": "", "active": true}, {"id": "mozzarelline-impanate", "name": "Mozzarelline impanate", "category": "Fritti", "stockUnit": "pezzi", "orderUnit": "cartoni", "supplierId": "madia", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "mozzarelline impanate", "bundle": "", "active": true}, {"id": "crocchette-di-patate", "name": "Crocchette di patate", "category": "Fritti", "stockUnit": "pezzi", "orderUnit": "cartoni", "supplierId": "madia", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "crocchette di patate", "bundle": "", "active": true}, {"id": "jalapenos-al-pezzo", "name": "Jalapeños al pezzo", "category": "Fritti", "stockUnit": "pezzi", "orderUnit": "cartoni", "supplierId": "madia", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "jalapeños al pezzo", "bundle": "", "active": true}, {"id": "verdure-pastellate", "name": "Verdure pastellate", "category": "Fritti", "stockUnit": "sacchetti", "orderUnit": "sacchetti", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "verdure pastellate", "bundle": "", "active": true}, {"id": "tovaglioli-neri", "name": "Tovaglioli neri", "category": "Materiali", "stockUnit": "pezzi", "orderUnit": "cartoni", "supplierId": "madia", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "tovaglioli neri", "bundle": "", "active": true}, {"id": "scottex", "name": "Scottex", "category": "Materiali", "stockUnit": "pezzi", "orderUnit": "confezioni", "supplierId": "madia", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "scottex", "bundle": "", "active": true}, {"id": "sapone-piatti", "name": "Sapone piatti", "category": "Materiali", "stockUnit": "flaconi", "orderUnit": "flaconi", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "sapone piatti", "bundle": "", "active": true}, {"id": "stuzzicadenti", "name": "Stuzzicadenti", "category": "Materiali", "stockUnit": "sacchetti", "orderUnit": "sacchetti", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "stuzzicadenti", "bundle": "", "active": true}, {"id": "sacchetti-asporto", "name": "Sacchetti asporto", "category": "Materiali", "stockUnit": "pezzi", "orderUnit": "cartoni", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "sacchetti asporto", "bundle": "", "active": true}, {"id": "scatole-asporto", "name": "Scatole asporto", "category": "Materiali", "stockUnit": "pezzi", "orderUnit": "cartoni", "supplierId": "group", "mode": "qty", "stockStep": 1, "orderStep": 1, "messageName": "scatole asporto", "bundle": "", "active": true}, {"id": "pastiglie-verdi", "name": "Pastiglie verdi", "category": "Materiali", "stockUnit": "secchielli", "orderUnit": "secchielli", "supplierId": "group", "mode": "qty", "stockStep": 0.5, "orderStep": 1, "messageName": "pastiglie verdi", "bundle": "", "active": true}, {"id": "pastiglie-blu", "name": "Pastiglie blu", "category": "Materiali", "stockUnit": "secchielli", "orderUnit": "secchielli", "supplierId": "group", "mode": "qty", "stockStep": 0.5, "orderStep": 1, "messageName": "pastiglie blu", "bundle": "", "active": true}];
@@ -2206,12 +2252,11 @@ const K_SUPPLIERS={
 const K_CATS=['Verdura','Formaggi','Salumi','Carne','Dolci','Ingredienti','Salse','Preparazioni','Pane','Fritti','Materiali'];
 let k={};
 function kitchenReset(){
- kpSuspend();
- if($('kPushConsent')?.open)$('kPushConsent').close();
+ khReset();
  for(const off of k.off||[])off();
  if($('kMessageDialog')?.open)$('kMessageDialog').close();
  if($('kMessageText'))$('kMessageText').value='';
- k={off:[],epoch:(k.epoch||0)+1,accessState:'idle',accessError:'',failures:new Map(),ready:false,allowed:false,busy:false,openCategories:new Set(),page:'home',items:new Map(),suppliers:new Map(),stock:new Map(),orders:new Map(),tasks:new Map(),events:[],draft:new Map(),orderDraft:new Map(),messageDraft:new Map(),prefs:{stock:true,orders:true,tasks:true,clean:true,readIds:[],muted:false,quietStart:'02:00',quietEnd:'10:00'},pending:new Set(),formDirty:false};
+ k={off:[],epoch:(k.epoch||0)+1,accessState:'idle',accessError:'',failures:new Map(),ready:false,allowed:false,busy:false,openCategories:new Set(),page:'home',items:new Map(),suppliers:new Map(),stock:new Map(),orders:new Map(),tasks:new Map(),events:[],reports:new Map(),shiftNotes:new Map(),draft:new Map(),orderDraft:new Map(),messageDraft:new Map(),prefs:{handover:true,stock:true,orders:true,tasks:true,clean:true,readIds:[],muted:false,quietStart:'02:00',quietEnd:'10:00'},pending:new Set(),formDirty:false};
  if($('kBody'))$('kBody').replaceChildren();kBadge();
 }
 kitchenReset();
@@ -2222,7 +2267,7 @@ function kButton(text,action,cls='small-action'){return `<button type="button" c
 function kError(error){return error?.code==='permission-denied'?'La richiesta è stata negata dalle regole Firebase.':error?.code==='unavailable'?'Connessione a Firebase non disponibile. Controlla la rete e riprova.':error?.message||'Operazione non riuscita. Riprova.';}
 function kNotice(text,error=false){$('kMessage').textContent=text;$('kMessage').className='message'+(error?' error':'');}
 function kitchenUnsaved(){return k.busy||k.draft.size>0||k.orderDraft.size>0||k.formDirty||k.messageDraft.size>0;}
-function kitchenMayLeave(){if(k.busy){kNotice('Attendi la conferma del salvataggio.');return false;}if(k.formDirty){if(!confirm('Scartare la scheda non salvata e cambiare sezione?'))return false;k.formDirty=false;k.page='home';}return !kitchenUnsaved()||confirm('I controlli e le quantità non salvati restano aperti in questa sessione. Vuoi cambiare sezione?');}
+function kitchenMayLeave(){if(k.busy){kNotice('Attendi la conferma del salvataggio.');return false;}if(k.formDirty){if(!confirm('Scartare la scheda non salvata e cambiare sezione?'))return false;if(k.page==='handover')kh.draft=null;k.formDirty=false;k.page='home';}return !kitchenUnsaved()||confirm('I controlli e le quantità non salvati restano aperti in questa sessione. Vuoi cambiare sezione?');}
 function kUnread(){return k.events.filter(e=>e.notify&&e.actorUid!==auth.currentUser?.uid&&k.prefs[e.kind]!==false&&!k.prefs.readIds.includes(e.id));}
 function kBadge(){const n=k.ready?kUnread().length:0;for(const el of document.querySelectorAll('[data-k-count]'))el.textContent=String(n);$('kHomeButton').hidden=!currentRole;}
 function kitchenAccessStopped(message,state='denied'){
@@ -2257,11 +2302,11 @@ async function kitchenStart(){
    if(!live()||s.metadata.fromCache||s.metadata.hasPendingWrites)return;
    if(!s.exists()||s.data().operate!==true)kitchenAccessStopped('L’accesso alla cucina è stato revocato. Contatta la proprietaria.');
   },error=>{if(live())kitchenAccessStopped('Non riesco a verificare l’autorizzazione cucina. '+kError(error),'error');}));
-  const names={kitchenItems:'items',kitchenSuppliers:'suppliers',kitchenStock:'stock',kitchenOrders:'orders',kitchenTasks:'tasks',kitchenEvents:'events',kitchenPreferences:'prefs'};
-  const labels={items:'articoli',suppliers:'fornitori',stock:'giacenze',orders:'riordini',tasks:'attività',events:'notifiche interne',prefs:'preferenze personali'};
+  const names={kitchenItems:'items',kitchenSuppliers:'suppliers',kitchenStock:'stock',kitchenOrders:'orders',kitchenTasks:'tasks',kitchenEvents:'events',kitchenPreferences:'prefs',kitchenShiftReports:'reports',kitchenShiftNotes:'shiftNotes'};
+  const labels={items:'articoli',suppliers:'fornitori',stock:'giacenze',orders:'riordini',tasks:'attività',events:'notifiche interne',prefs:'preferenze personali',reports:'riepiloghi di turno',shiftNotes:'note di turno'};
   k.pending=new Set(Object.values(names));
   for(const [col,key] of Object.entries(names)){
-   const ref=key==='prefs'?doc(db,col,uid):key==='events'?query(collection(db,col),orderBy('createdAt','desc'),limit(100)):collection(db,col);
+   const ref=key==='prefs'?doc(db,col,uid):key==='reports'?query(collection(db,col),orderBy('cutoff','desc'),limit(14)):['events','shiftNotes'].includes(key)?query(collection(db,col),orderBy('createdAt','desc'),limit(100)):collection(db,col);
    k.off.push(onSnapshot(ref,{includeMetadataChanges:true},snapshot=>{
     if(!live()||snapshot.metadata.fromCache||snapshot.metadata.hasPendingWrites)return;
     if(key==='prefs')k.prefs={...k.prefs,...(snapshot.exists()?snapshot.data():{})};
@@ -2269,7 +2314,7 @@ async function kitchenStart(){
     else k[key]=new Map(snapshot.docs.map(d=>[d.id,{...d.data(),id:d.id}]));
     k.failures.delete(key);k.pending.delete(key);k.ready=k.pending.size===0&&k.failures.size===0;kBadge();
     if(k.ready){k.accessState='ready';if(!k.connectionAnnounced){k.connectionAnnounced=true;kNotice('Cucina collegata.');}}
-    if(k.ready&&!k.pushBooted){k.pushBooted=true;void kpInit();}
+    if(k.ready)khSchedule();
     if(k.ready&&!k.pushLinkHandled){k.pushLinkHandled=true;const url=new URL(location.href),target=url.searchParams.get('kitchenView');if(['stock','cart','tasks','clean','notifications'].includes(target)){k.page=target;const eid=url.searchParams.get('kitchenEvent');if(eid&&/^[a-zA-Z0-9_-]{1,128}$/.test(eid))void kMarkRead([eid],k.epoch).catch(()=>{});url.searchParams.delete('kitchenView');url.searchParams.delete('kitchenEvent');history.replaceState(history.state,'',url.pathname+url.search+url.hash);}}
     if(managerView==='kitchen'&&!['item','supplier','access'].includes(k.page)&&!k.busy&&!k.formDirty&&!k.messageDraft.size&&!document.activeElement?.closest('#kBody input,#kBody textarea,#kBody select'))kRender();
    },error=>{
@@ -2303,15 +2348,16 @@ function kRender(){
   body.innerHTML='<p>'+ke(k.accessError||'Accesso cucina non abilitato per questo account.')+'</p>'+kButton('Ricontrolla accesso','reload');return;
  }
  if(!k.allowed||!k.ready){body.innerHTML='<p>Verifica accesso e collegamento alla cucina…</p>'+kButton('Riprova connessione','reload');return;}
- let h='';const title={home:'Cucina',stock:'Giacenze',cart:'Carrello riordini',tasks:'Cose da fare',clean:'Pulizie',settings:'Modifica',notifications:'Notifiche',preferences:'Preferenze notifiche',item:'Scheda articolo',supplier:'Fornitore',access:'Accessi cucina'}[k.page]||'Cucina';
+ let h='';const title={handover:'Consegne di turno',home:'Cucina',stock:'Giacenze',cart:'Carrello riordini',tasks:'Cose da fare',clean:'Pulizie',settings:'Modifica',notifications:'Notifiche',preferences:'Preferenze notifiche',item:'Scheda articolo',supplier:'Fornitore',access:'Accessi cucina'}[k.page]||'Cucina';
  $('kHeading').textContent=title;
  if(k.page!=='home')h+=kBack();
  if(k.page==='home'){
   h+='<p>Giacenze, preparazioni e lavoro del turno.</p><div class="k-tiles">';
   for(const [page,label,detail] of [['stock','Giacenze',kActive().length+' articoli'],['cart','Carrello riordini',kActiveOrders().length+' articoli nelle liste'],['tasks','Cose da fare',[...k.tasks.values()].filter(t=>t.kind==='tasks'&&t.status!=='done').length+' attività aperte'],['clean','Pulizie',[...k.tasks.values()].filter(t=>t.kind==='clean'&&t.status!=='done').length+' attività aperte']])h+=`<button class="k-tile" data-k="${page}" type="button"><strong>${label}</strong><small>${detail}</small><span aria-hidden="true">→</span></button>`;
-  h+='</div>';if(!k.items.size)h+='<p>Il catalogo cucina non è ancora inizializzato.</p>'+(currentRole==='owner'?kButton('Importa elenco concordato (senza quantità)','seed','button'):'');
+  h+='</div><button class="k-tile" style="width:100%;margin-top:12px" data-k="handover" type="button"><strong>Consegne di turno</strong><small>'+khPending().length+' attività da completare · note del turno precedente</small><span aria-hidden="true">→</span></button>';if(!k.items.size)h+='<p>Il catalogo cucina non è ancora inizializzato.</p>'+(currentRole==='owner'?kButton('Importa elenco concordato (senza quantità)','seed','button'):'');
   if(currentRole==='owner')h+='<p class="mini">Patate impazzite e fritto misto da verificare come articoli di acquisto: aggiungili da Modifica dopo aver confermato come vengono contati.</p>';
  }
+ if(k.page==='handover')h=khRender();
  if(k.page==='stock'){
   h+='<p>Conferma solo gli articoli controllati. Gli zeri confermati vanno nei riordini o nelle preparazioni.</p>';
   for(const cat of [...new Set(kActive().map(i=>i.category))]){
@@ -2359,10 +2405,10 @@ function kRender(){
  }
  if(k.page==='preferences'){
   h+='<form id="kPrefsForm" class="k-form"><h3>Notifiche interne</h3>';
-  for(const [key,label] of [['stock','Giacenze'],['orders','Riordini'],['tasks','Preparazioni e cose da fare'],['clean','Pulizie']])h+=`<label class="k-check"><input type="checkbox" name="${key}" ${k.prefs[key]?'checked':''}>${label}</label>`;
-  h+='<h3>Notifiche sul telefono</h3><div id="kPushControls"></div><label class="k-check"><input type="checkbox" name="pushEnabled" '+(k.prefs.pushEnabled?'checked':'')+'>Consenti push per il mio account</label><label class="k-check"><input type="checkbox" name="muted" '+(k.prefs.muted?'checked':'')+'>Fascia di silenzio</label><label>Dalle<input type="time" name="quietStart" value="'+ke(k.prefs.quietStart)+'" required></label><label>Alle<input type="time" name="quietEnd" value="'+ke(k.prefs.quietEnd)+'" required></label><p>Fuso Europe/Rome. Se inizio e fine coincidono, silenzio tutto il giorno. Le notifiche silenziate non vengono inviate in ritardo; restano nella campanella.</p><button class="button">Salva preferenze</button></form>';
+  for(const [key,label] of [['handover','Consegne di turno'],['stock','Giacenze'],['orders','Riordini'],['tasks','Preparazioni e cose da fare'],['clean','Pulizie']])h+=`<label class="k-check"><input type="checkbox" name="${key}" ${k.prefs[key]?'checked':''}>${label}</label>`;
+  h+='<p>Le notifiche sono interne al gestionale e non richiedono il permesso del telefono. Le consegne vengono aggiornate alle 4:00 se l’app è aperta, oppure alla prima apertura successiva. Nessun servizio a pagamento.</p><button class="button">Salva preferenze</button></form>';
  }
- body.innerHTML=h;if(k.page==='preferences')kpRender();
+ body.innerHTML=h;
 }
 function kEvent(tx,ref,kind,title,text,target,notify=true){tx.set(ref,{actorUid:auth.currentUser.uid,actorName:(auth.currentUser.displayName||'Personale').slice(0,100),kind,title:title.slice(0,140),text:text.slice(0,600),target,notify,createdAt:serverTimestamp()});}
 function kMeta(before,event){return {revision:(before?.revision||0)+1,updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid,lastEventId:event.id};}
@@ -2431,7 +2477,7 @@ $('kBody').addEventListener('click',async event=>{
  const b=event.target.closest('button');if(!b||k.busy)return;
  if(b.hasAttribute('data-k-step')){const id=b.dataset.kStep,stock=b.dataset.type==='stock',item=k.items.get(id),order=k.orders.get(id),step=stock?item.stockStep:order.step,old=stock?k.draft.get(id)?.qty??(k.stock.get(id)?.configRevision===item.revision?k.stock.get(id)?.qty:0)??0:k.orderDraft.get(id)?.qty??order.qty;const qty=Math.max(0,Math.round((old+Number(b.dataset.dir)*step)*1000)/1000);if(stock)k.draft.set(id,{qty,revision:k.draft.get(id)?.revision??k.stock.get(id)?.revision??0,configRevision:k.draft.get(id)?.configRevision??item.revision});else k.orderDraft.set(id,{qty,revision:k.orderDraft.get(id)?.revision??order.revision});kRender();return;}
  const [action,id,param]=String(b.dataset.k||'').split(':');try{
-  if(['home','stock','cart','tasks','clean','settings','notifications','preferences'].includes(action)){if(k.formDirty&&!confirm('Scartare la scheda non salvata?'))return;k.formDirty=false;k.page=action;kRender();return;}
+  if(['handover','home','stock','cart','tasks','clean','settings','notifications','preferences'].includes(action)){if(k.formDirty&&!confirm('Scartare la scheda non salvata?'))return;if(k.formDirty&&k.page==='handover')kh.draft=null;k.formDirty=false;k.page=action;kRender();return;}
   if(action==='reload'){if(kitchenUnsaved()&&!confirm('Scartare le modifiche locali e riconnettere?'))return;await kitchenStart();return;}
   if(action==='seed'){if(confirm('Aggiungere solo i prodotti mancanti dell’elenco concordato? Nessuna quantità verrà impostata.'))await kRun(kSeed);return;}
   if(action==='undo'){k.draft.delete(id);kRender();return;}
@@ -2462,7 +2508,7 @@ $('kBody').addEventListener('submit',async event=>{
   const data={title:fields.title.trim(),notes:fields.notes.trim(),assignee:fields.assignee.trim(),due:fields.due,kind:k.page,status:'todo',productId:'',updatedByName:auth.currentUser.displayName||'Personale'};if(!data.title)return;
   await kRun(async epoch=>{const ev=doc(collection(db,'kitchenEvents')),ref=doc(collection(db,'kitchenTasks'));kAssert(epoch);const batch=writeBatch(db);batch.set(ref,{...data,...kMeta(null,ev)});kEvent(batch,ev,data.kind,'Nuova attività',data.title,data.kind);await batch.commit();k.formDirty=false;});
  }else if(form.id==='kPrefsForm'){
-  const p={pushEnabled:fields.pushEnabled==='on',stock:fields.stock==='on',orders:fields.orders==='on',tasks:fields.tasks==='on',clean:fields.clean==='on',muted:fields.muted==='on',quietStart:fields.quietStart,quietEnd:fields.quietEnd};await kRun(epoch=>kPrefsSave(p,epoch));
+  const p={handover:fields.handover==='on',stock:fields.stock==='on',orders:fields.orders==='on',tasks:fields.tasks==='on',clean:fields.clean==='on',muted:fields.muted==='on',quietStart:fields.quietStart,quietEnd:fields.quietEnd};await kRun(epoch=>kPrefsSave(p,epoch));
  }
 });
 $('kRetry').addEventListener('click',async()=>{if(k.busy){kNotice('Attendi il salvataggio.');return;}if(kitchenUnsaved()&&!confirm('Scartare le modifiche locali e ricollegare la cucina?'))return;await kitchenStart();});
@@ -2629,6 +2675,3 @@ window.TBSManagerUpdates?.setCanRefresh(() => {
 </script>
 </body>
 </html>
-
-
-
