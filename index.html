@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it" data-privacy-app="manager">
 <head>
-<meta name="tbs-release" content="2026-11-03-tendina-attivita-v12">
+<meta name="tbs-release" content="2026-11-03-cucina-navigazione-v13">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
@@ -587,6 +587,10 @@ textarea{resize:vertical;}
  #kMessageDialog textarea{min-height:90px;}
 }
 
+</style>
+<style id="kitchenUxStyle">
+#managerNav{margin-bottom:18px}#managerBack{min-height:44px}#kitchenPanel .k-toolbar{padding-bottom:16px;border-bottom:1px solid var(--border);margin-bottom:20px}#kitchenPanel .k-toolbar h2{font-size:26px}#kitchenPanel #kMessage:empty{display:none}#kBody>p{line-height:1.6}#kBody .ku-card{border:1px solid var(--border);background:var(--card);border-radius:18px;padding:22px;margin:18px 0}#kBody .ku-card>h3{margin-top:0}#kBody .k-category{border:1px solid var(--border);border-radius:14px;padding:8px 16px;margin:14px 0;background:var(--card)}#kBody .k-group{padding:16px 0}#kBody .k-form{max-width:760px;margin-top:12px}#kBody .k-form>h3{margin-top:0}#kBody .k-turn-main .k-row{padding:10px 0}#kBody .k-turn-main .k-row:last-child{border-bottom:0}#kBody .k-tiles{gap:14px}#kBody .k-tile{min-height:112px}#kBody .k-group .small-action{font-size:12px}#kBody .ku-card .mini{line-height:1.65}#kBody .ku-card article:last-child{border-bottom:0}
+@media(max-width:600px){#kBody .ku-card{padding:16px;border-radius:15px}#kBody .k-category{padding:7px 12px}#kitchenPanel .k-toolbar h2{font-size:24px}#kitchenPanel .k-toolbar>div{gap:6px}#kitchenPanel .k-toolbar>div .small-action{margin:0;padding:9px 11px}#kBody .k-turn-main .k-label{flex:1 1 140px}#kBody .k-turn-main .k-row>.small-action{flex:0 0 auto}#kBody .k-form .button{width:100%}}
 </style>
 </head>
 <body>
@@ -1758,13 +1762,59 @@ window.addEventListener('beforeunload',event=>{if(statisticsSaving){event.preven
 
 const MANAGER_VIEWS={kitchen:'Cucina',statistics:'Statistiche',home:'Home',catalog:'Modifica menu',appearance:'Aspetto del menu',wallet:'Portafoglio IA',account:'Il mio accesso',members:'Utenti e permessi',requests:'Richieste di accesso',history:'Storico attività'};
 let managerView='home';
+let kuApplying=false,kuBackApproved=false,kuRestoring=false;
+if(!Number.isInteger(history.state?.tbsIndex))history.replaceState({...history.state,tbsIndex:0},'',location.href);
+let kuLastIndex=history.state.tbsIndex;
+function kuState(view){return {managerView:view,kitchenPage:view==='kitchen'?k.page:null,editId:k.editId||null,turnEdit:k.turnEdit||null,tbsIndex:history.state?.tbsIndex||0};}
+function kuPush(view){const state=kuState(view);state.tbsIndex++;history.pushState(state,'','#/'+view+(view==='kitchen'&&k.page!=='home'?'/'+k.page:''));kuLastIndex=state.tbsIndex;}
+function kuRecord(){
+ if(kuApplying||managerView!=='kitchen')return;
+ const state=history.state;
+ if(state?.managerView==='kitchen'&&state.kitchenPage!==k.page)kuPush('kitchen');
+ else if(state?.managerView!=='kitchen'){history.replaceState(kuState('kitchen'),'','#/kitchen'+(k.page==='home'?'':'/'+k.page));}
+}
+function kuBack(){
+ if(managerView==='kitchen'&&!kitchenMayLeave())return;
+ if((history.state?.tbsIndex||0)>0){kuBackApproved=true;history.back();return;}
+ if(managerView==='kitchen'&&k.page!=='home'){k.page=['item','supplier','access'].includes(k.page)?'settings':'home';kRender();}
+ else showManagerView('home',true);
+}
+function kuPop(){
+ const target=history.state||{},index=target.tbsIndex||0;
+ if(kuRestoring){kuRestoring=false;kuLastIndex=index;return;}
+ const approved=kuBackApproved;kuBackApproved=false;
+ if(!approved&&managerView==='kitchen'&&!kitchenMayLeave()){
+  const delta=kuLastIndex-index;if(delta){kuRestoring=true;history.go(delta);}return;
+ }
+ kuApplying=true;
+ try{
+  const parts=location.hash.slice(2).split('/'),view=target.managerView||parts[0]||'home';
+  if(view==='kitchen'){k.page=target.kitchenPage||parts[1]||'home';k.editId=target.editId;k.turnEdit=target.turnEdit;}
+  showManagerView(view,false);
+  if(view==='kitchen'&&k.ready){if(k.page==='item')kItemForm(k.editId);else if(k.page==='supplier')kSupplierForm(k.editId);else if(k.page==='tasknote')ktNoteForm(k.turnEdit);else if(k.page==='access')void kAccessPage();}
+  kuLastIndex=index;
+ }finally{kuApplying=false;}
+}
+let kuGesture=null;
+document.addEventListener('pointerdown',e=>{
+ if(e.pointerType!=='touch'||e.clientX<32||e.clientX>innerWidth-32||e.target.closest?.('input,textarea,select,button,a,summary,[role=dialog],dialog'))return;
+ kuGesture={x:e.clientX,y:e.clientY,time:performance.now()};
+},{passive:true});
+document.addEventListener('pointercancel',()=>kuGesture=null,{passive:true});
+document.addEventListener('pointerup',e=>{
+ const start=kuGesture;kuGesture=null;if(!start||e.pointerType!=='touch')return;
+ if(e.clientX-start.x>90&&Math.abs(e.clientY-start.y)<45&&performance.now()-start.time<700&&managerView!=='home')kuBack();
+},{passive:true});
+
 function showManagerView(view, push=false, focus=true){
- if(managerView==='kitchen'&&view!=='kitchen'&&!kitchenMayLeave())return;
+ const kitchenRoute=String(view).startsWith('kitchen/');if(kitchenRoute){const page=String(view).split('/')[1];view='kitchen';k.page=['home','stock','cart','tasks','loads','clean','handover','settings','notifications','preferences'].includes(page)?page:page==='tasknote'?'tasks':'settings';}
+ if(!kuApplying&&managerView==='kitchen'&&view!=='kitchen'&&!kitchenMayLeave())return;
  if(statisticsSaving&&view!==managerView){statisticsMessage('Attendi il salvataggio della raccolta.');return;}
  if(catalogBusy&&view!==managerView){catalogMessage('Attendi il completamento della pubblicazione.');return;}
  if(managerView==='appearance'&&view!=='appearance'){if(themeSaving){themeMessage('Attendi il completamento della pubblicazione.');return;}if(themeDirty){if(!confirm('Scartare la scelta del tema non pubblicata?'))return;themeDirty=false;}}
  if(currentRole&&managerView==='catalog'&&view!=='catalog'&&editorDirty&&!$('catalogEditor').hidden){if(!confirm('Scartare le modifiche non pubblicate?'))return;editorDirty=false;$('catalogEditor').hidden=true;}
  if(!currentRole || !MANAGER_VIEWS[view] || (['members','requests','history','wallet','appearance','statistics'].includes(view)&&currentRole!=='owner'))view='home';
+ if(view==='kitchen'&&managerView!=='kitchen'&&!kuApplying&&!kitchenRoute)k.page='home';
  managerView=view;
  document.body.dataset.managerView=view;
  document.body.dataset.managerReady=String(!!currentRole);
@@ -1772,7 +1822,7 @@ function showManagerView(view, push=false, focus=true){
  $('managerSectionTitle').textContent=MANAGER_VIEWS[view];
  $('ownerSectionTitle').textContent=view==='requests'?'RICHIESTE DI ACCESSO':'UTENTI E PERMESSI';
  if(view!=='catalog'&&!editorDirty)$('catalogEditor').hidden=true;
- if(push)window.history.pushState({managerView:view},'',view==='home'?'#/home':'#/'+view);
+ if(push)kuPush(view);
  if(view==='catalog')loadCatalog();
  if(view==='kitchen')kRender();
  if(currentRole==='owner'){
@@ -1796,8 +1846,8 @@ document.addEventListener('click',event=>{
  if(view==='profile'){openProfile();return;}
  showManagerView(view,true);
 });
-$('managerBack').addEventListener('click',()=>showManagerView('home',true));
-window.addEventListener('popstate',()=>showManagerView(location.hash.slice(2)||'home',false));
+$('managerBack').textContent='← Indietro';$('managerBack').addEventListener('click',kuBack);
+window.addEventListener('popstate',kuPop);
 
 let sessionVersion=0;
 let currentRole=null;
@@ -2388,20 +2438,20 @@ function ktOpen(){return [...k.turnOpen.values()].sort((a,b)=>a.title.localeComp
 function ktName(){return (auth.currentUser.displayName||'Personale').slice(0,100);}
 function ktRender(){
  const latest=[...k.turnHistory.values()].sort((a,b)=>b.sequence-a.sequence)[0],open=ktOpen(),drafts=ktDrafts();
- let h=kBack()+'<h3>Lista ricevuta · questo turno</h3>';
+ let h=kBack()+'<section class="ku-card"><h3>Lista ricevuta · questo turno</h3>';
  h+=latest?'<p>Consegne confermate da <strong>'+ke(latest.createdByName)+'</strong> · '+ke(kTime(latest.createdAt))+'</p>'+(latest.note?'<p class="k-turn-note">'+ke(latest.note)+'</p>':''):'<p>Non è ancora stata confermata una lista di fine turno.</p>';
  h+='<p class="mini">Spunta ciò che completi: sparisce dalla lista attiva e resta registrato nello storico. Le cose rimaste aperte passano al turno successivo.</p>';
  if(!open.length)h+='<p class="k-turn-empty">Tutte le attività ricevute sono completate.</p>';
  for(const t of open)h+='<article class="k-group"><label class="k-turn-check"><input type="checkbox" data-kt-done="'+ke(t.id)+'" '+(k.busy?'disabled':'')+'><strong>'+ke(t.title)+'</strong></label>'+(t.notes?'<p class="k-turn-note">'+ke(t.notes)+'</p>':'')+'<small>Lasciata da '+ke(t.createdByName)+' · '+ke(kTime(t.createdAt))+'</small>'+kButton('Aggiungi o modifica nota','turnnote:'+t.id)+'</article>';
  const legacy=khPending().filter(t=>t.kind==='tasks');
  if(legacy.length){h+='<details class="k-category"><summary>Preparazioni e attività già aperte ('+legacy.length+')</summary>';for(const t of legacy)h+='<article class="k-group"><strong>'+ke(t.title)+'</strong>'+(t.notes?'<p>'+ke(t.notes)+'</p>':'')+kButton('Completata','task:'+t.id+':done')+'</article>';h+='</details>';}
- h+='<h3>Da lasciare al prossimo turno</h3><p class="mini">Questa bozza è visibile solo a te. Diventa condivisa quando confermi la chiusura del turno.</p>';
+ h+='</section><section class="ku-card"><h3>Da lasciare al prossimo turno</h3><p class="mini">Questa bozza è visibile solo a te. Diventa condivisa quando confermi la chiusura del turno.</p>';
  for(const t of drafts)h+='<article class="k-group"><strong>'+ke(t.title)+'</strong>'+(t.notes?'<p class="k-turn-note">'+ke(t.notes)+'</p>':'')+kButton('Note','turnnote:'+t.id)+kButton('Togli dalla bozza','turndiscard:'+t.id)+'</article>';
  if(!drafts.length)h+='<p>Nessuna nuova attività nella tua bozza.</p>';
  h+='<details class="k-category" data-kt-main'+(k.taskMainOpen?' open':'')+'><summary>Aggiungi dalle attività principali</summary><p class="mini">Queste voci restano sempre disponibili come modello. Seleziona solo quelle che vuoi lasciare.</p><div class="k-turn-main">';
- for(const t of ktTemplates()){const selected=drafts.some(d=>d.templateId===t.id);h+='<div class="k-row"><div class="k-label"><strong>'+ke(t.title)+'</strong>'+(t.recurring?'<small>Ripeti a ogni passaggio di turno</small>':'')+'</div><button type="button" class="small-action" data-k="turnadd:'+ke(t.id)+'" '+(k.busy||selected?'disabled':'')+'>'+(selected?'In bozza':'Aggiungi')+'</button>'+(t.recurring?kButton('Non ripetere più','turnrepeat:'+t.id):'')+(!KT_MAIN.some(m=>m.id===t.id)?kButton('Togli dai principali','turnhide:'+t.id):'')+'</div>';}
- h+='</div></details><details class="k-category"><summary>Aggiungi un’attività manualmente</summary><form id="ktAddForm" class="k-form"><label>Attività<input name="title" maxlength="140" required></label><label>Nota facoltativa<textarea name="notes" maxlength="1000"></textarea></label><label class="k-check"><input type="checkbox" name="principal"> Salva anche tra le attività principali</label><label class="k-check"><input type="checkbox" name="recurring"> Ripeti a ogni passaggio di turno</label><p class="mini">Il modello viene condiviso alla conferma di fine turno. “Principale” lo conserva per riutilizzarlo. “Ripeti” aggiunge una nuova attività alla chiusura, se non è già aperta.</p><button class="button">Salva nella mia bozza</button></form></details>';
- h+='<form id="ktCloseForm" class="k-form"><h3>Fine turno</h3><label>Nota generale per chi entra dopo<textarea name="note" maxlength="2000" placeholder="Indicazioni utili per il prossimo turno"></textarea></label><p>'+open.length+' attività ricevute ancora aperte · '+drafts.length+' nuove attività in bozza.</p><p class="mini">Con la conferma, le attività incompiute restano aperte e la tua bozza viene pubblicata per tutti gli autorizzati alla cucina. La chiusura non modifica le giacenze.</p><button class="button">Chiudi turno e passa le consegne</button></form>';
+ for(const t of ktTemplates()){const selected=drafts.some(d=>d.templateId===t.id);h+='<div class="k-row"><div class="k-label"><strong>'+ke(t.title)+'</strong>'+'</div><button type="button" class="small-action" data-k="turnadd:'+ke(t.id)+'" '+(k.busy||selected?'disabled':'')+'>'+(selected?'In bozza':'Aggiungi')+'</button>'+(!KT_MAIN.some(m=>m.id===t.id)?kButton('Togli dai principali','turnhide:'+t.id):'')+'</div>';}
+ h+='</div></details><details class="k-category"><summary>Aggiungi un’attività manualmente</summary><form id="ktAddForm" class="k-form"><label>Attività<input name="title" maxlength="140" required></label><label>Nota facoltativa<textarea name="notes" maxlength="1000"></textarea></label><label class="k-check"><input type="checkbox" name="principal"> Salva anche tra le attività principali</label><p class="mini">Senza spunta è un’attività singola: dopo il completamento scompare e non ritorna. Se la salvi tra le principali, conservi un modello da aggiungere quando serve.</p><button class="button">Salva nella mia bozza</button></form></details>';
+ h+='</section><section class="ku-card"><form id="ktCloseForm" class="k-form"><h3>Fine turno</h3><label>Nota generale per chi entra dopo<textarea name="note" maxlength="2000" placeholder="Indicazioni utili per il prossimo turno"></textarea></label><p>'+open.length+' attività ricevute ancora aperte · '+drafts.length+' nuove attività in bozza.</p><p class="mini">Con la conferma, le attività incompiute restano aperte e la tua bozza viene pubblicata per tutti gli autorizzati alla cucina. La chiusura non modifica le giacenze.</p><button class="button">Chiudi turno e passa le consegne</button></form></section>';
  const history=[...k.turnHistory.values()].sort((a,b)=>b.sequence-a.sequence);
  if(history.length)h+='<details class="k-category"><summary>Storico dei passaggi di turno</summary>'+history.map(r=>'<article class="k-group"><strong>Passaggio '+r.sequence+' · '+ke(r.createdByName)+'</strong><small>'+ke(kTime(r.createdAt))+' · '+r.newTaskIds.length+' nuove attività</small>'+(r.note?'<p class="k-turn-note">'+ke(r.note)+'</p>':'')+'</article>').join('')+'</details>';
  const oldNotes=[...k.shiftNotes.values()].sort((a,b)=>(b.createdAt?.toMillis?.()||0)-(a.createdAt?.toMillis?.()||0));
@@ -2433,12 +2483,12 @@ async function ktChange(id,operation,notes,epoch){
   tx.set(ref,{...before,status,notes:notes===null?before.notes:notes,updatedByName:ktName(),...kMeta(before,event)});
   const privateDraft=before.status==='draft';
   kEvent(tx,event,privateDraft?'tasks':'handover',operation==='done'?'Attività di turno completata':privateDraft?'Bozza personale aggiornata':'Nota attività aggiornata',privateDraft?'Modificata una bozza personale.':before.title,'tasks',!privateDraft);
- });k.formDirty=false;
+ });k.formDirty=false;if(k.page==='tasknote')setTimeout(kuBack,0);
 }
-function ktNoteForm(id){const t=k.turnOpen.get(id)||k.turnDrafts.get(id);if(!t)return;if(k.formDirty&&!confirm('Scartare il testo non salvato?'))return;k.formDirty=false;k.turnEdit=id;$('kBody').innerHTML=kBack()+'<h3>'+ke(t.title)+'</h3><form id="ktNoteForm" class="k-form"><label>Nota<textarea name="notes" maxlength="1000">'+ke(t.notes)+'</textarea></label><button class="button">Salva nota</button>'+kButton('Annulla','tasks')+'</form>';}
+function ktNoteForm(id){const t=k.turnOpen.get(id)||k.turnDrafts.get(id);if(!t)return;if(k.formDirty&&!confirm('Scartare il testo non salvato?'))return;k.formDirty=false;k.turnEdit=id;k.page='tasknote';kuRecord();$('kBody').innerHTML=kBack()+'<h3>'+ke(t.title)+'</h3><form id="ktNoteForm" class="k-form"><label>Nota<textarea name="notes" maxlength="1000">'+ke(t.notes)+'</textarea></label><button class="button">Salva nota</button>'+kButton('Annulla','tasks')+'</form>';}
 async function ktTemplateChange(id,hide,epoch){const expected=k.turnTemplates.get(id);if(!expected)return;const ref=doc(db,'kitchenTurnTemplates',id),event=doc(collection(db,'kitchenEvents'));await runTransaction(db,async tx=>{const snap=await tx.get(ref),t=snap.data();kAssert(epoch);if(!t||t.revision!==expected.revision)throw Error('Modello cambiato. Riapri la lista.');tx.set(ref,{...t,active:hide?false:t.active,recurring:false,...kMeta(t,event)});kEvent(tx,event,'tasks','Attività principale aggiornata',t.title,'tasks',false);});}
 async function ktClose(note,epoch){
- const drafts=ktDrafts(),templates=ktTemplates().filter(t=>t.recurring),open=ktOpen();
+ const drafts=ktDrafts(),templates=[],open=ktOpen();
  if(drafts.length+templates.length>50)throw Error('Troppe attività per un passaggio: riduci la bozza.');
  if(!ktCloseSubmission)ktCloseSubmission=crypto.randomUUID();
  const close=doc(db,'kitchenTurnClosures',ktCloseSubmission),head=doc(db,'kitchenTurnState','current'),event=doc(db,'kitchenEvents',ktCloseSubmission),uid=auth.currentUser.uid;
@@ -2453,7 +2503,7 @@ async function ktClose(note,epoch){
   const latestTasks=await Promise.all((previous?.data()?.newTaskIds||[]).map(id=>tx.get(doc(db,'kitchenTurnTasks',id))));kAssert(epoch);
   const newIds=[];
   for(const s of draftSnaps){const d=s.data();newIds.push(s.id);tx.set(doc(db,'kitchenTurnTasks',s.id),{...d,status:'todo',publishedIn:close.id,updatedByName:ktName(),...kMeta(d,event)});}
-  for(let i=0;i<draftSnaps.length;i++){const d=draftSnaps[i].data(),s=draftTemplates[i];if(d.savePrincipal&&!s?.exists())tx.set(doc(db,'kitchenTurnTemplates',d.templateId),{title:d.title,active:true,recurring:d.repeat,...kMeta(null,event)});}
+  for(let i=0;i<draftSnaps.length;i++){const d=draftSnaps[i].data(),s=draftTemplates[i];if(d.savePrincipal&&!s?.exists())tx.set(doc(db,'kitchenTurnTemplates',d.templateId),{title:d.title,active:true,recurring:false,...kMeta(null,event)});}
   for(const {r,template,tasks} of repeatSnaps){const t=template.data();if(!t?.active||!t.recurring||[...tasks,...latestTasks].some(s=>s.exists()&&s.data().status==='todo'&&s.data().templateId===r.t.id))continue;newIds.push(r.ref.id);tx.set(r.ref,{...ktData(t.title,'',r.t.id,event),status:'todo',publishedIn:close.id});}
   const revision=(state.data()?.revision||0)+1;
   tx.set(close,{sequence:revision,newTaskIds:newIds,note,createdAt:serverTimestamp(),createdBy:uid,createdByName:ktName(),...kMeta(null,event)});
@@ -2469,7 +2519,7 @@ $('kBody').addEventListener('click',async event=>{const b=event.target.closest('
  if(action==='turnrepeat'||action==='turnhide')await kRun(epoch=>ktTemplateChange(id,action==='turnhide',epoch));
 });
 $('kBody').addEventListener('submit',async event=>{const form=event.target;if(!['ktAddForm','ktNoteForm','ktCloseForm'].includes(form.id))return;event.preventDefault();if(k.busy)return;const f=Object.fromEntries(new FormData(form));
- if(form.id==='ktAddForm')await kRun(epoch=>ktAdd(f.title,f.notes,'',f.principal==='on',f.recurring==='on',epoch));
+ if(form.id==='ktAddForm')await kRun(epoch=>ktAdd(f.title,f.notes,'',f.principal==='on',false,epoch));
  if(form.id==='ktNoteForm')await kRun(epoch=>ktChange(k.turnEdit,'note',f.notes.trim(),epoch));
  if(form.id==='ktCloseForm'){if(!confirm('Confermi la fine del turno? La tua bozza e la nota saranno visibili a tutti gli autorizzati. Le attività incompiute rimangono aperte.'))return;await kRun(epoch=>ktClose(f.note.trim(),epoch));}
 });
@@ -2629,8 +2679,9 @@ function kActive(){return [...k.items.values()].filter(i=>i.active).map(i=>({...
 function kActiveOrders(){return [...k.orders.values()].filter(o=>o.status==='draft'||o.status==='sent');}
 function kDateInput(value){return value||'';}
 function kStepper(id,value,step,type,label){return `<div class="k-step"><button type="button" data-k-step="${ke(id)}" data-type="${type}" data-dir="-1" aria-label="Diminuisci ${ke(label)}" ${k.busy?'disabled':''}>−</button><input type="number" inputmode="decimal" min="0" max="100000" step="${step}" value="${value??''}" placeholder="—" aria-label="${ke(label)}" data-k-qty="${ke(id)}" data-type="${type}" ${k.busy?'disabled':''}><button type="button" data-k-step="${ke(id)}" data-type="${type}" data-dir="1" aria-label="Aumenta ${ke(label)}" ${k.busy?'disabled':''}>+</button></div>`;}
-function kBack(){return kButton('← Cucina','home');}
+function kBack(){return '';}
 function kRender(){
+ kuRecord();
  const body=$('kBody');
  const taskMain=body.querySelector('details[data-kt-main]');if(taskMain)k.taskMainOpen=taskMain.open;
  for(const group of body.querySelectorAll('details[data-k-category]')){if(group.open)k.openCategories.add(group.dataset.kCategory);else k.openCategories.delete(group.dataset.kCategory);}
@@ -2645,6 +2696,7 @@ function kRender(){
  let h='';const title={loads:'Carichi',handover:'Consegne di turno',home:'Cucina',stock:'Giacenze',cart:'Carrello riordini',tasks:'Cose da fare',clean:'Pulizie',settings:'Modifica',notifications:'Notifiche',preferences:'Preferenze notifiche',item:'Scheda articolo',supplier:'Fornitore',access:'Accessi cucina'}[k.page]||'Cucina';
  $('kHeading').textContent=title;
  if(k.page!=='home')h+=kBack();
+ if(k.page==='tasknote')return;
  if(k.page==='home'){
   h+='<p>Giacenze, preparazioni e lavoro del turno.</p><div class="k-tiles">';
   for(const [page,label,detail] of [['stock','Giacenze',kActive().length+' articoli'],['cart','Carrello riordini',kActiveOrders().length+' articoli nelle liste'],['loads','Carichi',klEntries(k.loadOwn).filter(([,i])=>!i.done).length+' promemoria personali'],['tasks','Cose da fare',([...k.tasks.values()].filter(t=>t.kind==='tasks'&&t.status!=='done').length+ktOpen().length)+' attività aperte'],['clean','Pulizie',[...k.tasks.values()].filter(t=>t.kind==='clean'&&t.status!=='done').length+' attività aperte']])h+=`<button class="k-tile" data-k="${page}" type="button"><strong>${label}</strong><small>${detail}</small><span aria-hidden="true">→</span></button>`;
