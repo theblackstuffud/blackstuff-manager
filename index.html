@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it" data-privacy-app="manager">
 <head>
-<meta name="tbs-release" content="2026-11-03-carichi-privati-v9">
+<meta name="tbs-release" content="2026-11-03-responsive-v11">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
@@ -489,6 +489,105 @@ body[data-manager-ready="true"][data-manager-view="appearance"] #appearancePanel
 </style>
 <style id="catalogQualityStyle">.catalog-quality[hidden],#catalogQualityClear[hidden],#catalogQualityStatus[hidden]{display:none!important}.catalog-quality{max-width:100%;white-space:normal;text-align:left}.catalog-quality[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--text)}#catalogQualityStatus{line-height:1.6}</style>
 <style id="turnTodoStyle">.k-turn-check{display:flex;align-items:center;gap:12px;min-height:48px;cursor:pointer}.k-turn-check input{width:24px;height:24px;flex:0 0 24px;accent-color:var(--accent)}.k-turn-note{white-space:pre-wrap;overflow-wrap:anywhere}.k-turn-main .k-row{gap:12px}.k-turn-empty{padding:16px;border:1px solid var(--line);border-radius:12px}</style>
+<style id="tbsResponsive20261103">
+/* Finestre app Mac, tablet e telefoni: contenuto fluido senza nascondere overflow. */
+body{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right));}
+main{width:100%;max-width:1120px;padding-top:clamp(18px,3vw,36px);}
+main>*{min-width:0;}
+img,svg,video{max-width:100%;}
+button,input,select,textarea{max-width:100%;}
+button{white-space:normal;overflow-wrap:anywhere;}
+textarea{resize:vertical;}
+.brand-title,.brand-title>div,.brand-title h1,.brand-title small{min-width:0;}
+.brand-title h1{overflow-wrap:anywhere;}
+.brand-title{flex:1;}
+.avatar-button{flex-shrink:0;}
+.brand-home{flex-shrink:0;}
+.manager-grid,.tiles,.product-checks,.profile-fields,.catalog-meta,.catalog-dietary-fields{grid-template-columns:repeat(2,minmax(0,1fr));}
+.manager-tile,.k-tile,.product-check,.field,.catalog-meta label{min-width:0;overflow-wrap:anywhere;}
+.home-links,.foot,.k-toolbar>div{display:flex;flex-wrap:wrap;align-items:center;gap:10px;}
+.foot #appUpdateStatus{flex-basis:100%;}
+.home-links{justify-content:space-between;}
+.k-toolbar>div{justify-content:flex-end;}
+.catalog-actions>*{min-width:0;}
+#catalogEditor,.card,.profile-sheet,.privacy-sheet{overflow-wrap:anywhere;}
+.catalog-sticky-actions{padding-bottom:max(12px,env(safe-area-inset-bottom));}
+.catalog-sticky-actions .button{flex:1 1 190px;width:auto;}
+#kitchenPanel .k-row .k-label{min-width:0;flex:1 1 190px;}
+#kitchenPanel .k-row .k-turn-check{min-width:0;flex:1 1 220px;}
+.k-turn-check>span,.k-turn-check>strong{min-width:0;overflow-wrap:anywhere;}
+.k-step{flex:0 0 auto;max-width:100%;}
+.k-form label,.k-form fieldset{min-width:0;}
+.k-form .k-check{align-items:flex-start;flex-wrap:wrap;}
+.k-form .k-check input{flex:0 0 22px;}
+.k-category summary{overflow-wrap:anywhere;}
+#kMessageDialog{max-height:calc(100dvh - 24px);overflow:auto;overscroll-behavior:contain;}
+#kMessageDialog textarea{min-height:140px;max-height:45dvh;}
+.profile-overlay,.privacy-overlay,.install-dialog{padding-top:max(12px,env(safe-area-inset-top));padding-bottom:max(12px,env(safe-area-inset-bottom));}
+.profile-sheet,.privacy-sheet,.install-dialog>section{max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain;}
+@media(min-width:768px){
+ .manager-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
+ .manager-tile.primary-tile{grid-column:1/-1;}
+ .k-tiles{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+ .k-tile{min-height:135px;padding:24px;}
+ .catalog-tools{grid-template-columns:minmax(200px,1fr) minmax(0,2fr);align-items:start;}
+ .catalog-tools .catalog-dietary{min-width:0;}
+ .product-checks{grid-template-columns:repeat(3,minmax(0,1fr));}
+ .home-intro h2{font-size:46px;}
+ #catalogEditor{padding:28px;}
+ .k-form{max-width:760px;}
+ .k-form .button{max-width:440px;}
+}
+@media(min-width:1024px){
+ .k-tiles{grid-template-columns:repeat(5,minmax(0,1fr));}
+ #catalogList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px;align-items:start;}
+ .catalog-row{min-width:0;}
+ #catalogEditor{max-width:940px;margin:28px auto;}
+ .home-intro{padding-top:44px;}
+}
+@media(max-width:767px){
+ main{max-width:720px;}
+ .catalog-tools,.catalog-meta,.catalog-dietary-fields{grid-template-columns:minmax(0,1fr);}
+ .catalog-meta .full{grid-column:auto;}
+ input:not([type=checkbox]):not([type=radio]),textarea,select{font-size:16px!important;}
+ .k-toolbar{align-items:flex-start;}
+ .k-toolbar>div{flex:1 1 100%;justify-content:flex-start;}
+ .profile-menu{max-width:calc(100vw - 32px);}
+}
+@media(max-width:479px){
+ .brand{gap:10px;}
+ .brand-title{gap:9px;}
+ .brand-title h1{font-size:clamp(16px,5vw,20px);}
+ .card,#catalogEditor{padding:16px;border-radius:16px;}
+ .product-checks,.profile-fields{grid-template-columns:minmax(0,1fr);}
+ .field.full{grid-column:auto;}
+ .catalog-row{flex-wrap:wrap;align-items:flex-start;}
+ .catalog-row-info{flex:1 1 180px;}
+ .catalog-row-actions{flex:1 1 100%;min-width:0;flex-direction:row;flex-wrap:wrap;margin-left:0;}
+ .catalog-row-actions .small-action{flex:1 1 95px;}
+ .catalog-actions>.small-action{flex:1 1 140px;}
+ #kitchenPanel .k-row .k-label{flex-basis:100%;}
+ .k-tile{padding:18px 13px;min-height:110px;}
+ .k-tile strong{font-size:16px;}
+ .home-intro{padding-top:30px;}
+ .home-intro h2{font-size:34px;}
+}
+@media(max-width:359px){
+ .manager-grid,.tiles,.k-tiles{grid-template-columns:minmax(0,1fr);}
+ .manager-tile.primary-tile{grid-column:auto;}
+ .k-toolbar>div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;}
+ .k-toolbar>div button{margin:0!important;}
+ .profile-sheet,.privacy-sheet,.install-dialog>section{padding:16px;}
+ .stats-metrics{grid-template-columns:minmax(0,1fr);}
+}
+@media(max-height:500px) and (orientation:landscape){
+ main{padding-top:12px;}
+ .home-intro{padding-top:22px;}
+ #kMessageDialog{padding:16px;}
+ #kMessageDialog textarea{min-height:90px;}
+}
+
+</style>
 </head>
 <body>
 <main>
