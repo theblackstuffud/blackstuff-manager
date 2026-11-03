@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it" data-privacy-app="manager">
 <head>
-<meta name="tbs-release" content="2026-11-03-responsive-v11">
+<meta name="tbs-release" content="2026-11-03-tendina-attivita-v12">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
@@ -2398,7 +2398,7 @@ function ktRender(){
  h+='<h3>Da lasciare al prossimo turno</h3><p class="mini">Questa bozza è visibile solo a te. Diventa condivisa quando confermi la chiusura del turno.</p>';
  for(const t of drafts)h+='<article class="k-group"><strong>'+ke(t.title)+'</strong>'+(t.notes?'<p class="k-turn-note">'+ke(t.notes)+'</p>':'')+kButton('Note','turnnote:'+t.id)+kButton('Togli dalla bozza','turndiscard:'+t.id)+'</article>';
  if(!drafts.length)h+='<p>Nessuna nuova attività nella tua bozza.</p>';
- h+='<details class="k-category"><summary>Aggiungi dalle attività principali</summary><p class="mini">Queste voci restano sempre disponibili come modello. Seleziona solo quelle che vuoi lasciare.</p><div class="k-turn-main">';
+ h+='<details class="k-category" data-kt-main'+(k.taskMainOpen?' open':'')+'><summary>Aggiungi dalle attività principali</summary><p class="mini">Queste voci restano sempre disponibili come modello. Seleziona solo quelle che vuoi lasciare.</p><div class="k-turn-main">';
  for(const t of ktTemplates()){const selected=drafts.some(d=>d.templateId===t.id);h+='<div class="k-row"><div class="k-label"><strong>'+ke(t.title)+'</strong>'+(t.recurring?'<small>Ripeti a ogni passaggio di turno</small>':'')+'</div><button type="button" class="small-action" data-k="turnadd:'+ke(t.id)+'" '+(k.busy||selected?'disabled':'')+'>'+(selected?'In bozza':'Aggiungi')+'</button>'+(t.recurring?kButton('Non ripetere più','turnrepeat:'+t.id):'')+(!KT_MAIN.some(m=>m.id===t.id)?kButton('Togli dai principali','turnhide:'+t.id):'')+'</div>';}
  h+='</div></details><details class="k-category"><summary>Aggiungi un’attività manualmente</summary><form id="ktAddForm" class="k-form"><label>Attività<input name="title" maxlength="140" required></label><label>Nota facoltativa<textarea name="notes" maxlength="1000"></textarea></label><label class="k-check"><input type="checkbox" name="principal"> Salva anche tra le attività principali</label><label class="k-check"><input type="checkbox" name="recurring"> Ripeti a ogni passaggio di turno</label><p class="mini">Il modello viene condiviso alla conferma di fine turno. “Principale” lo conserva per riutilizzarlo. “Ripeti” aggiunge una nuova attività alla chiusura, se non è già aperta.</p><button class="button">Salva nella mia bozza</button></form></details>';
  h+='<form id="ktCloseForm" class="k-form"><h3>Fine turno</h3><label>Nota generale per chi entra dopo<textarea name="note" maxlength="2000" placeholder="Indicazioni utili per il prossimo turno"></textarea></label><p>'+open.length+' attività ricevute ancora aperte · '+drafts.length+' nuove attività in bozza.</p><p class="mini">Con la conferma, le attività incompiute restano aperte e la tua bozza viene pubblicata per tutti gli autorizzati alla cucina. La chiusura non modifica le giacenze.</p><button class="button">Chiudi turno e passa le consegne</button></form>';
@@ -2545,7 +2545,7 @@ function kitchenReset(){
  for(const off of k.off||[])off();
  if($('kMessageDialog')?.open)$('kMessageDialog').close();
  if($('kMessageText'))$('kMessageText').value='';
- k={off:[],epoch:(k.epoch||0)+1,accessState:'idle',accessError:'',failures:new Map(),ready:false,allowed:false,busy:false,openCategories:new Set(),page:'home',items:new Map(),suppliers:new Map(),stock:new Map(),orders:new Map(),tasks:new Map(),events:[],reports:new Map(),shiftNotes:new Map(),turnOpen:new Map(),turnDrafts:new Map(),turnTemplates:new Map(),turnHistory:new Map(),turnState:null,loadOwn:null,loadShared:new Map(),loadPeople:new Map(),loadTextDraft:'',loadRecipientsDraft:null,draft:new Map(),orderDraft:new Map(),messageDraft:new Map(),prefs:{handover:true,stock:true,orders:true,tasks:true,clean:true,readIds:[],muted:false,quietStart:'02:00',quietEnd:'10:00'},pending:new Set(),formDirty:false};
+ k={off:[],epoch:(k.epoch||0)+1,accessState:'idle',accessError:'',failures:new Map(),ready:false,allowed:false,busy:false,openCategories:new Set(),taskMainOpen:false,page:'home',items:new Map(),suppliers:new Map(),stock:new Map(),orders:new Map(),tasks:new Map(),events:[],reports:new Map(),shiftNotes:new Map(),turnOpen:new Map(),turnDrafts:new Map(),turnTemplates:new Map(),turnHistory:new Map(),turnState:null,loadOwn:null,loadShared:new Map(),loadPeople:new Map(),loadTextDraft:'',loadRecipientsDraft:null,draft:new Map(),orderDraft:new Map(),messageDraft:new Map(),prefs:{handover:true,stock:true,orders:true,tasks:true,clean:true,readIds:[],muted:false,quietStart:'02:00',quietEnd:'10:00'},pending:new Set(),formDirty:false};
  if($('kBody'))$('kBody').replaceChildren();kBadge();
 }
 kitchenReset();
@@ -2632,6 +2632,7 @@ function kStepper(id,value,step,type,label){return `<div class="k-step"><button 
 function kBack(){return kButton('← Cucina','home');}
 function kRender(){
  const body=$('kBody');
+ const taskMain=body.querySelector('details[data-kt-main]');if(taskMain)k.taskMainOpen=taskMain.open;
  for(const group of body.querySelectorAll('details[data-k-category]')){if(group.open)k.openCategories.add(group.dataset.kCategory);else k.openCategories.delete(group.dataset.kCategory);}
  if(k.accessState==='error'){
   const details=[...k.failures.values()].map(f=>f.collection+' · '+f.code).join(' / ');
