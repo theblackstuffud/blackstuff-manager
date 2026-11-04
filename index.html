@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it" data-privacy-app="manager">
 <head>
-<meta name="tbs-release" content="2026-11-04-menu-profilo-v23">
+<meta name="tbs-release" content="2026-11-04-manager-intuitivo-v25">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
@@ -622,6 +622,20 @@ textarea{resize:vertical;}
 .team-group{margin:26px 0}.team-card{padding:20px;border:1px solid var(--border);border-radius:16px;background:var(--card);margin:14px 0}.team-card h4{margin:0;overflow-wrap:anywhere}.team-card>label{display:grid;gap:8px;font-size:14px;margin:18px 0}.team-card select{width:100%;padding:12px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text)}.team-card fieldset{border:0;padding:0;margin:18px 0}.team-card legend{font-weight:650;font-size:14px;margin-bottom:12px}.team-check{display:flex;align-items:center;gap:10px;min-height:44px;font-size:14px}.team-check input{width:22px;height:22px;margin:0}.team-actions{display:flex;gap:10px;flex-wrap:wrap}.team-actions .button{width:auto;flex:1;min-height:44px}.team-actions .small-action{min-height:44px}.team-card .mini{overflow-wrap:anywhere;line-height:1.6}
 @media(max-width:520px){.team-card{padding:16px}.team-actions>*{flex:1 1 100%!important}}
 </style>
+
+<style id="intuitiveManagerStyles">
+:root{--bg:#f4f5f3;--card:#fff;--card2:#ecefea;--text:#202721;--muted:#616a64;--border:#dce2dc;--accent:#24573d;--accent-soft:#e8f0e9;--action:#24573d;--on-action:#fff}
+@media(prefers-color-scheme:dark){:root{--bg:#1c211e;--card:#252c27;--card2:#303a32;--text:#f0f3ed;--muted:#b1bcb2;--border:#3d4840;--accent:#b7d8ad;--accent-soft:#364a3a;--action:#b7d8ad;--on-action:#1c3020}}
+body{padding:0 20px}main{max-width:820px;padding-top:max(22px,env(safe-area-inset-top));padding-bottom:36px}.brand{margin-bottom:14px;padding-bottom:16px;border-bottom:1px solid var(--border)}.brand-title{gap:12px}.brand-title h1{font-size:16px;letter-spacing:-.02em}.brand-title small{font-size:12px}.brand-home{width:52px;height:52px;min-width:52px}.avatar-button{width:44px;height:44px;min-height:44px;font-size:14px}
+#primaryNav{display:none;position:sticky;top:0;z-index:20;background:var(--bg);padding:10px 0 12px;gap:5px;border-bottom:1px solid var(--border);margin-bottom:16px}body[data-manager-ready="true"] #primaryNav{display:flex}#primaryNav button{border:0;border-radius:11px;background:transparent;color:var(--muted);font:inherit;font-size:14px;font-weight:600;flex:1;min-height:46px;padding:10px 8px;cursor:pointer}#primaryNav button[aria-current="page"]{color:var(--text);background:var(--accent-soft)}#primaryNav button:hover{background:var(--card2)}
+body[data-manager-view="home"] #primaryNav{display:none}.home-intro{padding:28px 0 23px}.home-intro h2{font-size:34px;line-height:1.15;letter-spacing:-.045em;margin:0}.home-intro p{font-size:15px;margin:10px 0 0;color:var(--muted)}#kHomeButton,#bHomeButton{margin:0}.module-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.module-tile{margin:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:8px;min-width:0;min-height:177px;padding:24px;text-align:left;border:1px solid var(--border);border-radius:20px;background:var(--card);color:var(--text);font:inherit;cursor:pointer;transition:background .15s,transform .15s}.module-tile svg{width:29px;height:29px;margin-bottom:20px;color:var(--accent)}.module-tile strong{font-size:22px;letter-spacing:-.035em;font-weight:650;line-height:1.15}.module-tile span{font-size:13px;line-height:1.5;color:var(--muted)}.module-featured{grid-column:1/-1;min-height:202px;background:#d8e7d4;border-color:#c1d5bd;color:#203b27}.module-featured svg{color:#285b35}.module-featured strong{font-size:32px}.module-featured span{color:#465f4c}.module-tile:active{transform:scale(.99)}.module-tile:hover{border-color:var(--accent)}.home-profile-hint{display:block!important;margin:18px 0;font-size:12px}.public-menu-link{margin-top:16px;padding:18px 0;border:0;border-top:1px solid var(--border);border-radius:0;background:none}.public-menu-copy{font-size:14px}
+@media(prefers-color-scheme:dark){.module-featured{background:#8fa589;border-color:#8fa589;color:#15291b}.module-featured svg,.module-featured span{color:#213c28}.module-tile:not(.module-featured){background:#303a32}.module-tile:not(.module-featured) svg{color:#b8ceb0}}
+#managerNav{margin:10px 0 20px;padding:0;border:0}#managerSectionTitle{font-size:12px;font-weight:500}#managerBack{min-height:44px;padding:10px 13px}.panel{padding:0;border:0;background:none;box-shadow:none}.panel h2,.k-toolbar h2{font-size:29px;letter-spacing:-.035em}.k-toolbar{margin-bottom:14px}.k-toolbar>div{display:flex;gap:6px;align-items:center}.small-action{font-size:13px;min-height:44px;border-radius:11px}.module-tabs,.b-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 20px;padding:0;border:0;background:none}.module-tabs button,.b-tabs button{border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--muted);font:inherit;font-size:13px;padding:10px 13px;min-height:44px;cursor:pointer}.module-tabs button[aria-pressed="true"],.b-tabs button[aria-pressed="true"]{background:var(--accent-soft);color:var(--text);border-color:var(--accent)}.module-tabs button:disabled{opacity:.5}.stock-tools{display:grid;grid-template-columns:1fr minmax(130px,.55fr);gap:10px;margin:18px 0}.stock-tools label{font-size:12px;color:var(--muted);margin:0}.stock-tools input,.stock-tools select{padding:12px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);width:100%;min-height:46px;margin-top:6px;font-size:16px}.stock-group{margin:22px 0 12px;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--card)}.stock-group>h3{padding:15px 16px;margin:0;background:var(--card2);font-size:13px;color:var(--muted);font-weight:600}#kitchenPanel .stock-group .k-row,#barPanel .stock-group .b-row{margin:0;padding:16px;border:0;border-bottom:1px solid var(--border);border-radius:0;background:none}#kitchenPanel .stock-group .k-row:last-child,#barPanel .stock-group .b-row:last-child{border-bottom:0}.k-label strong,.b-label strong{font-size:15px;line-height:1.4}.k-label small,.b-label small{font-size:12px;line-height:1.5}.k-step button,.b-counter button{min-width:44px;min-height:44px}.k-step input,.b-counter input{font-size:16px;min-height:44px}.stock-save,.b-sticky{position:sticky;bottom:0;z-index:10;background:var(--bg);border-top:1px solid var(--border);padding:12px 0 max(12px,env(safe-area-inset-bottom));margin:20px 0 0;box-shadow:0 -10px 16px -16px #0005}.stock-save p{font-size:12px;color:var(--muted);margin:0 0 9px}.stock-save>.button{width:100%;min-height:48px}.stock-empty{color:var(--muted);font-size:14px;padding:20px 0}.catalog-extra{margin:12px 0}.catalog-extra>summary{font-size:13px;color:var(--muted);cursor:pointer;padding:12px 0}.catalog-tools{display:block}.catalog-tools>label{display:block;margin-bottom:12px}.catalog-tools #catalogSearch{font-size:16px;min-height:48px}.catalog-dietary{margin-bottom:16px}.catalog-actions{gap:8px}.catalog-row{display:flex;flex-wrap:nowrap;align-items:center;background:var(--card);margin:8px 0;padding:16px;border-radius:14px;gap:14px}.catalog-row-info strong{font-size:16px}.catalog-row-info small{font-size:12px}.catalog-row-info{flex:1 1 0}.catalog-row-actions{display:flex;flex:0 0 92px;flex-direction:column;flex-wrap:nowrap;min-width:92px}.catalog-row-actions .small-action{flex:none}.catalog-row-actions .small-action{width:100%;min-height:44px}.catalog-status-switch{margin:18px 0 12px}.catalog-status-switch button{font-size:14px}.catalog-sticky-actions{position:sticky;bottom:0;padding:12px 0;background:var(--bg);z-index:12}.b-advanced{margin:16px 0;font-size:12px;color:var(--muted)}.b-advanced summary{padding:10px 0;cursor:pointer}#retryAccess{margin:10px 0}#refreshMyAccess{display:block;margin-top:12px}#requestPanel p,#onboarding p{line-height:1.6}.module-tile:focus-visible,#primaryNav button:focus-visible,.module-tabs button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media(min-width:700px){.home-intro{padding-top:40px}.module-featured{min-height:230px}.module-tile{padding:30px}#kitchenPanel .stock-group .k-row{display:grid;grid-template-columns:minmax(180px,1fr) auto 125px;align-items:center}.stock-tools{grid-template-columns:1fr 210px}}
+@media(max-width:420px){body{padding:0 16px}.module-tile{padding:21px 18px;min-height:163px}.module-featured{min-height:190px}.module-tile strong{font-size:21px}.module-featured strong{font-size:31px}.module-tile span{font-size:12px}.brand-title h1{font-size:14px}.k-toolbar>div{flex-wrap:wrap}.k-toolbar h2{font-size:27px}.stock-tools{grid-template-columns:1fr}#kitchenPanel .stock-group .k-row{display:grid;grid-template-columns:1fr auto;gap:12px}#kitchenPanel .stock-group .k-row>.k-label{grid-column:1/-1}#kitchenPanel .stock-group .k-row>.small-action{justify-self:end}.module-tabs button{padding:10px 12px}.catalog-row-info{min-width:0}.catalog-row-actions{min-width:85px}.catalog-row{padding:14px 12px}.catalog-row-info strong{font-size:15px}}
+@media(prefers-reduced-motion:reduce){.module-tile{transition:none}}
+</style>
+
 </head>
 <body>
 <main>
@@ -649,6 +663,7 @@ textarea{resize:vertical;}
   </div>
 </div>
 </header>
+<nav id="primaryNav" aria-label="Sezioni principali"><button type="button" data-manager-go="home" aria-current="false">Home</button><button type="button" data-manager-go="catalog" aria-current="false">Menu</button><button type="button" data-manager-go="kitchen" aria-current="false">Cucina</button><button type="button" data-manager-go="bar" aria-current="false">Bar</button></nav>
 <section class="top">
 <div class="eyebrow">AREA RISERVATA</div>
 <h2 class="heading">GESTIONALE</h2>
@@ -658,24 +673,17 @@ textarea{resize:vertical;}
 <section id="managerHome" aria-labelledby="managerHomeTitle">
   <div class="home-intro">
     <h2 id="managerHomeTitle" tabindex="-1">GESTIONALE</h2>
-    <p>Tutto quello che serve, a portata di mano.</p>
+    <p>Pronti per il turno.</p>
   </div>
-  <div id="menuHomeCard" class="menu-workspace">
-    <div class="workspace-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></div>
-    <h3>MODIFICA MENU</h3>
-    <p>Prodotti, prezzi, ingredienti e allergeni. Aggiorna ogni dettaglio del tuo menu.</p>
-    <button type="button" class="button workspace-action" data-manager-go="catalog">MODIFICA MENU <span aria-hidden="true">→</span></button>
-    <p class="workspace-caption">Le modifiche vanno online quando premi “Pubblica modifica”.</p>
-  </div>
-<div id="kHomeButton" class="menu-workspace"><h3>CUCINA</h3><p>Giacenze, riordini, preparazioni e pulizie.</p><button type="button" class="button workspace-action" data-manager-go="kitchen">CUCINA →</button></div>
-  <div id="bHomeButton" class="menu-workspace"><h3>BAR</h3><p>giacenze, riordini e carichi</p><button type="button" class="button workspace-action" data-manager-go="bar">BAR →</button></div>
+  <div class="module-grid"><button type="button" id="menuHomeCard" class="module-tile module-featured" data-manager-go="catalog"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h4"/></svg><strong>Modifica menu</strong><span>Prodotti, prezzi e allergeni</span></button><button type="button" id="kHomeButton" class="module-tile" data-manager-go="kitchen"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7c0 2 4 2 4 0V3M6 3v18M20 21V3c-4 3-5 9 0 10"/></svg><strong>Cucina</strong><span>Giacenze, preparazioni e turno</span></button><button type="button" id="bHomeButton" class="module-tile" data-manager-go="bar"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14l-7 9-7-9ZM12 12v9M7 21h10"/></svg><strong>Bar</strong><span>Giacenze, riordini e carichi</span></button></div>
+<p class="home-profile-hint">Team e impostazioni nella foto profilo.</p>
 
 <a class="public-menu-link" href="https://theblackstuffud.github.io/blackstuff-menu/?tbs_stats=off" target="_blank" rel="noopener noreferrer"><span class="public-menu-copy">Anteprima menu<small>Come lo vedono i clienti</small></span><span aria-hidden="true">↗</span></a>
 </section>
 <nav id="managerNav" aria-label="Navigazione gestionale"><button type="button" class="small-action" id="managerBack">← Home</button><span id="managerSectionTitle"></span></nav>
-<section id="kitchenPanel" class="panel" aria-labelledby="kHeading"><div class="k-toolbar"><h2 id="kHeading" tabindex="-1">Cucina</h2><div><button type="button" class="small-action" id="kOpenNotifications" aria-label="Notifiche cucina">Notifiche <span data-k-count class="k-alert-count">0</span></button><button type="button" class="small-action" id="kRetry">Riprova</button><button type="button" class="small-action" id="kEdit" data-owner-only>Modifica</button></div></div><div id="kMessage" class="message" role="status" aria-live="polite"></div><div id="kBody"></div></section><dialog id="kMessageDialog" aria-labelledby="kMessageTitle"><h2 id="kMessageTitle">Messaggio da copiare</h2><p>Puoi correggere il testo. Le modifiche qui non cambiano la lista salvata.</p><textarea id="kMessageText" aria-label="Messaggio modificabile"></textarea><button type="button" class="button" id="kCopyMessage">Copia messaggio</button><button type="button" class="small-action" id="kCloseMessage">Chiudi</button><p id="kCopyStatus" role="status"></p></dialog>
+<section id="kitchenPanel" class="panel" aria-labelledby="kHeading"><div class="k-toolbar"><h2 id="kHeading" tabindex="-1">Cucina</h2><div><button type="button" class="small-action" id="kOpenNotifications" aria-label="Notifiche cucina">Notifiche <span data-k-count class="k-alert-count">0</span></button><button type="button" class="small-action" id="kRetry">Riprova</button><button type="button" class="small-action" id="kEdit" data-owner-only>Modifica</button></div></div><div id="kMessage" class="message" role="status" aria-live="polite"></div><nav id="kQuickNav" class="module-tabs" aria-label="Operazioni cucina"></nav><div id="kBody"></div></section><dialog id="kMessageDialog" aria-labelledby="kMessageTitle"><h2 id="kMessageTitle">Messaggio da copiare</h2><p>Puoi correggere il testo. Le modifiche qui non cambiano la lista salvata.</p><textarea id="kMessageText" aria-label="Messaggio modificabile"></textarea><button type="button" class="button" id="kCopyMessage">Copia messaggio</button><button type="button" class="small-action" id="kCloseMessage">Chiudi</button><p id="kCopyStatus" role="status"></p></dialog>
 
-<section id="barPanel" class="panel" aria-labelledby="bHeading"><div class="k-toolbar"><h2 id="bHeading" tabindex="-1">Bar</h2><button type="button" class="small-action" data-b="reload">Ricarica</button></div><div id="bMessage" class="message" role="status" aria-live="polite"></div><nav class="b-tabs" aria-label="Sezioni Bar"><button type="button" class="small-action" data-b-page="stock" aria-pressed="true">Giacenze</button><button type="button" class="small-action" id="bCartTab" data-b-page="cart" aria-pressed="false">Lista (0)</button><button type="button" class="small-action" data-b-page="loads" aria-pressed="false">Carichi</button><button type="button" class="small-action" id="bSettings" data-b-page="settings" aria-pressed="false" hidden>Modifica</button></nav><div id="bBody"></div></section><dialog id="bMessageDialog" aria-labelledby="bMessageTitle"><h2 id="bMessageTitle">Lista Bar</h2><p>Soltanto prodotti e quantità. Puoi correggere il testo prima di copiarlo nel gruppo WhatsApp.</p><textarea id="bMessageText" aria-label="Lista Bar modificabile"></textarea><button type="button" class="button" id="bCopyMessage">Copia lista</button> <button type="button" class="small-action" id="bCloseMessage">Chiudi</button><p id="bCopyStatus" role="status" aria-live="polite"></p></dialog>
+<section id="barPanel" class="panel" aria-labelledby="bHeading"><div class="k-toolbar"><h2 id="bHeading" tabindex="-1">Bar</h2><button type="button" class="small-action" data-b="reload">Ricarica</button></div><div id="bMessage" class="message" role="status" aria-live="polite"></div><nav class="b-tabs" aria-label="Sezioni Bar"><button type="button" class="small-action" data-b-page="stock" aria-pressed="true">Giacenze</button><button type="button" class="small-action" id="bCartTab" data-b-page="cart" aria-pressed="false">Riordini (0)</button><button type="button" class="small-action" data-b-page="loads" aria-pressed="false">Carichi</button><button type="button" class="small-action" id="bSettings" data-b-page="settings" aria-pressed="false" hidden>Modifica</button></nav><div id="bBody"></div></section><dialog id="bMessageDialog" aria-labelledby="bMessageTitle"><h2 id="bMessageTitle">Lista Bar</h2><p>Soltanto prodotti e quantità. Puoi correggere il testo prima di copiarlo nel gruppo WhatsApp.</p><textarea id="bMessageText" aria-label="Lista Bar modificabile"></textarea><button type="button" class="button" id="bCopyMessage">Copia lista</button> <button type="button" class="small-action" id="bCloseMessage">Chiudi</button><p id="bCopyStatus" role="status" aria-live="polite"></p></dialog>
 <section id="teamPanel" class="panel" aria-labelledby="teamHeading"><div class="k-toolbar"><h2 id="teamHeading" tabindex="-1">TEAM</h2><button type="button" id="teamReload" class="small-action">Ricarica team</button></div><p class="mini">Solo i titolari gestiscono ruoli e accessi. Le autorizzazioni a Cucina, Bar e Modifica menu si modificano da questa sezione.</p><p class="mini">“Elimina dal gestionale” rimuove profilo e accessi e blocca questo account. La cancellazione dal registro Firebase Authentication si completa dalla console Firebase.</p><div id="teamMessage" role="status" aria-live="polite"></div><div id="teamBody"></div><details class="team-invite"><summary>Invita una persona</summary>  <section class="manager-invite" aria-labelledby="managerInviteHeading">
    <div class="eyebrow">Invita un collaboratore</div><h3 id="managerInviteHeading">Condividi il Manager</h3>
    <p>Invia il link a chi dovrà accedere. La persona entra con il proprio account Google, completa il profilo e preme «Richiedi accesso».</p>
@@ -687,17 +695,17 @@ textarea{resize:vertical;}
   </section></details></section>
 <section id="catalogPanel" class="panel" aria-labelledby="catalogHeading">
 <h2 id="catalogHeading" tabindex="-1">Modifica menu</h2>
-<p>Aggiorna le informazioni che i clienti vedono nel menu.</p>
-<p class="muted">I prodotti non disponibili restano nella sezione Disattivati, pronti da riattivare.</p>
+<p class="mini">Cerca un prodotto, modificalo oppure disattivalo con un tocco.</p>
 <div id="catalogMessage" role="status" aria-live="polite"></div>
-<div class="catalog-actions"><button type="button" class="small-action" id="catalogReload">Ricarica prodotti</button><button type="button" class="small-action" id="catalogNew" disabled>Nuovo prodotto</button><button type="button" class="small-action catalog-quality" id="catalogPendingAllergens" aria-pressed="false" aria-controls="catalogList" hidden>Allergeni da verificare</button><button type="button" class="small-action catalog-quality" id="catalogPendingTraits" aria-pressed="false" aria-controls="catalogList" hidden>Caratteristiche ricerca da completare</button><button type="button" class="small-action" id="catalogQualityClear" hidden>Torna alla lista precedente</button><button type="button" class="small-action" id="catalogVerifyTable" hidden>Pubblica dati controllati</button></div><p id="catalogVerifyTableStatus" class="muted" role="status"></p><p id="catalogQualityStatus" class="mini" role="status" aria-live="polite" hidden></p>
+<div class="catalog-actions"><button type="button" class="small-action" id="catalogReload">Ricarica prodotti</button><button type="button" class="small-action" id="catalogNew" disabled>Nuovo prodotto</button></div><details class="catalog-extra"><summary>Controlli del catalogo</summary><div class="catalog-actions"><button type="button" class="small-action catalog-quality" id="catalogPendingAllergens" aria-pressed="false" aria-controls="catalogList" hidden>Allergeni da verificare</button><button type="button" class="small-action catalog-quality" id="catalogPendingTraits" aria-pressed="false" aria-controls="catalogList" hidden>Caratteristiche ricerca da completare</button><button type="button" class="small-action" id="catalogQualityClear" hidden>Torna alla lista precedente</button><button type="button" class="small-action" id="catalogVerifyTable" hidden>Pubblica dati controllati</button></div><p id="catalogVerifyTableStatus" class="muted" role="status"></p><p id="catalogQualityStatus" class="mini" role="status" aria-live="polite" hidden></p>
+<details class="catalog-dietary"><summary>Controllo allergeni e intolleranze</summary><p>All’apertura di Modifica menu il gestionale registra automaticamente, con l’account proprietario, le schede già confrontate con la tabella e le assenze concordate per griglia, burger e sandwich. Le ricette effettivamente cambiate vengono conservate per il controllo manuale. Preparazione e contaminazioni mantengono le valutazioni salvate.</p><div class="catalog-dietary-fields"><label>Esclusione da controllare<select id="catalogAllergen"><option value="">Tutti i prodotti</option><option value="lactose">Lattosio · esclusione prudenziale del latte</option></select></label><label>Verifica allergeni<select id="catalogVerification"><option value="all">Tutte le schede</option><option value="pending">Verifica da completare</option><option value="verified">Allergeni verificati</option></select></label><label>Esito per l’esclusione<select id="catalogDietaryStatus"><option value="all">Tutti i gruppi</option><option value="check">Dati o preparazione da completare</option><option value="verified">Ingredienti e preparazione valutati</option><option value="contains">Esclusi: indicazioni di presenza</option><option value="traces">Esclusi: possibili tracce</option></select></label></div><p id="catalogDietarySummary" class="muted" role="status"></p><p class="muted">I gruppi combinano schede salvate, indicazioni del PDF e ingredienti scritti nelle ricette. Non modificano le spunte. Una voce assente dalla tabella non certifica l’assenza dell’allergene. Per il lattosio si esclude prudenzialmente il latte: il PDF non ne indica il contenuto.</p></details></details>
 <div id="catalogSetup" class="catalog-setup" hidden><strong>Porta tutto il catalogo nel Manager</strong><p>Un solo trasferimento per gestire i prodotti senza modificare il sito. Mantiene le schede già salvate e le foto su GitHub. Se si interrompe puoi riprendere.</p><button type="button" class="small-action" id="catalogMigrate" disabled>Trasferisci il catalogo</button></div>
 <div class="catalog-status-switch" role="group" aria-label="Disponibilità dei prodotti">
 <button type="button" id="catalogAvailableTab" aria-pressed="true" aria-controls="catalogList">Disponibili <span id="catalogAvailableCount">0</span></button>
 <button type="button" id="catalogInactiveTab" aria-pressed="false" aria-controls="catalogList">Disattivati <span id="catalogInactiveCount">0</span></button>
 </div>
 <div class="catalog-tools"><label>Cerca prodotto<input id="catalogSearch" type="search" placeholder="Es. hamburger"></label>
-<details class="catalog-dietary"><summary>Controllo allergeni e intolleranze</summary><p>All’apertura di Modifica menu il gestionale registra automaticamente, con l’account proprietario, le schede già confrontate con la tabella e le assenze concordate per griglia, burger e sandwich. Le ricette effettivamente cambiate vengono conservate per il controllo manuale. Preparazione e contaminazioni mantengono le valutazioni salvate.</p><div class="catalog-dietary-fields"><label>Esclusione da controllare<select id="catalogAllergen"><option value="">Tutti i prodotti</option><option value="lactose">Lattosio · esclusione prudenziale del latte</option></select></label><label>Verifica allergeni<select id="catalogVerification"><option value="all">Tutte le schede</option><option value="pending">Verifica da completare</option><option value="verified">Allergeni verificati</option></select></label><label>Esito per l’esclusione<select id="catalogDietaryStatus"><option value="all">Tutti i gruppi</option><option value="check">Dati o preparazione da completare</option><option value="verified">Ingredienti e preparazione valutati</option><option value="contains">Esclusi: indicazioni di presenza</option><option value="traces">Esclusi: possibili tracce</option></select></label></div><p id="catalogDietarySummary" class="muted" role="status"></p><p class="muted">I gruppi combinano schede salvate, indicazioni del PDF e ingredienti scritti nelle ricette. Non modificano le spunte. Una voce assente dalla tabella non certifica l’assenza dell’allergene. Per il lattosio si esclude prudenzialmente il latte: il PDF non ne indica il contenuto.</p></details></div>
+</div>
 <form id="catalogEditor" hidden><h3 id="catalogProductName"></h3><p id="catalogProductId" class="muted"></p><p id="productVerificationStatus" class="review-status" role="status"></p>
 <div class="catalog-meta">
 <label>Categoria<select id="productGroup"><option value="beers">Birre</option><option value="soft">Analcolici</option><option value="aperitifs">Aperitivi</option><option value="long">Cocktail</option><option value="wine">Vini</option><option value="grill">Griglia</option><option value="burger">Burger</option><option value="pizza">Pizza</option><option value="sandwich">Sandwich e toast</option><option value="fried">Fritti</option><option value="sharing">In compagnia</option><option value="american">American Bites</option><option value="salads">Insalate</option><option value="dessert">Dolci e fine pasto</option><option value="seasonal">Proposte stagionali</option></select></label>
@@ -734,7 +742,7 @@ textarea{resize:vertical;}
   <div class="person-display" id="account">VERIFICA IN CORSO...</div>
   <div class="person-desc">Per consultare tutti i dati dell'account, tocca la foto profilo in alto a destra.</div>
   <div class="account-row"><span class="role-pill" id="roleLabel">VERIFICA PERMESSI...</span></div>
-  <div id="profileMessage" role="status" class="message">Sto verificando i permessi su Firestore...</div>
+  <div id="profileMessage" role="status" class="message">Sto verificando i permessi su Firestore...</div><button type="button" class="small-action" id="retryAccess" hidden>Riprova accesso</button>
   <div id="grantedPermissions" hidden><p class="mini">AUTORIZZAZIONI ASSEGNATE</p><div class="permission-summary" id="myPermissions"></div></div>
   <button class="button secondary" id="logout" style="margin-top:16px">Esci dall’account</button>
 </section>
@@ -761,7 +769,7 @@ textarea{resize:vertical;}
   <h2>RICHIESTA DI ACCESSO</h2>
   <p>Questo account Google non dispone ancora dei permessi per gestire il menu. È possibile inviare una richiesta all'amministratore principale.</p>
   <div id="requestInfo" class="message" role="status">Verifica della richiesta...</div>
-  <button class="button" id="sendRequest" type="button" hidden style="margin-top:16px">Richiedi accesso</button>
+  <button class="button" id="sendRequest" type="button" hidden style="margin-top:16px">Richiedi accesso</button><button class="small-action" id="refreshMyAccess" type="button">Controlla approvazione</button>
   <p class="mini">La richiesta non consente di leggere il catalogo riservato. L'approvazione è necessaria prima di utilizzare il gestionale.</p>
 </section>
 <section class="card" id="ownerPanel" hidden>
@@ -1279,7 +1287,7 @@ function catalogPrice(value){
  return n.map(v=>v.toFixed(2).replace('.',',')).join('–');
 }
 function validCatalogOverride(d){return d&&validCatalogPrice(d.price)&&typeof d.available==='boolean'&&Number.isSafeInteger(d.revision)&&d.revision>0&&typeof d.lastChangeId==='string'&&!!d.lastChangeId&&!!d.updatedAt&&(!Object.hasOwn(d,'details')||validProductDetails(d.details));}
-function readWithDeadline(promise){let timer;return Promise.race([promise,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('Connessione lenta o non disponibile. Riprova: nessun dato è stato modificato.')),16000);})]).finally(()=>clearTimeout(timer));}
+function readWithDeadline(promise){let timer;return Promise.race([promise,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Object.assign(Error('La connessione impiega troppo tempo. Controlla la rete e riprova.'),{code:'deadline-exceeded'})),16000);})]).finally(()=>clearTimeout(timer));}
 function catalogError(e){return e.code==='permission-denied'?'Operazione negata. Controlla il ruolo proprietaria e pubblica le nuove Regole Firebase del catalogo.':e.code==='unavailable'?'Connessione non disponibile. Le modifiche restano nella scheda: torna online e riprova.':e.message||'Operazione non riuscita. Riprova.';}
 function checkCatalogSize(data){if(new TextEncoder().encode(JSON.stringify(data)).length>CATALOG_MAX_BYTES)throw Error('Il catalogo ha raggiunto il limite di spazio di questa versione. Nessuna modifica pubblicata.');}
 // Snapshot-based, explicit one-time review. No price/photo/availability changes.
@@ -1962,12 +1970,13 @@ function showManagerView(view, push=false, focus=true){
  if(currentRole&&managerView==='catalog'&&view!=='catalog'&&editorDirty&&!$('catalogEditor').hidden){if(!confirm('Scartare le modifiche non pubblicate?'))return;editorDirty=false;$('catalogEditor').hidden=true;}
  if(!currentRole || !MANAGER_VIEWS[view] || (['team','members','requests','history','wallet','appearance','statistics'].includes(view)&&currentRole!=='owner'))view='home';
  if(view==='catalog'&&!canEditMenu())view='home';
- if(view==='kitchen'&&managerView!=='kitchen'&&!kuApplying&&!kitchenRoute)k.page='home';
+ if(view==='kitchen'&&managerView!=='kitchen'&&!kuApplying&&!kitchenRoute&&k.page==='home')k.page='stock';
  if(view==='bar'&&managerView!=='bar'&&!kuApplying&&!barRoute)bar.page='stock';
  managerView=view;
  document.body.dataset.managerView=view;
  document.body.dataset.managerReady=String(!!currentRole);
  $('menuHomeCard').hidden=!canEditMenu();
+ document.querySelectorAll('#primaryNav [data-manager-go]').forEach(el=>{el.hidden=el.dataset.managerGo==='catalog'&&!canEditMenu();el.setAttribute('aria-current',el.dataset.managerGo===view?'page':'false');});
  document.querySelectorAll('[data-owner-only]').forEach(el=>{el.hidden=currentRole!=='owner';});
  $('managerSectionTitle').textContent=MANAGER_VIEWS[view];
  $('ownerSectionTitle').textContent=view==='requests'?'RICHIESTE DI ACCESSO':'UTENTI REGISTRATI';
@@ -2007,6 +2016,9 @@ let busy=false;
 const make=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=String(text);return n;};
 function roleError(error){
  const code=error?.code||"errore sconosciuto";
+ if(code==="deadline-exceeded")return "La connessione impiega troppo tempo. Controlla la rete e riprova.";
+ if(code==="unauthenticated"||code==="auth/user-token-expired"||code==="auth/invalid-user-token")return "La sessione Google è scaduta. Esci e accedi di nuovo.";
+ if(code==="auth/network-request-failed")return "Connessione non disponibile. Controlla la rete e riprova.";
  if(code==="permission-denied")return "Operazione negata da Firestore. Controlla che le nuove regole per i ruoli e lo storico siano state pubblicate e che il tuo profilo sia attivo.";
  if(code==="unavailable")return "Firestore momentaneamente non raggiungibile. Riprova quando torna la connessione.";
  return "Impossibile completare l'operazione ("+code+").";
@@ -2018,6 +2030,8 @@ function setOwnerNotice(message,kind=""){
  const n=$("ownerNotice");n.textContent=message;n.className=message?"message "+kind:"";
 }
 function clearDash(){
+ kitchenSearch='';kitchenCategory='';barCategory='';
+ $('retryAccess').hidden=true;
  teamReset();
  resetCatalogQuality();
  kitchenReset();
@@ -2194,15 +2208,15 @@ async function updateRequestPanel(user){
  const panel=$("requestPanel"), info=$("requestInfo"), button=$("sendRequest");
  panel.hidden=false;button.hidden=true;info.className="message";info.textContent="Verifica delle richieste...";
  try{
-  const r=await getDoc(doc(db,"accessRequests",user.uid));
+  const r=await readAccountDocument(user,"accessRequests",sessionVersion);
   if(auth.currentUser?.uid!==user.uid)return;
   if(!r.exists()){
    info.textContent="Nessuna richiesta inviata.";button.hidden=false;
   }else{
    const status=r.data().status;
-   info.textContent=status==="pending"?"RICHIESTA IN ATTESA · Un responsabile autorizzato deve approvarla.":status==="rejected"?"RICHIESTA RIFIUTATA · Contatta l'amministratore principale.":status==="approved"?"RICHIESTA APPROVATA · Ricarica la pagina per aggiornare le autorizzazioni.":"Stato non riconosciuto. Contatta l'amministratore principale.";
+   info.textContent=status==="pending"?"RICHIESTA IN ATTESA · Un responsabile autorizzato deve approvarla.":status==="rejected"?"RICHIESTA RIFIUTATA · Contatta l'amministratore principale.":status==="approved"?"RICHIESTA APPROVATA · Premi “Controlla approvazione” per entrare.":"Stato non riconosciuto. Contatta l'amministratore principale.";
   }
- }catch(error){info.className="message error";info.textContent=roleError(error);}
+ }catch(error){info.className="message error";info.textContent=accountReadError(error,"richiesta di accesso");}
 }
 $("sendRequest").addEventListener("click",async()=>{
  const user=auth.currentUser,button=$("sendRequest"),info=$("requestInfo");
@@ -2408,7 +2422,7 @@ $("editProfileForm").addEventListener("submit",async e=>{
 
 async function checkRole(user,version){
  try{
-  const snapshot=await readWithDeadline(getDocFromServer(doc(db,"members",user.uid)));
+  const snapshot=await readAccountDocument(user,"members",version);
   if(version!==sessionVersion||auth.currentUser?.uid!==user.uid)return;
   if(!snapshot.exists()){
    $("roleLabel").textContent="IN ATTESA DI APPROVAZIONE";
@@ -2438,7 +2452,8 @@ async function checkRole(user,version){
  }catch(error){
   if(version!==sessionVersion)return;
   $("roleLabel").textContent="VERIFICA NON RIUSCITA";
-  setProfileMessage(roleError(error),"error");
+  setProfileMessage(accountReadError(error,"autorizzazioni"),"error");
+  $("retryAccess").hidden=false;
  }
 }
 // Consegne interne — Spark, nessun servizio push o pianificazione a pagamento.
@@ -2922,6 +2937,7 @@ function kitchenReset(){
  if($('kBody'))$('kBody').replaceChildren();kBadge();
 }
 kitchenReset();
+let kitchenSearch='',kitchenCategory='',barCategory='';
 const ke=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const kNum=n=>Number(n).toLocaleString('it-IT',{maximumFractionDigits:3});
 const kTime=t=>t?.toDate?new Intl.DateTimeFormat('it-IT',{dateStyle:'short',timeStyle:'short',timeZone:'Europe/Rome'}).format(t.toDate()):'In attesa di conferma';
@@ -3004,7 +3020,9 @@ function kDateInput(value){return value||'';}
 function kStepper(id,value,step,type,label){return `<div class="k-step"><button type="button" data-k-step="${ke(id)}" data-type="${type}" data-dir="-1" aria-label="Diminuisci ${ke(label)}" ${k.busy?'disabled':''}>−</button><input type="number" inputmode="decimal" min="0" max="100000" step="${step}" value="${value??''}" placeholder="—" aria-label="${ke(label)}" data-k-qty="${ke(id)}" data-type="${type}" ${k.busy?'disabled':''}><button type="button" data-k-step="${ke(id)}" data-type="${type}" data-dir="1" aria-label="Aumenta ${ke(label)}" ${k.busy?'disabled':''}>+</button></div>`;}
 function kBack(){return '';}
 function kRender(){
+ if(k.page==='home')k.page='stock';
  kuRecord();
+ renderKitchenNav();
  const body=$('kBody');
  const taskMain=body.querySelector('details[data-kt-main]');if(taskMain)k.taskMainOpen=taskMain.open;
  for(const group of body.querySelectorAll('details[data-k-category]')){if(group.open)k.openCategories.add(group.dataset.kCategory);else k.openCategories.delete(group.dataset.kCategory);}
@@ -3029,15 +3047,15 @@ function kRender(){
  if(k.page==='handover'||k.page==='tasks')h=ktRender();
  if(k.page==='loads')h=klRender();
  if(k.page==='stock'){
-  h+='<p>Conferma solo gli articoli controllati. Gli zeri confermati vanno nei riordini o nelle preparazioni.</p>';
+  h+='<p class="mini">Controlla le quantità, poi conferma. Gli articoli a zero entrano nei riordini o nelle preparazioni.</p>'+stockTools('kSearch','kCategory',kitchenSearch,kitchenCategory,[...new Set(kActive().map(i=>i.category))]);
   for(const cat of [...new Set(kActive().map(i=>i.category))]){
-   h+=`<details class="k-category" data-k-category="${ke(cat)}" ${k.openCategories.has(cat)?'open':''}><summary>${ke(cat)}</summary>`;
+   h+=`<section class="stock-group" data-k-category="${ke(cat)}"><h3>${ke(cat)}</h3>`;
    for(const i of kActive().filter(i=>i.category===cat)){
     const old=k.stock.get(i.id),changed=k.draft.get(i.id),incompatible=!!old&&(old.unit!==i.stockUnit||old.configRevision!==i.revision),qty=changed?changed.qty:incompatible?null:old?.qty;
-    h+=`<div class="k-row"><div class="k-label"><strong>${ke(i.name)}</strong><small>${ke(i.stockUnit)} · ${ke(k.suppliers.get(i.supplierId)?.name||({prep:'Preparazione interna',auto:'Rifornimento automatico'}[i.mode]||'Fornitore da verificare'))}</small><small>${changed?'Controllato in questa sessione':incompatible?'Configurazione cambiata: ricontrolla':old?'Ultimo controllo: '+ke(kTime(old.checkedAt)):'Da controllare'}</small></div>${kStepper(i.id,qty,i.stockStep,'stock',i.name)}${changed?kButton('Annulla controllo','undo:'+i.id):qty!==undefined&&qty!==null?kButton('Conferma '+kNum(qty),'check:'+i.id):''}</div>`;
-   }h+='</details>';
+    h+=`<div class="k-row" data-k-search="${ke(i.name.toLocaleLowerCase('it'))}"><div class="k-label"><strong>${ke(i.name)}</strong><small>${ke(i.stockUnit)} · ${ke(k.suppliers.get(i.supplierId)?.name||({prep:'Preparazione interna',auto:'Rifornimento automatico'}[i.mode]||'Fornitore da verificare'))}</small><small>${changed?'Controllato in questa sessione':incompatible?'Configurazione cambiata: ricontrolla':old?'Ultimo controllo: '+ke(kTime(old.checkedAt)):'Da controllare'}</small></div>${kStepper(i.id,qty,i.stockStep,'stock',i.name)}${changed?kButton('Annulla controllo','undo:'+i.id):qty!==undefined&&qty!==null?kButton('Conferma '+kNum(qty),'check:'+i.id):''}</div>`;
+   }h+='</section>';
   }
-  h+=`<p role="status">${k.draft.size} articoli da confermare · ${[...k.draft.values()].filter(d=>d.qty===0).length} a zero</p>`+kButton('Conferma giacenze','confirm','button');
+  h+=`<p class="stock-empty" id="kStockEmpty" hidden>Nessun articolo trovato. Prova un altro nome o una categoria diversa.</p><div class="stock-save"><p role="status">${k.draft.size} articoli da confermare · ${[...k.draft.values()].filter(d=>d.qty===0).length} a zero</p>`+kButton('Conferma giacenze','confirm','button')+'</div>';
  }
  if(k.page==='cart'){
   h+='<p>Le quantità qui indicano quanto acquistare. Salva prima di preparare il messaggio. Copiare non significa inviare.</p>';
@@ -3065,7 +3083,7 @@ function kRender(){
   if(currentRole!=='owner'){h+='<p>La configurazione è riservata alla proprietaria.</p>';}
   else{
    h+=kButton('Aggiungi prodotto','newitem','button')+kButton('Aggiungi fornitore','newsupplier');
-   h+='<h3>Prodotti</h3>';for(const i of [...k.items.values()].sort((a,b)=>a.name.localeCompare(b.name,'it')))h+=`<div class="k-row"><div class="k-label"><strong>${ke(i.name)}</strong><small>${ke(kCategory(i))}${i.active?'':' · Archiviato'}</small></div>${kButton('Modifica','edititem:'+i.id)}</div>`;
+   h+='<h3>Prodotti</h3>';for(const i of [...k.items.values()].sort((a,b)=>a.name.localeCompare(b.name,'it')))h+=`<div class="k-row" data-k-search="${ke(i.name.toLocaleLowerCase('it'))}"><div class="k-label"><strong>${ke(i.name)}</strong><small>${ke(kCategory(i))}${i.active?'':' · Archiviato'}</small></div>${kButton('Modifica','edititem:'+i.id)}</div>`;
    h+='<h3>Fornitori</h3>';for(const s of k.suppliers.values())h+=`<div class="k-row"><strong>${ke(s.name)}</strong>${kButton('Modifica','editsupplier:'+s.id)}</div>`;
    h+=kButton('Completa elenco iniziale senza sovrascrivere','seed');
   }
@@ -3079,7 +3097,7 @@ function kRender(){
   for(const [key,label] of [['handover','Consegne di turno'],['stock','Giacenze'],['orders','Riordini'],['tasks','Preparazioni e cose da fare'],['clean','Pulizie']])h+=`<label class="k-check"><input type="checkbox" name="${key}" ${k.prefs[key]?'checked':''}>${label}</label>`;
   h+='<p>Le notifiche sono interne al gestionale e non richiedono il permesso del telefono. Le consegne vengono aggiornate alle 4:00 se l’app è aperta, oppure alla prima apertura successiva. Nessun servizio a pagamento.</p><button class="button">Salva preferenze</button></form>';
  }
- body.innerHTML=h;
+ body.innerHTML=h;filterKitchenStock();
 }
 function kEvent(tx,ref,kind,title,text,target,notify=true){tx.set(ref,{actorUid:auth.currentUser.uid,actorName:(auth.currentUser.displayName||'Personale').slice(0,100),kind,title:title.slice(0,140),text:text.slice(0,600),target,notify,createdAt:serverTimestamp()});}
 function kMeta(before,event){return {revision:(before?.revision||0)+1,updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid,lastEventId:event.id};}
@@ -3191,7 +3209,57 @@ window.addEventListener('beforeunload',e=>{if(kitchenUnsaved()){e.preventDefault
 window.addEventListener('online',()=>{if(k.allowed)kNotice('Connessione ripristinata. Attendi i dati aggiornati prima di salvare.');});
 window.addEventListener('offline',()=>{if(k.allowed)kNotice('Sei offline. Le modifiche non sono confermate.',true);});
 
-onAuthStateChanged(auth,async user=>{
+
+function accountReadError(error,stage){
+ const code=error?.code||'errore-sconosciuto';
+ if(code==='permission-denied')return 'Google ha riconosciuto il tuo account, ma Firestore ha negato la lettura di '+stage+'. Contatta la proprietaria indicando questo passaggio (permission-denied).';
+ return 'Non riesco a verificare '+stage+'. '+roleError(error);
+}
+async function readAccountDocument(user,name,version){
+ for(let attempt=0;attempt<2;attempt++){
+  if(version!==sessionVersion||auth.currentUser?.uid!==user.uid)throw Object.assign(Error('Sessione cambiata.'),{code:'session-changed'});
+  try{return await readWithDeadline(getDocFromServer(doc(db,name,user.uid)));}
+  catch(error){
+   if(attempt!==0||!['unauthenticated','permission-denied'].includes(error?.code))throw error;
+   // Refresh only this Google session; the second read still obeys Firestore rules.
+   await readWithDeadline(user.getIdToken(true));
+  }
+ }
+}
+let accessRetrying=false;
+async function retryMyAccess(){
+ const user=auth.currentUser;if(!user||accessRetrying||busy)return;
+ accessRetrying=true;const buttons=[$('retryAccess'),$('refreshMyAccess')];buttons.forEach(b=>b.disabled=true);
+ try{await verifySignedIn(user);}finally{accessRetrying=false;buttons.forEach(b=>b.disabled=false);}
+}
+$('retryAccess').addEventListener('click',retryMyAccess);
+$('refreshMyAccess').addEventListener('click',retryMyAccess);
+function stockTools(searchId,categoryId,search,category,categories){
+ return '<div class="stock-tools"><label>Cerca prodotto<input type="search" id="'+searchId+'" value="'+ke(search)+'" placeholder="Scrivi il nome…" autocomplete="off"></label><label>Categoria<select id="'+categoryId+'"><option value="">Tutte</option>'+categories.map(c=>'<option '+(c===category?'selected':'')+' value="'+ke(c)+'">'+ke(c)+'</option>').join('')+'</select></label></div>';
+}
+function renderKitchenNav(){
+ const tabs=[['stock','Giacenze'],['cart','Riordini'],['loads','Carichi'],['tasks','Da fare'],['handover','Consegne'],['clean','Pulizie']];
+ $('kQuickNav').innerHTML=tabs.map(([page,label])=>'<button type="button" data-k-page="'+page+'" aria-pressed="'+(k.page===page)+'" '+(k.busy?'disabled':'')+'>'+label+'</button>').join('');
+ $('kQuickNav').hidden=!k.allowed||!k.ready;
+ $('kRetry').textContent=k.ready?'Ricarica':'Riprova';
+}
+$('kQuickNav').addEventListener('click',event=>{
+ const button=event.target.closest('[data-k-page]');if(!button||button.dataset.kPage===k.page||!k.allowed||!k.ready||!kitchenMayLeave())return;
+ k.page=button.dataset.kPage;kRender();$('kHeading').focus({preventScroll:true});
+});
+function filterKitchenStock(){
+ const term=kitchenSearch.trim().toLocaleLowerCase('it');let total=0;
+ for(const group of $('kBody').querySelectorAll('[data-k-category]')){
+  let count=0;for(const row of group.querySelectorAll('[data-k-search]')){row.hidden=!row.dataset.kSearch.includes(term);if(!row.hidden)count++;}
+  group.hidden=!count||!!kitchenCategory&&group.dataset.kCategory!==kitchenCategory;if(!group.hidden)total+=count;
+ }
+ if($('kStockEmpty'))$('kStockEmpty').hidden=total>0;
+}
+$('kBody').addEventListener('input',e=>{if(e.target.id==='kSearch'){kitchenSearch=e.target.value;filterKitchenStock();}});
+$('kBody').addEventListener('change',e=>{if(e.target.id==='kCategory'){kitchenCategory=e.target.value;filterKitchenStock();}});
+$('bBody').addEventListener('change',e=>{if(e.target.id==='bCategory'){barCategory=e.target.value;bFilter();}});
+
+async function verifySignedIn(user){
  const version=++sessionVersion;
  currentRole=null;currentProfile=null;registrationPhoto="";editedPhoto="";
  $("signedIn").classList.toggle("show",!!user);
@@ -3206,10 +3274,8 @@ onAuthStateChanged(auth,async user=>{
  setProfileMessage("Verifica del profilo personale in corso...");
 
  try{
-  const removed=await teamRemoved(user);if(version!==sessionVersion||auth.currentUser?.uid!==user.uid)return;
-  if(removed){await teamKick("Questo account è stato rimosso dal gestionale. Accesso non consentito.");return;}
-  const p=await readWithDeadline(getDocFromServer(doc(db,"profiles",user.uid)));
-  if(version!==sessionVersion)return;
+  const p=await readAccountDocument(user,"profiles",version);
+  if(version!==sessionVersion||auth.currentUser?.uid!==user.uid)return;
   if(!p.exists()){
    $("roleLabel").textContent="PROFILO DA COMPLETARE";
    $("onboarding").hidden=false;
@@ -3223,11 +3289,17 @@ onAuthStateChanged(auth,async user=>{
   updateSelfUI(user);
   await checkRole(user,version);
  }catch(error){
-  if(version!==sessionVersion)return;
+  if(version!==sessionVersion||auth.currentUser?.uid!==user.uid)return;
   $("roleLabel").textContent="PROFILO NON DISPONIBILE";
-  setProfileMessage(roleError(error)+" Verifica che le regole Firestore includano la raccolta profiles.","error");
+  if(error?.code==="permission-denied"){
+   try{if(await teamRemoved(user)){if(version===sessionVersion)await teamKick("Questo account è stato rimosso dal gestionale. Contatta la proprietaria.");return;}}catch{}
+  }
+  if(version!==sessionVersion)return;
+  setProfileMessage(accountReadError(error,"profilo personale"),"error");
+  $("retryAccess").hidden=false;
  }
-});
+}
+onAuthStateChanged(auth,verifySignedIn);
 getRedirectResult(auth).catch(e=>{const box=$("loginError");box.className="message error";box.textContent=explain(e)});
 
 // Bar — quantità e scorte dall'Excel, dati riservati, nessun invio automatico.
@@ -3320,16 +3392,16 @@ function bStockRow(p){
 }
 function bRender(){
  if(bar.ready)bRecord();
- $('bSettings').hidden=currentRole!=='owner';$('bCartTab').textContent='Lista ('+bOrders().length+')';
+ $('bSettings').hidden=currentRole!=='owner';$('bCartTab').textContent='Riordini ('+bOrders().length+')';
  for(const el of document.querySelectorAll('[data-b-page]'))el.setAttribute('aria-pressed',String(el.dataset.bPage===bar.page));
  if(!bar.ready){$('bBody').innerHTML='<p>'+ke(['denied','setup-error'].includes(bar.phase)?bar.message:bar.phase==='setup'?'Preparazione automatica dell’elenco incluso nel gestionale…':'Collegamento al Bar in corso…')+'</p>'+(bar.phase==='setup'?'':bButton('Riprova','reload'));return;}
  let h='';
  if(!bar.items.size&&bar.page!=='loads'){h='<div class="b-card"><h3>Il tuo Bar</h3><p>L’elenco prodotti è già incluso nel codice. Al primo accesso della proprietaria si prepara automaticamente nel database condiviso.</p></div>';}
  else if(bar.page==='stock'){
-  h='<p class="mini">Controlla le quantità e conferma le voci selezionate. Passo 0,25. Le quantità iniziali sono un riferimento, non un controllo di oggi.</p><label class="b-search">Cerca prodotto<input id="bSearch" type="search" value="'+ke(bar.search)+'" placeholder="Es. gin, latte, tovaglioli"></label><div class="b-actions">'+bButton('Azzera giacenze','zerostock',!bActive().length)+'</div>';
+  h='<p class="mini">Controlla le quantità e conferma le voci selezionate. Passo 0,25. I dati iniziali non sono un controllo di oggi.</p>'+stockTools('bSearch','bCategory',bar.search,barCategory,[...new Set(bActive().map(i=>i.category))])+'<details class="b-advanced"><summary>Operazioni su tutte le giacenze</summary>'+bButton('Azzera giacenze','zerostock',!bActive().length)+'</details>';
   const items=bActive();
-  for(const category of [...new Set(items.map(x=>x.category))].sort((a,b)=>B_CATS.indexOf(a)-B_CATS.indexOf(b))){const products=items.filter(p=>p.category===category);h+='<details class="b-category" data-b-category="'+ke(category)+'" '+(bar.open.has(category)?'open':'')+'><summary>'+ke(category)+' <span>'+products.length+'</span></summary>'+products.map(bStockRow).join('')+'</details>';}
-  h+='<div class="b-sticky">'+bButton('Conferma controlli ('+bar.draft.size+')','confirm',!bar.draft.size)+bButton('Scarta controlli','discard',!bar.draft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('stock:')))+'</div><p class="mini">Una quantità lasciata vuota non viene interpretata come zero. La conferma aggiunge le mancanze alla lista; le quantità già presenti nella lista vengono conservate.</p>';
+  for(const category of [...new Set(items.map(x=>x.category))].sort((a,b)=>B_CATS.indexOf(a)-B_CATS.indexOf(b))){const products=items.filter(p=>p.category===category);h+='<section class="stock-group" data-b-category="'+ke(category)+'"><h3>'+ke(category)+' <span>'+products.length+'</span></h3>'+products.map(bStockRow).join('')+'</section>';}
+  h+='<p class="stock-empty" id="bStockEmpty" hidden>Nessun articolo trovato. Prova un altro nome o una categoria diversa.</p><div class="b-sticky">'+bButton('Conferma controlli ('+bar.draft.size+')','confirm',!bar.draft.size)+bButton('Scarta controlli','discard',!bar.draft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('stock:')))+'</div><p class="mini">Una quantità lasciata vuota non viene interpretata come zero. La conferma aggiunge le mancanze alla lista; le quantità già presenti nella lista vengono conservate.</p>';
  }else if(bar.page==='loads'){h=blRender();}
  else if(bar.page==='cart'){
   const orders=bOrders();h='<p class="mini">Lista condivisa del Bar. Gli ordini automatici sono arrotondati all’intero superiore, come nell’Excel. Per gli articoli manuali scegli tu la quantità.</p>';
@@ -3348,11 +3420,12 @@ function bRender(){
  for(const input of $('bBody').querySelectorAll('[data-b-input]'))if(bar.invalid.has(input.dataset.bInput+':'+input.dataset.id))input.setCustomValidity('Correggi questa quantità.');
 }
 function bFilter(){
- const q=bar.search.trim().toLocaleLowerCase('it');
+ const q=bar.search.trim().toLocaleLowerCase('it');let shown=0;
  for(const details of $('bBody').querySelectorAll('[data-b-category]')){
   let visible=0;for(const row of details.querySelectorAll('[data-b-row]')){row.hidden=!row.dataset.bRow.includes(q);if(!row.hidden)visible++;}
-  details.hidden=!visible;details.open=!!q||bar.open.has(details.dataset.bCategory);
+  details.hidden=!visible||(barCategory!==''&&details.dataset.bCategory!==barCategory);if(!details.hidden)shown+=visible;
  }
+ if($('bStockEmpty'))$('bStockEmpty').hidden=shown>0;
 }
 function bMeta(old,event){return {revision:(old?.revision||0)+1,updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid,lastEventId:event.id};}
 function bEvent(tx,event,entity,id,action){tx.set(event,{entity,entityId:id,action,actorUid:auth.currentUser.uid,actorName:ktName().slice(0,100),createdAt:serverTimestamp()});}
