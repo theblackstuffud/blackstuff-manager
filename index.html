@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it" data-privacy-app="manager">
 <head>
-<meta name="tbs-release" content="2026-11-04-titolari-v20">
+<meta name="tbs-release" content="2026-11-04-team-v21">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
@@ -618,6 +618,10 @@ textarea{resize:vertical;}
 #barPanel .b-tabs{display:flex;flex-wrap:wrap}#barPanel .b-tabs button{flex:1 1 85px}
 @media(max-width:520px){#barPanel .k-category{padding:7px 12px}#barPanel .k-row>.small-action{flex:0 0 auto}#barPanel .k-form>.button{width:100%}}
 </style>
+<style id="teamStyle">#teamPanel{display:none}body[data-manager-ready="true"][data-manager-view="team"] #teamPanel{display:block}
+.team-group{margin:26px 0}.team-card{padding:20px;border:1px solid var(--border);border-radius:16px;background:var(--card);margin:14px 0}.team-card h4{margin:0;overflow-wrap:anywhere}.team-card>label{display:grid;gap:8px;font-size:14px;margin:18px 0}.team-card select{width:100%;padding:12px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text)}.team-card fieldset{border:0;padding:0;margin:18px 0}.team-card legend{font-weight:650;font-size:14px;margin-bottom:12px}.team-check{display:flex;align-items:center;gap:10px;min-height:44px;font-size:14px}.team-check input{width:22px;height:22px;margin:0}.team-actions{display:flex;gap:10px;flex-wrap:wrap}.team-actions .button{width:auto;flex:1;min-height:44px}.team-actions .small-action{min-height:44px}.team-card .mini{overflow-wrap:anywhere;line-height:1.6}
+@media(max-width:520px){.team-card{padding:16px}.team-actions>*{flex:1 1 100%!important}}
+</style>
 </head>
 <body>
 <main>
@@ -635,7 +639,8 @@ textarea{resize:vertical;}
     <div class="profile-menu-divider" role="separator" data-owner-only hidden></div>
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="statistics" data-owner-only hidden>Statistiche <span aria-hidden="true">→</span></button>
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="appearance" data-owner-only hidden>Aspetto del menu <span aria-hidden="true">→</span></button>
-    <button type="button" role="menuitem" tabindex="-1" data-manager-go="members" data-owner-only hidden>Utenti e permessi <span aria-hidden="true">→</span></button>
+    <button type="button" role="menuitem" tabindex="-1" data-manager-go="team" data-owner-only hidden>Team <span aria-hidden="true">→</span></button>
+    <button type="button" role="menuitem" tabindex="-1" data-manager-go="members" data-owner-only hidden>Utenti registrati <span aria-hidden="true">→</span></button>
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="requests" data-owner-only hidden>Richieste di accesso <span aria-hidden="true">→</span></button>
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="history" data-owner-only hidden>Storico attività <span aria-hidden="true">→</span></button>
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="wallet" data-owner-only hidden>Portafoglio IA <small>Non attivo</small></button>
@@ -655,7 +660,7 @@ textarea{resize:vertical;}
     <h2 id="managerHomeTitle" tabindex="-1">GESTIONALE</h2>
     <p>Tutto quello che serve, a portata di mano.</p>
   </div>
-  <div class="menu-workspace">
+  <div id="menuHomeCard" class="menu-workspace">
     <div class="workspace-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></div>
     <h3>MODIFICA MENU</h3>
     <p>Prodotti, prezzi, ingredienti e allergeni. Aggiorna ogni dettaglio del tuo menu.</p>
@@ -664,12 +669,22 @@ textarea{resize:vertical;}
   </div>
 <div id="kHomeButton" class="menu-workspace"><h3>CUCINA</h3><p>Giacenze, riordini, preparazioni e pulizie.</p><button type="button" class="button workspace-action" data-manager-go="kitchen">CUCINA →</button></div>
   <div id="bHomeButton" class="menu-workspace"><h3>BAR</h3><p>giacenze, riordini e carichi</p><button type="button" class="button workspace-action" data-manager-go="bar">BAR →</button></div>
+<div class="menu-workspace" data-owner-only hidden style="margin-top:18px"><h3>TEAM</h3><p>Ruoli, accessi e persone del locale.</p><button class="button workspace-action" type="button" data-manager-go="team">TEAM →</button></div>
 <a class="public-menu-link" href="https://theblackstuffud.github.io/blackstuff-menu/?tbs_stats=off" target="_blank" rel="noopener noreferrer"><span class="public-menu-copy">Anteprima menu<small>Come lo vedono i clienti</small></span><span aria-hidden="true">↗</span></a>
 </section>
 <nav id="managerNav" aria-label="Navigazione gestionale"><button type="button" class="small-action" id="managerBack">← Home</button><span id="managerSectionTitle"></span></nav>
 <section id="kitchenPanel" class="panel" aria-labelledby="kHeading"><div class="k-toolbar"><h2 id="kHeading" tabindex="-1">Cucina</h2><div><button type="button" class="small-action" id="kOpenNotifications" aria-label="Notifiche cucina">Notifiche <span data-k-count class="k-alert-count">0</span></button><button type="button" class="small-action" id="kRetry">Riprova</button><button type="button" class="small-action" id="kEdit" data-owner-only>Modifica</button></div></div><div id="kMessage" class="message" role="status" aria-live="polite"></div><div id="kBody"></div></section><dialog id="kMessageDialog" aria-labelledby="kMessageTitle"><h2 id="kMessageTitle">Messaggio da copiare</h2><p>Puoi correggere il testo. Le modifiche qui non cambiano la lista salvata.</p><textarea id="kMessageText" aria-label="Messaggio modificabile"></textarea><button type="button" class="button" id="kCopyMessage">Copia messaggio</button><button type="button" class="small-action" id="kCloseMessage">Chiudi</button><p id="kCopyStatus" role="status"></p></dialog>
 
 <section id="barPanel" class="panel" aria-labelledby="bHeading"><div class="k-toolbar"><h2 id="bHeading" tabindex="-1">Bar</h2><button type="button" class="small-action" data-b="reload">Ricarica</button></div><div id="bMessage" class="message" role="status" aria-live="polite"></div><nav class="b-tabs" aria-label="Sezioni Bar"><button type="button" class="small-action" data-b-page="stock" aria-pressed="true">Giacenze</button><button type="button" class="small-action" id="bCartTab" data-b-page="cart" aria-pressed="false">Lista (0)</button><button type="button" class="small-action" data-b-page="loads" aria-pressed="false">Carichi</button><button type="button" class="small-action" id="bSettings" data-b-page="settings" aria-pressed="false" hidden>Modifica</button></nav><div id="bBody"></div></section><dialog id="bMessageDialog" aria-labelledby="bMessageTitle"><h2 id="bMessageTitle">Lista Bar</h2><p>Soltanto prodotti e quantità. Puoi correggere il testo prima di copiarlo nel gruppo WhatsApp.</p><textarea id="bMessageText" aria-label="Lista Bar modificabile"></textarea><button type="button" class="button" id="bCopyMessage">Copia lista</button> <button type="button" class="small-action" id="bCloseMessage">Chiudi</button><p id="bCopyStatus" role="status" aria-live="polite"></p></dialog>
+<section id="teamPanel" class="panel" aria-labelledby="teamHeading"><div class="k-toolbar"><h2 id="teamHeading" tabindex="-1">TEAM</h2><button type="button" id="teamReload" class="small-action">Ricarica team</button></div><p class="mini">Solo i titolari gestiscono ruoli e accessi. Le autorizzazioni a Cucina, Bar e Modifica menu si modificano da questa sezione.</p><p class="mini">“Elimina dal gestionale” rimuove profilo e accessi e blocca questo account. La cancellazione dal registro Firebase Authentication si completa dalla console Firebase.</p><div id="teamMessage" role="status" aria-live="polite"></div><div id="teamBody"></div><details class="team-invite"><summary>Invita una persona</summary>  <section class="manager-invite" aria-labelledby="managerInviteHeading">
+   <div class="eyebrow">Invita un collaboratore</div><h3 id="managerInviteHeading">Condividi il Manager</h3>
+   <p>Invia il link a chi dovrà accedere. La persona entra con il proprio account Google, completa il profilo e preme «Richiedi accesso».</p>
+   <p class="mini">Condividere il link non concede permessi. La richiesta rimane in attesa della tua approvazione.</p>
+   <div class="manager-invite-actions"><button type="button" class="small-action" id="managerInviteShare"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 16V3m-4 4 4-4 4 4M7 10H4v11h16V10h-3"/></svg>Condividi il Manager</button><button type="button" class="small-action" id="managerInviteCopy">Copia link</button></div>
+   <div id="managerInviteFallback" hidden><label for="managerInviteLink" class="field-label">LINK DEL MANAGER</label><input id="managerInviteLink" type="url" readonly value="https://theblackstuffud.github.io/blackstuff-manager/"></div>
+   <p id="managerInviteStatus" class="mini" role="status" aria-live="polite"></p>
+   <button type="button" class="manager-invite-requests" data-manager-go="requests">Apri le richieste di accesso <span aria-hidden="true">→</span></button>
+  </section></details></section>
 <section id="catalogPanel" class="panel" aria-labelledby="catalogHeading">
 <h2 id="catalogHeading" tabindex="-1">Modifica menu</h2>
 <p>Aggiorna le informazioni che i clienti vedono nel menu.</p>
@@ -750,27 +765,17 @@ textarea{resize:vertical;}
   <p class="mini">La richiesta non consente di leggere il catalogo riservato. L'approvazione è necessaria prima di utilizzare il gestionale.</p>
 </section>
 <section class="card" id="ownerPanel" hidden>
-  <div class="eyebrow">02 · CONTROLLO ACCESSI</div>
   <h2 id="ownerSectionTitle">GESTIONE UTENTI</h2>
 
   <div id="requestsSection"><div class="request-bar"><strong class="muted-heading">RICHIESTE IN ATTESA</strong><button class="small-action" id="refreshAccess" type="button">Aggiorna</button></div>
   <div id="requestsList" aria-live="polite" class="hint">Caricamento delle richieste...</div>
   <p class="mini">Prima di approvare, verifica che l'indirizzo Google appartenga realmente alla persona interessata.</p>
   </div><div id="membersSection">
-  <section class="manager-invite" aria-labelledby="managerInviteHeading">
-   <div class="eyebrow">Invita un collaboratore</div><h3 id="managerInviteHeading">Condividi il Manager</h3>
-   <p>Invia il link a chi dovrà accedere. La persona entra con il proprio account Google, completa il profilo e preme «Richiedi accesso».</p>
-   <p class="mini">Condividere il link non concede permessi. La richiesta rimane in attesa della tua approvazione.</p>
-   <div class="manager-invite-actions"><button type="button" class="small-action" id="managerInviteShare"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 16V3m-4 4 4-4 4 4M7 10H4v11h16V10h-3"/></svg>Condividi il Manager</button><button type="button" class="small-action" id="managerInviteCopy">Copia link</button></div>
-   <div id="managerInviteFallback" hidden><label for="managerInviteLink" class="field-label">LINK DEL MANAGER</label><input id="managerInviteLink" type="url" readonly value="https://theblackstuffud.github.io/blackstuff-manager/"></div>
-   <p id="managerInviteStatus" class="mini" role="status" aria-live="polite"></p>
-   <button type="button" class="manager-invite-requests" data-manager-go="requests">Apri le richieste di accesso <span aria-hidden="true">→</span></button>
-  </section>
 
-  <div class="request-bar"><strong class="muted-heading">UTENTI REGISTRATI</strong><button class="small-action" id="refreshMembers" type="button">Aggiorna</button></div>
+
+  <div class="request-bar"><button class="small-action" id="refreshMembers" type="button">Aggiorna</button></div>
   <div id="membersList" class="members-manager-list" aria-live="polite">Caricamento...</div>
   </div><div id="ownerNotice" role="status" aria-live="polite"></div>
-  <p class="mini">Il ruolo Proprietario non può essere modificato da questa interfaccia. Ogni modifica alle autorizzazioni verrà registrata nello storico.</p>
 </section>
 <section id="statisticsPanel" aria-labelledby="statisticsHeading">
  <div class="stats-intro"><div><div class="eyebrow">Il tuo menu, in numeri</div><h2 id="statisticsHeading">Statistiche</h2><p>Aperture e interessi dei clienti. Orari di Udine.</p></div><button type="button" class="small-action" id="statisticsRefresh">Aggiorna dati</button></div>
@@ -1319,7 +1324,7 @@ function controlledCatalogCounts(){
 
 function catalogControls(){
  const locked=catalogBusy||catalogLoading,ready=catalogDocument?.status==='ready';
- $('catalogReload').disabled=locked;$('catalogNew').disabled=locked||!ready||currentRole!=='owner';$('catalogNew').hidden=currentRole!=='owner';
+ $('catalogReload').disabled=locked;$('catalogNew').disabled=locked||!ready||!canEditMenu();$('catalogNew').hidden=!canEditMenu();
  $('catalogSetup').hidden=!!ready||currentRole!=='owner';$('catalogMigrate').disabled=locked||!catalogSource.length;
  $('catalogMigrate').textContent=catalogDocument?'Riprendi trasferimento':'Trasferisci il catalogo';
  $('catalogSave').disabled=locked;$('catalogVerify').disabled=locked;$('catalogCancel').disabled=locked;
@@ -1352,7 +1357,7 @@ async function loadCatalog(){
  if(epoch===catalogEpoch&&auth.currentUser?.uid===uid&&currentRole==='owner'&&catalogDocument?.status==='ready'&&controlledCatalogCounts().products>0)await verifyTableProducts();
 }
 function openCatalogProduct(item,p=null){
- if(catalogBusy||catalogLoading||catalogDocument?.status!=='ready'||currentRole!=='owner')return;
+ if(catalogBusy||catalogLoading||catalogDocument?.status!=='ready'||!canEditMenu())return;
  if(editorDirty&&!$('catalogEditor').hidden&&!confirm('Scartare le modifiche non pubblicate?'))return;
  catalogSelected={item,revision:p?.revision||0,record:p};populateDetails(item,p?{details:p.details}:null);
  $('catalogProductName').textContent=p?p.details.name.it:'Nuovo prodotto';$('catalogProductId').textContent=p?'ID: '+item.id:'La scheda sarà creata solo quando premi Pubblica modifica.';
@@ -1431,7 +1436,7 @@ function renderCatalog(){
   if(catalogFood(item)||catalogQuality==='allergens')info.append(make('small','catalog-verification-state',p?.details.allergensReviewed?'✓ Allergeni verificati':tableReviewEligible(item.id,p)?'Tabella controllata · salvataggio automatico previsto':'Verifica allergeni da completare'));
   if(catalogQuality==='traits')info.append(make('small','catalog-verification-state','Caratteristiche ricerca: nessuna selezionata'));
   if(key){const assessment=assessmentFor(item);info.append(make('small','catalog-dietary-badge',labels[assessment.status]));if(assessment.reasons.length)info.append(make('small','',assessment.reasons.map(r=>PRODUCT_ALLERGENS[r.key][0]+': '+r.source).join(' · ')));}
-  if(currentRole==='owner'&&p){
+  if(canEditMenu()&&p){
    const actions=make('div','catalog-row-actions'),button=make('button','small-action','Modifica');button.type='button';button.disabled=catalogBusy||catalogLoading;button.setAttribute('aria-label','Modifica '+item.name.it);button.addEventListener('click',()=>openCatalogProduct(item,p));actions.append(button);
    const availability=make('button','small-action '+(p.available?'deactivate-action':'reactivate-action'),p.available?'Disattiva':'Riattiva');availability.type='button';availability.disabled=catalogBusy||catalogLoading;availability.setAttribute('aria-label',(p.available?'Disattiva ':'Riattiva ')+item.name.it);availability.addEventListener('click',()=>p.available?deactivateCatalogProduct(item,p):reactivateCatalogProduct(item,p));actions.append(availability);
    row.append(actions);
@@ -1443,11 +1448,11 @@ function renderCatalog(){
 async function deactivateCatalogProduct(item,expected){return changeCatalogAvailability(item,expected,false);}
 async function reactivateCatalogProduct(item,expected){return changeCatalogAvailability(item,expected,true);}
 async function changeCatalogAvailability(item,expected,available){
- if(catalogBusy||catalogLoading||catalogDocument?.status!=='ready'||currentRole!=='owner'||!auth.currentUser||typeof available!=='boolean'||!expected||expected.available===available)return;
+ if(catalogBusy||catalogLoading||catalogDocument?.status!=='ready'||!canEditMenu()||!auth.currentUser||typeof available!=='boolean'||!expected||expected.available===available)return;
  if(!$('catalogEditor').hidden){catalogMessage('Salva o annulla la scheda aperta prima di cambiare la disponibilità.',true);return;}
  if(!navigator.onLine){catalogMessage('Per cambiare la disponibilità serve una connessione.',true);return;}
  const uid=auth.currentUser.uid,epoch=catalogEpoch,session=sessionVersion;
- const owns=()=>epoch===catalogEpoch&&session===sessionVersion&&auth.currentUser?.uid===uid&&currentRole==='owner';
+ const owns=()=>epoch===catalogEpoch&&session===sessionVersion&&auth.currentUser?.uid===uid&&canEditMenu();
  catalogBusy=true;renderCatalog();catalogMessage((available?'Riattivazione di ':'Disattivazione di ')+item.name.it+'…');
  const waiting=setTimeout(()=>{if(owns())catalogMessage('Il salvataggio richiede più tempo. Attendi la conferma senza chiudere questa pagina.');},12000);
  try{
@@ -1570,10 +1575,10 @@ $('catalogPhotoCheck').addEventListener('click',()=>{
  image.src='https://theblackstuffud.github.io/blackstuff-menu/'+key+'?check='+Date.now();
 });
 $('catalogEditor').addEventListener('submit',async event=>{
- event.preventDefault();if(catalogBusy||catalogLoading||!catalogSelected||catalogDocument?.status!=='ready'||currentRole!=='owner'||!auth.currentUser)return;
+ event.preventDefault();if(catalogBusy||catalogLoading||!catalogSelected||catalogDocument?.status!=='ready'||!canEditMenu()||!auth.currentUser)return;
  if(!navigator.onLine){catalogMessage('Sei offline. Le modifiche restano nella scheda: torna online e riprova.',true);return;}
  const verifying=event.submitter?.id==='catalogVerify';
- const selected=catalogSelected,uid=auth.currentUser.uid,epoch=catalogEpoch,owns=()=>epoch===catalogEpoch&&auth.currentUser?.uid===uid&&currentRole==='owner';let product;
+ const selected=catalogSelected,uid=auth.currentUser.uid,epoch=catalogEpoch,owns=()=>epoch===catalogEpoch&&auth.currentUser?.uid===uid&&canEditMenu();let product;
  try{
   const mode=$('productPhotoMode').value,group=$('productGroup').value,details=readDetails();
   if(verifying)details.allergensReviewed=true;
@@ -1787,7 +1792,117 @@ document.querySelectorAll('[data-stats-days]').forEach(button=>button.addEventLi
 }));
 window.addEventListener('beforeunload',event=>{if(statisticsSaving){event.preventDefault();event.returnValue='';}});
 
-const MANAGER_VIEWS={bar:'Bar',kitchen:'Cucina',statistics:'Statistiche',home:'Home',catalog:'Modifica menu',appearance:'Aspetto del menu',wallet:'Portafoglio IA',account:'Il mio accesso',members:'Utenti e permessi',requests:'Richieste di accesso',history:'Storico attività'};
+// TEAM: identità separate dai permessi; nessuna credenziale amministrativa nel browser.
+let teamSelf=null,teamSelfOff=[],teamEpoch=0,teamRows=new Map(),teamSaving=false,teamKicking=false;
+function canEditMenu(){return !!currentRole&&(currentRole==='owner'||teamSelf?.status==='active'&&teamSelf.permissions?.products===true);}
+function teamReset(){for(const off of teamSelfOff)off();teamSelfOff=[];teamSelf=null;teamRows.clear();teamEpoch++;teamSaving=false;if($('teamBody'))$('teamBody').replaceChildren();}
+function teamMessage(text,error=false){$('teamMessage').textContent=text;$('teamMessage').className=text?'message'+(error?' error':''):'';}
+async function teamKick(message){
+ if(teamKicking)return;teamKicking=true;currentRole=null;currentProfile=null;clearDash();$('profileOverlay').hidden=true;$('profileTrigger').hidden=true;document.body.classList.remove('profile-open');
+ $('signedIn').classList.remove('show');$('signedOut').classList.add('show');
+ try{await signOut(auth);}catch(_){}finally{teamKicking=false;$('loginError').textContent=message;$('loginError').className='message error';}
+}
+function teamWatch(user,version,member){
+ teamSelf=member;
+ teamSelfOff.push(onSnapshot(doc(db,'members',user.uid),{includeMetadataChanges:true},s=>{
+  if(version!==sessionVersion||auth.currentUser?.uid!==user.uid||s.metadata?.fromCache)return;
+  const next=s.exists()?s.data():null;
+  if(!next||next.status!=='active'||!ROLE_NAMES[next.role]){void teamKick('Account rimosso o disattivato. Accesso al gestionale non consentito.');return;}
+  if(next.role!==member.role||next.lastAuditId!==member.lastAuditId){void teamKick('Le tue autorizzazioni sono state aggiornate. Accedi nuovamente.');return;}
+  teamSelf=next;
+ },()=>{if(version===sessionVersion)void teamKick('Accesso al gestionale non più autorizzato.');}));
+}
+async function teamRemoved(user){
+ const refs=[doc(db,'removedAccounts',user.uid)];if(user.email)refs.push(doc(db,'removedEmails',user.email.toLowerCase()));
+ const results=await Promise.all(refs.map(ref=>readWithDeadline(getDocFromServer(ref))));return results.some(s=>s.exists());
+}
+async function loadRegisteredUsers(){
+ if(currentRole!=='owner'||!auth.currentUser)return;
+ const epoch=teamEpoch,list=$('membersList');list.textContent='Caricamento utenti…';
+ try{const snapshot=await getDocsFromServer(collection(db,'members'));if(epoch!==teamEpoch||currentRole!=='owner')return;list.replaceChildren();
+  for(const s of snapshot.docs.sort((a,b)=>(a.data().name||a.data().email||a.id).localeCompare(b.data().name||b.data().email||b.id,'it'))){
+   const d=s.data(),self=s.id===auth.currentUser.uid,row=make('article','request-card');row.append(make('div','request-name',(self?fullName(currentProfile)||auth.currentUser.displayName:'')||d.name||d.email||'Account registrato'),make('div','request-meta',d.email||(self?auth.currentUser.email:'')||'Email non registrata'),make('div','member-uid',s.id));list.append(row);
+  }
+  if(!snapshot.size)list.textContent='Nessun utente registrato.';
+ }catch(error){if(epoch===teamEpoch)list.textContent=roleError(error);}
+}
+async function loadTeam(){
+ if(currentRole!=='owner'||!auth.currentUser)return;
+ const epoch=teamEpoch;teamMessage('Caricamento team…');
+ try{
+  const [members,kitchen,barAccess]=await Promise.all([getDocsFromServer(collection(db,'members')),getDocsFromServer(collection(db,'kitchenAccess')),getDocsFromServer(collection(db,'barAccess'))]);
+  if(epoch!==teamEpoch||currentRole!=='owner')return;
+  const kitchens=new Map(kitchen.docs.map(s=>[s.id,s.data()])),bars=new Map(barAccess.docs.map(s=>[s.id,s.data()]));teamRows.clear();
+  for(const s of members.docs)if(s.data().role!=='owner')teamRows.set(s.id,{id:s.id,member:s.data(),kitchen:kitchens.get(s.id)||null,bar:bars.get(s.id)||null});
+  teamRender();teamMessage('');
+ }catch(error){if(epoch===teamEpoch)teamMessage(roleError(error),true);}
+}
+function teamRender(){
+ if(currentRole!=='owner'){$('teamBody').replaceChildren();return;}
+ let html='';
+ for(const [role,label]of [['admin','AMMINISTRATORE'],['collaborator','COLLABORATORE']]){
+  const rows=[...teamRows.values()].filter(row=>row.member.role===role).sort((a,b)=>(a.member.name||a.member.email||a.id).localeCompare(b.member.name||b.member.email||b.id,'it'));
+  html+='<section class="team-group"><h3>'+label+'</h3>'+(rows.length?'':'<p class="mini">Nessun profilo in questa sezione.</p>');
+  for(const row of rows){const d=row.member,active=d.status==='active';
+   html+='<form class="team-card" data-team-id="'+ke(row.id)+'"><h4>'+ke(d.name||d.email||row.id)+'</h4><p class="mini">'+ke(d.email||'')+'</p><p class="mini">'+(active?'Account attivo':'Account disattivato')+'</p><label>Ruolo<select name="role"><option value="admin" '+(d.role==='admin'?'selected':'')+'>Amministratore</option><option value="collaborator" '+(d.role==='collaborator'?'selected':'')+'>Collaboratore</option><option value="owner" '+(!active?'disabled':'')+'>Titolare · accesso completo</option></select></label><fieldset><legend>Accessi al gestionale</legend>';
+   for(const [key,label,value]of [['kitchen','Cucina',row.kitchen?.operate],['bar','Bar',row.bar?.operate],['menu','Modifica menu',d.permissions?.products]])html+='<label class="team-check"><input type="checkbox" name="'+key+'" '+(value?'checked':'')+'>'+label+'</label>';
+   html+='</fieldset><div class="team-actions"><button class="button" type="submit">'+(active?'Salva ruolo e accessi':'Riattiva e salva accessi')+'</button><button class="small-action" type="button" data-team-remove="'+ke(row.id)+'">Elimina dal gestionale</button></div></form>';
+  }html+='</section>';
+ }
+ $('teamBody').innerHTML=html;
+}
+async function teamSave(uid,data){
+ if(currentRole!=='owner'||!auth.currentUser)throw Error('Operazione riservata ai titolari.');
+ const row=teamRows.get(uid);if(!row)throw Error('Ricarica il team prima di riprovare.');
+ const actor=auth.currentUser.uid,role=data.role;
+ if(!['admin','collaborator','owner'].includes(role))throw Error('Ruolo non valido.');
+ const own=role==='owner',menu=own||data.menu,kitchen=own||data.kitchen,bar=own||data.bar;
+ const p=Object.fromEntries(PERMISSION_KEYS.map(key=>[key,own||(key!=='statistics'&&!!menu)]));
+ const event=auditEvent('member_updated','member',uid,'Aggiornamento da Team di ruolo e accessi a Cucina, Bar e Modifica menu.',memberSummary(row.member.role,row.member.status,row.member.permissions),memberSummary(role,'active',p));
+ await runTransaction(db,async tx=>{
+  const memberRef=doc(db,'members',uid),kitchenRef=doc(db,'kitchenAccess',uid),barRef=doc(db,'barAccess',uid);
+  const [member,ks,bs]=await Promise.all([tx.get(memberRef),tx.get(kitchenRef),tx.get(barRef)]);
+  const d=member.data();
+  if(!member.exists()||d.role==='owner'||uid===actor||d.role!==row.member.role||d.status!==row.member.status||d.lastAuditId!==row.member.lastAuditId||(ks.data()?.revision||0)!==(row.kitchen?.revision||0)||(bs.data()?.revision||0)!==(row.bar?.revision||0))throw Error('Il profilo è cambiato. Ricarica il team.');
+  if(role==='owner'&&d.status!=='active')throw Error('Il profilo deve essere attivo per diventare titolare.');
+  tx.update(memberRef,{role,status:'active',permissions:p,updatedAt:serverTimestamp(),updatedBy:actor,lastAuditId:event.ref.id});
+  tx.set(kitchenRef,{operate:!!kitchen,revision:(ks.data()?.revision||0)+1,updatedAt:serverTimestamp(),updatedBy:actor});
+  tx.set(barRef,{operate:!!bar,revision:(bs.data()?.revision||0)+1,updatedAt:serverTimestamp(),updatedBy:actor});
+  addAudit(tx,event);
+ });
+}
+async function teamRemove(uid){
+ if(currentRole!=='owner'||!auth.currentUser)throw Error('Operazione riservata ai titolari.');
+ const row=teamRows.get(uid);if(!row)throw Error('Ricarica il team.');
+ const actor=auth.currentUser.uid,event=auditEvent('account_removed','member',uid,'Account rimosso dal gestionale; profilo e autorizzazioni cancellati, nuovo accesso bloccato.','PROFILO PRESENTE','ACCOUNT RIMOSSO');
+ await runTransaction(db,async tx=>{
+  const ref=doc(db,'members',uid),snapshot=await tx.get(ref),d=snapshot.data();
+  if(!snapshot.exists()||d.role==='owner'||uid===actor||d.role!==row.member.role||d.lastAuditId!==row.member.lastAuditId)throw Error('Profilo cambiato o protetto. Ricarica il team.');
+  const email=d.email||'',key=email.toLowerCase();if(key.includes('/'))throw Error('Email non valida: verifica il profilo dalla console Firebase.');
+  const emailRef=key?doc(db,'removedEmails',key):null,emailBefore=emailRef?await tx.get(emailRef):null;
+  tx.set(doc(db,'removedAccounts',uid),{uid,name:d.name||'',email,removedAt:serverTimestamp(),removedBy:actor,lastAuditId:event.ref.id});
+  if(emailRef&&!emailBefore.exists())tx.set(emailRef,{uid,removedAt:serverTimestamp(),removedBy:actor,lastAuditId:event.ref.id});
+  for(const col of ['members','profiles','accessRequests','kitchenAccess','barAccess','kitchenLoads','barLoads','kitchenLoadPeople','barLoadPeople'])tx.delete(doc(db,col,uid));
+  addAudit(tx,event);
+ });
+ // I self check sono sotto-documenti: vengono rimossi dopo che il blocco è già attivo.
+ try{const checks=await getDocsFromServer(collection(db,'kitchenDailyChecks',uid,'checks'));for(let offset=0;offset<checks.docs.length;offset+=20){const b=writeBatch(db);for(const s of checks.docs.slice(offset,offset+20))b.delete(s.ref);await b.commit();}}
+ catch(_){return 'Accesso bloccato e profilo rimosso. Alcuni vecchi self check richiedono pulizia dalla console Firebase.';}
+ return 'Account rimosso dal gestionale: '+(row.member.email||row.id)+'. Accesso e nuove richieste bloccati. Per cancellare anche il registro di autenticazione, cerca questa email in Firebase → Authentication → Users.';
+}
+async function teamRun(action){
+ if(teamSaving||currentRole!=='owner')return;if(!navigator.onLine){teamMessage('Per gestire gli accessi serve la connessione.',true);return;}
+ const epoch=teamEpoch;teamSaving=true;const controls=[...$('teamPanel').querySelectorAll('input,select,button')];controls.forEach(el=>el.disabled=true);teamMessage('Salvataggio in corso…');
+ try{const result=await action();if(epoch===teamEpoch){await loadTeam();teamMessage(result||'Ruolo e accessi aggiornati. La persona dovrà accedere nuovamente.');}}
+ catch(error){if(epoch===teamEpoch)teamMessage(error.message||roleError(error),true);}
+ finally{if(epoch===teamEpoch){teamSaving=false;controls.forEach(el=>el.disabled=false);}}
+}
+$('teamReload').addEventListener('click',()=>{if(!teamSaving)void loadTeam();});
+$('teamBody').addEventListener('change',e=>{if(e.target.name==='role'){const form=e.target.form,own=e.target.value==='owner';for(const input of form.querySelectorAll('input[type=checkbox]')){input.disabled=own;if(own)input.checked=true;}}});
+$('teamBody').addEventListener('submit',async e=>{const form=e.target.closest('[data-team-id]');if(!form)return;e.preventDefault();const f=new FormData(form),own=f.get('role')==='owner';if(own&&!confirm('Assegnare il ruolo TITOLARE con accesso completo, inclusa la gestione degli utenti?'))return;await teamRun(()=>teamSave(form.dataset.teamId,{role:f.get('role'),menu:own||f.has('menu'),kitchen:own||f.has('kitchen'),bar:own||f.has('bar')}));});
+$('teamBody').addEventListener('click',async e=>{const b=e.target.closest('[data-team-remove]');if(!b||teamSaving)return;const row=teamRows.get(b.dataset.teamRemove);if(!row)return;if(!confirm('Eliminare dal gestionale '+(row.member.name||row.member.email)+'? Il profilo e gli accessi verranno cancellati e questo account non potrà presentare nuove richieste. La cancellazione dal registro Firebase Authentication si completa dalla console.'))return;await teamRun(()=>teamRemove(row.id));});
+
+const MANAGER_VIEWS={team:'Team',bar:'Bar',kitchen:'Cucina',statistics:'Statistiche',home:'Home',catalog:'Modifica menu',appearance:'Aspetto del menu',wallet:'Portafoglio IA',account:'Il mio accesso',members:'Utenti registrati',requests:'Richieste di accesso',history:'Storico attività'};
 let managerView='home';
 let kuApplying=false,kuBackApproved=false,kuRestoring=false;
 if(!Number.isInteger(history.state?.tbsIndex))history.replaceState({...history.state,tbsIndex:0},'',location.href);
@@ -1845,21 +1960,24 @@ function showManagerView(view, push=false, focus=true){
  if(catalogBusy&&view!==managerView){catalogMessage('Attendi il completamento della pubblicazione.');return;}
  if(managerView==='appearance'&&view!=='appearance'){if(themeSaving){themeMessage('Attendi il completamento della pubblicazione.');return;}if(themeDirty){if(!confirm('Scartare la scelta del tema non pubblicata?'))return;themeDirty=false;}}
  if(currentRole&&managerView==='catalog'&&view!=='catalog'&&editorDirty&&!$('catalogEditor').hidden){if(!confirm('Scartare le modifiche non pubblicate?'))return;editorDirty=false;$('catalogEditor').hidden=true;}
- if(!currentRole || !MANAGER_VIEWS[view] || (['members','requests','history','wallet','appearance','statistics'].includes(view)&&currentRole!=='owner'))view='home';
+ if(!currentRole || !MANAGER_VIEWS[view] || (['team','members','requests','history','wallet','appearance','statistics'].includes(view)&&currentRole!=='owner'))view='home';
+ if(view==='catalog'&&!canEditMenu())view='home';
  if(view==='kitchen'&&managerView!=='kitchen'&&!kuApplying&&!kitchenRoute)k.page='home';
  if(view==='bar'&&managerView!=='bar'&&!kuApplying&&!barRoute)bar.page='stock';
  managerView=view;
  document.body.dataset.managerView=view;
  document.body.dataset.managerReady=String(!!currentRole);
+ $('menuHomeCard').hidden=!canEditMenu();
  document.querySelectorAll('[data-owner-only]').forEach(el=>{el.hidden=currentRole!=='owner';});
  $('managerSectionTitle').textContent=MANAGER_VIEWS[view];
- $('ownerSectionTitle').textContent=view==='requests'?'RICHIESTE DI ACCESSO':'UTENTI E PERMESSI';
+ $('ownerSectionTitle').textContent=view==='requests'?'RICHIESTE DI ACCESSO':'UTENTI REGISTRATI';
  if(view!=='catalog'&&!editorDirty)$('catalogEditor').hidden=true;
  if(push)kuPush(view);
  if(view==='catalog')loadCatalog();
  if(view==='kitchen')kRender();
  if(view==='bar'){if(bar.phase==='idle')void bStart();else bRender();}
  if(currentRole==='owner'){
+  if(view==='team')loadTeam();
   if(view==='members')loadMembers();
   if(view==='requests')loadRequests();
   if(view==='history')loadHistory(true);
@@ -1868,7 +1986,7 @@ function showManagerView(view, push=false, focus=true){
  }
  if(focus){
   window.scrollTo({top:0,behavior:'instant'});
-  const heading=view==='bar'?$('bHeading'):view==='kitchen'?$('kHeading'):view==='statistics'?$('statisticsHeading'):view==='appearance'?$('appearanceHeading'):view==='catalog'?$('catalogHeading'):view==='wallet'?$('walletHeading'):view==='home'?$('managerHomeTitle'):view==='account'?$('signedIn').querySelector('h2'):view==='history'?$('historyPanel').querySelector('h2'):$('ownerSectionTitle');
+  const heading=view==='team'?$('teamHeading'):view==='bar'?$('bHeading'):view==='kitchen'?$('kHeading'):view==='statistics'?$('statisticsHeading'):view==='appearance'?$('appearanceHeading'):view==='catalog'?$('catalogHeading'):view==='wallet'?$('walletHeading'):view==='home'?$('managerHomeTitle'):view==='account'?$('signedIn').querySelector('h2'):view==='history'?$('historyPanel').querySelector('h2'):$('ownerSectionTitle');
   heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true});
  }
 }
@@ -1900,6 +2018,7 @@ function setOwnerNotice(message,kind=""){
  const n=$("ownerNotice");n.textContent=message;n.className=message?"message "+kind:"";
 }
 function clearDash(){
+ teamReset();
  resetCatalogQuality();
  kitchenReset();
  bReset();
@@ -1914,7 +2033,7 @@ function clearDash(){
  editorDirty=false;catalogEpoch++;catalogItems=[];catalogSelected=null;$("catalogEditor").hidden=true;$("catalogList").replaceChildren();
  document.body.dataset.managerReady="false";document.body.dataset.managerView="home";managerView="home";
  $("ownerPanel").hidden=true;$("historyPanel").hidden=true;$("requestPanel").hidden=true;$("roadmap").hidden=true;$("grantedPermissions").hidden=true;
- $("membersList").replaceChildren();$("requestsList").replaceChildren();$("historyList").replaceChildren();$("moreHistory").hidden=true;historyCursor=null;
+ $("membersList").replaceChildren();$("requestsList").replaceChildren();$("historyList").replaceChildren();$("teamBody").replaceChildren();$("moreHistory").hidden=true;historyCursor=null;
  $("sendRequest").hidden=true;setOwnerNotice("");
 }
 function createButton(label,action,kind=""){
@@ -1979,66 +2098,7 @@ async function changeMember(item,changes,description){
  addAudit(batch,event);
  await batch.commit();
 }
-async function loadMembers(){
- if(currentRole!=="owner"||!auth.currentUser)return;
- const version=sessionVersion,list=$("membersList");list.textContent="Caricamento degli utenti...";
- try{
-  const snapshot=await getDocs(collection(db,"members"));
-  if(version!==sessionVersion||currentRole!=="owner")return;
-  list.replaceChildren();
-  if(snapshot.empty){list.textContent="Nessun profilo registrato.";return;}
-  const entries=[...snapshot.docs].sort((a,b)=>a.id===auth.currentUser.uid?-1:b.id===auth.currentUser.uid?1:(a.data().name||a.data().email||a.id).localeCompare(b.data().name||b.data().email||b.id));
-  for(const item of entries){
-   const data=item.data(),card=make("div","request-card");
-   card.append(make("div","request-name",(item.id===auth.currentUser.uid?fullName(currentProfile):"")||data.name||data.email||"ACCOUNT REGISTRATO"));
-   card.append(make("div","request-meta",data.email||"EMAIL NON REGISTRATA"));
-   const code=make("div","member-uid",item.id);code.hidden=true;
-   const viewCode=createButton("VEDI CODICE",()=>{code.hidden=!code.hidden;viewCode.textContent=code.hidden?"VEDI CODICE":"NASCONDI CODICE";});
-   card.append(viewCode,code);
-   const attrs=make("div","member-attrs");
-   attrs.append(make("span","",ROLE_NAMES[data.role]||"RUOLO NON RICONOSCIUTO"));
-   attrs.append(make("span","",data.status==="active"?"ATTIVO":"DISABILITATO"));
-   card.append(attrs);
-   if(data.role!=="owner"){
-    card.append(make("div","permission-summary",permissionText(normalizePermissions(data.permissions))));
-    const row=make("div","button-line");
-    const manage=createButton("GESTISCI PERMESSI",()=>{config.hidden=!config.hidden;manage.textContent=config.hidden?"GESTISCI PERMESSI":"CHIUDI";});
-    row.append(manage);
-    if(data.status==="active"){
-     row.append(createButton("REVOCA ACCESSO",async()=>{
-      if(!window.confirm("Revocare l'accesso di "+(data.email||"questo account")+"?"))return;
-      await runOwnerOperation(()=>changeMember(item,{status:"revoked"},"Accesso revocato da Titolare."),"Accesso revocato.");
-     }));
-    }else{
-     row.append(createButton("RIATTIVA ACCESSO",async()=>{
-      if(!window.confirm("Riattivare l'accesso di "+(data.email||"questo account")+"?"))return;
-      await runOwnerOperation(()=>changeMember(item,{status:"active"},"Accesso riattivato da Titolare."),"Accesso riattivato.");
-     }));
-    }
-    card.append(row);
-    const config=make("div","member-config");config.hidden=true;
-    config.append(make("div","permission-title","RUOLO ASSEGNATO"));config.append(make("p","mini","Titolare: accesso completo a menu, Bar, Cucina, utenti e impostazioni. Per assegnarlo il profilo deve essere attivo."));
-    const roleSel=make("select","select-role");roleSel.setAttribute("aria-label","Cambia ruolo");
-    for(const [value,name] of [["owner","TITOLARE · ACCESSO COMPLETO"],["admin","AMMINISTRATORE"],["collaborator","COLLABORATORE"]]){
-     const opt=make("option","",name);opt.value=value;opt.disabled=value==="owner"&&data.status!=="active";roleSel.append(opt);
-    }
-    roleSel.value=data.role;config.append(roleSel);
-    const editor=makePermissionEditor(data.role,normalizePermissions(data.permissions));
-    roleSel.addEventListener("change",()=>editor.setRole(roleSel.value));
-    config.append(editor.panel);
-    config.append(createButton("SALVA RUOLO E PERMESSI",async()=>{
-     const role=roleSel.value,permissions=editor.read();
-     if(!window.confirm(role==="owner"?"Assegnare il ruolo TITOLARE a "+(data.email||"questo account")+"? Avrà accesso completo, inclusa la gestione di utenti e permessi.":"Salvare il ruolo e i permessi per "+(data.email||"questo account")+"?"))return;
-     await runOwnerOperation(()=>changeMember(item,{role,permissions},"Aggiornamento ruolo e autorizzazioni operative."),"Permessi aggiornati.");
-    },"primary-action"));
-    card.append(config);
-   }else{
-    card.append(make("p","mini","TITOLARE · CONTROLLO COMPLETO"));
-   }
-   list.append(card);
-  }
- }catch(error){list.textContent=roleError(error);}
-}
+async function loadMembers(){return loadRegisteredUsers();}
 async function loadRequests(){
  if(currentRole!=="owner"||!auth.currentUser)return;
  const version=sessionVersion,list=$("requestsList");list.textContent="Caricamento delle richieste...";
@@ -2059,16 +2119,16 @@ async function loadRequests(){
    card.append(showCode,code);
    card.append(make("div","permission-title","SCEGLI IL RUOLO DA ASSEGNARE"));card.append(make("p","mini","Titolare concede il controllo completo del gestionale, compresa la gestione degli accessi."));
    const select=make("select","select-role");select.setAttribute("aria-label","Ruolo da assegnare");
-   for(const [value,name] of [["owner","TITOLARE · ACCESSO COMPLETO"],["admin","AMMINISTRATORE"],["collaborator","COLLABORATORE"]]){
+   for(const [value,name] of [["admin","AMMINISTRATORE"],["collaborator","COLLABORATORE"]]){
     const opt=make("option","",name);opt.value=value;select.append(opt);
    }
    select.value="collaborator";card.append(select);
    const editor=makePermissionEditor("collaborator");
    select.addEventListener("change",()=>editor.setRole(select.value));
-   card.append(editor.panel);
+   card.append(make("p","mini","Dopo l’approvazione assegna gli accessi a Cucina, Bar e Modifica menu dalla sezione TEAM."));
    const actions=make("div","request-actions");
    actions.append(createButton("APPROVA",async()=>{
-    const role=select.value,permissions=editor.read(),email=data.email||"questo account";
+    const role=select.value,permissions=role==="owner"?defaultPermissions("owner"):Object.fromEntries(PERMISSION_KEYS.map(key=>[key,false])),email=data.email||"questo account";
     if(!window.confirm(`Approvare ${email} come ${ROLE_NAMES[role]} con i permessi selezionati?`))return;
     await runOwnerOperation(async()=>{
      const uid=auth.currentUser.uid;
@@ -2093,7 +2153,7 @@ async function loadRequests(){
   }
  }catch(error){list.textContent=roleError(error);}
 }
-async function refreshOwner(){if(managerView==='members')await loadMembers();else if(managerView==='requests')await loadRequests();else if(managerView==='history')await loadHistory(true);}
+async function refreshOwner(){if(managerView==='team'){await loadTeam();return;}if(managerView==='members')await loadMembers();else if(managerView==='requests')await loadRequests();else if(managerView==='history')await loadHistory(true);}
 async function runOwnerOperation(action,successMessage){
  if(busy||currentRole!=="owner"||!auth.currentUser)return;
  busy=true;setOwnerNotice("Salvataggio in corso...");
@@ -2361,7 +2421,7 @@ async function checkRole(user,version){
    setProfileMessage("Questo account non dispone di un accesso attivo. Contatta l'amministratore principale.");
    updateSelfUI(user);return;
   }
-  currentRole=role;$("roleLabel").textContent="ACCESSO ATTIVO";
+  teamWatch(user,version,snapshot.data());currentRole=role;$("roleLabel").textContent="ACCESSO ATTIVO";
   setProfileMessage("Accesso autorizzato. Ruolo verificato tramite Firestore.","success");
   $("roadmap").hidden=false;
   updateSelfUI(user);
@@ -2892,7 +2952,7 @@ async function kitchenStart(){
   else{
    stage='autorizzazione cucina';const permission=await readWithDeadline(getDocFromServer(doc(db,'kitchenAccess',uid)));if(!live())return;
    k.allowed=permission.exists()&&permission.data().operate===true;
-   if(!k.allowed){k.accessState='denied';k.accessError='Accesso cucina non ancora abilitato per questo account. La proprietaria può abilitarlo da Cucina → Modifica → Accessi.';kNotice(k.accessError,true);kBadge();kRender();return;}
+   if(!k.allowed){k.accessState='denied';k.accessError='Accesso cucina non ancora abilitato per questo account. La proprietaria può abilitarlo da Team.';kNotice(k.accessError,true);kBadge();kRender();return;}
   }
   k.accessState='loading';kBadge();
   // Only confirmed server snapshots can revoke a session. Empty cache snapshots are not authority.
@@ -3004,7 +3064,7 @@ function kRender(){
  if(k.page==='settings'){
   if(currentRole!=='owner'){h+='<p>La configurazione è riservata alla proprietaria.</p>';}
   else{
-   h+=kButton('Aggiungi prodotto','newitem','button')+kButton('Aggiungi fornitore','newsupplier')+kButton('Accessi cucina','access');
+   h+=kButton('Aggiungi prodotto','newitem','button')+kButton('Aggiungi fornitore','newsupplier');
    h+='<h3>Prodotti</h3>';for(const i of [...k.items.values()].sort((a,b)=>a.name.localeCompare(b.name,'it')))h+=`<div class="k-row"><div class="k-label"><strong>${ke(i.name)}</strong><small>${ke(kCategory(i))}${i.active?'':' · Archiviato'}</small></div>${kButton('Modifica','edititem:'+i.id)}</div>`;
    h+='<h3>Fornitori</h3>';for(const s of k.suppliers.values())h+=`<div class="k-row"><strong>${ke(s.name)}</strong>${kButton('Modifica','editsupplier:'+s.id)}</div>`;
    h+=kButton('Completa elenco iniziale senza sovrascrivere','seed');
@@ -3077,7 +3137,7 @@ async function kConfigSave(collectionName,id,data,expected,epoch){const ref=doc(
 async function kTaskStatus(id,status,epoch){const expected=k.tasks.get(id)?.revision,ref=doc(db,'kitchenTasks',id),ev=doc(collection(db,'kitchenEvents'));await runTransaction(db,async tx=>{const snap=await tx.get(ref),t=snap.data();kAssert(epoch);if(!t||t.revision!==expected)throw Error('Attività cambiata. Ricarica prima di riprovare.');tx.set(ref,{...t,status,updatedByName:auth.currentUser.displayName||'Personale',...kMeta(t,ev)});kEvent(tx,ev,t.kind,status==='done'?'Attività completata':'Attività aggiornata',t.title+' · '+({todo:'Da fare',doing:'In lavorazione',done:'Completata'}[status]),t.kind);});}
 async function kPrefsSave(data,epoch){const ref=doc(db,'kitchenPreferences',auth.currentUser.uid);await runTransaction(db,async tx=>{const old=await tx.get(ref);kAssert(epoch);const d=old.data()||{};tx.set(ref,{stock:true,orders:true,tasks:true,clean:true,muted:false,quietStart:'02:00',quietEnd:'10:00',readIds:[],...d,...data,revision:(d.revision||0)+1,updatedAt:serverTimestamp()});});k.formDirty=false;}
 async function kMarkRead(ids,epoch){const ref=doc(db,'kitchenPreferences',auth.currentUser.uid);await runTransaction(db,async tx=>{const snap=await tx.get(ref),p=snap.data()||{};kAssert(epoch);tx.set(ref,{stock:true,orders:true,tasks:true,clean:true,muted:false,quietStart:'02:00',quietEnd:'10:00',...p,readIds:[...new Set([...(p.readIds||[]),...ids])].slice(-200),revision:(p.revision||0)+1,updatedAt:serverTimestamp()});});}
-async function kAccessPage(){if(currentRole!=='owner')return;const epoch=k.epoch;const [members,permissions]=await Promise.all([getDocsFromServer(collection(db,'members')),getDocsFromServer(collection(db,'kitchenAccess'))]);kAssert(epoch);const access=new Map(permissions.docs.map(s=>[s.id,s.data()]));$('kBody').innerHTML=kBack()+'<p>Solo la proprietaria modifica prodotti e fornitori. Gli operatori autorizzati possono controllare giacenze, gestire liste e attività.</p>'+members.docs.filter(s=>s.data().status==='active'&&s.data().role!=='owner').map(s=>`<div class="k-row"><div class="k-label"><strong>${ke(s.data().name||s.data().email||s.id)}</strong><small>${access.get(s.id)?.operate?'Abilitato':'Non abilitato'}</small></div>${kButton(access.get(s.id)?.operate?'Revoca':'Abilita','grant:'+s.id+':'+(access.get(s.id)?.operate?'0':'1'))}</div>`).join('');}
+async function kAccessPage(){if(currentRole==='owner')showManagerView('team',true);}
 $('kBody').addEventListener('input',event=>{
  const el=event.target;if(el.matches('[data-k-qty]')){
   const id=el.dataset.kQty,stock=el.dataset.type==='stock',i=k.items.get(id),o=k.orders.get(id);try{if(el.value===''){if(stock)k.draft.delete(id);else k.orderDraft.set(id,{qty:0,revision:k.orderDraft.get(id)?.revision??o.revision});return;}const qty=kQuantity(el.value,stock?i.stockStep:o.step);if(stock)k.draft.set(id,{qty,revision:k.draft.get(id)?.revision??k.stock.get(id)?.revision??0,configRevision:k.draft.get(id)?.configRevision??i.revision});else k.orderDraft.set(id,{qty,revision:k.orderDraft.get(id)?.revision??o.revision});el.setCustomValidity('');}catch(error){el.setCustomValidity(error.message);}return;
@@ -3104,7 +3164,7 @@ $('kBody').addEventListener('click',async event=>{
   if(action==='readall'){await kRun(epoch=>kMarkRead(k.events.filter(e=>e.actorUid!==auth.currentUser.uid).map(e=>e.id),epoch));return;}
   if(action==='event'){const e=k.events.find(x=>x.id===id);if(!e)return;await kRun(epoch=>kMarkRead([id],epoch));k.page=e.target;kRender();return;}
   if(action==='access'){k.page='access';await kAccessPage();return;}
-  if(action==='grant'){await kRun(async epoch=>{if(currentRole!=='owner')throw Error('Operazione riservata.');const ref=doc(db,'kitchenAccess',id);await runTransaction(db,async tx=>{const s=await tx.get(ref);kAssert(epoch);tx.set(ref,{operate:param==='1',revision:(s.data()?.revision||0)+1,updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid});});});await kAccessPage();return;}
+  if(action==='grant'){showManagerView('team',true);return;}
  }catch(error){kNotice(kError(error),true);}
 });
 $('kBody').addEventListener('submit',async event=>{
@@ -3146,6 +3206,8 @@ onAuthStateChanged(auth,async user=>{
  setProfileMessage("Verifica del profilo personale in corso...");
 
  try{
+  const removed=await teamRemoved(user);if(version!==sessionVersion||auth.currentUser?.uid!==user.uid)return;
+  if(removed){await teamKick("Questo account è stato rimosso dal gestionale. Accesso non consentito.");return;}
   const p=await readWithDeadline(getDocFromServer(doc(db,"profiles",user.uid)));
   if(version!==sessionVersion)return;
   if(!p.exists()){
@@ -3213,7 +3275,7 @@ async function bStart(){
   if(!member.exists()||member.data().status!=='active'||role!==currentRole)throw Error('Il profilo non è più attivo o il ruolo è cambiato. Esci e accedi nuovamente.');
   if(role!=='owner'){
    const access=await readWithDeadline(getDocFromServer(doc(db,'barAccess',uid)));if(!live())return;
-   if(access.data()?.operate!==true){bBlock('Accesso Bar non abilitato. La proprietaria può autorizzarti da Bar → Modifica → Accessi.');return;}
+   if(access.data()?.operate!==true){bBlock('Accesso Bar non abilitato. La proprietaria può autorizzarti da Team.');return;}
   }
   bar.allowed=true;
   bar.off.push(onSnapshot(doc(db,'members',uid),{includeMetadataChanges:true},s=>{if(live()&&bServer(s)&&(!s.exists()||s.data().status!=='active'||s.data().role!==role))bBlock('Accesso al gestionale revocato o ruolo cambiato.');},e=>{if(live())bBlock(bFailure(e));}));
@@ -3275,7 +3337,7 @@ function bRender(){
   for(const o of orders){const qty=bar.orderDraft.has(o.id)?bar.orderDraft.get(o.id).qty:o.qty;h+='<div class="b-row"><div class="b-label"><strong>'+ke(o.name)+'</strong><small>'+ke(o.orderUnit)+(o.status==='sent'?' · Segnato come condiviso':'')+'</small>'+(qty===0?'<small class="b-warning">Scegli quanto acquistare</small>':'')+'</div>'+bCounter(o.id,qty,'order','Da acquistare '+o.name)+bButton('Rimuovi','remove:'+o.id)+'</div>';}
   if(orders.length)h+='<div class="b-sticky">'+bButton('Salva quantità','saveorders',!bar.orderDraft.size)+bButton('Scarta quantità locali','discardorders',!bar.orderDraft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('order:')))+bButton('Prepara messaggio','message')+bButton('Segna come condivisa','sent')+bButton('Chiudi lista acquistata','close')+'</div><p class="mini">Copiare il messaggio non lo invia e non conferma l’acquisto. “Chiudi lista acquistata” archivia la lista senza aumentare automaticamente le giacenze.</p>';
  }else if(bar.page==='settings'&&currentRole==='owner'){
-  h='<div class="b-actions">'+bButton('Nuovo prodotto','new')+bButton('Accessi Bar','access')+'</div><p class="mini">Aggiungi prodotti e scegli quanti pezzi vuoi avere in giacenza: l’ordine automatico calcola quanto manca e arrotonda all’intero superiore. Puoi anche scegliere il riordino manuale a zero.</p>';
+  h='<div class="b-actions">'+bButton('Nuovo prodotto','new')+'</div><p class="mini">Aggiungi prodotti e scegli quanti pezzi vuoi avere in giacenza: l’ordine automatico calcola quanto manca e arrotonda all’intero superiore. Puoi anche scegliere il riordino manuale a zero.</p>';
   for(const p of [...bar.items.values()].sort((a,b)=>a.name.localeCompare(b.name,'it')))h+='<div class="b-row"><div class="b-label"><strong>'+ke(p.name)+'</strong><small>'+ke(bCategory(p))+' · '+(p.target===null?'Manuale':'Scorta '+kNum(p.target))+(p.active?'':' · Archiviato')+'</small></div>'+bButton('Modifica','edit:'+p.id)+'</div>';
  }else if(bar.page==='edit'&&currentRole==='owner'){h=bForm();}
  else if(bar.page==='access'&&currentRole==='owner'){
@@ -3370,15 +3432,8 @@ async function bItemSave(form,epoch){
  const result=await runTransaction(db,async tx=>{const s=await tx.get(ref);bAssert(epoch);if((s.data()?.revision||0)!==editing.revision)throw Error('Scheda cambiata. Riaprila prima di salvare.');const ev=doc(collection(db,'barEvents')),next={...data,...bMeta(s.data(),ev)};tx.set(ref,next);bEvent(tx,ev,'item',id,s.exists()?'update':'create');return next;});
  bar.items.set(id,{id,...result});bar.editing=null;bar.dirty=false;bar.page='settings';return 'Prodotto salvato.';
 }
-async function bAccess(epoch){
- if(currentRole!=='owner')throw Error('Operazione riservata.');
- const [members,access]=await Promise.all([getDocsFromServer(collection(db,'members')),getDocsFromServer(collection(db,'barAccess'))]);bAssert(epoch);
- const permissions=new Map(access.docs.map(d=>[d.id,d.data()]));bar.people=members.docs.filter(d=>d.data().status==='active'&&d.data().role!=='owner').map(d=>({id:d.id,name:d.data().name||d.data().email||d.id,operate:permissions.get(d.id)?.operate===true}));bar.page='access';return 'Accessi aggiornati.';
-}
-async function bGrant(id,value,epoch){
- if(currentRole!=='owner')throw Error('Operazione riservata.');
- await runTransaction(db,async tx=>{const ref=doc(db,'barAccess',id),s=await tx.get(ref);bAssert(epoch);tx.set(ref,{operate:value,revision:(s.data()?.revision||0)+1,updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid});});return bAccess(epoch);
-}
+async function bAccess(){if(currentRole==='owner')showManagerView('team',true);}
+async function bGrant(){throw Error('Gestisci gli accessi dalla sezione Team.');}
 function bMessage(){
  if([...bar.invalid.keys()].some(k=>k.startsWith('order:')))throw Error('Correggi le quantità non valide nella lista.');
  if(bar.orderDraft.size)throw Error('Salva le quantità prima di preparare il messaggio.');
@@ -3454,6 +3509,7 @@ bReset();
 
 // Apply an app update only outside all editing screens and pending saves.
 window.TBSManagerUpdates?.setCanRefresh(() => {
+ if(teamSaving)return false;
  if (window.TBSPrivacy?.isOpen() || kitchenUnsaved() || bUnsaved()) return false;
  if (themeDirty || themeSaving || themeLoading || editorDirty || catalogBusy || catalogLoading || busy || historyLoading || !$('profileMenu').hidden || !$('installDialog').hidden || !$('catalogEditor').hidden || !$('profileOverlay').hidden || !$('onboarding').hidden) return false;
  if (['login','catalogSave','registerSave','saveProfileChanges'].some(id => $(id).disabled)) return false;
