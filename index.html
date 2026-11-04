@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it" data-privacy-app="manager">
 <head>
-<meta name="tbs-release" content="2026-11-04-manager-intuitivo-v25">
+<meta name="tbs-release" content="2026-11-04-manager-turno-v26">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
@@ -636,7 +636,12 @@ body[data-manager-view="home"] #primaryNav{display:none}.home-intro{padding:28px
 @media(prefers-reduced-motion:reduce){.module-tile{transition:none}}
 </style>
 
-</head>
+<style id="shiftToolsStyles">
+.work-status{position:sticky;top:68px;z-index:19;background:var(--bg);padding:9px 0 12px;font-size:12px;line-height:1.5;color:var(--muted);min-height:36px;display:flex;align-items:center;gap:8px}.work-status:before{content:"";flex:0 0 7px;height:7px;border-radius:50%;background:currentColor}.work-status[data-state="saved"]{color:var(--accent)}.work-status[data-state="dirty"]{color:#8c601c}.work-status[data-state="error"],.work-status[data-state="offline"]{color:#a5372c}body[data-manager-view="home"] .work-status{top:0}.work-status[data-state="saving"]:before{background:transparent;border:2px solid currentColor;border-right-color:transparent;width:8px;height:8px;animation:shift-spin 1s linear infinite}@keyframes shift-spin{to{transform:rotate(360deg)}}
+#profileTrigger{position:relative;overflow:visible}#profileTrigger img{border-radius:50%}#profileTrigger[data-pending]:after{content:attr(data-pending);position:absolute;top:-5px;right:-6px;min-width:19px;height:19px;border:2px solid var(--bg);border-radius:12px;background:#ac392e;color:white;display:grid;place-items:center;font-size:10px;font-weight:700;padding:0 3px;pointer-events:none}#profileRequestCount{background:var(--accent-soft);color:var(--accent);margin-left:auto;margin-right:8px;padding:3px 7px;border-radius:8px}
+.draft-prompt{padding:17px;border:1px solid var(--accent-border);border-radius:14px;background:var(--accent-soft);margin:14px 0}.draft-prompt strong{font-size:15px}.draft-prompt p{margin:8px 0;line-height:1.6}.draft-actions{display:flex;gap:7px;flex-wrap:wrap}.draft-actions button{background:var(--card)}.draft-error{font-size:13px;color:var(--text)}[data-draft-locked]{opacity:.55}.undo-notice{position:fixed;z-index:70;bottom:max(16px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:560px;background:var(--text);color:var(--bg);border-radius:15px;padding:13px 12px 13px 17px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 35px #0004}.undo-notice span{flex:1;min-width:0;font-size:14px;overflow-wrap:anywhere}.undo-notice button{border:1px solid currentColor;background:transparent;color:inherit;font:inherit;font-size:14px;padding:10px;min-height:44px;border-radius:10px;cursor:pointer}.undo-notice button:disabled{opacity:.6}.undo-notice #undoDismiss{border:0;font-size:22px;padding:6px;min-width:34px}#draftReview{width:min(620px,calc(100% - 32px));max-height:85dvh;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:18px;padding:22px}#draftReview::backdrop{background:#0007}#draftReviewText{width:100%;height:45dvh;background:var(--card2);color:var(--text);padding:12px;border:1px solid var(--border);border-radius:10px;font-size:14px;line-height:1.6;margin:12px 0;resize:vertical}
+@media(prefers-color-scheme:dark){.work-status[data-state="dirty"]{color:#e1bd76}.work-status[data-state="error"],.work-status[data-state="offline"]{color:#f4aba2}}@media(prefers-reduced-motion:reduce){.work-status[data-state="saving"]:before{animation:none}}
+</style></head>
 <body>
 <main>
 <header class="brand">
@@ -655,7 +660,7 @@ body[data-manager-view="home"] #primaryNav{display:none}.home-intro{padding:28px
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="appearance" data-owner-only hidden>Aspetto del menu <span aria-hidden="true">→</span></button>
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="team" data-owner-only hidden>Team <span aria-hidden="true">→</span></button>
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="members" data-owner-only hidden>Utenti registrati <span aria-hidden="true">→</span></button>
-    <button type="button" role="menuitem" tabindex="-1" data-manager-go="requests" data-owner-only hidden>Richieste di accesso <span aria-hidden="true">→</span></button>
+    <button type="button" role="menuitem" tabindex="-1" data-manager-go="requests" data-owner-only hidden>Richieste di accesso <small id="profileRequestCount" hidden></small><span aria-hidden="true">→</span></button>
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="history" data-owner-only hidden>Storico attività <span aria-hidden="true">→</span></button>
 
     <div class="profile-menu-divider" role="separator"></div>
@@ -663,7 +668,7 @@ body[data-manager-view="home"] #primaryNav{display:none}.home-intro{padding:28px
   </div>
 </div>
 </header>
-<nav id="primaryNav" aria-label="Sezioni principali"><button type="button" data-manager-go="home" aria-current="false">Home</button><button type="button" data-manager-go="catalog" aria-current="false">Menu</button><button type="button" data-manager-go="kitchen" aria-current="false">Cucina</button><button type="button" data-manager-go="bar" aria-current="false">Bar</button></nav>
+<nav id="primaryNav" aria-label="Sezioni principali"><button type="button" data-manager-go="home" aria-current="false">Home</button><button type="button" data-manager-go="catalog" aria-current="false">Menu</button><button type="button" data-manager-go="kitchen" aria-current="false">Cucina</button><button type="button" data-manager-go="bar" aria-current="false">Bar</button></nav><div id="workStatus" class="work-status" role="status" aria-live="polite" hidden></div>
 <section class="top">
 <div class="eyebrow">AREA RISERVATA</div>
 <h2 class="heading">GESTIONALE</h2>
@@ -681,9 +686,9 @@ body[data-manager-view="home"] #primaryNav{display:none}.home-intro{padding:28px
 <a class="public-menu-link" href="https://theblackstuffud.github.io/blackstuff-menu/?tbs_stats=off" target="_blank" rel="noopener noreferrer"><span class="public-menu-copy">Anteprima menu<small>Come lo vedono i clienti</small></span><span aria-hidden="true">↗</span></a>
 </section>
 <nav id="managerNav" aria-label="Navigazione gestionale"><button type="button" class="small-action" id="managerBack">← Home</button><span id="managerSectionTitle"></span></nav>
-<section id="kitchenPanel" class="panel" aria-labelledby="kHeading"><div class="k-toolbar"><h2 id="kHeading" tabindex="-1">Cucina</h2><div><button type="button" class="small-action" id="kOpenNotifications" aria-label="Notifiche cucina">Notifiche <span data-k-count class="k-alert-count">0</span></button><button type="button" class="small-action" id="kRetry">Riprova</button><button type="button" class="small-action" id="kEdit" data-owner-only>Modifica</button></div></div><div id="kMessage" class="message" role="status" aria-live="polite"></div><nav id="kQuickNav" class="module-tabs" aria-label="Operazioni cucina"></nav><div id="kBody"></div></section><dialog id="kMessageDialog" aria-labelledby="kMessageTitle"><h2 id="kMessageTitle">Messaggio da copiare</h2><p>Puoi correggere il testo. Le modifiche qui non cambiano la lista salvata.</p><textarea id="kMessageText" aria-label="Messaggio modificabile"></textarea><button type="button" class="button" id="kCopyMessage">Copia messaggio</button><button type="button" class="small-action" id="kCloseMessage">Chiudi</button><p id="kCopyStatus" role="status"></p></dialog>
+<section id="kitchenPanel" class="panel" aria-labelledby="kHeading"><div class="k-toolbar"><h2 id="kHeading" tabindex="-1">Cucina</h2><div><button type="button" class="small-action" id="kOpenNotifications" aria-label="Notifiche cucina">Notifiche <span data-k-count class="k-alert-count">0</span></button><button type="button" class="small-action" id="kRetry">Riprova</button><button type="button" class="small-action" id="kEdit" data-owner-only>Modifica</button></div></div><div id="kMessage" class="message" role="status" aria-live="polite"></div><nav id="kQuickNav" class="module-tabs" aria-label="Operazioni cucina"></nav><div id="draftPrompt-kitchen" class="draft-prompt" hidden></div><div id="kBody"></div></section><dialog id="kMessageDialog" aria-labelledby="kMessageTitle"><h2 id="kMessageTitle">Messaggio da copiare</h2><p>Puoi correggere il testo. Le modifiche qui non cambiano la lista salvata.</p><textarea id="kMessageText" aria-label="Messaggio modificabile"></textarea><button type="button" class="button" id="kCopyMessage">Copia messaggio</button><button type="button" class="small-action" id="kCloseMessage">Chiudi</button><p id="kCopyStatus" role="status"></p></dialog>
 
-<section id="barPanel" class="panel" aria-labelledby="bHeading"><div class="k-toolbar"><h2 id="bHeading" tabindex="-1">Bar</h2><button type="button" class="small-action" data-b="reload">Ricarica</button></div><div id="bMessage" class="message" role="status" aria-live="polite"></div><nav class="b-tabs" aria-label="Sezioni Bar"><button type="button" class="small-action" data-b-page="stock" aria-pressed="true">Giacenze</button><button type="button" class="small-action" id="bCartTab" data-b-page="cart" aria-pressed="false">Riordini (0)</button><button type="button" class="small-action" data-b-page="loads" aria-pressed="false">Carichi</button><button type="button" class="small-action" id="bSettings" data-b-page="settings" aria-pressed="false" hidden>Modifica</button></nav><div id="bBody"></div></section><dialog id="bMessageDialog" aria-labelledby="bMessageTitle"><h2 id="bMessageTitle">Lista Bar</h2><p>Soltanto prodotti e quantità. Puoi correggere il testo prima di copiarlo nel gruppo WhatsApp.</p><textarea id="bMessageText" aria-label="Lista Bar modificabile"></textarea><button type="button" class="button" id="bCopyMessage">Copia lista</button> <button type="button" class="small-action" id="bCloseMessage">Chiudi</button><p id="bCopyStatus" role="status" aria-live="polite"></p></dialog>
+<section id="barPanel" class="panel" aria-labelledby="bHeading"><div class="k-toolbar"><h2 id="bHeading" tabindex="-1">Bar</h2><button type="button" class="small-action" data-b="reload">Ricarica</button></div><div id="bMessage" class="message" role="status" aria-live="polite"></div><nav class="b-tabs" aria-label="Sezioni Bar"><button type="button" class="small-action" data-b-page="stock" aria-pressed="true">Giacenze</button><button type="button" class="small-action" id="bCartTab" data-b-page="cart" aria-pressed="false">Riordini (0)</button><button type="button" class="small-action" data-b-page="loads" aria-pressed="false">Carichi</button><button type="button" class="small-action" id="bSettings" data-b-page="settings" aria-pressed="false" hidden>Modifica</button></nav><div id="draftPrompt-bar" class="draft-prompt" hidden></div><div id="bBody"></div></section><dialog id="bMessageDialog" aria-labelledby="bMessageTitle"><h2 id="bMessageTitle">Lista Bar</h2><p>Soltanto prodotti e quantità. Puoi correggere il testo prima di copiarlo nel gruppo WhatsApp.</p><textarea id="bMessageText" aria-label="Lista Bar modificabile"></textarea><button type="button" class="button" id="bCopyMessage">Copia lista</button> <button type="button" class="small-action" id="bCloseMessage">Chiudi</button><p id="bCopyStatus" role="status" aria-live="polite"></p></dialog>
 <section id="teamPanel" class="panel" aria-labelledby="teamHeading"><div class="k-toolbar"><h2 id="teamHeading" tabindex="-1">TEAM</h2><button type="button" id="teamReload" class="small-action">Ricarica team</button></div><p class="mini">Solo i titolari gestiscono ruoli e accessi. Le autorizzazioni a Cucina, Bar e Modifica menu si modificano da questa sezione.</p><p class="mini">“Elimina dal gestionale” rimuove profilo e accessi e blocca questo account. La cancellazione dal registro Firebase Authentication si completa dalla console Firebase.</p><div id="teamMessage" role="status" aria-live="polite"></div><div id="teamBody"></div><details class="team-invite"><summary>Invita una persona</summary>  <section class="manager-invite" aria-labelledby="managerInviteHeading">
    <div class="eyebrow">Invita un collaboratore</div><h3 id="managerInviteHeading">Condividi il Manager</h3>
    <p>Invia il link a chi dovrà accedere. La persona entra con il proprio account Google, completa il profilo e preme «Richiedi accesso».</p>
@@ -696,7 +701,7 @@ body[data-manager-view="home"] #primaryNav{display:none}.home-intro{padding:28px
 <section id="catalogPanel" class="panel" aria-labelledby="catalogHeading">
 <h2 id="catalogHeading" tabindex="-1">Modifica menu</h2>
 <p class="mini">Cerca un prodotto, modificalo oppure disattivalo con un tocco.</p>
-<div id="catalogMessage" role="status" aria-live="polite"></div>
+<div id="catalogMessage" role="status" aria-live="polite"></div><div id="draftPrompt-catalog" class="draft-prompt" hidden></div>
 <div class="catalog-actions"><button type="button" class="small-action" id="catalogReload">Ricarica prodotti</button><button type="button" class="small-action" id="catalogNew" disabled>Nuovo prodotto</button></div><details class="catalog-extra"><summary>Controlli del catalogo</summary><div class="catalog-actions"><button type="button" class="small-action catalog-quality" id="catalogPendingAllergens" aria-pressed="false" aria-controls="catalogList" hidden>Allergeni da verificare</button><button type="button" class="small-action catalog-quality" id="catalogPendingTraits" aria-pressed="false" aria-controls="catalogList" hidden>Caratteristiche ricerca da completare</button><button type="button" class="small-action" id="catalogQualityClear" hidden>Torna alla lista precedente</button><button type="button" class="small-action" id="catalogVerifyTable" hidden>Pubblica dati controllati</button></div><p id="catalogVerifyTableStatus" class="muted" role="status"></p><p id="catalogQualityStatus" class="mini" role="status" aria-live="polite" hidden></p>
 <details class="catalog-dietary"><summary>Controllo allergeni e intolleranze</summary><p>All’apertura di Modifica menu il gestionale registra automaticamente, con l’account proprietario, le schede già confrontate con la tabella e le assenze concordate per griglia, burger e sandwich. Le ricette effettivamente cambiate vengono conservate per il controllo manuale. Preparazione e contaminazioni mantengono le valutazioni salvate.</p><div class="catalog-dietary-fields"><label>Esclusione da controllare<select id="catalogAllergen"><option value="">Tutti i prodotti</option><option value="lactose">Lattosio · esclusione prudenziale del latte</option></select></label><label>Verifica allergeni<select id="catalogVerification"><option value="all">Tutte le schede</option><option value="pending">Verifica da completare</option><option value="verified">Allergeni verificati</option></select></label><label>Esito per l’esclusione<select id="catalogDietaryStatus"><option value="all">Tutti i gruppi</option><option value="check">Dati o preparazione da completare</option><option value="verified">Ingredienti e preparazione valutati</option><option value="contains">Esclusi: indicazioni di presenza</option><option value="traces">Esclusi: possibili tracce</option></select></label></div><p id="catalogDietarySummary" class="muted" role="status"></p><p class="muted">I gruppi combinano schede salvate, indicazioni del PDF e ingredienti scritti nelle ricette. Non modificano le spunte. Una voce assente dalla tabella non certifica l’assenza dell’allergene. Per il lattosio si esclude prudenzialmente il latte: il PDF non ne indica il contenuto.</p></details></details>
 <div id="catalogSetup" class="catalog-setup" hidden><strong>Porta tutto il catalogo nel Manager</strong><p>Un solo trasferimento per gestire i prodotti senza modificare il sito. Mantiene le schede già salvate e le foto su GitHub. Se si interrompe puoi riprendere.</p><button type="button" class="small-action" id="catalogMigrate" disabled>Trasferisci il catalogo</button></div>
@@ -854,6 +859,8 @@ body[data-manager-view="home"] #primaryNav{display:none}.home-intro{padding:28px
 <button type="button" class="small-action" id="appUpdateCheck">Controlla aggiornamenti</button>
 </div></details>
 </footer>
+<div id="undoNotice" class="undo-notice" role="status" hidden><span id="undoText"></span><button type="button" id="undoDeactivate">Annulla</button><button type="button" id="undoDismiss" aria-label="Chiudi avviso">×</button></div>
+<dialog id="draftReview" aria-labelledby="draftReviewTitle"><h2 id="draftReviewTitle">La tua bozza</h2><p class="mini">Promemoria delle modifiche non pubblicate. Puoi selezionare e copiare il testo.</p><textarea id="draftReviewText" readonly aria-label="Valori della bozza"></textarea><button type="button" id="draftReviewClose" class="small-action">Chiudi</button></dialog>
 </main>
 <div id="profileOverlay" class="profile-overlay" role="dialog" aria-modal="true" aria-labelledby="profileTitle" hidden>
   <section class="profile-sheet">
@@ -991,6 +998,171 @@ const auth=getAuth(app);
 const provider=new GoogleAuthProvider();
 provider.setCustomParameters({prompt:"select_account"});
 const $=id=>document.getElementById(id);
+// Shift helpers: local drafts are separate from confirmed Firestore writes.
+const SHIFT_SCOPES=['catalog','kitchen','bar'],SHIFT_TTL=7*24*60*60*1000;
+const shift={uid:null,active:false,pending:{},stored:{},phase:{},storageError:false,requestsOff:null,undo:null,undoBusy:false,restoring:false};
+function shiftKey(scope){return 'tbs-shift-draft-v1:'+shift.uid+':'+scope;}
+function shiftAllowed(scope){return shift.active&&auth.currentUser?.uid===shift.uid&&!!currentRole&&(scope==='catalog'?canEditMenu():scope==='kitchen'?k.allowed&&k.ready:bar.allowed&&bar.ready);}
+function shiftBusy(scope){return scope==='catalog'?catalogBusy:scope==='kitchen'?k.busy:bar.busy;}
+function shiftDirty(scope){return scope==='catalog'?editorDirty&&!$('catalogEditor').hidden:scope==='kitchen'?k.draft.size>0||k.orderDraft.size>0||k.formDirty||!!k.loadTextDraft||k.loadRecipientsDraft!==null:bar.draft.size>0||bar.orderDraft.size>0||bar.invalid.size>0||bar.dirty||!!bar.loadTextDraft||bar.loadRecipientsDraft!==null;}
+function shiftFormValues(){return [...$('catalogEditor').querySelectorAll('input,select,textarea')].map(el=>({key:el.id||(el.closest('[id]')?.id+':'+el.type+':'+el.value),type:el.type,value:el.value,checked:!!el.checked}));}
+function shiftPayload(scope){
+ if(scope==='catalog')return editorDirty&&catalogSelected&&!$('catalogEditor').hidden?{kind:'product',id:catalogSelected.item.id,revision:catalogSelected.revision,item:catalogSelected.item,fields:shiftFormValues()}:null;
+ const state=scope==='kitchen'?k:bar;
+ const stock=[...state.draft.entries()],orders=[...state.orderDraft.entries()],invalid=scope==='bar'?[...bar.invalid.entries()]:[];
+ return stock.length||orders.length||invalid.length?{kind:'quantities',stock,orders,invalid}:null;
+}
+function shiftStart(user){
+ shift.uid=user.uid;shift.active=true;shift.pending={};shift.stored={};shift.phase={};shift.storageError=false;
+ for(const scope of SHIFT_SCOPES){
+  try{
+   const raw=localStorage.getItem(shiftKey(scope));if(!raw)continue;
+   if(raw.length>180000)throw Error('Draft too large');
+   const saved=JSON.parse(raw);
+   if(saved.version!==1||saved.uid!==user.uid||!Number.isFinite(saved.at)||saved.at>Date.now()+60000||Date.now()-saved.at>SHIFT_TTL){localStorage.removeItem(shiftKey(scope));continue;}
+   if(!saved.value||!['product','quantities'].includes(saved.value.kind))throw Error('Invalid draft');
+   if(saved.value.kind==='product'&&(!Array.isArray(saved.value.fields)||saved.value.fields.length>220))throw Error('Invalid draft');
+   if(saved.value.kind==='quantities'&&['stock','orders','invalid'].some(key=>!Array.isArray(saved.value[key])||saved.value[key].length>400))throw Error('Invalid draft');
+   shift.pending[scope]=saved;shift.stored[scope]=JSON.stringify(saved.value);
+  }catch{shift.storageError=true;}
+ }
+ shiftWatchRequests();shiftSync();
+}
+function shiftReset(){
+ shift.requestsOff?.();shift.requestsOff=null;shift.active=false;shift.uid=null;shift.pending={};shift.stored={};shift.phase={};shift.undo=null;shift.undoBusy=false;
+ $('workStatus').hidden=true;$('undoNotice').hidden=true;if($('draftReview').open)$('draftReview').close();$('draftReviewText').value='';
+ for(const scope of SHIFT_SCOPES){const box=$('draftPrompt-'+scope);if(box){box.hidden=true;box.replaceChildren();}}
+ shiftRequestBadge(null);
+}
+function shiftLocalCurrent(scope){const raw=localStorage.getItem(shiftKey(scope));return raw?JSON.stringify(JSON.parse(raw).value):'';}
+function shiftRemove(scope){
+ try{if(shiftLocalCurrent(scope)!==(shift.stored[scope]||''))throw Error('Draft changed in another tab');localStorage.removeItem(shiftKey(scope));delete shift.stored[scope];delete shift.pending[scope];return true;}
+ catch{shift.storageError=true;return false;}
+}
+function shiftSync(){
+ if(!shift.active||auth.currentUser?.uid!==shift.uid)return;
+ for(const scope of SHIFT_SCOPES){
+  if(!shiftAllowed(scope))continue;
+  if(!shift.pending[scope]){
+   const value=shiftPayload(scope),serialized=value?JSON.stringify(value):'';
+   if(serialized!==shift.stored[scope]){
+    try{if(shiftLocalCurrent(scope)!==(shift.stored[scope]||''))throw Error('Draft changed in another tab');if(value){const raw=JSON.stringify({version:1,uid:shift.uid,at:Date.now(),value});if(raw.length>180000)throw Error('Draft too large');localStorage.setItem(shiftKey(scope),raw);shift.stored[scope]=serialized;}else{localStorage.removeItem(shiftKey(scope));shift.stored[scope]='';}}
+    catch{shift.storageError=true;}
+   }
+  }
+  shiftPrompt(scope);
+ }
+ shiftRenderStatus();shiftRenderUndo();
+}
+function shiftPhase(scope,phase){if(!shift.active)return;shift.phase[scope]={phase,at:Date.now()};shiftRenderStatus();}
+function shiftRenderStatus(){
+ const el=$('workStatus');if(!shift.active||!currentRole){el.hidden=true;return;}
+ const scope=SHIFT_SCOPES.includes(managerView)?managerView:null;
+ let text='Pronto',kind='idle';
+ if(navigator.onLine===false){text='Connessione assente · modifiche non confermate online';kind='offline';}
+ else if(scope&&shiftBusy(scope)){text='Salvataggio in corso…';kind='saving';}
+ else if(scope&&shift.phase[scope]?.phase==='error'){text='Operazione non riuscita · controlla il messaggio';kind='error';}
+ else if(shift.storageError){text='Recupero bozze non disponibile · tieni aperta questa pagina';kind='error';}
+ else if(scope&&shift.pending[scope]){text='Bozza da riprendere · non pubblicata';kind='dirty';}
+ else if(scope&&shiftDirty(scope)){text=shiftPayload(scope)?'Modifiche da salvare · bozza su questo dispositivo':'Modifiche da salvare · tieni aperta questa pagina';kind='dirty';}
+ else if(scope&&shift.phase[scope]?.phase==='saved'){text='Salvato alle '+new Date(shift.phase[scope].at).toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'});kind='saved';}
+ else if(scope==='catalog'&&catalogLoading){text='Caricamento dati…';}
+ else if(scope&&!shiftAllowed(scope)){text=(scope==='kitchen'&&k.accessState==='denied'||scope==='bar'&&bar.phase==='denied')?'Accesso alla sezione non abilitato':'Verifica accesso e dati in corso';}
+ else if(Object.keys(shift.pending).length){text='Hai bozze da riprendere in '+Object.keys(shift.pending).map(s=>({catalog:'Menu',kitchen:'Cucina',bar:'Bar'}[s])).join(', ');kind='dirty';}
+ if(el.textContent!==text)el.textContent=text;el.dataset.state=kind;el.hidden=false;
+}
+function shiftPrompt(scope){
+ const box=$('draftPrompt-'+scope),saved=shift.pending[scope];if(!box)return;
+ box.hidden=!saved||!shiftAllowed(scope);if(box.hidden){box.replaceChildren();return;}
+ if(box.dataset.at!==String(saved.at)||!box.childElementCount){
+  box.dataset.at=String(saved.at);box.replaceChildren();
+  const title=make('strong','','Bozza da riprendere'),note=make('p','mini','Salvata su questo dispositivo il '+new Date(saved.at).toLocaleString('it-IT',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+'. Non è stata pubblicata. Conservata per 7 giorni.');
+  const actions=make('div','draft-actions');for(const [action,label] of [['restore','Riprendi'],['inspect','Vedi bozza'],['discard','Scarta bozza']]){const button=make('button','small-action',label);button.type='button';button.dataset.draftScope=scope;button.dataset.draftAction=action;actions.append(button);}
+  box.append(title,note,actions,make('p','draft-error',''));
+ }
+ const root=scope==='catalog'?$('catalogEditor'):$(scope==='kitchen'?'kBody':'bBody');
+ root.querySelectorAll('input,select,textarea,button').forEach(el=>{if(!el.disabled){el.dataset.draftLocked='1';el.disabled=true;}});
+ if(scope==='catalog')for(const id of ['catalogNew']){$(id).disabled=true;}
+}
+function shiftUnlock(scope){const root=scope==='catalog'?$('catalogEditor'):$(scope==='kitchen'?'kBody':'bBody');root.querySelectorAll('[data-draft-locked]').forEach(el=>{el.disabled=false;delete el.dataset.draftLocked;});}
+function shiftPending(scope){if(!shift.active||!shift.pending[scope]||shift.restoring)return false;shiftPrompt(scope);$('draftPrompt-'+scope)?.scrollIntoView({block:'nearest'});return true;}
+function shiftCheckQuantities(scope,value){
+ const state=scope==='kitchen'?k:bar;
+ for(const key of ['stock','orders','invalid'])if(!Array.isArray(value[key])||value[key].length>400)throw Error('Bozza non leggibile. Puoi consultarla e scartarla.');
+ const seen=new Set();
+ for(const [kind,entries]of [['stock',value.stock],['orders',value.orders]])for(const pair of entries){
+  if(!Array.isArray(pair)||pair.length!==2)throw Error('Bozza non leggibile.');const [id,d]=pair;
+  if(!catalogId(id)||seen.has(kind+id)||!d||!Number.isSafeInteger(d.revision)||d.revision<0)throw Error('Bozza non leggibile.');seen.add(kind+id);
+  const item=state.items.get(id),record=(kind==='stock'?state.stock:state.orders).get(id);
+  if(!item?.active||(record?.revision||0)!==d.revision||(kind==='stock'&&item.revision!==d.configRevision)||(kind==='orders'&&(!record||!['draft','sent'].includes(record.status))))throw Error('Alcuni dati sono cambiati dopo questa bozza. Non la applico ai dati nuovi: usa “Vedi bozza” per confrontarli.');
+  if(scope==='bar')bQty(d.qty,kind==='orders');else kQuantity(d.qty,kind==='stock'?item.stockStep:record.step);
+ }
+ if(scope==='bar')for(const pair of value.invalid){if(!Array.isArray(pair)||pair.length!==2||!/^((stock)|(order)):[a-z0-9-]+$/.test(pair[0])||typeof pair[1]!=='string'||pair[1].length>100)throw Error('Bozza non leggibile.');}
+}
+function shiftRestore(scope){
+ const saved=shift.pending[scope];if(!saved||!shiftAllowed(scope)||shiftBusy(scope))return;
+ try{
+  const value=saved.value;
+  if(scope==='catalog'){
+   if(catalogDocument?.status!=='ready')throw Error('Attendi il caricamento del catalogo, poi riprova.');
+   if(value.kind!=='product'||!catalogId(value.id)||!Number.isSafeInteger(value.revision)||!Array.isArray(value.fields)||value.fields.length>220)throw Error('Bozza non leggibile.');
+   if(value.fields.some(f=>!f||typeof f.value!=='string'||f.value.length>5000||typeof f.key!=='string'))throw Error('Valori della bozza non validi.');
+   const p=catalogDocument.products[value.id];if((p?.revision||0)!==value.revision)throw Error('Il prodotto è cambiato dopo questa bozza. Usa “Vedi bozza” per confrontare le modifiche senza sovrascrivere quelle nuove.');
+   const item=p?catalogItems.find(i=>i.id===value.id):value.item;if(!item||!catalogId(item.id)||!Object.hasOwn(CATALOG_GROUPS,item.group))throw Error('Prodotto non disponibile.');
+   shiftUnlock('catalog');shift.restoring=true;openCatalogProduct(item,p||null);shift.restoring=false;
+   const current=shiftFormValues();if(current.length!==value.fields.length||current.some((f,i)=>f.key!==value.fields[i]?.key||f.type!==value.fields[i]?.type))throw Error('La scheda è cambiata con un aggiornamento. Usa “Vedi bozza” per recuperarne i valori.');
+   [...$('catalogEditor').querySelectorAll('input,select,textarea')].forEach((el,i)=>{const field=value.fields[i];if(typeof field.value!=='string'||field.value.length>5000)throw Error('Valore della bozza non valido.');el.value=field.value;if(['checkbox','radio'].includes(el.type))el.checked=field.checked===true;});
+   editorDirty=true;updateCatalogFields();$('productVerificationStatus').textContent='Bozza ripristinata · controlla la scheda prima di pubblicare';
+  }else{
+   if(value.kind!=='quantities')throw Error('Bozza non leggibile.');shiftCheckQuantities(scope,value);
+   const state=scope==='kitchen'?k:bar;state.draft=new Map(value.stock);state.orderDraft=new Map(value.orders);if(scope==='bar')state.invalid=new Map(value.invalid);state.page=value.stock.length||value.invalid.some(x=>x[0].startsWith('stock:'))?'stock':'cart';
+  }
+  delete shift.pending[scope];shiftUnlock(scope);shift.phase[scope]={phase:'dirty',at:Date.now()};
+  if(scope==='catalog')renderCatalog();else if(scope==='kitchen')kRender();else bRender();shiftSync();
+ }catch(error){shift.restoring=false;if(scope==='catalog'){editorDirty=false;catalogSelected=null;$('catalogEditor').hidden=true;}const box=$('draftPrompt-'+scope);box.querySelector('.draft-error').textContent=error.message;shiftPrompt(scope);}
+}
+function shiftInspect(scope){
+ const value=shift.pending[scope]?.value;if(!value)return;
+ $('draftReviewText').value=value.kind==='product'?value.fields.map(f=>f.key+': '+(['checkbox','radio'].includes(f.type)?(f.checked?'Sì':'No'):f.value)).join('\n'):[...value.stock.map(([id,d])=>'Giacenza · '+id+': '+d.qty),...value.orders.map(([id,d])=>'Riordino · '+id+': '+d.qty),...value.invalid.map(([id,v])=>'Da correggere · '+id+': '+v)].join('\n');
+ $('draftReview').showModal();
+}
+function shiftRequestBadge(count,stale=false){
+ const trigger=$('profileTrigger'),label=$('profileRequestCount');if(!trigger)return;
+ if(count===null){delete trigger.dataset.pending;trigger.setAttribute('aria-label','Apri il menu del profilo');if(label){label.textContent='';label.hidden=true;}return;}
+ const text=count<0?'!':count>99?'99+':String(count);if(count!==0)trigger.dataset.pending=text;else delete trigger.dataset.pending;
+ trigger.setAttribute('aria-label',count<0?'Apri il profilo. Richieste di accesso non aggiornate':count?'Apri il profilo. '+count+' richieste di accesso in attesa'+(stale?', ultimo dato disponibile':''):'Apri il menu del profilo');
+ if(label){label.textContent=count<0?'Da aggiornare':text;label.hidden=count===0;}
+}
+function shiftWatchRequests(){
+ shift.requestsOff?.();shift.requestsOff=null;shiftRequestBadge(null);if(currentRole!=='owner'||!shift.active)return;
+ const uid=shift.uid,version=sessionVersion;
+ shift.requestsOff=onSnapshot(query(collection(db,'accessRequests'),where('status','==','pending')),{includeMetadataChanges:true},snapshot=>{
+  if(!shift.active||shift.uid!==uid||auth.currentUser?.uid!==uid||version!==sessionVersion||currentRole!=='owner')return;
+  if(snapshot.metadata?.fromCache){shiftRequestBadge(-1,true);return;}shiftRequestBadge(snapshot.size??snapshot.docs.length);
+ },()=>{if(shift.active&&shift.uid===uid&&version===sessionVersion&&currentRole==='owner')shiftRequestBadge(-1);});
+}
+function shiftSetUndo(item,record){if(!shift.active)return;shift.undo={uid:shift.uid,version:sessionVersion,item,record};shiftRenderUndo();}
+function shiftRenderUndo(){const valid=shift.undo&&shift.uid===shift.undo.uid&&currentRole&&canEditMenu();$('undoNotice').hidden=!valid||managerView!=='catalog'||!$('catalogEditor').hidden;if(valid){$('undoText').textContent=shift.undo.item.name.it+' disattivato';$('undoDeactivate').disabled=shift.undoBusy||catalogBusy||catalogLoading;$('undoDismiss').disabled=shift.undoBusy;}}
+$('undoDeactivate').addEventListener('click',async()=>{
+ const u=shift.undo;if(!u||shift.undoBusy||!shift.active||auth.currentUser?.uid!==u.uid||sessionVersion!==u.version)return;
+ shift.undoBusy=true;shiftRenderUndo();
+ try{await changeCatalogAvailability(u.item,u.record,true);}finally{shift.undoBusy=false;shiftRenderUndo();}
+});
+$('undoDismiss').addEventListener('click',()=>{if(!shift.undoBusy){shift.undo=null;shiftRenderUndo();}});
+$('draftReviewClose').addEventListener('click',()=>$('draftReview').close());
+document.addEventListener('click',event=>{
+ const button=event.target.closest('[data-draft-action]');if(!button)return;const scope=button.dataset.draftScope;if(!SHIFT_SCOPES.includes(scope)||!shiftAllowed(scope))return;
+ if(button.dataset.draftAction==='restore')shiftRestore(scope);
+ if(button.dataset.draftAction==='inspect')shiftInspect(scope);
+ if(button.dataset.draftAction==='discard'&&confirm('Scartare questa bozza salvata sul dispositivo? I dati pubblicati non cambiano.')){if(shiftRemove(scope)){shiftUnlock(scope);if(scope==='catalog')renderCatalog();else if(scope==='kitchen')kRender();else bRender();shiftSync();}}
+});
+for(const scope of SHIFT_SCOPES){const root=$(scope==='catalog'?'catalogPanel':scope==='kitchen'?'kBody':'bBody');for(const name of ['click','input','change','submit'])root.addEventListener(name,event=>{if(event.target.closest('[data-draft-action]'))return;if(shift.pending[scope]&&!shift.restoring&&shiftAllowed(scope)){const target=event.target;if(target.closest('button,input,select,textarea')&&!target.closest('#draftPrompt-'+scope)&&!['catalogReload','catalogSearch','catalogAvailableTab','catalogInactiveTab'].includes(target.id)){event.preventDefault();event.stopImmediatePropagation();shiftPrompt(scope);}}},true);}
+for(const name of ['input','change','click','submit'])document.addEventListener(name,event=>{
+ if(event.target.closest('#catalogEditor,#kBody,#bBody')&&!event.target.closest('[data-draft-action]')){const scope=event.target.closest('#catalogEditor')?'catalog':event.target.closest('#kBody')?'kitchen':'bar';if(name==='input'||name==='change')shift.phase[scope]={phase:'dirty',at:Date.now()};shiftSync();queueMicrotask(shiftSync);}
+});
+window.addEventListener('pagehide',shiftSync);document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')shiftSync();});
+window.addEventListener('online',shiftRenderStatus);window.addEventListener('offline',shiftRenderStatus);
+
 const loginBtn=$("login");
 function explain(e){
  const code=e?.code||"";
@@ -1278,7 +1450,7 @@ function catalogItemsFrom(c,onlyAvailable=false){
 
 let catalogAvailability='available';
 let catalogItems=[],catalogOverrides=new Map(),catalogSelected=null,catalogEpoch=0,catalogBusy=false,catalogLoading=false,catalogDocument=null,catalogSource=[];
-function catalogMessage(text,error=false){$('catalogMessage').textContent=text;$('catalogMessage').className=error?'message error':'message';}
+function catalogMessage(text,error=false){$('catalogMessage').textContent=text;$('catalogMessage').className=error?'message error':'message';if(error)shiftPhase('catalog','error');else shiftRenderStatus();}
 function catalogPrice(value){
  const s=value.trim().replace(/\s/g,'').replace(/\./g,',').replace(/-/g,'–');
  if(!/^\d{1,3}(?:,\d{1,2})?(?:–\d{1,3}(?:,\d{1,2})?)?$/.test(s))throw Error('Inserisci un prezzo come 12,00 oppure un intervallo come 3,50–6,00.');
@@ -1365,6 +1537,7 @@ async function loadCatalog(){
  if(epoch===catalogEpoch&&auth.currentUser?.uid===uid&&currentRole==='owner'&&catalogDocument?.status==='ready'&&controlledCatalogCounts().products>0)await verifyTableProducts();
 }
 function openCatalogProduct(item,p=null){
+ if(shiftPending('catalog'))return;
  if(catalogBusy||catalogLoading||catalogDocument?.status!=='ready'||!canEditMenu())return;
  if(editorDirty&&!$('catalogEditor').hidden&&!confirm('Scartare le modifiche non pubblicate?'))return;
  catalogSelected={item,revision:p?.revision||0,record:p};populateDetails(item,p?{details:p.details}:null);
@@ -1423,6 +1596,7 @@ $('catalogPendingTraits').addEventListener('click',()=>selectCatalogQuality('tra
 $('catalogQualityClear').addEventListener('click',()=>selectCatalogQuality('all'));
 
 function renderCatalog(){
+ queueMicrotask(shiftSync);
  catalogControls();const qualityCounts=catalogQualityControls();const list=$('catalogList');list.replaceChildren();const term=$('catalogSearch').value.trim().toLocaleLowerCase('it');
  const productFor=item=>catalogDocument?.status==='ready'?catalogDocument.products[item.id]:null;
  const inactive=catalogItems.filter(item=>productFor(item)?.available===false).length;
@@ -1456,6 +1630,7 @@ function renderCatalog(){
 async function deactivateCatalogProduct(item,expected){return changeCatalogAvailability(item,expected,false);}
 async function reactivateCatalogProduct(item,expected){return changeCatalogAvailability(item,expected,true);}
 async function changeCatalogAvailability(item,expected,available){
+ if(shiftPending('catalog'))return;
  if(catalogBusy||catalogLoading||catalogDocument?.status!=='ready'||!canEditMenu()||!auth.currentUser||typeof available!=='boolean'||!expected||expected.available===available)return;
  if(!$('catalogEditor').hidden){catalogMessage('Salva o annulla la scheda aperta prima di cambiare la disponibilità.',true);return;}
  if(!navigator.onLine){catalogMessage('Per cambiare la disponibilità serve una connessione.',true);return;}
@@ -1475,6 +1650,7 @@ async function changeCatalogAvailability(item,expected,available){
    checkCatalogSize(saved);tx.set(ref,saved);catalogEvent(tx,change,'update',item.id,before,after,saved.revision,uid);
   });
   if(!owns())return;catalogDocument=saved;catalogItems=catalogItemsFrom(saved);
+  shiftPhase('catalog','saved');if(!available)shiftSetUndo(item,saved.products[item.id]);else if(shift.undo?.item.id===item.id){shift.undo=null;shiftRenderUndo();}
   catalogMessage(item.name.it+(available?' riattivato. È nella sezione Disponibili e nel menu dei clienti.':' disattivato. Non compare più nel menu dei clienti; lo ritrovi in Disattivati, con il tasto Riattiva.'));
  }catch(e){if(owns())catalogMessage(catalogError(e),true);}
  finally{clearTimeout(waiting);if(owns()){catalogBusy=false;renderCatalog();$(available?'catalogInactiveTab':'catalogAvailableTab').focus({preventScroll:true});}}
@@ -1606,7 +1782,7 @@ $('catalogEditor').addEventListener('submit',async event=>{
    if(!before&&Object.keys(c.products).length>=CATALOG_MAX_PRODUCTS)throw Error('Limite di 300 prodotti raggiunto.');
    saved={...c,products:{...c.products,[selected.item.id]:product},revision:c.revision+1,lastChangeId:change.id,lastProductId:selected.item.id,updatedAt:serverTimestamp()};checkCatalogSize(saved);tx.set(ref,saved);catalogEvent(tx,change,before?'update':'create',selected.item.id,before,product,saved.revision,uid);
   });
-  if(!owns())return;catalogDocument=saved;catalogItems=catalogItemsFrom(saved);editorDirty=false;catalogSelected=null;$('catalogEditor').hidden=true;catalogMessage(verifying?'Allergeni verificati e scheda pubblicata. La preparazione e le possibili tracce mantengono le impostazioni della scheda.':product.available?'Prodotto pubblicato. È nella sezione Disponibili e nel menu dei clienti.':'Prodotto spostato in Disattivati e nascosto dal menu. Puoi riattivarlo quando torna disponibile.');
+  if(!owns())return;catalogDocument=saved;catalogItems=catalogItemsFrom(saved);shiftPhase('catalog','saved');editorDirty=false;catalogSelected=null;$('catalogEditor').hidden=true;catalogMessage(verifying?'Allergeni verificati e scheda pubblicata. La preparazione e le possibili tracce mantengono le impostazioni della scheda.':product.available?'Prodotto pubblicato. È nella sezione Disponibili e nel menu dei clienti.':'Prodotto spostato in Disattivati e nascosto dal menu. Puoi riattivarlo quando torna disponibile.');
  }catch(e){if(owns())catalogMessage(catalogError(e),true);}
  finally{clearTimeout(waiting);if(owns()){catalogBusy=false;controls.forEach(([el,disabled])=>el.disabled=disabled);renderCatalog();}}
 });
@@ -1975,6 +2151,7 @@ function showManagerView(view, push=false, focus=true){
  managerView=view;
  document.body.dataset.managerView=view;
  document.body.dataset.managerReady=String(!!currentRole);
+ queueMicrotask(shiftSync);
  $('menuHomeCard').hidden=!canEditMenu();
  document.querySelectorAll('#primaryNav [data-manager-go]').forEach(el=>{el.hidden=el.dataset.managerGo==='catalog'&&!canEditMenu();el.setAttribute('aria-current',el.dataset.managerGo===view?'page':'false');});
  document.querySelectorAll('[data-owner-only]').forEach(el=>{el.hidden=currentRole!=='owner';});
@@ -2030,6 +2207,7 @@ function setOwnerNotice(message,kind=""){
  const n=$("ownerNotice");n.textContent=message;n.className=message?"message "+kind:"";
 }
 function clearDash(){
+ shiftReset();
  kitchenSearch='';kitchenCategory='';barCategory='';
  $('retryAccess').hidden=true;
  teamReset();
@@ -2435,7 +2613,7 @@ async function checkRole(user,version){
    setProfileMessage("Questo account non dispone di un accesso attivo. Contatta l'amministratore principale.");
    updateSelfUI(user);return;
   }
-  teamWatch(user,version,snapshot.data());currentRole=role;$("roleLabel").textContent="ACCESSO ATTIVO";
+  teamWatch(user,version,snapshot.data());currentRole=role;shiftStart(user);$("roleLabel").textContent="ACCESSO ATTIVO";
   setProfileMessage("Accesso autorizzato. Ruolo verificato tramite Firestore.","success");
   $("roadmap").hidden=false;
   updateSelfUI(user);
@@ -2929,6 +3107,7 @@ const K_SUPPLIERS={
 const K_CATS=['Verdura','Formaggi','Salumi','Carne','Dolci','Ingredienti','Salse','Preparazioni','Pane','Fritti','Materiali'];
 let k={};
 function kitchenReset(){
+ if(typeof shift!=='undefined'&&shift.active&&k.ready&&!shift.pending.kitchen)shiftRemove('kitchen');
  khReset();kcStop();ktCloseSubmission=null;
  for(const off of k.off||[])off();
  if($('kMessageDialog')?.open)$('kMessageDialog').close();
@@ -2943,7 +3122,7 @@ const kNum=n=>Number(n).toLocaleString('it-IT',{maximumFractionDigits:3});
 const kTime=t=>t?.toDate?new Intl.DateTimeFormat('it-IT',{dateStyle:'short',timeStyle:'short',timeZone:'Europe/Rome'}).format(t.toDate()):'In attesa di conferma';
 function kButton(text,action,cls='small-action'){return `<button type="button" class="${cls}" data-k="${ke(action)}" ${k.busy?'disabled':''}>${ke(text)}</button>`;}
 function kError(error){return error?.code==='permission-denied'?'La richiesta è stata negata dalle regole Firebase.':error?.code==='unavailable'?'Connessione a Firebase non disponibile. Controlla la rete e riprova.':error?.message||'Operazione non riuscita. Riprova.';}
-function kNotice(text,error=false){$('kMessage').textContent=text;$('kMessage').className='message'+(error?' error':'');}
+function kNotice(text,error=false){$('kMessage').textContent=text;$('kMessage').className='message'+(error?' error':'');if(error)shiftPhase('kitchen','error');else shiftRenderStatus();}
 function kitchenUnsaved(){return k.busy||k.draft.size>0||k.orderDraft.size>0||k.formDirty||k.messageDraft.size>0;}
 function kitchenMayLeave(){if(k.busy){kNotice('Attendi la conferma del salvataggio.');return false;}if(k.formDirty){if(!confirm('Scartare la scheda non salvata e cambiare sezione?'))return false;if(k.page==='handover')kh.draft=null;k.formDirty=false;k.page='home';}return !kitchenUnsaved()||confirm('I controlli e le quantità non salvati restano aperti in questa sessione. Vuoi cambiare sezione?');}
 function kUnread(){return k.events.filter(e=>e.notify&&e.actorUid!==auth.currentUser?.uid&&k.prefs[e.kind]!==false&&!k.prefs.readIds.includes(e.id));}
@@ -3020,6 +3199,7 @@ function kDateInput(value){return value||'';}
 function kStepper(id,value,step,type,label){return `<div class="k-step"><button type="button" data-k-step="${ke(id)}" data-type="${type}" data-dir="-1" aria-label="Diminuisci ${ke(label)}" ${k.busy?'disabled':''}>−</button><input type="number" inputmode="decimal" min="0" max="100000" step="${step}" value="${value??''}" placeholder="—" aria-label="${ke(label)}" data-k-qty="${ke(id)}" data-type="${type}" ${k.busy?'disabled':''}><button type="button" data-k-step="${ke(id)}" data-type="${type}" data-dir="1" aria-label="Aumenta ${ke(label)}" ${k.busy?'disabled':''}>+</button></div>`;}
 function kBack(){return '';}
 function kRender(){
+ queueMicrotask(shiftSync);
  if(k.page==='home')k.page='stock';
  kuRecord();
  renderKitchenNav();
@@ -3101,7 +3281,7 @@ function kRender(){
 }
 function kEvent(tx,ref,kind,title,text,target,notify=true){tx.set(ref,{actorUid:auth.currentUser.uid,actorName:(auth.currentUser.displayName||'Personale').slice(0,100),kind,title:title.slice(0,140),text:text.slice(0,600),target,notify,createdAt:serverTimestamp()});}
 function kMeta(before,event){return {revision:(before?.revision||0)+1,updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid,lastEventId:event.id};}
-async function kRun(action){if(k.busy||!k.allowed||!k.ready)return;if(!navigator.onLine){kNotice('Sei offline. Nessun salvataggio confermato. Le modifiche rimangono aperte.',true);return;}const epoch=k.epoch;let success=false;k.busy=true;const disabled=[...$('kBody').querySelectorAll('button,input,textarea,select')].map(el=>[el,el.disabled]);disabled.forEach(([el])=>el.disabled=true);kNotice('Salvataggio in corso…');try{await action(epoch);success=true;if(epoch===k.epoch)kNotice('Salvataggio confermato.');}catch(error){if(epoch===k.epoch)kNotice(kError(error),true);}finally{if(epoch===k.epoch){k.busy=false;if(success||!k.formDirty)kRender();else disabled.forEach(([el,was])=>el.disabled=was);}}}
+async function kRun(action){if(k.busy||!k.allowed||!k.ready)return;if(!navigator.onLine){kNotice('Sei offline. Nessun salvataggio confermato. Le modifiche rimangono aperte.',true);return;}const epoch=k.epoch;let success=false;k.busy=true;const disabled=[...$('kBody').querySelectorAll('button,input,textarea,select')].map(el=>[el,el.disabled]);disabled.forEach(([el])=>el.disabled=true);kNotice('Salvataggio in corso…');try{await action(epoch);success=true;if(epoch===k.epoch){shiftPhase('kitchen','saved');kNotice('Salvataggio confermato.');}}catch(error){if(epoch===k.epoch)kNotice(kError(error),true);}finally{if(epoch===k.epoch){k.busy=false;queueMicrotask(shiftSync);if(success||!k.formDirty)kRender();else disabled.forEach(([el,was])=>el.disabled=was);}}}
 function kAssert(epoch){if(epoch!==k.epoch||!auth.currentUser||!k.allowed)throw Error('Sessione cambiata. Accedi di nuovo.');}
 function kQuantity(value,step){const q=typeof value==='number'?value:Number(String(value).replace(',','.'));if(!Number.isFinite(q)||q<0||q>100000||Math.abs(q/step-Math.round(q/step))>0.00001)throw Error('Quantità non valida: usa multipli di '+kNum(step)+'.');return Math.round(q*1000)/1000;}
 function kOrder(item,event,old){return {itemId:item.id,name:item.name,supplierId:item.supplierId,unit:item.orderUnit,mode:item.mode,messageName:item.messageName,bundle:item.bundle,step:item.orderStep,qty:0,status:'draft',configRevision:item.revision,...kMeta(old,event)};}
@@ -3308,6 +3488,7 @@ const B_CATS=['Prodotti bar','Materiali'];
 function bCategory(p){return B_CATS.includes(p.category)?p.category:(B_SEEDS.find(seed=>seed.id===p.id)?.category||(p.category==='Materiali'?'Materiali':'Prodotti bar'));}
 let bar={epoch:0,off:[],draft:new Map(),orderDraft:new Map(),open:new Set()};
 function bReset(){
+ if(shift.active&&bar.ready&&!shift.pending.bar)shiftRemove('bar');
  for(const off of bar.off)off();
  const epoch=bar.epoch+1;
  bar={epoch,off:[],uid:'',phase:'idle',ready:false,allowed:false,busy:false,bootstrapAttempted:false,loadOwn:null,loadShared:new Map(),loadPeople:new Map(),loadTextDraft:'',loadRecipientsDraft:null,loadBatchDraft:null,loadImportNotice:'',loadRegistered:false,items:new Map(),stock:new Map(),orders:new Map(),draft:new Map(),orderDraft:new Map(),invalid:new Map(),open:new Set(),page:'stock',search:'',editing:null,dirty:false,people:null,message:'',error:false,cleanup:false};
@@ -3332,7 +3513,7 @@ function bQty(value,integer=false){
 function bNeed(product,qty){return product.target===null?(qty===0?0:null):Math.max(0,Math.ceil(product.target-qty));}
 function bActive(){return [...bar.items.values()].filter(p=>p.active).map(p=>({...p,category:bCategory(p)})).sort((a,b)=>a.name.localeCompare(b.name,'it'));}
 function bOrders(){return [...bar.orders.values()].filter(o=>['draft','sent'].includes(o.status)).sort((a,b)=>a.name.localeCompare(b.name,'it'));}
-function bNotice(text,error=false){bar.message=text;bar.error=error;$('bMessage').textContent=text;$('bMessage').className='message'+(error?' error':'');}
+function bNotice(text,error=false){bar.message=text;bar.error=error;$('bMessage').textContent=text;$('bMessage').className='message'+(error?' error':'');if(error)shiftPhase('bar','error');else shiftRenderStatus();}
 function bFailure(error){return error?.code==='permission-denied'?'Accesso Bar negato. Pubblica le regole Firebase complete e verifica l’abilitazione Bar del profilo.':kError(error);}
 function bBlock(text){bReset();bar.phase='denied';bNotice(text,true);bRender();}
 function bServer(snapshot){return !snapshot.metadata?.fromCache;}
@@ -3391,6 +3572,7 @@ function bStockRow(p){
  return '<div class="b-row" data-b-row="'+ke(p.name.toLocaleLowerCase('it'))+'"><div class="b-label"><strong>'+ke(p.name)+'</strong><small>'+ke(p.stockUnit)+' · '+(p.target===null?'Ordine manuale a zero':'Scorta desiderata '+kNum(p.target))+'</small><small data-b-status="'+p.id+'">'+ke(status)+'</small></div>'+bCounter(p.id,qty,'stock','Giacenza '+p.name)+'</div>';
 }
 function bRender(){
+ queueMicrotask(shiftSync);
  if(bar.ready)bRecord();
  $('bSettings').hidden=currentRole!=='owner';$('bCartTab').textContent='Riordini ('+bOrders().length+')';
  for(const el of document.querySelectorAll('[data-b-page]'))el.setAttribute('aria-pressed',String(el.dataset.bPage===bar.page));
@@ -3434,9 +3616,9 @@ async function bRun(action){
  if(!navigator.onLine){bNotice('Sei offline. Nessun salvataggio confermato.',true);return;}
  const epoch=bar.epoch;bar.busy=true;const controls=[...$('bBody').querySelectorAll('button,input,textarea,select')].map(el=>[el,el.disabled]);controls.forEach(([el])=>el.disabled=true);
  bNotice('Salvataggio in corso…');let success=false;
- try{const message=await action(epoch);bAssert(epoch);success=true;bNotice(message||'Salvataggio confermato.');}
+ try{const message=await action(epoch);bAssert(epoch);success=true;shiftPhase('bar',action===bAccess?'idle':'saved');bNotice(message||'Salvataggio confermato.');}
  catch(error){if(epoch===bar.epoch)bNotice(bFailure(error),true);}
- finally{if(epoch===bar.epoch){bar.busy=false;if(success||!bar.dirty)bRender();else controls.forEach(([el,was])=>el.disabled=was);}}
+ finally{if(epoch===bar.epoch){bar.busy=false;queueMicrotask(shiftSync);if(success||!bar.dirty)bRender();else controls.forEach(([el,was])=>el.disabled=was);}}
 }
 async function bInitialize(epoch){
  if(currentRole!=='owner')throw Error('Operazione riservata alla proprietaria.');
