@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it" data-privacy-app="manager">
 <head>
-<meta name="tbs-release" content="2026-11-04-bar-integrato-v17">
+<meta name="tbs-release" content="2026-11-04-carichi-bar-cucina-v18">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
@@ -604,6 +604,20 @@ textarea{resize:vertical;}
 @media(max-width:520px){.b-category{padding:6px 12px}.b-row{gap:10px}.b-label{flex-basis:100%}.b-counter input{width:88px!important}.b-sticky button{flex:1 1 140px}.b-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.b-tabs button{padding:10px 6px;font-size:12px}#bMessageDialog{padding:16px}}
 @media(prefers-reduced-motion:reduce){#barPanel *{scroll-behavior:auto}}
 </style>
+<style id="loadsBothStyle">/* Titoli in maiuscolo, senza modificare i testi dei prodotti o le note salvate. */
+:is(h1,h2,h3,h4,h5,h6),.muted-heading,#managerSectionTitle,.k-tile strong,.workspace-action,.b-tabs button,main summary{text-transform:uppercase!important}
+#barPanel .k-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid var(--border)}
+#barPanel .k-turn-check{display:flex;align-items:flex-start;gap:10px;flex:1 1 180px;min-width:0;cursor:pointer}
+#barPanel .k-turn-check input{width:22px;height:22px;flex:0 0 22px;margin:0}
+#barPanel .k-turn-note{white-space:pre-wrap;overflow-wrap:anywhere;min-width:0;font-size:14px;line-height:1.5;flex:1}
+#barPanel .k-category{border:1px solid var(--border);border-radius:14px;padding:8px 16px;margin:16px 0;background:var(--card)}
+#barPanel .k-category>summary{padding:10px 0;cursor:pointer;font-weight:650}
+#barPanel .k-form{max-width:760px;margin:20px 0}#barPanel .k-form label{display:grid;gap:9px;font-size:14px;line-height:1.5;margin-bottom:14px}
+#barPanel .k-form textarea{width:100%;min-height:150px;resize:vertical;box-sizing:border-box;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:12px;padding:12px;font:inherit;line-height:1.6}
+#barPanel .k-form .k-check{display:flex;align-items:center;gap:10px}#barPanel .k-check input{width:22px;height:22px;flex:0 0 22px;margin:0}
+#barPanel .b-tabs{display:flex;flex-wrap:wrap}#barPanel .b-tabs button{flex:1 1 85px}
+@media(max-width:520px){#barPanel .k-category{padding:7px 12px}#barPanel .k-row>.small-action{flex:0 0 auto}#barPanel .k-form>.button{width:100%}}
+</style>
 </head>
 <body>
 <main>
@@ -644,19 +658,19 @@ textarea{resize:vertical;}
   </div>
   <div class="menu-workspace">
     <div class="workspace-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></div>
-    <h3>Modifica menu</h3>
+    <h3>MODIFICA MENU</h3>
     <p>Prodotti, prezzi, ingredienti e allergeni. Aggiorna ogni dettaglio del tuo menu.</p>
-    <button type="button" class="button workspace-action" data-manager-go="catalog">Apri i prodotti <span aria-hidden="true">→</span></button>
+    <button type="button" class="button workspace-action" data-manager-go="catalog">MODIFICA MENU <span aria-hidden="true">→</span></button>
     <p class="workspace-caption">Le modifiche vanno online quando premi “Pubblica modifica”.</p>
   </div>
-<div id="kHomeButton" class="menu-workspace"><h3>Cucina</h3><p>Giacenze, riordini, preparazioni e pulizie.</p><button type="button" class="button workspace-action" data-manager-go="kitchen">Apri Cucina →</button></div>
-  <div id="bHomeButton" class="menu-workspace"><h3>Bar</h3><p>Controlla le giacenze e prepara la lista per il gruppo WhatsApp.</p><button type="button" class="button workspace-action" data-manager-go="bar">Apri Bar →</button></div>
+<div id="kHomeButton" class="menu-workspace"><h3>CUCINA</h3><p>Giacenze, riordini, preparazioni e pulizie.</p><button type="button" class="button workspace-action" data-manager-go="kitchen">CUCINA →</button></div>
+  <div id="bHomeButton" class="menu-workspace"><h3>BAR</h3><p>giacenze, riordini e carichi</p><button type="button" class="button workspace-action" data-manager-go="bar">BAR →</button></div>
 <a class="public-menu-link" href="https://theblackstuffud.github.io/blackstuff-menu/?tbs_stats=off" target="_blank" rel="noopener noreferrer"><span class="public-menu-copy">Anteprima menu<small>Come lo vedono i clienti</small></span><span aria-hidden="true">↗</span></a>
 </section>
 <nav id="managerNav" aria-label="Navigazione gestionale"><button type="button" class="small-action" id="managerBack">← Home</button><span id="managerSectionTitle"></span></nav>
 <section id="kitchenPanel" class="panel" aria-labelledby="kHeading"><div class="k-toolbar"><h2 id="kHeading" tabindex="-1">Cucina</h2><div><button type="button" class="small-action" id="kOpenNotifications" aria-label="Notifiche cucina">Notifiche <span data-k-count class="k-alert-count">0</span></button><button type="button" class="small-action" id="kRetry">Riprova</button><button type="button" class="small-action" id="kEdit" data-owner-only>Modifica</button></div></div><div id="kMessage" class="message" role="status" aria-live="polite"></div><div id="kBody"></div></section><dialog id="kMessageDialog" aria-labelledby="kMessageTitle"><h2 id="kMessageTitle">Messaggio da copiare</h2><p>Puoi correggere il testo. Le modifiche qui non cambiano la lista salvata.</p><textarea id="kMessageText" aria-label="Messaggio modificabile"></textarea><button type="button" class="button" id="kCopyMessage">Copia messaggio</button><button type="button" class="small-action" id="kCloseMessage">Chiudi</button><p id="kCopyStatus" role="status"></p></dialog>
 
-<section id="barPanel" class="panel" aria-labelledby="bHeading"><div class="k-toolbar"><h2 id="bHeading" tabindex="-1">Bar</h2><button type="button" class="small-action" data-b="reload">Ricarica</button></div><div id="bMessage" class="message" role="status" aria-live="polite"></div><nav class="b-tabs" aria-label="Sezioni Bar"><button type="button" class="small-action" data-b-page="stock" aria-pressed="true">Giacenze</button><button type="button" class="small-action" id="bCartTab" data-b-page="cart" aria-pressed="false">Lista (0)</button><button type="button" class="small-action" id="bSettings" data-b-page="settings" aria-pressed="false" hidden>Modifica</button></nav><div id="bBody"></div></section><dialog id="bMessageDialog" aria-labelledby="bMessageTitle"><h2 id="bMessageTitle">Lista Bar</h2><p>Soltanto prodotti e quantità. Puoi correggere il testo prima di copiarlo nel gruppo WhatsApp.</p><textarea id="bMessageText" aria-label="Lista Bar modificabile"></textarea><button type="button" class="button" id="bCopyMessage">Copia lista</button> <button type="button" class="small-action" id="bCloseMessage">Chiudi</button><p id="bCopyStatus" role="status" aria-live="polite"></p></dialog>
+<section id="barPanel" class="panel" aria-labelledby="bHeading"><div class="k-toolbar"><h2 id="bHeading" tabindex="-1">Bar</h2><button type="button" class="small-action" data-b="reload">Ricarica</button></div><div id="bMessage" class="message" role="status" aria-live="polite"></div><nav class="b-tabs" aria-label="Sezioni Bar"><button type="button" class="small-action" data-b-page="stock" aria-pressed="true">Giacenze</button><button type="button" class="small-action" id="bCartTab" data-b-page="cart" aria-pressed="false">Lista (0)</button><button type="button" class="small-action" data-b-page="loads" aria-pressed="false">Carichi</button><button type="button" class="small-action" id="bSettings" data-b-page="settings" aria-pressed="false" hidden>Modifica</button></nav><div id="bBody"></div></section><dialog id="bMessageDialog" aria-labelledby="bMessageTitle"><h2 id="bMessageTitle">Lista Bar</h2><p>Soltanto prodotti e quantità. Puoi correggere il testo prima di copiarlo nel gruppo WhatsApp.</p><textarea id="bMessageText" aria-label="Lista Bar modificabile"></textarea><button type="button" class="button" id="bCopyMessage">Copia lista</button> <button type="button" class="small-action" id="bCloseMessage">Chiudi</button><p id="bCopyStatus" role="status" aria-live="polite"></p></dialog>
 <section id="catalogPanel" class="panel" aria-labelledby="catalogHeading">
 <h2 id="catalogHeading" tabindex="-1">Modifica menu</h2>
 <p>Aggiorna le informazioni che i clienti vedono nel menu.</p>
@@ -1824,7 +1838,7 @@ document.addEventListener('pointerup',e=>{
 },{passive:true});
 
 function showManagerView(view, push=false, focus=true){
- const barRoute=String(view).startsWith('bar/');if(barRoute){const page=String(view).split('/')[1];view='bar';bar.page=['stock','cart','settings','access'].includes(page)?page:'stock';}
+ const barRoute=String(view).startsWith('bar/');if(barRoute){const page=String(view).split('/')[1];view='bar';bar.page=['stock','cart','loads','settings','access'].includes(page)?page:'stock';}
  const kitchenRoute=String(view).startsWith('kitchen/');if(kitchenRoute){const page=String(view).split('/')[1];view='kitchen';k.page=['home','stock','cart','tasks','loads','clean','handover','settings','notifications','preferences'].includes(page)?page:page==='tasknote'?'tasks':'settings';}
  if(!kuApplying&&managerView==='bar'&&view!=='bar'&&!bMayLeave())return;
  if(!kuApplying&&managerView==='kitchen'&&view!=='kitchen'&&!kitchenMayLeave())return;
@@ -2549,6 +2563,48 @@ $('kBody').addEventListener('submit',async event=>{const form=event.target;if(![
  if(form.id==='ktCloseForm'||form.id==='kcCloseForm'){if(!confirm('Confermi la fine del turno? La tua bozza e la nota saranno visibili a tutti gli autorizzati. Le attività incompiute rimangono aperte.'))return;await kRun(epoch=>ktClose(f.note.trim(),epoch));}
 });
 
+// Un invio separa le voci. Gli identificatori restano stabili anche se la rete si interrompe.
+function loadLines(text){
+ const lines=String(text||'').split(/\r\n|\n|\r/).map(line=>line.trim()).filter(Boolean);
+ if(!lines.length)throw Error('Scrivi almeno una voce, una per riga.');
+ if(lines.length>80)throw Error('Puoi confermare fino a 80 righe alla volta.');
+ if(lines.some(line=>line.length>500))throw Error('Ogni riga può contenere al massimo 500 caratteri.');
+ return lines;
+}
+function loadSyncText(kind,state){const form=$(kind==='bar'?'blAddForm':'klAddForm'),field=form?.elements.namedItem('text');if(field)field.value=state.loadTextDraft;}
+async function loadAddLines(kind,text,epoch){
+ const state=kind==='bar'?bar:k,assert=kind==='bar'?bAssert:kAssert,col=kind==='bar'?'barLoads':'kitchenLoads';
+ const lines=loadLines(text),uid=auth.currentUser.uid,ref=doc(db,col,uid);
+ let pending=state.loadBatchDraft;
+ if(!pending||pending.text!==String(text))pending=state.loadBatchDraft={text:String(text),entries:lines.map(text=>({id:crypto.randomUUID(),text}))};
+ const selected=pending.entries.length;let completed=0;
+ try{
+  while(pending.entries.length){
+   assert(epoch);if(!navigator.onLine)throw Error('Connessione interrotta.');
+   const entry=pending.entries[0];
+   const next=await runTransaction(db,async tx=>{
+    const s=await tx.get(ref);assert(epoch);const before=s.exists()?s.data():null,items={...(before?.items||{})};
+    if(items[entry.id]){if(items[entry.id].text!==entry.text)throw Error('Una voce è cambiata: ricontrolla la lista.');return before;}
+    const missing=pending.entries.filter(row=>!items[row.id]).length;
+    if(Object.keys(items).length+missing>80)throw Error('La lista può contenere al massimo 80 voci. Togli quelle che non servono più prima di confermare queste righe.');
+    items[entry.id]={text:entry.text,done:false};
+    const data={ownerName:before?.ownerName||ktName(),items,sharedWith:before?.sharedWith||[],revision:(before?.revision||0)+1,updatedAt:serverTimestamp(),updatedBy:uid,lastItemId:entry.id,lastAction:'item'};
+    tx.set(ref,data);return data;
+   });
+   assert(epoch);state.loadOwn=next;pending.entries.shift();completed++;
+   state.loadTextDraft=pending.entries.map(row=>row.text).join('\n');pending.text=state.loadTextDraft;loadSyncText(kind,state);
+  }
+  state.loadBatchDraft=null;state.loadTextDraft='';loadSyncText(kind,state);if(kind==='kitchen')state.formDirty=state.loadRecipientsDraft!==null;
+  state.loadImportNotice=selected+' '+(selected===1?'voce aggiunta':'voci aggiunte')+' ai tuoi carichi.';
+  return state.loadImportNotice;
+ }catch(error){
+  assert(epoch);state.loadTextDraft=pending.entries.map(row=>row.text).join('\n');pending.text=state.loadTextDraft;loadSyncText(kind,state);
+  if(kind==='kitchen')state.formDirty=true;
+  state.loadImportNotice=(completed?completed+' voci salvate. ':'')+kError(error)+' Le righe non salvate restano nel campo: puoi confermarle di nuovo.';
+  throw Error(state.loadImportNotice);
+ }
+}
+
 // Promemoria personali: nessun contenuto viene scritto nel registro condiviso della cucina.
 async function klRegister(epoch){
  const uid=auth.currentUser?.uid;if(!uid)return;kAssert(epoch);
@@ -2596,7 +2652,7 @@ function klRender(){
  const own=k.loadOwn,shared=own?.sharedWith||[],uid=auth.currentUser.uid;
  let h=kBack()+'<h3>I miei carichi</h3><p class="mini">Scrivi cosa devi portare su. La lista è privata finché non scegli di condividerla. Le spunte non cambiano le giacenze e non passano nelle consegne di fine turno.</p>';
  h+='<p><strong>'+(shared.length?'Condivisa con '+shared.length+' '+(shared.length===1?'collega':'colleghi'):'Privata · visibile solo a te')+'</strong></p>'+klRows(own,true);
- h+='<form id="klAddForm" class="k-form"><label>Cosa devo portare su?<textarea name="text" required maxlength="500" placeholder="Es. 2 lattughe, 1 pacco di cheddar…">'+ke(k.loadTextDraft||'')+'</textarea></label><button class="button">Aggiungi ai miei carichi</button></form>';
+ h+='<form id="klAddForm" class="k-form"><label>Cosa devo portare su? Una voce per riga<textarea name="text" required maxlength="40000" rows="6" placeholder="2 lattughe&#10;1 pacco di cheddar&#10;Pane hamburger">'+ke(k.loadTextDraft||'')+'</textarea></label><button class="button">Conferma elenco</button></form>';
  const people=new Map(k.loadPeople);for(const id of shared)if(!people.has(id))people.set(id,{name:'Collega · '+id.slice(-6)});
  h+='<details class="k-category"><summary>Condividi con colleghi scelti da te</summary><p class="mini">I colleghi selezionati potranno leggere la lista; soltanto tu puoi modificarla e spuntarla. Devono avere accesso attivo alla cucina. Qui compaiono dopo aver aperto la nuova versione del gestionale.</p><form id="klShareForm" class="k-form">';
  for(const [id,p]of [...people].filter(([id])=>id!==uid).sort((a,b)=>a[1].name.localeCompare(b[1].name,'it')))h+='<label class="k-check"><input type="checkbox" name="recipient" value="'+ke(id)+'" '+((k.loadRecipientsDraft||shared).includes(id)?'checked':'')+'>'+ke(p.name)+' <small>· '+ke(id.slice(-6))+'</small></label>';
@@ -2628,11 +2684,97 @@ async function klWrite(action,id,value,epoch){
   tx.set(ref,next);
  });if(action==='add')k.loadTextDraft='';if(action==='share')k.loadRecipientsDraft=null;k.formDirty=!!k.loadTextDraft||k.loadRecipientsDraft!==null;
 }
-$('kBody').addEventListener('input',event=>{if(event.target.closest('#klAddForm'))k.loadTextDraft=event.target.value;});
+$('kBody').addEventListener('input',event=>{if(event.target.closest('#klAddForm')){k.loadTextDraft=event.target.value;k.loadBatchDraft=null;}});
 $('kBody').addEventListener('change',event=>{const form=event.target.closest('#klShareForm');if(form)k.loadRecipientsDraft=new FormData(form).getAll('recipient');});
 $('kBody').addEventListener('change',async event=>{const el=event.target;if(!el.matches('[data-kl-done]'))return;el.checked=false;await kRun(epoch=>klWrite('done',el.dataset.klDone,null,epoch));});
 $('kBody').addEventListener('click',async event=>{const b=event.target.closest('[data-k]');if(!b||k.busy)return;const [action,id]=b.dataset.k.split(':');if(action==='loadremove')await kRun(epoch=>klWrite('remove',id,null,epoch));if(action==='loadundo')await kRun(epoch=>klWrite('undo',id,null,epoch));if(action==='loadprivate')await kRun(epoch=>klWrite('share','',[],epoch));});
-$('kBody').addEventListener('submit',async event=>{const form=event.target;if(!['klAddForm','klShareForm'].includes(form.id))return;event.preventDefault();if(k.busy)return;const data=new FormData(form);if(form.id==='klAddForm'){const id=crypto.randomUUID();await kRun(epoch=>klWrite('add',id,data.get('text'),epoch));}else await kRun(epoch=>klWrite('share','',data.getAll('recipient'),epoch));});
+$('kBody').addEventListener('submit',async event=>{const form=event.target;if(!['klAddForm','klShareForm'].includes(form.id))return;event.preventDefault();if(k.busy)return;const data=new FormData(form);if(form.id==='klAddForm'){await kRun(epoch=>loadAddLines('kitchen',data.get('text'),epoch));}else await kRun(epoch=>klWrite('share','',data.getAll('recipient'),epoch));});
+
+function blButton(label,action){return '<button type="button" class="small-action" data-bl-action="'+ke(action)+'" '+(bar.busy?'disabled':'')+'>'+ke(label)+'</button>';}
+// Promemoria personali: nessun contenuto viene scritto nel registro condiviso del Bar.
+async function blRegister(epoch){
+ const uid=auth.currentUser?.uid;if(!uid)return;bAssert(epoch);
+ if(bar.loadPeople.get(uid)?.name===ktName())return;
+ const batch=writeBatch(db);batch.set(doc(db,'barLoadPeople',uid),{name:ktName(),updatedAt:serverTimestamp()});await batch.commit();
+}
+function blEntries(list){return Object.entries(list?.items||{}).sort((a,b)=>a[1].text.localeCompare(b[1].text,'it'));}
+async function blImport(sourceUid,epoch){
+ const uid=auth.currentUser.uid;if(sourceUid===uid)throw Error('Questa è già la tua lista.');
+ const sourceRef=doc(db,'barLoads',sourceUid),targetRef=doc(db,'barLoads',uid),source=bar.loadShared.get(sourceUid);
+ if(!source)throw Error('La lista non è più condivisa con te.');
+ const ids=blEntries(source).filter(([,item])=>!item.done).map(([id])=>id);let added=0,skipped=0;
+ const normalized=text=>text.normalize('NFKC').trim().replace(/\s+/g,' ').toLocaleLowerCase('it');
+ try{
+  for(const id of ids){
+   bAssert(epoch);if(!navigator.onLine)throw Error('Connessione interrotta.');
+   const result=await runTransaction(db,async tx=>{
+    const from=await tx.get(sourceRef),to=await tx.get(targetRef);bAssert(epoch);
+    const list=from.data(),before=to.data();if(!from.exists()||!list.sharedWith?.includes(uid))throw Error('La condivisione è stata revocata.');
+    const item=list.items?.[id];if(!item||item.done)return {skipped:true,before};
+    if(typeof item.text!=='string'||!item.text.trim()||item.text.length>500)throw Error('Una voce della lista non è valida.');
+    const items={...(before?.items||{})};
+    if(items[id]||Object.values(items).some(existing=>normalized(existing.text)===normalized(item.text)))return {skipped:true,before};
+    if(Object.keys(items).length>=80)throw Error('La tua lista contiene già 80 voci. Togli quelle che non servono più.');
+    items[id]={text:item.text,done:false};
+    const next={ownerName:before?.ownerName||ktName(),items,sharedWith:before?.sharedWith||[],revision:(before?.revision||0)+1,updatedAt:serverTimestamp(),updatedBy:uid,lastItemId:id,lastAction:'item'};
+    tx.set(targetRef,next);return {skipped:false,before:next};
+   });
+   bAssert(epoch);if(result.before)bar.loadOwn=result.before;if(result.skipped)skipped++;else added++;
+  }
+  bar.loadImportNotice=added+' '+(added===1?'voce importata':'voci importate')+' nella tua lista.'+(skipped?' '+skipped+' voci già presenti o non più da portare sono state saltate.':'');
+ }catch(error){bar.loadImportNotice=added+' voci già importate. '+kError(error)+' Puoi riprovare: quelle già presenti non verranno duplicate.';throw Error(bar.loadImportNotice);}
+}
+$('bBody').addEventListener('click',async e=>{const b=e.target.closest('[data-bl-import]');if(!b||bar.busy)return;await bRun(epoch=>blImport(b.dataset.blImport,epoch));});
+
+function blReceived(){const received=[...bar.loadShared].filter(([id])=>id!==auth.currentUser.uid);return '<h3>Condivisi con me</h3>'+(received.length?'':'<p>Nessuna lista condivisa con te.</p>')+received.map(([id,list])=>'<details class="k-category"><summary>Carichi di '+ke(list.ownerName)+' · '+blEntries(list).filter(([,i])=>!i.done).length+' da portare</summary><p class="mini">Sola lettura · aggiornata '+ke(kTime(list.updatedAt))+'</p>'+blRows(list,false)+'<button type="button" class="small-action" data-bl-import="'+ke(id)+'" '+(bar.busy||!blEntries(list).some(([,i])=>!i.done)?'disabled':'')+'>Importa nella mia lista</button><p class="mini">Copia le voci ancora da portare. La copia è indipendente e segue le impostazioni di condivisione della tua lista.</p></details>').join('');}
+function blRows(list,editable){
+ let h='';for(const [id,item]of blEntries(list).filter(([,i])=>!i.done))h+='<div class="k-row"><label class="k-turn-check">'+(editable?'<input type="checkbox" data-bl-done="'+ke(id)+'">':'<span aria-hidden="true">□</span>')+'<span class="k-turn-note">'+ke(item.text)+'</span></label>'+(editable?blButton('Togli','loadremove:'+id):'')+'</div>';
+ if(!blEntries(list).some(([,i])=>!i.done))h+='<p>Nessuna cosa da portare su.</p>';
+ const done=blEntries(list).filter(([,i])=>i.done);
+ if(done.length)h+='<details class="k-category"><summary>Già portato su ('+done.length+')</summary>'+done.map(([id,i])=>'<div class="k-row"><span class="k-turn-note">'+ke(i.text)+'</span>'+(editable?blButton('Da portare di nuovo','loadundo:'+id)+blButton('Togli','loadremove:'+id):'')+'</div>').join('')+'</details>';
+ return h;
+}
+function blRender(){
+ const own=bar.loadOwn,shared=own?.sharedWith||[],uid=auth.currentUser.uid;
+ let h='<h3>I miei carichi</h3><p class="mini">Scrivi cosa devi portare su. La lista è privata finché non scegli di condividerla. Le spunte non cambiano le giacenze e non passano nelle consegne di fine turno.</p>';
+ h+='<p><strong>'+(shared.length?'Condivisa con '+shared.length+' '+(shared.length===1?'collega':'colleghi'):'Privata · visibile solo a te')+'</strong></p>'+blRows(own,true);
+ h+='<form id="blAddForm" class="k-form"><label>Cosa devo portare su? Una voce per riga<textarea name="text" required maxlength="40000" rows="6" placeholder="6 toniche&#10;12 Corona&#10;Tovaglioli">'+ke(bar.loadTextDraft||'')+'</textarea></label><button class="button">Conferma elenco</button></form>';
+ const people=new Map(bar.loadPeople);for(const id of shared)if(!people.has(id))people.set(id,{name:'Collega · '+id.slice(-6)});
+ h+='<details class="k-category"><summary>Condividi con colleghi scelti da te</summary><p class="mini">I colleghi selezionati potranno leggere la lista; soltanto tu puoi modificarla e spuntarla. Devono avere accesso attivo al Bar. Qui compaiono dopo aver aperto la sezione Bar.</p><form id="blShareForm" class="k-form">';
+ for(const [id,p]of [...people].filter(([id])=>id!==uid).sort((a,b)=>a[1].name.localeCompare(b[1].name,'it')))h+='<label class="k-check"><input type="checkbox" name="recipient" value="'+ke(id)+'" '+((bar.loadRecipientsDraft||shared).includes(id)?'checked':'')+'>'+ke(p.name)+' <small>· '+ke(id.slice(-6))+'</small></label>';
+ if(people.size<=1)h+='<p>Nessun altro collega è ancora comparso nell’elenco.</p>';
+ h+='<button class="button">Salva condivisione</button>'+(shared.length?blButton('Rendi di nuovo privata','loadprivate'):'')+'</form></details>';
+ if(bar.loadImportNotice)h+='<p role="status" class="message">'+ke(bar.loadImportNotice)+'</p>';
+ h+='<section id="blReceived">'+blReceived()+'</section>';
+ return h;
+}
+async function blWrite(action,id,value,epoch){
+ const uid=auth.currentUser.uid,ref=doc(db,'barLoads',uid),expected=bar.loadOwn?.revision||0;
+ await runTransaction(db,async tx=>{
+  const snap=await tx.get(ref),before=snap.exists()?snap.data():null;bAssert(epoch);
+  if((before?.revision||0)!==expected)throw Error('La tua lista è cambiata su un altro dispositivo. Ricontrollala prima di riprovare.');
+  const items={...(before?.items||{})};let sharedWith=before?.sharedWith||[];
+  if(action==='share'){
+   sharedWith=[...new Set(value)].filter(person=>person!==uid);
+   if(sharedWith.length>10)throw Error('Puoi scegliere fino a 10 colleghi.');
+   if(before&&sameDetails(sharedWith,before.sharedWith))return;
+  }else if(action==='add'){
+   const text=String(value).trim();if(!text||text.length>500)throw Error('Scrivi cosa portare su, fino a 500 caratteri.');
+   if(Object.keys(items).length>=80)throw Error('La lista contiene già 80 voci. Togli quelle che non servono più.');
+   if(items[id])return;items[id]={text,done:false};
+  }else{
+   if(!items[id])throw Error('Questa voce non è più nella lista.');
+   if(action==='remove')delete items[id];else items[id]={...items[id],done:action==='done'};
+  }
+  const next={ownerName:before?.ownerName||ktName(),items,sharedWith,revision:expected+1,updatedAt:serverTimestamp(),updatedBy:uid,lastItemId:action==='share'?'':id,lastAction:action==='share'?'share':'item'};
+  tx.set(ref,next);
+ });if(action==='add')bar.loadTextDraft='';if(action==='share')bar.loadRecipientsDraft=null;
+}
+$('bBody').addEventListener('input',event=>{if(event.target.closest('#blAddForm')){bar.loadTextDraft=event.target.value;bar.loadBatchDraft=null;}});
+$('bBody').addEventListener('change',event=>{const form=event.target.closest('#blShareForm');if(form)bar.loadRecipientsDraft=new FormData(form).getAll('recipient');});
+$('bBody').addEventListener('change',async event=>{const el=event.target;if(!el.matches('[data-bl-done]'))return;el.checked=false;await bRun(epoch=>blWrite('done',el.dataset.blDone,null,epoch));});
+$('bBody').addEventListener('click',async event=>{const b=event.target.closest('[data-bl-action]');if(!b||bar.busy)return;const [action,id]=b.dataset.bar.split(':');if(action==='loadremove')await bRun(epoch=>blWrite('remove',id,null,epoch));if(action==='loadundo')await bRun(epoch=>blWrite('undo',id,null,epoch));if(action==='loadprivate')await bRun(epoch=>blWrite('share','',[],epoch));});
+$('bBody').addEventListener('submit',async event=>{const form=event.target;if(!['blAddForm','blShareForm'].includes(form.id))return;event.preventDefault();if(bar.busy)return;const data=new FormData(form);if(form.id==='blAddForm'){await bRun(epoch=>loadAddLines('bar',data.get('text'),epoch));}else await bRun(epoch=>blWrite('share','',data.getAll('recipient'),epoch));});
 
 const KC_LIST={daily:[['filtro-lavastoviglie','Filtro lavastoviglie'],['contenitori-formaggi','Contenitori formaggi'],['lavello','Lavello'],['esterno-lavastoviglie','Esterno lavastoviglie'],['esterno-friggitrice','Esterno friggitrice']],weekly:[['frigoriferi-cucina','Frigoriferi cucina'],['frigoriferi-magazzino','Frigoriferi magazzino'],['pareti-cucina','Pareti cucina'],['carrelli-sottovuotatrice','Carrelli e sottovuotatrice'],['sportello-teglie','Sportello teglie'],['abbattitori','Abbattitori'],['cappa-1','Cappa · prima pulizia'],['cappa-2','Cappa · seconda pulizia'],['zona-rifiuti','Zona rifiuti · pulizia approfondita dei bidoni']],monthly:[['porte-quadri','Porte e quadri elettrici'],['magazzino','Riorganizzare magazzino'],['affettatrice','Pulizia profonda affettatrice'],['mobili','Riordinare e pulire mobili']]};
 let kcTimer=null,kcCleaning=false,kcCleanupAt=0,kcLastPeriod='';
@@ -3035,16 +3177,16 @@ let bar={epoch:0,off:[],draft:new Map(),orderDraft:new Map(),open:new Set()};
 function bReset(){
  for(const off of bar.off)off();
  const epoch=bar.epoch+1;
- bar={epoch,off:[],uid:'',phase:'idle',ready:false,allowed:false,busy:false,bootstrapAttempted:false,items:new Map(),stock:new Map(),orders:new Map(),draft:new Map(),orderDraft:new Map(),invalid:new Map(),open:new Set(),page:'stock',search:'',editing:null,dirty:false,people:null,message:'',error:false,cleanup:false};
+ bar={epoch,off:[],uid:'',phase:'idle',ready:false,allowed:false,busy:false,bootstrapAttempted:false,loadOwn:null,loadShared:new Map(),loadPeople:new Map(),loadTextDraft:'',loadRecipientsDraft:null,loadBatchDraft:null,loadImportNotice:'',loadRegistered:false,items:new Map(),stock:new Map(),orders:new Map(),draft:new Map(),orderDraft:new Map(),invalid:new Map(),open:new Set(),page:'stock',search:'',editing:null,dirty:false,people:null,message:'',error:false,cleanup:false};
  if($('bMessageDialog')?.open)$('bMessageDialog').close();
  if($('bMessageText'))$('bMessageText').value='';
  if($('bBody'))$('bBody').replaceChildren();
 }
-function bUnsaved(){return !!(bar.busy||bar.dirty||bar.draft.size||bar.orderDraft.size||bar.invalid.size);}
+function bUnsaved(){return !!(bar.busy||bar.dirty||bar.draft.size||bar.orderDraft.size||bar.invalid.size||bar.loadTextDraft||bar.loadRecipientsDraft!==null);}
 function bMayLeave(){
  if(bar.busy){bNotice('Attendi il completamento del salvataggio.',true);return false;}
  if(bar.dirty){if(!confirm('Scartare la scheda Bar non salvata?'))return false;bar.dirty=false;bar.editing=null;}
- return !bar.draft.size&&!bar.orderDraft.size&&!bar.invalid.size||confirm('I controlli e le quantità non confermati restano aperti in questa sessione. Vuoi cambiare sezione?');
+ return !bar.draft.size&&!bar.orderDraft.size&&!bar.invalid.size&&!bar.loadTextDraft&&bar.loadRecipientsDraft===null||confirm('I controlli e le quantità non confermati restano aperti in questa sessione. Vuoi cambiare sezione?');
 }
 function bAssert(epoch){if(epoch!==bar.epoch||auth.currentUser?.uid!==bar.uid||!bar.allowed)throw Error('Sessione Bar cambiata. Riapri la sezione.');}
 function bQty(value,integer=false){
@@ -3077,20 +3219,22 @@ async function bStart(){
   bar.allowed=true;
   bar.off.push(onSnapshot(doc(db,'members',uid),{includeMetadataChanges:true},s=>{if(live()&&bServer(s)&&(!s.exists()||s.data().status!=='active'||s.data().role!==role))bBlock('Accesso al gestionale revocato o ruolo cambiato.');},e=>{if(live())bBlock(bFailure(e));}));
   if(role!=='owner')bar.off.push(onSnapshot(doc(db,'barAccess',uid),{includeMetadataChanges:true},s=>{if(live()&&bServer(s)&&s.data()?.operate!==true)bBlock('Accesso Bar revocato.');},e=>{if(live())bBlock(bFailure(e));}));
-  const pending=new Set(['items','stock','orders']);
-  for(const [key,name]of [['items','barItems'],['stock','barStock'],['orders','barOrders']]){
-   bar.off.push(onSnapshot(collection(db,name),{includeMetadataChanges:true},snapshot=>{
+  const pending=new Set(['items','stock','orders','loadOwn','loadShared','loadPeople']);
+  for(const [key,name]of [['items','barItems'],['stock','barStock'],['orders','barOrders'],['loadOwn','barLoads'],['loadShared','barLoads'],['loadPeople','barLoadPeople']]){
+   const source=key==='loadOwn'?doc(db,name,uid):key==='loadShared'?query(collection(db,name),where('sharedWith','array-contains',uid)):collection(db,name);
+   bar.off.push(onSnapshot(source,{includeMetadataChanges:true},snapshot=>{
     if(!live()||!bServer(snapshot))return;
-    bar[key]=new Map(snapshot.docs.map(s=>[s.id,{id:s.id,...s.data()}]));pending.delete(key);
+    bar[key]=key==='loadOwn'?(snapshot.exists()?snapshot.data():null):new Map(snapshot.docs.map(s=>[s.id,{id:s.id,...s.data()}]));pending.delete(key);
     if(!pending.size){
      if(role==='owner'&&!bar.bootstrapAttempted){
       bar.bootstrapAttempted=true;
       if(B_SEEDS.some(p=>!bar.items.has(p.id))){bar.phase='setup';bar.busy=true;bNotice('Preparazione automatica dei prodotti Bar…');bRender();void bBootstrap(epoch);return;}
      }
      if(bar.phase==='setup'||bar.phase==='setup-error')return;
-     const first=!bar.ready;bar.ready=true;bar.phase='ready';if(first){bNotice('Bar collegato.');void bCleanup(epoch);}
+     const first=!bar.ready;bar.ready=true;bar.phase='ready';if(first){bNotice('Bar collegato.');bLoadPeopleReady(epoch);void bCleanup(epoch);}
     }
-    if(!bar.busy&&!bar.dirty&&!document.activeElement?.closest('#bBody input,#bBody select'))bRender();
+    if(key==='loadShared'&&bar.page==='loads'&&$('blReceived'))$('blReceived').innerHTML=blReceived();
+    if(!bar.busy&&!bar.dirty&&!bar.loadTextDraft&&bar.loadRecipientsDraft===null&&!document.activeElement?.closest('#bBody input,#bBody select,#bBody textarea'))bRender();
    },error=>{if(live())bBlock(bFailure(error));}));
   }
  }catch(error){if(live())bBlock(bFailure(error));}
@@ -3098,9 +3242,10 @@ async function bStart(){
 async function bBootstrap(epoch){
  try{
   await bInitialize(epoch);bAssert(epoch);bar.phase='ready';bar.ready=true;bar.busy=false;
-  bNotice('Prodotti Bar pronti. Controlla le giacenze prima di confermare gli ordini.');bRender();void bCleanup(epoch);
+  bLoadPeopleReady(epoch);bNotice('Prodotti Bar pronti. Controlla le giacenze prima di confermare gli ordini.');bRender();void bCleanup(epoch);
  }catch(error){if(epoch===bar.epoch){bar.phase='setup-error';bar.busy=false;bar.ready=false;bNotice('Preparazione da completare: '+bFailure(error),true);bRender();}}
 }
+function bLoadPeopleReady(epoch){if(bar.loadRegistered)return;bar.loadRegistered=true;void blRegister(epoch).catch(error=>{if(epoch===bar.epoch)bNotice('Elenco colleghi non aggiornato. '+bFailure(error),true);});}
 function bButton(label,action,disabled=false){return '<button type="button" class="small-action" data-b="'+ke(action)+'" '+(disabled||bar.busy?'disabled':'')+'>'+ke(label)+'</button>';}
 function bCounter(id,value,type,label){
  const invalid=bar.invalid.get(type+':'+id);
@@ -3118,13 +3263,14 @@ function bRender(){
  for(const el of document.querySelectorAll('[data-b-page]'))el.setAttribute('aria-pressed',String(el.dataset.bPage===bar.page));
  if(!bar.ready){$('bBody').innerHTML='<p>'+ke(['denied','setup-error'].includes(bar.phase)?bar.message:bar.phase==='setup'?'Preparazione automatica dell’elenco incluso nel gestionale…':'Collegamento al Bar in corso…')+'</p>'+(bar.phase==='setup'?'':bButton('Riprova','reload'));return;}
  let h='';
- if(!bar.items.size){h='<div class="b-card"><h3>Il tuo Bar</h3><p>L’elenco prodotti è già incluso nel codice. Al primo accesso della proprietaria si prepara automaticamente nel database condiviso.</p></div>';}
+ if(!bar.items.size&&bar.page!=='loads'){h='<div class="b-card"><h3>Il tuo Bar</h3><p>L’elenco prodotti è già incluso nel codice. Al primo accesso della proprietaria si prepara automaticamente nel database condiviso.</p></div>';}
  else if(bar.page==='stock'){
   h='<p class="mini">Controlla le quantità e conferma le voci selezionate. Passo 0,25. Le quantità iniziali sono un riferimento, non un controllo di oggi.</p><label class="b-search">Cerca prodotto<input id="bSearch" type="search" value="'+ke(bar.search)+'" placeholder="Es. gin, latte, tovaglioli"></label>';
   const items=bActive();
   for(const category of [...new Set(items.map(x=>x.category))].sort((a,b)=>B_CATS.indexOf(a)-B_CATS.indexOf(b))){const products=items.filter(p=>p.category===category);h+='<details class="b-category" data-b-category="'+ke(category)+'" '+(bar.open.has(category)?'open':'')+'><summary>'+ke(category)+' <span>'+products.length+'</span></summary>'+products.map(bStockRow).join('')+'</details>';}
   h+='<div class="b-sticky">'+bButton('Conferma controlli ('+bar.draft.size+')','confirm',!bar.draft.size)+bButton('Scarta controlli','discard',!bar.draft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('stock:')))+'</div><p class="mini">Una quantità lasciata vuota non viene interpretata come zero. La conferma aggiunge le mancanze alla lista; le quantità già presenti nella lista vengono conservate.</p>';
- }else if(bar.page==='cart'){
+ }else if(bar.page==='loads'){h=blRender();}
+ else if(bar.page==='cart'){
   const orders=bOrders();h='<p class="mini">Lista condivisa del Bar. Gli ordini automatici sono arrotondati all’intero superiore, come nell’Excel. Per gli articoli manuali scegli tu la quantità.</p>';
   if(!orders.length)h+='<p>Non ci sono prodotti da acquistare.</p>';
   for(const o of orders){const qty=bar.orderDraft.has(o.id)?bar.orderDraft.get(o.id).qty:o.qty;h+='<div class="b-row"><div class="b-label"><strong>'+ke(o.name)+'</strong><small>'+ke(o.orderUnit)+(o.status==='sent'?' · Segnato come condiviso':'')+'</small>'+(qty===0?'<small class="b-warning">Scegli quanto acquistare</small>':'')+'</div>'+bCounter(o.id,qty,'order','Da acquistare '+o.name)+bButton('Rimuovi','remove:'+o.id)+'</div>';}
@@ -3152,7 +3298,7 @@ function bEvent(tx,event,entity,id,action){tx.set(event,{entity,entityId:id,acti
 async function bRun(action){
  if(bar.busy||!bar.ready||!bar.allowed)return;
  if(!navigator.onLine){bNotice('Sei offline. Nessun salvataggio confermato.',true);return;}
- const epoch=bar.epoch;bar.busy=true;const controls=[...$('bBody').querySelectorAll('button,input,select')].map(el=>[el,el.disabled]);controls.forEach(([el])=>el.disabled=true);
+ const epoch=bar.epoch;bar.busy=true;const controls=[...$('bBody').querySelectorAll('button,input,textarea,select')].map(el=>[el,el.disabled]);controls.forEach(([el])=>el.disabled=true);
  bNotice('Salvataggio in corso…');let success=false;
  try{const message=await action(epoch);bAssert(epoch);success=true;bNotice(message||'Salvataggio confermato.');}
  catch(error){if(epoch===bar.epoch)bNotice(bFailure(error),true);}
