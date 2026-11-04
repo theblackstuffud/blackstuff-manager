@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it" data-privacy-app="manager">
 <head>
-<meta name="tbs-release" content="2026-11-03-pulizie-v14">
+<meta name="tbs-release" content="2026-11-04-bar-integrato-v17">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
@@ -593,6 +593,17 @@ textarea{resize:vertical;}
 @media(max-width:600px){#kBody .ku-card{padding:16px;border-radius:15px}#kBody .k-category{padding:7px 12px}#kitchenPanel .k-toolbar h2{font-size:24px}#kitchenPanel .k-toolbar>div{gap:6px}#kitchenPanel .k-toolbar>div .small-action{margin:0;padding:9px 11px}#kBody .k-turn-main .k-label{flex:1 1 140px}#kBody .k-turn-main .k-row>.small-action{flex:0 0 auto}#kBody .k-form .button{width:100%}}
 </style>
 <style id="cleaningStyle">.kc-row{display:flex;align-items:flex-start;gap:12px;min-height:54px;padding:14px 0;border-bottom:1px solid var(--border);cursor:pointer}.kc-row:last-child{border-bottom:0}.kc-row input{width:23px;height:23px;flex:0 0 23px;margin:0}.kc-row span{min-width:0;overflow-wrap:anywhere}.kc-row small{display:block;color:var(--muted);font-size:12px;margin-top:5px;line-height:1.5}</style>
+<style id="barStyle">#barPanel{display:none}body[data-manager-ready="true"][data-manager-view="bar"] #barPanel{display:block}
+#bHomeButton{margin-top:18px}#barPanel .k-toolbar{padding-bottom:16px;border-bottom:1px solid var(--border)}
+#bMessage:empty{display:none}.b-tabs,.b-actions{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}.b-tabs button{min-height:44px;margin:0!important}.b-tabs [aria-pressed=true]{background:var(--accent-soft);border-color:var(--accent-border);color:var(--accent)}
+.b-category,.b-card{border:1px solid var(--border);border-radius:16px;background:var(--card);margin:14px 0;padding:6px 18px}.b-category>summary{padding:16px 0;cursor:pointer;font-weight:650;min-height:48px}.b-category>summary span{font-size:12px;color:var(--muted);margin-left:8px}.b-card{padding:22px}.b-card p{line-height:1.6}
+.b-row{display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid var(--border);flex-wrap:wrap}.b-row:last-child{border-bottom:0}.b-label{flex:1 1 220px;min-width:0}.b-label strong{font-size:14px;overflow-wrap:anywhere}.b-label small{display:block;color:var(--muted);font-size:12px;line-height:1.5;margin-top:5px}.b-label .b-warning{color:var(--accent)}
+.b-counter{display:flex;align-items:center;gap:6px;flex:0 0 auto}.b-counter button{width:44px;min-height:44px;padding:8px;margin:0!important;font-size:20px}.b-counter input{width:82px!important;min-width:0;text-align:center;margin:0;min-height:44px;font:inherit;padding:10px 4px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text)}.b-counter input:invalid{outline:2px solid #ae3939}
+.b-search{display:grid;gap:8px;font-size:13px;font-weight:600;max-width:520px}.b-search input,.b-form input,.b-form select{min-height:44px;width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font:inherit}.b-form{max-width:640px}.b-form>label{display:grid;gap:8px;margin:18px 0;font-size:14px}.b-form .b-check{display:flex;align-items:center;gap:10px}.b-form input[type=checkbox]{width:22px;min-height:22px;height:22px}.b-sticky{display:flex;flex-wrap:wrap;gap:8px;position:sticky;bottom:0;background:var(--bg);padding:14px 0;z-index:3;border-top:1px solid var(--border);margin-top:20px}.b-sticky button{margin:0!important;min-height:44px}#bBody .mini{line-height:1.65}
+#bMessageDialog{max-width:620px;width:calc(100% - 32px);border:1px solid var(--border);border-radius:18px;background:var(--card);color:var(--text);padding:22px;max-height:85dvh;overflow:auto}#bMessageDialog::backdrop{background:#0007}#bMessageDialog textarea{display:block;min-height:230px;width:100%;box-sizing:border-box;padding:14px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);font:inherit;margin:18px 0;resize:vertical}#bMessageDialog p{line-height:1.6;font-size:14px}
+@media(max-width:520px){.b-category{padding:6px 12px}.b-row{gap:10px}.b-label{flex-basis:100%}.b-counter input{width:88px!important}.b-sticky button{flex:1 1 140px}.b-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.b-tabs button{padding:10px 6px;font-size:12px}#bMessageDialog{padding:16px}}
+@media(prefers-reduced-motion:reduce){#barPanel *{scroll-behavior:auto}}
+</style>
 </head>
 <body>
 <main>
@@ -639,11 +650,13 @@ textarea{resize:vertical;}
     <p class="workspace-caption">Le modifiche vanno online quando premi “Pubblica modifica”.</p>
   </div>
 <div id="kHomeButton" class="menu-workspace"><h3>Cucina</h3><p>Giacenze, riordini, preparazioni e pulizie.</p><button type="button" class="button workspace-action" data-manager-go="kitchen">Apri Cucina →</button></div>
-  <a class="public-menu-link" href="https://theblackstuffud.github.io/blackstuff-menu/?tbs_stats=off" target="_blank" rel="noopener noreferrer"><span class="public-menu-copy">Anteprima menu<small>Come lo vedono i clienti</small></span><span aria-hidden="true">↗</span></a>
+  <div id="bHomeButton" class="menu-workspace"><h3>Bar</h3><p>Controlla le giacenze e prepara la lista per il gruppo WhatsApp.</p><button type="button" class="button workspace-action" data-manager-go="bar">Apri Bar →</button></div>
+<a class="public-menu-link" href="https://theblackstuffud.github.io/blackstuff-menu/?tbs_stats=off" target="_blank" rel="noopener noreferrer"><span class="public-menu-copy">Anteprima menu<small>Come lo vedono i clienti</small></span><span aria-hidden="true">↗</span></a>
 </section>
 <nav id="managerNav" aria-label="Navigazione gestionale"><button type="button" class="small-action" id="managerBack">← Home</button><span id="managerSectionTitle"></span></nav>
 <section id="kitchenPanel" class="panel" aria-labelledby="kHeading"><div class="k-toolbar"><h2 id="kHeading" tabindex="-1">Cucina</h2><div><button type="button" class="small-action" id="kOpenNotifications" aria-label="Notifiche cucina">Notifiche <span data-k-count class="k-alert-count">0</span></button><button type="button" class="small-action" id="kRetry">Riprova</button><button type="button" class="small-action" id="kEdit" data-owner-only>Modifica</button></div></div><div id="kMessage" class="message" role="status" aria-live="polite"></div><div id="kBody"></div></section><dialog id="kMessageDialog" aria-labelledby="kMessageTitle"><h2 id="kMessageTitle">Messaggio da copiare</h2><p>Puoi correggere il testo. Le modifiche qui non cambiano la lista salvata.</p><textarea id="kMessageText" aria-label="Messaggio modificabile"></textarea><button type="button" class="button" id="kCopyMessage">Copia messaggio</button><button type="button" class="small-action" id="kCloseMessage">Chiudi</button><p id="kCopyStatus" role="status"></p></dialog>
 
+<section id="barPanel" class="panel" aria-labelledby="bHeading"><div class="k-toolbar"><h2 id="bHeading" tabindex="-1">Bar</h2><button type="button" class="small-action" data-b="reload">Ricarica</button></div><div id="bMessage" class="message" role="status" aria-live="polite"></div><nav class="b-tabs" aria-label="Sezioni Bar"><button type="button" class="small-action" data-b-page="stock" aria-pressed="true">Giacenze</button><button type="button" class="small-action" id="bCartTab" data-b-page="cart" aria-pressed="false">Lista (0)</button><button type="button" class="small-action" id="bSettings" data-b-page="settings" aria-pressed="false" hidden>Modifica</button></nav><div id="bBody"></div></section><dialog id="bMessageDialog" aria-labelledby="bMessageTitle"><h2 id="bMessageTitle">Lista Bar</h2><p>Soltanto prodotti e quantità. Puoi correggere il testo prima di copiarlo nel gruppo WhatsApp.</p><textarea id="bMessageText" aria-label="Lista Bar modificabile"></textarea><button type="button" class="button" id="bCopyMessage">Copia lista</button> <button type="button" class="small-action" id="bCloseMessage">Chiudi</button><p id="bCopyStatus" role="status" aria-live="polite"></p></dialog>
 <section id="catalogPanel" class="panel" aria-labelledby="catalogHeading">
 <h2 id="catalogHeading" tabindex="-1">Modifica menu</h2>
 <p>Aggiorna le informazioni che i clienti vedono nel menu.</p>
@@ -1761,20 +1774,22 @@ document.querySelectorAll('[data-stats-days]').forEach(button=>button.addEventLi
 }));
 window.addEventListener('beforeunload',event=>{if(statisticsSaving){event.preventDefault();event.returnValue='';}});
 
-const MANAGER_VIEWS={kitchen:'Cucina',statistics:'Statistiche',home:'Home',catalog:'Modifica menu',appearance:'Aspetto del menu',wallet:'Portafoglio IA',account:'Il mio accesso',members:'Utenti e permessi',requests:'Richieste di accesso',history:'Storico attività'};
+const MANAGER_VIEWS={bar:'Bar',kitchen:'Cucina',statistics:'Statistiche',home:'Home',catalog:'Modifica menu',appearance:'Aspetto del menu',wallet:'Portafoglio IA',account:'Il mio accesso',members:'Utenti e permessi',requests:'Richieste di accesso',history:'Storico attività'};
 let managerView='home';
 let kuApplying=false,kuBackApproved=false,kuRestoring=false;
 if(!Number.isInteger(history.state?.tbsIndex))history.replaceState({...history.state,tbsIndex:0},'',location.href);
 let kuLastIndex=history.state.tbsIndex;
-function kuState(view){return {managerView:view,kitchenPage:view==='kitchen'?k.page:null,editId:k.editId||null,turnEdit:k.turnEdit||null,tbsIndex:history.state?.tbsIndex||0};}
-function kuPush(view){const state=kuState(view);state.tbsIndex++;history.pushState(state,'','#/'+view+(view==='kitchen'&&k.page!=='home'?'/'+k.page:''));kuLastIndex=state.tbsIndex;}
+function kuState(view){return {managerView:view,kitchenPage:view==='kitchen'?k.page:null,barPage:view==='bar'?bar.page:null,barEditId:view==='bar'?bar.editing?.id:null,editId:k.editId||null,turnEdit:k.turnEdit||null,tbsIndex:history.state?.tbsIndex||0};}
+function kuPush(view){const state=kuState(view);state.tbsIndex++;history.pushState(state,'','#/'+view+(view==='kitchen'&&k.page!=='home'?'/'+k.page:view==='bar'?'/'+bar.page:''));kuLastIndex=state.tbsIndex;}
 function kuRecord(){
  if(kuApplying||managerView!=='kitchen')return;
  const state=history.state;
  if(state?.managerView==='kitchen'&&state.kitchenPage!==k.page)kuPush('kitchen');
  else if(state?.managerView!=='kitchen'){history.replaceState(kuState('kitchen'),'','#/kitchen'+(k.page==='home'?'':'/'+k.page));}
 }
+function bRecord(){if(kuApplying||managerView!=='bar')return;const previous=history.state;if(previous?.managerView==='bar'&&previous.barPage!==bar.page)kuPush('bar');}
 function kuBack(){
+ if(managerView==='bar'&&!bMayLeave())return;
  if(managerView==='kitchen'&&!kitchenMayLeave())return;
  if((history.state?.tbsIndex||0)>0){kuBackApproved=true;history.back();return;}
  if(managerView==='kitchen'&&k.page!=='home'){k.page=['item','supplier','access'].includes(k.page)?'settings':'home';kRender();}
@@ -1784,13 +1799,14 @@ function kuPop(){
  const target=history.state||{},index=target.tbsIndex||0;
  if(kuRestoring){kuRestoring=false;kuLastIndex=index;return;}
  const approved=kuBackApproved;kuBackApproved=false;
- if(!approved&&managerView==='kitchen'&&!kitchenMayLeave()){
+ if(!approved&&((managerView==='kitchen'&&!kitchenMayLeave())||(managerView==='bar'&&!bMayLeave()))){
   const delta=kuLastIndex-index;if(delta){kuRestoring=true;history.go(delta);}return;
  }
  kuApplying=true;
  try{
   const parts=location.hash.slice(2).split('/'),view=target.managerView||parts[0]||'home';
   if(view==='kitchen'){k.page=target.kitchenPage||parts[1]||'home';k.editId=target.editId;k.turnEdit=target.turnEdit;}
+  if(view==='bar'){bar.page=target.barPage||parts[1]||'stock';if(bar.page==='edit'){const p=bar.items.get(target.barEditId);if(p)bar.editing={id:p.id,revision:p.revision,data:p};else bar.page='settings';}}
   showManagerView(view,false);
   if(view==='kitchen'&&k.ready){if(k.page==='item')kItemForm(k.editId);else if(k.page==='supplier')kSupplierForm(k.editId);else if(k.page==='tasknote')ktNoteForm(k.turnEdit);else if(k.page==='access')void kAccessPage();}
   kuLastIndex=index;
@@ -1808,7 +1824,9 @@ document.addEventListener('pointerup',e=>{
 },{passive:true});
 
 function showManagerView(view, push=false, focus=true){
+ const barRoute=String(view).startsWith('bar/');if(barRoute){const page=String(view).split('/')[1];view='bar';bar.page=['stock','cart','settings','access'].includes(page)?page:'stock';}
  const kitchenRoute=String(view).startsWith('kitchen/');if(kitchenRoute){const page=String(view).split('/')[1];view='kitchen';k.page=['home','stock','cart','tasks','loads','clean','handover','settings','notifications','preferences'].includes(page)?page:page==='tasknote'?'tasks':'settings';}
+ if(!kuApplying&&managerView==='bar'&&view!=='bar'&&!bMayLeave())return;
  if(!kuApplying&&managerView==='kitchen'&&view!=='kitchen'&&!kitchenMayLeave())return;
  if(statisticsSaving&&view!==managerView){statisticsMessage('Attendi il salvataggio della raccolta.');return;}
  if(catalogBusy&&view!==managerView){catalogMessage('Attendi il completamento della pubblicazione.');return;}
@@ -1816,6 +1834,7 @@ function showManagerView(view, push=false, focus=true){
  if(currentRole&&managerView==='catalog'&&view!=='catalog'&&editorDirty&&!$('catalogEditor').hidden){if(!confirm('Scartare le modifiche non pubblicate?'))return;editorDirty=false;$('catalogEditor').hidden=true;}
  if(!currentRole || !MANAGER_VIEWS[view] || (['members','requests','history','wallet','appearance','statistics'].includes(view)&&currentRole!=='owner'))view='home';
  if(view==='kitchen'&&managerView!=='kitchen'&&!kuApplying&&!kitchenRoute)k.page='home';
+ if(view==='bar'&&managerView!=='bar'&&!kuApplying&&!barRoute)bar.page='stock';
  managerView=view;
  document.body.dataset.managerView=view;
  document.body.dataset.managerReady=String(!!currentRole);
@@ -1826,6 +1845,7 @@ function showManagerView(view, push=false, focus=true){
  if(push)kuPush(view);
  if(view==='catalog')loadCatalog();
  if(view==='kitchen')kRender();
+ if(view==='bar'){if(bar.phase==='idle')void bStart();else bRender();}
  if(currentRole==='owner'){
   if(view==='members')loadMembers();
   if(view==='requests')loadRequests();
@@ -1835,7 +1855,7 @@ function showManagerView(view, push=false, focus=true){
  }
  if(focus){
   window.scrollTo({top:0,behavior:'instant'});
-  const heading=view==='kitchen'?$('kHeading'):view==='statistics'?$('statisticsHeading'):view==='appearance'?$('appearanceHeading'):view==='catalog'?$('catalogHeading'):view==='wallet'?$('walletHeading'):view==='home'?$('managerHomeTitle'):view==='account'?$('signedIn').querySelector('h2'):view==='history'?$('historyPanel').querySelector('h2'):$('ownerSectionTitle');
+  const heading=view==='bar'?$('bHeading'):view==='kitchen'?$('kHeading'):view==='statistics'?$('statisticsHeading'):view==='appearance'?$('appearanceHeading'):view==='catalog'?$('catalogHeading'):view==='wallet'?$('walletHeading'):view==='home'?$('managerHomeTitle'):view==='account'?$('signedIn').querySelector('h2'):view==='history'?$('historyPanel').querySelector('h2'):$('ownerSectionTitle');
   heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true});
  }
 }
@@ -1869,6 +1889,7 @@ function setOwnerNotice(message,kind=""){
 function clearDash(){
  resetCatalogQuality();
  kitchenReset();
+ bReset();
  resetManagerInvite();
  resetStatistics();
  catalogAvailability='available';$('catalogSearch').value='';$('catalogVerification').value='all';$('productVerificationStatus').textContent='';$('catalogAllergen').value='';$('catalogDietaryStatus').value='all';$('catalogDietarySummary').textContent='';$('catalogAvailableCount').textContent='0';$('catalogInactiveCount').textContent='0';$('catalogAvailableTab').setAttribute('aria-pressed','true');$('catalogInactiveTab').setAttribute('aria-pressed','false');
@@ -2535,7 +2556,35 @@ async function klRegister(epoch){
  const batch=writeBatch(db);batch.set(doc(db,'kitchenLoadPeople',uid),{name:ktName(),updatedAt:serverTimestamp()});await batch.commit();
 }
 function klEntries(list){return Object.entries(list?.items||{}).sort((a,b)=>a[1].text.localeCompare(b[1].text,'it'));}
-function klReceived(){const received=[...k.loadShared].filter(([id])=>id!==auth.currentUser.uid);return '<h3>Condivisi con me</h3>'+(received.length?'':'<p>Nessuna lista condivisa con te.</p>')+received.map(([id,list])=>'<details class="k-category"><summary>Carichi di '+ke(list.ownerName)+' · '+klEntries(list).filter(([,i])=>!i.done).length+' da portare</summary><p class="mini">Sola lettura · aggiornata '+ke(kTime(list.updatedAt))+'</p>'+klRows(list,false)+'</details>').join('');}
+async function klImport(sourceUid,epoch){
+ const uid=auth.currentUser.uid;if(sourceUid===uid)throw Error('Questa è già la tua lista.');
+ const sourceRef=doc(db,'kitchenLoads',sourceUid),targetRef=doc(db,'kitchenLoads',uid),source=k.loadShared.get(sourceUid);
+ if(!source)throw Error('La lista non è più condivisa con te.');
+ const ids=klEntries(source).filter(([,item])=>!item.done).map(([id])=>id);let added=0,skipped=0;
+ const normalized=text=>text.normalize('NFKC').trim().replace(/\s+/g,' ').toLocaleLowerCase('it');
+ try{
+  for(const id of ids){
+   kAssert(epoch);if(!navigator.onLine)throw Error('Connessione interrotta.');
+   const result=await runTransaction(db,async tx=>{
+    const from=await tx.get(sourceRef),to=await tx.get(targetRef);kAssert(epoch);
+    const list=from.data(),before=to.data();if(!from.exists()||!list.sharedWith?.includes(uid))throw Error('La condivisione è stata revocata.');
+    const item=list.items?.[id];if(!item||item.done)return {skipped:true,before};
+    if(typeof item.text!=='string'||!item.text.trim()||item.text.length>500)throw Error('Una voce della lista non è valida.');
+    const items={...(before?.items||{})};
+    if(items[id]||Object.values(items).some(existing=>normalized(existing.text)===normalized(item.text)))return {skipped:true,before};
+    if(Object.keys(items).length>=80)throw Error('La tua lista contiene già 80 voci. Togli quelle che non servono più.');
+    items[id]={text:item.text,done:false};
+    const next={ownerName:before?.ownerName||ktName(),items,sharedWith:before?.sharedWith||[],revision:(before?.revision||0)+1,updatedAt:serverTimestamp(),updatedBy:uid,lastItemId:id,lastAction:'item'};
+    tx.set(targetRef,next);return {skipped:false,before:next};
+   });
+   kAssert(epoch);if(result.before)k.loadOwn=result.before;if(result.skipped)skipped++;else added++;
+  }
+  k.loadImportNotice=added+' '+(added===1?'voce importata':'voci importate')+' nella tua lista.'+(skipped?' '+skipped+' voci già presenti o non più da portare sono state saltate.':'');
+ }catch(error){k.loadImportNotice=added+' voci già importate. '+kError(error)+' Puoi riprovare: quelle già presenti non verranno duplicate.';throw Error(k.loadImportNotice);}
+}
+$('kBody').addEventListener('click',async e=>{const b=e.target.closest('[data-kl-import]');if(!b||k.busy)return;await kRun(epoch=>klImport(b.dataset.klImport,epoch));});
+
+function klReceived(){const received=[...k.loadShared].filter(([id])=>id!==auth.currentUser.uid);return '<h3>Condivisi con me</h3>'+(received.length?'':'<p>Nessuna lista condivisa con te.</p>')+received.map(([id,list])=>'<details class="k-category"><summary>Carichi di '+ke(list.ownerName)+' · '+klEntries(list).filter(([,i])=>!i.done).length+' da portare</summary><p class="mini">Sola lettura · aggiornata '+ke(kTime(list.updatedAt))+'</p>'+klRows(list,false)+'<button type="button" class="small-action" data-kl-import="'+ke(id)+'" '+(k.busy||!klEntries(list).some(([,i])=>!i.done)?'disabled':'')+'>Importa nella mia lista</button><p class="mini">Copia le voci ancora da portare. La copia è indipendente e segue le impostazioni di condivisione della tua lista.</p></details>').join('');}
 function klRows(list,editable){
  let h='';for(const [id,item]of klEntries(list).filter(([,i])=>!i.done))h+='<div class="k-row"><label class="k-turn-check">'+(editable?'<input type="checkbox" data-kl-done="'+ke(id)+'">':'<span aria-hidden="true">□</span>')+'<span class="k-turn-note">'+ke(item.text)+'</span></label>'+(editable?kButton('Togli','loadremove:'+id):'')+'</div>';
  if(!klEntries(list).some(([,i])=>!i.done))h+='<p>Nessuna cosa da portare su.</p>';
@@ -2553,6 +2602,7 @@ function klRender(){
  for(const [id,p]of [...people].filter(([id])=>id!==uid).sort((a,b)=>a[1].name.localeCompare(b[1].name,'it')))h+='<label class="k-check"><input type="checkbox" name="recipient" value="'+ke(id)+'" '+((k.loadRecipientsDraft||shared).includes(id)?'checked':'')+'>'+ke(p.name)+' <small>· '+ke(id.slice(-6))+'</small></label>';
  if(people.size<=1)h+='<p>Nessun altro collega è ancora comparso nell’elenco.</p>';
  h+='<button class="button">Salva condivisione</button>'+(shared.length?kButton('Rendi di nuovo privata','loadprivate'):'')+'</form></details>';
+ if(k.loadImportNotice)h+='<p role="status" class="message">'+ke(k.loadImportNotice)+'</p>';
  h+='<section id="klReceived">'+klReceived()+'</section>';
  return h;
 }
@@ -2667,7 +2717,7 @@ function kitchenReset(){
  for(const off of k.off||[])off();
  if($('kMessageDialog')?.open)$('kMessageDialog').close();
  if($('kMessageText'))$('kMessageText').value='';
- k={off:[],epoch:(k.epoch||0)+1,accessState:'idle',accessError:'',failures:new Map(),ready:false,allowed:false,busy:false,openCategories:new Set(),taskMainOpen:false,page:'home',items:new Map(),suppliers:new Map(),stock:new Map(),orders:new Map(),tasks:new Map(),events:[],reports:new Map(),shiftNotes:new Map(),turnOpen:new Map(),turnDrafts:new Map(),turnTemplates:new Map(),turnHistory:new Map(),turnState:null,cleanPrivate:new Map(),cleanShared:new Map(),loadOwn:null,loadShared:new Map(),loadPeople:new Map(),loadTextDraft:'',loadRecipientsDraft:null,draft:new Map(),orderDraft:new Map(),messageDraft:new Map(),prefs:{handover:true,stock:true,orders:true,tasks:true,clean:true,readIds:[],muted:false,quietStart:'02:00',quietEnd:'10:00'},pending:new Set(),formDirty:false};
+ k={off:[],epoch:(k.epoch||0)+1,accessState:'idle',accessError:'',failures:new Map(),ready:false,allowed:false,busy:false,openCategories:new Set(),taskMainOpen:false,page:'home',items:new Map(),suppliers:new Map(),stock:new Map(),orders:new Map(),tasks:new Map(),events:[],reports:new Map(),shiftNotes:new Map(),turnOpen:new Map(),turnDrafts:new Map(),turnTemplates:new Map(),turnHistory:new Map(),turnState:null,cleanPrivate:new Map(),cleanShared:new Map(),loadOwn:null,loadShared:new Map(),loadPeople:new Map(),loadTextDraft:'',loadRecipientsDraft:null,loadImportNotice:'',draft:new Map(),orderDraft:new Map(),messageDraft:new Map(),prefs:{handover:true,stock:true,orders:true,tasks:true,clean:true,readIds:[],muted:false,quietStart:'02:00',quietEnd:'10:00'},pending:new Set(),formDirty:false};
  if($('kBody'))$('kBody').replaceChildren();kBadge();
 }
 kitchenReset();
@@ -2977,9 +3027,289 @@ onAuthStateChanged(auth,async user=>{
 });
 getRedirectResult(auth).catch(e=>{const box=$("loginError");box.className="message error";box.textContent=explain(e)});
 
+// Bar — quantità e scorte dall'Excel, dati riservati, nessun invio automatico.
+const B_SEEDS=[{"id":"amaretto-di-saronno","name":"AMARETTO DI SARONNO","category":"Prodotti bar","target":1,"initialQty":1},{"id":"amaro-branca-menta","name":"AMARO BRANCA MENTA","category":"Prodotti bar","target":1,"initialQty":1},{"id":"amaro-braulio","name":"AMARO BRAULIO","category":"Prodotti bar","target":1,"initialQty":1},{"id":"amaro-cynar","name":"AMARO CYNAR","category":"Prodotti bar","target":1,"initialQty":0},{"id":"amaro-del-capo","name":"AMARO DEL CAPO","category":"Prodotti bar","target":2,"initialQty":1},{"id":"amaro-fernet-branca","name":"AMARO FERNET BRANCA","category":"Prodotti bar","target":2,"initialQty":1},{"id":"amaro-jagermeister","name":"AMARO JAGERMEISTER","category":"Prodotti bar","target":2,"initialQty":2},{"id":"amaro-jefferson","name":"AMARO JEFFERSON","category":"Prodotti bar","target":2,"initialQty":2},{"id":"amaro-montenegro","name":"AMARO MONTENEGRO","category":"Prodotti bar","target":3,"initialQty":2},{"id":"amaro-nonino","name":"AMARO NONINO","category":"Prodotti bar","target":2,"initialQty":2},{"id":"amaro-pelinkovac","name":"AMARO PELINKOVAC","category":"Prodotti bar","target":2,"initialQty":2},{"id":"amaro-ramazzotti","name":"AMARO RAMAZZOTTI","category":"Prodotti bar","target":1,"initialQty":1},{"id":"amaro-unicum","name":"AMARO UNICUM","category":"Prodotti bar","target":1,"initialQty":1},{"id":"angostura","name":"ANGOSTURA","category":"Prodotti bar","target":1,"initialQty":1},{"id":"aperol","name":"APEROL","category":"Prodotti bar","target":6,"initialQty":6},{"id":"arachidi","name":"ARACHIDI","category":"Prodotti bar","target":5,"initialQty":0},{"id":"bacardi","name":"BACARDI","category":"Prodotti bar","target":2,"initialQty":2},{"id":"baileys","name":"BAILEYS","category":"Prodotti bar","target":2,"initialQty":0},{"id":"batida-de-coco","name":"BATIDA DE COCO","category":"Prodotti bar","target":1,"initialQty":1},{"id":"bavaria-ipa-0-0","name":"BAVARIA IPA 0.0","category":"Prodotti bar","target":24,"initialQty":10},{"id":"borghetti","name":"BORGHETTI","category":"Prodotti bar","target":2,"initialQty":2},{"id":"campari","name":"CAMPARI","category":"Prodotti bar","target":6,"initialQty":4},{"id":"caffe","name":"CAFFÈ","category":"Prodotti bar","target":3,"initialQty":3},{"id":"caffe-deka","name":"CAFFÈ DEKA","category":"Prodotti bar","target":1,"initialQty":1},{"id":"caffe-orzo","name":"CAFFÈ ORZO","category":"Prodotti bar","target":1,"initialQty":1},{"id":"cioccolata-calda","name":"CIOCCOLATA CALDA","category":"Prodotti bar","target":1,"initialQty":1},{"id":"corona","name":"CORONA","category":"Prodotti bar","target":24,"initialQty":24},{"id":"corona-cero","name":"CORONA CERO","category":"Prodotti bar","target":24,"initialQty":24},{"id":"fever-tree-elderflower","name":"FEVER TREE ELDERFLOWER","category":"Prodotti bar","target":24,"initialQty":24},{"id":"fever-tree-ginger-beer","name":"FEVER TREE GINGER BEER","category":"Prodotti bar","target":24,"initialQty":24},{"id":"fever-tree-light","name":"FEVER TREE LIGHT","category":"Prodotti bar","target":24,"initialQty":24},{"id":"fever-tree-mediterranea","name":"FEVER TREE MEDITERRANEA","category":"Prodotti bar","target":24,"initialQty":24},{"id":"fever-tree-ndian","name":"FEVER TREE NDIAN","category":"Prodotti bar","target":24,"initialQty":24},{"id":"ginger-ale","name":"GINGER ALE","category":"Prodotti bar","target":24,"initialQty":24},{"id":"gin-beefeater","name":"GIN BEEFEATER","category":"Prodotti bar","target":1,"initialQty":1},{"id":"gin-bombay","name":"GIN BOMBAY","category":"Prodotti bar","target":1,"initialQty":1},{"id":"gin-bulldog","name":"GIN BULLDOG","category":"Prodotti bar","target":1,"initialQty":1},{"id":"gin-cubical","name":"GIN CUBICAL","category":"Prodotti bar","target":1,"initialQty":1},{"id":"gin-etsu","name":"GIN ETSU","category":"Prodotti bar","target":1,"initialQty":1},{"id":"gin-gordon-s","name":"GIN GORDON'S","category":"Prodotti bar","target":6,"initialQty":3.5},{"id":"gin-hendrick-s","name":"GIN HENDRICK'S","category":"Prodotti bar","target":2,"initialQty":1},{"id":"gin-malfy-pompelmo-rosa","name":"GIN MALFY POMPELMO ROSA","category":"Prodotti bar","target":1,"initialQty":1},{"id":"gin-mare","name":"GIN MARE","category":"Prodotti bar","target":2,"initialQty":2},{"id":"gin-no3","name":"GIN Nº3","category":"Prodotti bar","target":1,"initialQty":1},{"id":"gin-tanqueray-0","name":"GIN TANQUERAY 0","category":"Prodotti bar","target":1,"initialQty":1},{"id":"gin-the-botanist","name":"GIN THE BOTANIST","category":"Prodotti bar","target":1,"initialQty":1},{"id":"gin-windspiel","name":"GIN WINDSPIEL","category":"Prodotti bar","target":1,"initialQty":1},{"id":"gingerino","name":"GINGERINO","category":"Prodotti bar","target":10,"initialQty":4},{"id":"crodino","name":"CRODINO","category":"Prodotti bar","target":10,"initialQty":10},{"id":"grappa-sgnape-dal-checo","name":"GRAPPA SGNAPE DAL CHECO","category":"Prodotti bar","target":1,"initialQty":1},{"id":"latte","name":"LATTE","category":"Prodotti bar","target":10,"initialQty":10},{"id":"limoncello","name":"LIMONCELLO","category":"Prodotti bar","target":1,"initialQty":0},{"id":"liquirizia","name":"LIQUIRIZIA","category":"Prodotti bar","target":1,"initialQty":0},{"id":"malibu","name":"MALIBU","category":"Prodotti bar","target":1,"initialQty":1},{"id":"martini-extra-dry","name":"MARTINI EXTRA DRY","category":"Prodotti bar","target":1,"initialQty":1},{"id":"martini-rosso","name":"MARTINI ROSSO","category":"Prodotti bar","target":6,"initialQty":1},{"id":"midori","name":"MIDORI","category":"Prodotti bar","target":1,"initialQty":1},{"id":"moretti-lattina","name":"MORETTI LATTINA","category":"Prodotti bar","target":24,"initialQty":6},{"id":"patate-aperitivo","name":"PATATE APERITIVO","category":"Prodotti bar","target":6,"initialQty":0},{"id":"pimm-s","name":"PIMM'S","category":"Prodotti bar","target":1,"initialQty":1},{"id":"punch-arancia","name":"PUNCH ARANCIA","category":"Prodotti bar","target":1,"initialQty":1},{"id":"punch-mandarino","name":"PUNCH MANDARINO","category":"Prodotti bar","target":1,"initialQty":1},{"id":"punch-rhum","name":"PUNCH RHUM","category":"Prodotti bar","target":1,"initialQty":1},{"id":"rum-bumbu-original","name":"RUM BUMBU ORIGINAL","category":"Prodotti bar","target":1,"initialQty":1},{"id":"rum-bumbu-xo","name":"RUM BUMBU XO","category":"Prodotti bar","target":1,"initialQty":1},{"id":"rum-cubay","name":"RUM CUBAY","category":"Prodotti bar","target":2,"initialQty":0},{"id":"rum-havana-3","name":"RUM HAVANA 3","category":"Prodotti bar","target":2,"initialQty":1.5},{"id":"rum-havana-7","name":"RUM HAVANA 7","category":"Prodotti bar","target":2,"initialQty":2},{"id":"rum-pampero-anniversario","name":"RUM PAMPERO ANNIVERSARIO","category":"Prodotti bar","target":1,"initialQty":1},{"id":"rum-pampero-especial","name":"RUM PAMPERO ESPECIAL","category":"Prodotti bar","target":2,"initialQty":2},{"id":"rum-zacapa","name":"RUM ZACAPA","category":"Prodotti bar","target":1,"initialQty":1},{"id":"sambuca","name":"SAMBUCA","category":"Prodotti bar","target":1,"initialQty":1},{"id":"sciroppo-di-granatina","name":"SCIROPPO DI GRANATINA","category":"Prodotti bar","target":1,"initialQty":1},{"id":"sciroppo-di-menta","name":"SCIROPPO DI MENTA","category":"Prodotti bar","target":1,"initialQty":1},{"id":"sciroppo-di-sambuco","name":"SCIROPPO DI SAMBUCO","category":"Prodotti bar","target":1,"initialQty":1},{"id":"sciroppo-di-zucchero-liquido","name":"SCIROPPO DI ZUCCHERO LIQUIDO","category":"Prodotti bar","target":2,"initialQty":2},{"id":"stravecchio-branca","name":"STRAVECCHIO BRANCA","category":"Prodotti bar","target":1,"initialQty":1},{"id":"succo-di-ananas-pet","name":"SUCCO DI ANANAS PET","category":"Prodotti bar","target":2,"initialQty":1},{"id":"succo-di-arancia-pet","name":"SUCCO DI ARANCIA PET","category":"Prodotti bar","target":2,"initialQty":2},{"id":"succo-ace-20cl","name":"SUCCO ACE 20CL","category":"Prodotti bar","target":5,"initialQty":4},{"id":"succo-ananas-20cl","name":"SUCCO ANANAS 20CL","category":"Prodotti bar","target":5,"initialQty":4},{"id":"succo-pesca-20cl","name":"SUCCO PESCA 20CL","category":"Prodotti bar","target":5,"initialQty":0},{"id":"succo-pera-20cl","name":"SUCCO PERA 20CL","category":"Prodotti bar","target":5,"initialQty":3},{"id":"succo-di-limone","name":"SUCCO DI LIMONE","category":"Prodotti bar","target":2,"initialQty":2},{"id":"tequila","name":"TEQUILA","category":"Prodotti bar","target":2,"initialQty":2},{"id":"triple-sec","name":"TRIPLE SEC","category":"Prodotti bar","target":2,"initialQty":2},{"id":"vecchia-romagna","name":"VECCHIA ROMAGNA","category":"Prodotti bar","target":1,"initialQty":1},{"id":"vermouth-del-professore","name":"VERMOUTH DEL PROFESSORE","category":"Prodotti bar","target":2,"initialQty":2},{"id":"vino-merlot","name":"VINO MERLOT","category":"Prodotti bar","target":12,"initialQty":12},{"id":"vino-franconia","name":"VINO FRANCONIA","category":"Prodotti bar","target":6,"initialQty":6},{"id":"vino-pinot-grigio","name":"VINO PINOT GRIGIO","category":"Prodotti bar","target":6,"initialQty":6},{"id":"vino-chardonnay","name":"VINO CHARDONNAY","category":"Prodotti bar","target":6,"initialQty":6},{"id":"vodka-beluga","name":"VODKA BELUGA","category":"Prodotti bar","target":1,"initialQty":0},{"id":"vodka-fragola","name":"VODKA FRAGOLA","category":"Prodotti bar","target":1,"initialQty":1},{"id":"vodka-moskovskaya","name":"VODKA MOSKOVSKAYA","category":"Prodotti bar","target":1,"initialQty":1},{"id":"vodka-pesca","name":"VODKA PESCA","category":"Prodotti bar","target":1,"initialQty":1},{"id":"vodka-wyborowa","name":"VODKA WYBOROWA","category":"Prodotti bar","target":6,"initialQty":3},{"id":"whisky-bushmills","name":"WHISKY BUSHMILLS","category":"Prodotti bar","target":1,"initialQty":1},{"id":"whisky-bushmills-black-bush","name":"WHISKY BUSHMILLS BLACK BUSH","category":"Prodotti bar","target":1,"initialQty":1},{"id":"whisky-glenfiddich-12-anni","name":"WHISKY GLENFIDDICH 12 ANNI","category":"Prodotti bar","target":1,"initialQty":1},{"id":"whisky-glenmorangie","name":"WHISKY GLENMORANGIE","category":"Prodotti bar","target":1,"initialQty":1},{"id":"whisky-irish-mist","name":"WHISKY IRISH MIST","category":"Prodotti bar","target":2,"initialQty":2},{"id":"whisky-jack-daniel-s","name":"WHISKY JACK DANIEL'S","category":"Prodotti bar","target":2,"initialQty":1},{"id":"whisky-jameson","name":"WHISKY JAMESON","category":"Prodotti bar","target":2,"initialQty":1},{"id":"whisky-laphroaig-10-anni","name":"WHISKY LAPHROAIG 10 ANNI","category":"Prodotti bar","target":1,"initialQty":1},{"id":"whisky-talisker-skye","name":"WHISKY TALISKER SKYE","category":"Prodotti bar","target":1,"initialQty":1},{"id":"whisky-the-glenlivet","name":"WHISKY THE GLENLIVET","category":"Prodotti bar","target":1,"initialQty":1},{"id":"whisky-tullamore-dew","name":"WHISKY TULLAMORE DEW","category":"Prodotti bar","target":2,"initialQty":2},{"id":"zucchero-bustine","name":"ZUCCHERO BUSTINE","category":"Prodotti bar","target":1,"initialQty":0},{"id":"zucchero-di-canna","name":"ZUCCHERO DI CANNA","category":"Prodotti bar","target":1,"initialQty":1},{"id":"limoni","name":"LIMONI","category":"Prodotti bar","target":20,"initialQty":4},{"id":"lime","name":"LIME","category":"Prodotti bar","target":15,"initialQty":10},{"id":"arance","name":"ARANCE","category":"Prodotti bar","target":8,"initialQty":8},{"id":"paquita","name":"PAQUITA","category":"Prodotti bar","target":1,"initialQty":1},{"id":"fonzies","name":"FONZIES","category":"Prodotti bar","target":1,"initialQty":1},{"id":"rotoli-pos","name":"ROTOLI POS","category":"Materiali","target":1,"initialQty":1},{"id":"rotoli-cassa","name":"ROTOLI CASSA","category":"Materiali","target":4,"initialQty":4},{"id":"tovaglioli-bianchi","name":"TOVAGLIOLI BIANCHI","category":"Materiali","target":1,"initialQty":1},{"id":"tovaglioli-bar","name":"TOVAGLIOLI BAR","category":"Materiali","target":2,"initialQty":2},{"id":"sacchi-neri","name":"SACCHI NERI","category":"Materiali","target":1,"initialQty":1},{"id":"sacchi-gialli","name":"SACCHI GIALLI","category":"Materiali","target":1,"initialQty":1},{"id":"sacchi-blu","name":"SACCHI BLU","category":"Materiali","target":1,"initialQty":1},{"id":"sgrassatore","name":"SGRASSATORE","category":"Materiali","target":1,"initialQty":0},{"id":"candeggina","name":"CANDEGGINA","category":"Materiali","target":1,"initialQty":0},{"id":"cannucce","name":"CANNUCCE","category":"Materiali","target":2,"initialQty":2},{"id":"olio","name":"OLIO","category":"Materiali","target":null,"initialQty":null},{"id":"aceto","name":"ACETO","category":"Materiali","target":null,"initialQty":null},{"id":"sale","name":"SALE","category":"Materiali","target":null,"initialQty":null},{"id":"stuzzicadenti","name":"STUZZICADENTI","category":"Materiali","target":null,"initialQty":null},{"id":"bicchieri-plastica","name":"BICCHIERI PLASTICA","category":"Materiali","target":null,"initialQty":null},{"id":"pepe","name":"PEPE","category":"Materiali","target":null,"initialQty":null},{"id":"shottini-di-plastica","name":"SHOTTINI DI PLASTICA","category":"Materiali","target":null,"initialQty":null}];
+const B_CATS=['Prodotti bar','Materiali'];
+function bCategory(p){return B_CATS.includes(p.category)?p.category:(B_SEEDS.find(seed=>seed.id===p.id)?.category||(p.category==='Materiali'?'Materiali':'Prodotti bar'));}
+let bar={epoch:0,off:[],draft:new Map(),orderDraft:new Map(),open:new Set()};
+function bReset(){
+ for(const off of bar.off)off();
+ const epoch=bar.epoch+1;
+ bar={epoch,off:[],uid:'',phase:'idle',ready:false,allowed:false,busy:false,bootstrapAttempted:false,items:new Map(),stock:new Map(),orders:new Map(),draft:new Map(),orderDraft:new Map(),invalid:new Map(),open:new Set(),page:'stock',search:'',editing:null,dirty:false,people:null,message:'',error:false,cleanup:false};
+ if($('bMessageDialog')?.open)$('bMessageDialog').close();
+ if($('bMessageText'))$('bMessageText').value='';
+ if($('bBody'))$('bBody').replaceChildren();
+}
+function bUnsaved(){return !!(bar.busy||bar.dirty||bar.draft.size||bar.orderDraft.size||bar.invalid.size);}
+function bMayLeave(){
+ if(bar.busy){bNotice('Attendi il completamento del salvataggio.',true);return false;}
+ if(bar.dirty){if(!confirm('Scartare la scheda Bar non salvata?'))return false;bar.dirty=false;bar.editing=null;}
+ return !bar.draft.size&&!bar.orderDraft.size&&!bar.invalid.size||confirm('I controlli e le quantità non confermati restano aperti in questa sessione. Vuoi cambiare sezione?');
+}
+function bAssert(epoch){if(epoch!==bar.epoch||auth.currentUser?.uid!==bar.uid||!bar.allowed)throw Error('Sessione Bar cambiata. Riapri la sezione.');}
+function bQty(value,integer=false){
+ const raw=String(value??'').trim().replace(',','.');
+ if(!raw)throw Error('Inserisci una quantità: un campo vuoto non equivale a zero.');
+ const n=Number(raw);
+ if(!Number.isFinite(n)||n<0||n>100000||!Number.isInteger(n*4)||(integer&&!Number.isInteger(n)))throw Error(integer?'La quantità da ordinare deve essere un intero tra 0 e 100.000.':'La giacenza deve essere tra 0 e 100.000, a passi di 0,25.');
+ return n;
+}
+function bNeed(product,qty){return product.target===null?(qty===0?0:null):Math.max(0,Math.ceil(product.target-qty));}
+function bActive(){return [...bar.items.values()].filter(p=>p.active).map(p=>({...p,category:bCategory(p)})).sort((a,b)=>a.name.localeCompare(b.name,'it'));}
+function bOrders(){return [...bar.orders.values()].filter(o=>['draft','sent'].includes(o.status)).sort((a,b)=>a.name.localeCompare(b.name,'it'));}
+function bNotice(text,error=false){bar.message=text;bar.error=error;$('bMessage').textContent=text;$('bMessage').className='message'+(error?' error':'');}
+function bFailure(error){return error?.code==='permission-denied'?'Accesso Bar negato. Pubblica le regole Firebase complete e verifica l’abilitazione Bar del profilo.':kError(error);}
+function bBlock(text){bReset();bar.phase='denied';bNotice(text,true);bRender();}
+function bServer(snapshot){return !snapshot.metadata?.fromCache;}
+async function bStart(){
+ const page=bar.page;bReset();bar.page=page;const uid=auth.currentUser?.uid;if(!uid||!currentRole)return;
+ bar.uid=uid;bar.phase='loading';const epoch=bar.epoch;
+ bNotice('Verifica accesso Bar e caricamento dati…');bRender();
+ const live=()=>bar.epoch===epoch&&auth.currentUser?.uid===uid;
+ try{
+  const member=await readWithDeadline(getDocFromServer(doc(db,'members',uid)));if(!live())return;
+  const role=member.data()?.role;
+  if(!member.exists()||member.data().status!=='active'||role!==currentRole)throw Error('Il profilo non è più attivo o il ruolo è cambiato. Esci e accedi nuovamente.');
+  if(role!=='owner'){
+   const access=await readWithDeadline(getDocFromServer(doc(db,'barAccess',uid)));if(!live())return;
+   if(access.data()?.operate!==true){bBlock('Accesso Bar non abilitato. La proprietaria può autorizzarti da Bar → Modifica → Accessi.');return;}
+  }
+  bar.allowed=true;
+  bar.off.push(onSnapshot(doc(db,'members',uid),{includeMetadataChanges:true},s=>{if(live()&&bServer(s)&&(!s.exists()||s.data().status!=='active'||s.data().role!==role))bBlock('Accesso al gestionale revocato o ruolo cambiato.');},e=>{if(live())bBlock(bFailure(e));}));
+  if(role!=='owner')bar.off.push(onSnapshot(doc(db,'barAccess',uid),{includeMetadataChanges:true},s=>{if(live()&&bServer(s)&&s.data()?.operate!==true)bBlock('Accesso Bar revocato.');},e=>{if(live())bBlock(bFailure(e));}));
+  const pending=new Set(['items','stock','orders']);
+  for(const [key,name]of [['items','barItems'],['stock','barStock'],['orders','barOrders']]){
+   bar.off.push(onSnapshot(collection(db,name),{includeMetadataChanges:true},snapshot=>{
+    if(!live()||!bServer(snapshot))return;
+    bar[key]=new Map(snapshot.docs.map(s=>[s.id,{id:s.id,...s.data()}]));pending.delete(key);
+    if(!pending.size){
+     if(role==='owner'&&!bar.bootstrapAttempted){
+      bar.bootstrapAttempted=true;
+      if(B_SEEDS.some(p=>!bar.items.has(p.id))){bar.phase='setup';bar.busy=true;bNotice('Preparazione automatica dei prodotti Bar…');bRender();void bBootstrap(epoch);return;}
+     }
+     if(bar.phase==='setup'||bar.phase==='setup-error')return;
+     const first=!bar.ready;bar.ready=true;bar.phase='ready';if(first){bNotice('Bar collegato.');void bCleanup(epoch);}
+    }
+    if(!bar.busy&&!bar.dirty&&!document.activeElement?.closest('#bBody input,#bBody select'))bRender();
+   },error=>{if(live())bBlock(bFailure(error));}));
+  }
+ }catch(error){if(live())bBlock(bFailure(error));}
+}
+async function bBootstrap(epoch){
+ try{
+  await bInitialize(epoch);bAssert(epoch);bar.phase='ready';bar.ready=true;bar.busy=false;
+  bNotice('Prodotti Bar pronti. Controlla le giacenze prima di confermare gli ordini.');bRender();void bCleanup(epoch);
+ }catch(error){if(epoch===bar.epoch){bar.phase='setup-error';bar.busy=false;bar.ready=false;bNotice('Preparazione da completare: '+bFailure(error),true);bRender();}}
+}
+function bButton(label,action,disabled=false){return '<button type="button" class="small-action" data-b="'+ke(action)+'" '+(disabled||bar.busy?'disabled':'')+'>'+ke(label)+'</button>';}
+function bCounter(id,value,type,label){
+ const invalid=bar.invalid.get(type+':'+id);
+ return '<div class="b-counter">'+bButton('−','step:'+type+':'+id+':-1')+'<input aria-label="'+ke(label)+'" inputmode="decimal" type="text" data-b-input="'+type+'" data-id="'+ke(id)+'" value="'+ke(invalid??(value===null?'':kNum(value)))+'" autocomplete="off" placeholder="—">'+bButton('+','step:'+type+':'+id+':1')+'</div>';
+}
+function bStockRow(p){
+ const stored=bar.stock.get(p.id),seed=B_SEEDS.find(x=>x.id===p.id),draft=bar.draft.get(p.id);
+ const qty=draft?draft.qty:stored?.qty??seed?.initialQty??null;
+ const status=draft?'Da confermare':stored?'Controllato '+kTime(stored.checkedAt):qty!==null?'Dato iniziale Excel · da controllare':'Non ancora controllato';
+ return '<div class="b-row" data-b-row="'+ke(p.name.toLocaleLowerCase('it'))+'"><div class="b-label"><strong>'+ke(p.name)+'</strong><small>'+ke(p.stockUnit)+' · '+(p.target===null?'Ordine manuale a zero':'Scorta desiderata '+kNum(p.target))+'</small><small data-b-status="'+p.id+'">'+ke(status)+'</small></div>'+bCounter(p.id,qty,'stock','Giacenza '+p.name)+'</div>';
+}
+function bRender(){
+ if(bar.ready)bRecord();
+ $('bSettings').hidden=currentRole!=='owner';$('bCartTab').textContent='Lista ('+bOrders().length+')';
+ for(const el of document.querySelectorAll('[data-b-page]'))el.setAttribute('aria-pressed',String(el.dataset.bPage===bar.page));
+ if(!bar.ready){$('bBody').innerHTML='<p>'+ke(['denied','setup-error'].includes(bar.phase)?bar.message:bar.phase==='setup'?'Preparazione automatica dell’elenco incluso nel gestionale…':'Collegamento al Bar in corso…')+'</p>'+(bar.phase==='setup'?'':bButton('Riprova','reload'));return;}
+ let h='';
+ if(!bar.items.size){h='<div class="b-card"><h3>Il tuo Bar</h3><p>L’elenco prodotti è già incluso nel codice. Al primo accesso della proprietaria si prepara automaticamente nel database condiviso.</p></div>';}
+ else if(bar.page==='stock'){
+  h='<p class="mini">Controlla le quantità e conferma le voci selezionate. Passo 0,25. Le quantità iniziali sono un riferimento, non un controllo di oggi.</p><label class="b-search">Cerca prodotto<input id="bSearch" type="search" value="'+ke(bar.search)+'" placeholder="Es. gin, latte, tovaglioli"></label>';
+  const items=bActive();
+  for(const category of [...new Set(items.map(x=>x.category))].sort((a,b)=>B_CATS.indexOf(a)-B_CATS.indexOf(b))){const products=items.filter(p=>p.category===category);h+='<details class="b-category" data-b-category="'+ke(category)+'" '+(bar.open.has(category)?'open':'')+'><summary>'+ke(category)+' <span>'+products.length+'</span></summary>'+products.map(bStockRow).join('')+'</details>';}
+  h+='<div class="b-sticky">'+bButton('Conferma controlli ('+bar.draft.size+')','confirm',!bar.draft.size)+bButton('Scarta controlli','discard',!bar.draft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('stock:')))+'</div><p class="mini">Una quantità lasciata vuota non viene interpretata come zero. La conferma aggiunge le mancanze alla lista; le quantità già presenti nella lista vengono conservate.</p>';
+ }else if(bar.page==='cart'){
+  const orders=bOrders();h='<p class="mini">Lista condivisa del Bar. Gli ordini automatici sono arrotondati all’intero superiore, come nell’Excel. Per gli articoli manuali scegli tu la quantità.</p>';
+  if(!orders.length)h+='<p>Non ci sono prodotti da acquistare.</p>';
+  for(const o of orders){const qty=bar.orderDraft.has(o.id)?bar.orderDraft.get(o.id).qty:o.qty;h+='<div class="b-row"><div class="b-label"><strong>'+ke(o.name)+'</strong><small>'+ke(o.orderUnit)+(o.status==='sent'?' · Segnato come condiviso':'')+'</small>'+(qty===0?'<small class="b-warning">Scegli quanto acquistare</small>':'')+'</div>'+bCounter(o.id,qty,'order','Da acquistare '+o.name)+bButton('Rimuovi','remove:'+o.id)+'</div>';}
+  if(orders.length)h+='<div class="b-sticky">'+bButton('Salva quantità','saveorders',!bar.orderDraft.size)+bButton('Scarta quantità locali','discardorders',!bar.orderDraft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('order:')))+bButton('Prepara messaggio','message')+bButton('Segna come condivisa','sent')+bButton('Chiudi lista acquistata','close')+'</div><p class="mini">Copiare il messaggio non lo invia e non conferma l’acquisto. “Chiudi lista acquistata” archivia la lista senza aumentare automaticamente le giacenze.</p>';
+ }else if(bar.page==='settings'&&currentRole==='owner'){
+  h='<div class="b-actions">'+bButton('Nuovo prodotto','new')+bButton('Accessi Bar','access')+'</div><p class="mini">Aggiungi prodotti e scegli quanti pezzi vuoi avere in giacenza: l’ordine automatico calcola quanto manca e arrotonda all’intero superiore. Puoi anche scegliere il riordino manuale a zero.</p>';
+  for(const p of [...bar.items.values()].sort((a,b)=>a.name.localeCompare(b.name,'it')))h+='<div class="b-row"><div class="b-label"><strong>'+ke(p.name)+'</strong><small>'+ke(bCategory(p))+' · '+(p.target===null?'Manuale':'Scorta '+kNum(p.target))+(p.active?'':' · Archiviato')+'</small></div>'+bButton('Modifica','edit:'+p.id)+'</div>';
+ }else if(bar.page==='edit'&&currentRole==='owner'){h=bForm();}
+ else if(bar.page==='access'&&currentRole==='owner'){
+  h='<h3>Accessi Bar</h3><p class="mini">Puoi abilitare il Bar indipendentemente dalla Cucina.</p>'+bButton('Aggiorna elenco','access');
+  if(bar.people)for(const p of bar.people){h+='<div class="b-row"><div class="b-label"><strong>'+ke(p.name)+'</strong><small>'+(p.operate?'Abilitato':'Non abilitato')+'</small></div>'+bButton(p.operate?'Revoca':'Abilita','grant:'+p.id+':'+(p.operate?'0':'1'))+'</div>';}
+ }
+ $('bBody').innerHTML=h;bFilter();
+ for(const input of $('bBody').querySelectorAll('[data-b-input]'))if(bar.invalid.has(input.dataset.bInput+':'+input.dataset.id))input.setCustomValidity('Correggi questa quantità.');
+}
+function bFilter(){
+ const q=bar.search.trim().toLocaleLowerCase('it');
+ for(const details of $('bBody').querySelectorAll('[data-b-category]')){
+  let visible=0;for(const row of details.querySelectorAll('[data-b-row]')){row.hidden=!row.dataset.bRow.includes(q);if(!row.hidden)visible++;}
+  details.hidden=!visible;details.open=!!q||bar.open.has(details.dataset.bCategory);
+ }
+}
+function bMeta(old,event){return {revision:(old?.revision||0)+1,updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid,lastEventId:event.id};}
+function bEvent(tx,event,entity,id,action){tx.set(event,{entity,entityId:id,action,actorUid:auth.currentUser.uid,actorName:ktName().slice(0,100),createdAt:serverTimestamp()});}
+async function bRun(action){
+ if(bar.busy||!bar.ready||!bar.allowed)return;
+ if(!navigator.onLine){bNotice('Sei offline. Nessun salvataggio confermato.',true);return;}
+ const epoch=bar.epoch;bar.busy=true;const controls=[...$('bBody').querySelectorAll('button,input,select')].map(el=>[el,el.disabled]);controls.forEach(([el])=>el.disabled=true);
+ bNotice('Salvataggio in corso…');let success=false;
+ try{const message=await action(epoch);bAssert(epoch);success=true;bNotice(message||'Salvataggio confermato.');}
+ catch(error){if(epoch===bar.epoch)bNotice(bFailure(error),true);}
+ finally{if(epoch===bar.epoch){bar.busy=false;if(success||!bar.dirty)bRender();else controls.forEach(([el,was])=>el.disabled=was);}}
+}
+async function bInitialize(epoch){
+ if(currentRole!=='owner')throw Error('Operazione riservata alla proprietaria.');
+ let count=0;
+ const missing=B_SEEDS.filter(p=>!bar.items.has(p.id));
+ for(let start=0;start<missing.length;start+=3){
+  const seeds=missing.slice(start,start+3);
+  const made=await runTransaction(db,async tx=>{
+   const snaps=await Promise.all(seeds.map(p=>tx.get(doc(db,'barItems',p.id))));bAssert(epoch);let added=0;
+   const ready=[];
+   seeds.forEach((p,i)=>{if(snaps[i].exists()){ready.push({id:p.id,...snaps[i].data()});return;}const event=doc(collection(db,'barEvents')),ref=doc(db,'barItems',p.id),next={name:p.name,category:p.category,stockUnit:'unità',orderUnit:'unità',target:p.target,active:true,...bMeta(null,event)};tx.set(ref,next);bEvent(tx,event,'item',p.id,'create');ready.push({id:p.id,...next});added++;});return {added,ready};
+  });bAssert(epoch);for(const item of made.ready)bar.items.set(item.id,item);count+=made.added;bNotice('Preparazione prodotti '+Math.min(start+3,missing.length)+' / '+missing.length+'…');
+ }
+ return count+' prodotti aggiunti. Le schede già esistenti sono state mantenute.';
+}
+function bStage(id,value){
+ const product=bar.items.get(id);if(!product?.active)throw Error('Prodotto non disponibile.');
+ const before=bar.draft.get(id);
+ bar.draft.set(id,{id,qty:bQty(value),revision:before?.revision??bar.stock.get(id)?.revision??0,configRevision:before?.configRevision??product.revision});
+}
+async function bConfirm(epoch){
+ if(bar.invalid.size)throw Error('Correggi le quantità non valide prima di confermare.');
+ const selected=[...bar.draft.values()];if(!selected.length)throw Error('Controlla almeno un prodotto.');let completed=0;
+ for(const d of selected){
+  await runTransaction(db,async tx=>{
+   const itemRef=doc(db,'barItems',d.id),stockRef=doc(db,'barStock',d.id),orderRef=doc(db,'barOrders',d.id);
+   const [item,stock,order]=await Promise.all([tx.get(itemRef),tx.get(stockRef),tx.get(orderRef)]);bAssert(epoch);
+   const p=item.data(),old=stock.data();if(!item.exists()||!p.active||p.revision!==d.configRevision||(old?.revision||0)!==d.revision)throw Error((p?.name||'Prodotto')+': dati cambiati da un collega. Scarta questo controllo e ricontrolla la voce.');
+   const qty=bQty(d.qty),event=doc(collection(db,'barEvents'));
+   tx.set(stockRef,{itemId:d.id,qty,configRevision:p.revision,checkedAt:serverTimestamp(),...bMeta(old,event)});bEvent(tx,event,'stock',d.id,'check');
+   const needed=bNeed(p,qty),existing=order.data();
+   if((p.target===null?qty===0:needed>0)&&(!existing||['closed','removed'].includes(existing.status))){
+    const ev=doc(collection(db,'barEvents'));
+    tx.set(orderRef,{itemId:d.id,name:p.name,orderUnit:p.orderUnit,qty:needed,manual:p.target===null,status:'draft',configRevision:p.revision,...bMeta(existing,ev)});bEvent(tx,ev,'order',d.id,'create');
+   }
+  });
+  bAssert(epoch);bar.draft.delete(d.id);completed++;
+ }
+ bar.page='cart';return completed+' giacenze confermate. Lista aggiornata; quantità già in lista conservate.';
+}
+async function bOrderSave(ids,status,epoch){
+ if(ids.some(id=>bar.invalid.has('order:'+id)))throw Error('Correggi le quantità non valide prima di salvare.');
+ for(const id of ids){
+  const draft=bar.orderDraft.get(id),expected=draft?.revision??bar.orders.get(id)?.revision;
+  const next=await runTransaction(db,async tx=>{
+   const ref=doc(db,'barOrders',id),s=await tx.get(ref);bAssert(epoch);const old=s.data();
+   if(!s.exists()||!['draft','sent'].includes(old.status)||old.revision!==expected)throw Error((old?.name||'La voce')+': lista cambiata da un collega. Scarta le quantità locali e ricontrolla.');
+   const qty=draft?bQty(draft.qty,true):old.qty;
+   if(status==='sent'&&qty===0)throw Error(old.name+': scegli quanto acquistare prima di condividere.');
+   const ev=doc(collection(db,'barEvents')),result={...old,qty,status:status||'draft',...bMeta(old,ev)};
+   tx.set(ref,result);bEvent(tx,ev,'order',id,'update');return result;
+  });bAssert(epoch);bar.orders.set(id,{id,...next});bar.orderDraft.delete(id);
+ }
+ return 'Lista aggiornata.';
+}
+function bForm(){
+ const p=bar.editing?.data;if(!p)return '';
+ return '<form id="bItemForm" class="b-form"><h3>'+ke(bar.editing.id?'Modifica prodotto':'Nuovo prodotto')+'</h3><label>Nome<input name="name" maxlength="100" required value="'+ke(p.name)+'"></label><label>Categoria<select name="category">'+B_CATS.map(c=>'<option value="'+ke(c)+'" '+(bCategory(p)===c?'selected':'')+'>'+ke(c)+'</option>').join('')+'</select></label><label>Unità di giacenza<input name="stockUnit" maxlength="60" required value="'+ke(p.stockUnit)+'"></label><label>Unità di acquisto<input name="orderUnit" maxlength="60" required value="'+ke(p.orderUnit)+'"></label><label>Riordino<select name="mode" id="bMode"><option value="auto" '+(p.target!==null?'selected':'')+'>Automatico: raggiungi la scorta desiderata</option><option value="manual" '+(p.target===null?'selected':'')+'>Manuale: scegli quanto acquistare quando è a zero</option></select></label><label id="bTargetLabel" '+(p.target===null?'hidden':'')+'>Scorta desiderata<input name="target" inputmode="decimal" value="'+ke(p.target===null?'':kNum(p.target))+'"></label><label class="b-check"><input type="checkbox" name="active" '+(p.active?'checked':'')+'> Prodotto attivo</label><p class="mini">Cambiare l’unità non converte le giacenze precedenti: ricontrolla il prodotto dopo il salvataggio.</p><button type="submit" class="button">Salva prodotto</button> '+bButton('Annulla','canceledit')+'</form>';
+}
+async function bItemSave(form,epoch){
+ if(currentRole!=='owner')throw Error('Operazione riservata.');
+ const fields=Object.fromEntries(new FormData(form)),editing=bar.editing;
+ const data={name:fields.name.trim(),category:fields.category.trim(),stockUnit:fields.stockUnit.trim(),orderUnit:fields.orderUnit.trim(),target:fields.mode==='manual'?null:bQty(fields.target),active:fields.active==='on'};
+ if(!data.name||!B_CATS.includes(data.category)||!data.stockUnit||!data.orderUnit)throw Error('Completa tutti i campi.');
+ const id=editing.id||'custom-'+doc(collection(db,'barEvents')).id.toLowerCase(),ref=doc(db,'barItems',id);
+ const result=await runTransaction(db,async tx=>{const s=await tx.get(ref);bAssert(epoch);if((s.data()?.revision||0)!==editing.revision)throw Error('Scheda cambiata. Riaprila prima di salvare.');const ev=doc(collection(db,'barEvents')),next={...data,...bMeta(s.data(),ev)};tx.set(ref,next);bEvent(tx,ev,'item',id,s.exists()?'update':'create');return next;});
+ bar.items.set(id,{id,...result});bar.editing=null;bar.dirty=false;bar.page='settings';return 'Prodotto salvato.';
+}
+async function bAccess(epoch){
+ if(currentRole!=='owner')throw Error('Operazione riservata.');
+ const [members,access]=await Promise.all([getDocsFromServer(collection(db,'members')),getDocsFromServer(collection(db,'barAccess'))]);bAssert(epoch);
+ const permissions=new Map(access.docs.map(d=>[d.id,d.data()]));bar.people=members.docs.filter(d=>d.data().status==='active'&&d.data().role!=='owner').map(d=>({id:d.id,name:d.data().name||d.data().email||d.id,operate:permissions.get(d.id)?.operate===true}));bar.page='access';return 'Accessi aggiornati.';
+}
+async function bGrant(id,value,epoch){
+ if(currentRole!=='owner')throw Error('Operazione riservata.');
+ await runTransaction(db,async tx=>{const ref=doc(db,'barAccess',id),s=await tx.get(ref);bAssert(epoch);tx.set(ref,{operate:value,revision:(s.data()?.revision||0)+1,updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid});});return bAccess(epoch);
+}
+function bMessage(){
+ if([...bar.invalid.keys()].some(k=>k.startsWith('order:')))throw Error('Correggi le quantità non valide nella lista.');
+ if(bar.orderDraft.size)throw Error('Salva le quantità prima di preparare il messaggio.');
+ const orders=bOrders();if(!orders.length)throw Error('La lista è vuota.');
+ if(orders.some(o=>o.qty<=0))throw Error('Scegli quanto acquistare per tutte le voci in lista.');
+ return orders.map(o=>kNum(o.qty)+' '+o.name).join('\n');
+}
+async function bCleanup(epoch){
+ if(bar.cleanup)return;bar.cleanup=true;
+ try{
+  const cutoff=Timestamp.fromMillis(kcAt6(kcPeriods().weekly));
+  for(const [name,field]of [['barEvents','createdAt'],['barOrders','updatedAt']]){
+   const req=name==='barOrders'?query(collection(db,name),where('status','in',['closed','removed'])):query(collection(db,name),where(field,'<',cutoff),limit(100));
+   const snap=await getDocsFromServer(req);bAssert(epoch);const docs=snap.docs.filter(d=>d.data()[field]?.toMillis?.()<cutoff.toMillis()).slice(0,100);
+   for(let i=0;i<docs.length;i+=5){bAssert(epoch);const batch=writeBatch(db);for(const d of docs.slice(i,i+5))batch.delete(d.ref);await batch.commit();}
+  }
+ }catch(error){if(epoch===bar.epoch)bNotice('Bar collegato. Archiviazione degli storici da riprovare: '+bFailure(error),true);}
+ finally{if(epoch===bar.epoch)bar.cleanup=false;}
+}
+$('bBody').addEventListener('toggle',e=>{const details=e.target;if(!details.matches('[data-b-category]')||bar.search.trim())return;details.open?bar.open.add(details.dataset.bCategory):bar.open.delete(details.dataset.bCategory);},true);
+$('bBody').addEventListener('input',e=>{
+ const el=e.target;
+ if(el.id==='bSearch'){bar.search=el.value;bFilter();return;}
+ if(el.closest('#bItemForm'))bar.dirty=true;
+ if(!el.matches('[data-b-input]'))return;
+ try{
+  if(el.dataset.bInput==='stock'){bStage(el.dataset.id,el.value);const status=$('bBody').querySelector('[data-b-status="'+el.dataset.id+'"]');if(status)status.textContent='Da confermare';}
+  else{const old=bar.orderDraft.get(el.dataset.id);bar.orderDraft.set(el.dataset.id,{qty:bQty(el.value,true),revision:old?.revision??bar.orders.get(el.dataset.id)?.revision});}
+  bar.invalid.delete(el.dataset.bInput+':'+el.dataset.id);el.setCustomValidity('');
+ }catch(error){bar.invalid.set(el.dataset.bInput+':'+el.dataset.id,el.value);el.setCustomValidity(error.message);bNotice(error.message,true);}
+ const confirmButton=$('bBody').querySelector('[data-b="confirm"]');if(confirmButton){confirmButton.disabled=!bar.draft.size;confirmButton.textContent='Conferma controlli ('+bar.draft.size+')';}
+ for(const action of ['discard','saveorders','discardorders']){const b=$('bBody').querySelector('[data-b="'+action+'"]');if(b)b.disabled=action==='discard'?(!bar.draft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('stock:'))):action==='discardorders'?(!bar.orderDraft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('order:'))):!bar.orderDraft.size;}
+});
+$('bBody').addEventListener('change',e=>{if(e.target.id==='bMode'){$('bTargetLabel').hidden=e.target.value==='manual';bar.dirty=true;}});
+$('bBody').addEventListener('submit',async e=>{if(e.target.id!=='bItemForm')return;e.preventDefault();await bRun(epoch=>bItemSave(e.target,epoch));});
+$('barPanel').addEventListener('click',async e=>{
+ const button=e.target.closest('[data-b],[data-b-page]');if(!button||bar.busy)return;
+ try{
+  if(button.dataset.bPage){if(bar.dirty&&!bMayLeave())return;bar.page=button.dataset.bPage;bar.editing=null;bRender();return;}
+  const [action,id,key,delta]=button.dataset.b.split(':');
+  if(action==='reload'){if(bUnsaved()&&!confirm('Scartare le modifiche Bar non confermate e ricaricare?'))return;await bStart();return;}
+  if(action==='step'){
+   const type=id,pid=key,dir=Number(delta),input=$('bBody').querySelector('[data-b-input="'+type+'"][data-id="'+pid+'"]');
+   const base=input.value.trim()===''?0:bQty(input.value,type==='order'),qty=Math.max(0,base+dir*(type==='stock'?.25:1));
+   if(type==='stock')bStage(pid,qty);else{const old=bar.orderDraft.get(pid);bar.orderDraft.set(pid,{qty,revision:old?.revision??bar.orders.get(pid)?.revision});}bar.invalid.delete(type+':'+pid);
+   bRender();return;
+  }
+  if(action==='confirm'){if($('bBody').querySelector('input:invalid'))throw Error('Correggi le quantità non valide prima di confermare.');await bRun(bConfirm);return;}
+  if(action==='discard'){if(confirm('Scartare i controlli non confermati?')){bar.draft.clear();for(const key of bar.invalid.keys())if(key.startsWith('stock:'))bar.invalid.delete(key);bRender();}return;}
+  if(action==='saveorders'){if($('bBody').querySelector('input:invalid'))throw Error('Correggi le quantità non valide prima di salvare.');await bRun(epoch=>bOrderSave([...bar.orderDraft.keys()],null,epoch));return;}
+  if(action==='discardorders'){if(confirm('Scartare le quantità locali non salvate e mostrare quelle condivise?')){bar.orderDraft.clear();for(const key of bar.invalid.keys())if(key.startsWith('order:'))bar.invalid.delete(key);bRender();}return;}
+  if(action==='remove'){await bRun(epoch=>bOrderSave([id],'removed',epoch));return;}
+  if(action==='sent'||action==='close'){
+   if(bar.orderDraft.size)throw Error('Salva prima le quantità modificate.');
+   if(action==='sent')bMessage();
+   if(!confirm(action==='sent'?'Hai condiviso questa lista nel gruppo WhatsApp?':'Confermi che questa lista è stata acquistata? Le giacenze non aumentano automaticamente.'))return;
+   await bRun(epoch=>bOrderSave(bOrders().map(o=>o.id),action==='sent'?'sent':'closed',epoch));return;
+  }
+  if(action==='message'){$('bMessageText').value=bMessage();$('bCopyStatus').textContent='';$('bMessageDialog').showModal();return;}
+  if(action==='new'||action==='edit'){
+   if(currentRole!=='owner')return;const p=bar.items.get(id);bar.editing={id:p?.id||null,revision:p?.revision||0,data:p||{name:'',category:'Prodotti bar',stockUnit:'pezzi',orderUnit:'pezzi',target:1,active:true}};bar.page='edit';bar.dirty=false;bRender();return;
+  }
+  if(action==='canceledit'){if(bar.dirty&&!confirm('Scartare la scheda non salvata?'))return;bar.dirty=false;bar.editing=null;bar.page='settings';bRender();return;}
+  if(action==='access'){await bRun(bAccess);return;}
+  if(action==='grant'){await bRun(epoch=>bGrant(id,key==='1',epoch));return;}
+ }catch(error){bNotice(bFailure(error),true);}
+});
+$('bCopyMessage').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('bMessageText').value);$('bCopyStatus').textContent='Copiato. Incollalo nel gruppo WhatsApp del pub.';}catch(_){$('bMessageText').focus();$('bMessageText').select();$('bCopyStatus').textContent='Seleziona il testo e scegli Copia.';}});
+$('bCloseMessage').addEventListener('click',()=>$('bMessageDialog').close());
+window.addEventListener('beforeunload',e=>{if(bUnsaved()){e.preventDefault();e.returnValue='';}});
+window.addEventListener('online',()=>{if(managerView==='bar'&&!bar.ready)void bStart();});
+bReset();
+
 // Apply an app update only outside all editing screens and pending saves.
 window.TBSManagerUpdates?.setCanRefresh(() => {
- if (window.TBSPrivacy?.isOpen() || kitchenUnsaved()) return false;
+ if (window.TBSPrivacy?.isOpen() || kitchenUnsaved() || bUnsaved()) return false;
  if (themeDirty || themeSaving || themeLoading || editorDirty || catalogBusy || catalogLoading || busy || historyLoading || !$('profileMenu').hidden || !$('installDialog').hidden || !$('catalogEditor').hidden || !$('profileOverlay').hidden || !$('onboarding').hidden) return false;
  if (['login','catalogSave','registerSave','saveProfileChanges'].some(id => $(id).disabled)) return false;
  if (document.activeElement?.matches('input,textarea,select,[contenteditable="true"]')) return false;
@@ -3095,3 +3425,4 @@ window.TBSManagerUpdates?.setCanRefresh(() => {
 </script>
 </body>
 </html>
+
