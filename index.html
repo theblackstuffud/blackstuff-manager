@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it" data-privacy-app="manager">
 <head>
-<meta name="tbs-release" content="2026-11-04-manager-turno-v28">
+<meta name="tbs-release" content="2026-11-04-moduli-accessi-v29">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
@@ -643,7 +643,7 @@ body[data-manager-view="home"] #primaryNav{display:none}.home-intro{padding:28px
 #profileTrigger{position:relative;overflow:visible}#profileTrigger img{border-radius:50%}#profileTrigger[data-pending]:after{content:attr(data-pending);position:absolute;top:-5px;right:-6px;min-width:19px;height:19px;border:2px solid var(--bg);border-radius:12px;background:#ac392e;color:white;display:grid;place-items:center;font-size:10px;font-weight:700;padding:0 3px;pointer-events:none}#profileRequestCount{background:var(--accent-soft);color:var(--accent);margin-left:auto;margin-right:8px;padding:3px 7px;border-radius:8px}
 .draft-prompt{padding:17px;border:1px solid var(--accent-border);border-radius:14px;background:var(--accent-soft);margin:14px 0}.draft-prompt strong{font-size:15px}.draft-prompt p{margin:8px 0;line-height:1.6}.draft-actions{display:flex;gap:7px;flex-wrap:wrap}.draft-actions button{background:var(--card)}.draft-error{font-size:13px;color:var(--text)}[data-draft-locked]{opacity:.55}.undo-notice{position:fixed;z-index:70;bottom:max(16px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:560px;background:var(--text);color:var(--bg);border-radius:15px;padding:13px 12px 13px 17px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 35px #0004}.undo-notice span{flex:1;min-width:0;font-size:14px;overflow-wrap:anywhere}.undo-notice button{border:1px solid currentColor;background:transparent;color:inherit;font:inherit;font-size:14px;padding:10px;min-height:44px;border-radius:10px;cursor:pointer}.undo-notice button:disabled{opacity:.6}.undo-notice #undoDismiss{border:0;font-size:22px;padding:6px;min-width:34px}#draftReview{width:min(620px,calc(100% - 32px));max-height:85dvh;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:18px;padding:22px}#draftReview::backdrop{background:#0007}#draftReviewText{width:100%;height:45dvh;background:var(--card2);color:var(--text);padding:12px;border:1px solid var(--border);border-radius:10px;font-size:14px;line-height:1.6;margin:12px 0;resize:vertical}
 @media(prefers-color-scheme:dark){.work-status[data-state="dirty"]{color:#e1bd76}.work-status[data-state="error"],.work-status[data-state="offline"]{color:#f4aba2}}@media(prefers-reduced-motion:reduce){.work-status[data-state="saving"]:before{animation:none}}
-</style></head>
+</style><style id="moduleAccessStyle">[hidden]{display:none!important}.module-tile strong{text-transform:uppercase}.module-grid:has(#kHomeButton[hidden]) #bHomeButton,.module-grid:has(#bHomeButton[hidden]) #kHomeButton{grid-column:1/-1}.home-profile-hint{display:none!important}</style></head>
 <body>
 <main>
 <header class="brand">
@@ -680,10 +680,10 @@ body[data-manager-view="home"] #primaryNav{display:none}.home-intro{padding:28px
 <section id="managerHome" aria-labelledby="managerHomeTitle">
   <div class="home-intro">
     <h2 id="managerHomeTitle" tabindex="-1">GESTIONALE</h2>
-    <p>Pronti per il turno.</p>
+
   </div>
   <div class="module-grid"><button type="button" id="menuHomeCard" class="module-tile module-featured" data-manager-go="catalog"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h4"/></svg><strong>Modifica menu</strong><span>Prodotti, prezzi e allergeni</span></button><button type="button" id="kHomeButton" class="module-tile" data-manager-go="kitchen"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7c0 2 4 2 4 0V3M6 3v18M20 21V3c-4 3-5 9 0 10"/></svg><strong>Cucina</strong><span>Giacenze, preparazioni e turno</span></button><button type="button" id="bHomeButton" class="module-tile" data-manager-go="bar"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14l-7 9-7-9ZM12 12v9M7 21h10"/></svg><strong>Bar</strong><span>Giacenze, riordini e carichi</span></button></div>
-<p class="home-profile-hint">Team e impostazioni nella foto profilo.</p>
+
 
 <a class="public-menu-link" href="https://theblackstuffud.github.io/blackstuff-menu/?tbs_stats=off" target="_blank" rel="noopener noreferrer"><span class="public-menu-copy">Anteprima menu<small>Come lo vedono i clienti</small></span><span aria-hidden="true">↗</span></a>
 </section>
@@ -1980,8 +1980,40 @@ window.addEventListener('beforeunload',event=>{if(statisticsSaving){event.preven
 
 // TEAM: identità separate dai permessi; nessuna credenziale amministrativa nel browser.
 let teamSelf=null,teamSelfOff=[],teamEpoch=0,teamRows=new Map(),teamSaving=false,teamKicking=false;
+// La visibilità segue solo autorizzazioni confermate dal server, mai valori locali.
+let moduleAccess={uid:null,kitchen:false,bar:false};
+function canOpenModule(kind){
+ if(!currentRole)return false;
+ if(currentRole==='owner')return true;
+ return teamSelf?.status==='active'&&moduleAccess.uid===auth.currentUser?.uid&&moduleAccess[kind]===true;
+}
+function syncModuleVisibility(){
+ const show={catalog:canEditMenu(),kitchen:canOpenModule('kitchen'),bar:canOpenModule('bar')};
+ for(const [key,id]of [['catalog','menuHomeCard'],['kitchen','kHomeButton'],['bar','bHomeButton']])$(id).hidden=!show[key];
+ for(const button of document.querySelectorAll('#primaryNav [data-manager-go]'))button.hidden=button.dataset.managerGo!=='home'&&!show[button.dataset.managerGo];
+}
+function modulePermissionChanged(kind,allowed){
+ moduleAccess[kind]=allowed;syncModuleVisibility();
+ if(!allowed&&managerView===(kind==='kitchen'?'kitchen':'bar')){
+  if(kind==='kitchen')kitchenAccessStopped('Accesso cucina non abilitato.');else bBlock('Accesso Bar non abilitato.');
+  showManagerView('home',false,false);
+ }
+ if(allowed&&kind==='bar'&&bar.phase==='denied')bar.phase='idle';
+ if(allowed&&kind==='kitchen'&&k.accessState==='denied')void kitchenStart();
+}
+function watchModuleAccess(user,version,member){
+ moduleAccess={uid:user.uid,kitchen:member.role==='owner',bar:member.role==='owner'};
+ if(member.role==='owner')return;
+ for(const [kind,collectionName]of [['kitchen','kitchenAccess'],['bar','barAccess']]){
+  teamSelfOff.push(onSnapshot(doc(db,collectionName,user.uid),{includeMetadataChanges:true},snapshot=>{
+   if(version!==sessionVersion||auth.currentUser?.uid!==user.uid||snapshot.metadata?.fromCache)return;
+   modulePermissionChanged(kind,snapshot.exists()&&snapshot.data().operate===true);
+  },()=>{if(version===sessionVersion&&auth.currentUser?.uid===user.uid)modulePermissionChanged(kind,false);}));
+ }
+}
+
 function canEditMenu(){return !!currentRole&&(currentRole==='owner'||teamSelf?.status==='active'&&teamSelf.permissions?.products===true);}
-function teamReset(){for(const off of teamSelfOff)off();teamSelfOff=[];teamSelf=null;teamRows.clear();teamEpoch++;teamSaving=false;if($('teamBody'))$('teamBody').replaceChildren();}
+function teamReset(){moduleAccess={uid:null,kitchen:false,bar:false};for(const off of teamSelfOff)off();teamSelfOff=[];teamSelf=null;teamRows.clear();teamEpoch++;teamSaving=false;if($('teamBody'))$('teamBody').replaceChildren();}
 function teamMessage(text,error=false){$('teamMessage').textContent=text;$('teamMessage').className=text?'message'+(error?' error':''):'';}
 async function teamKick(message){
  if(teamKicking)return;teamKicking=true;currentRole=null;currentProfile=null;clearDash();$('profileOverlay').hidden=true;$('profileTrigger').hidden=true;document.body.classList.remove('profile-open');
@@ -1989,7 +2021,7 @@ async function teamKick(message){
  try{await signOut(auth);}catch(_){}finally{teamKicking=false;$('loginError').textContent=message;$('loginError').className='message error';}
 }
 function teamWatch(user,version,member){
- teamSelf=member;
+ teamSelf=member;watchModuleAccess(user,version,member);
  teamSelfOff.push(onSnapshot(doc(db,'members',user.uid),{includeMetadataChanges:true},s=>{
   if(version!==sessionVersion||auth.currentUser?.uid!==user.uid||s.metadata?.fromCache)return;
   const next=s.exists()?s.data():null;
@@ -2148,6 +2180,7 @@ function showManagerView(view, push=false, focus=true){
  if(currentRole&&managerView==='catalog'&&view!=='catalog'&&editorDirty&&!$('catalogEditor').hidden){if(!confirm('Scartare le modifiche non pubblicate?'))return;editorDirty=false;$('catalogEditor').hidden=true;}
  if(!currentRole || !MANAGER_VIEWS[view] || (['team','members','requests','history','wallet','appearance','statistics'].includes(view)&&currentRole!=='owner'))view='home';
  if(view==='catalog'&&!canEditMenu())view='home';
+ if(view==='kitchen'&&!canOpenModule('kitchen')||view==='bar'&&!canOpenModule('bar'))view='home';
  if(view==='kitchen'&&managerView!=='kitchen'&&!kuApplying&&!kitchenRoute&&k.page==='home')k.page='stock';
  if(view==='bar'&&managerView!=='bar'&&!kuApplying&&!barRoute)bar.page='stock';
  managerView=view;
@@ -2156,6 +2189,7 @@ function showManagerView(view, push=false, focus=true){
  queueMicrotask(shiftSync);
  $('menuHomeCard').hidden=!canEditMenu();
  document.querySelectorAll('#primaryNav [data-manager-go]').forEach(el=>{el.hidden=el.dataset.managerGo==='catalog'&&!canEditMenu();el.setAttribute('aria-current',el.dataset.managerGo===view?'page':'false');});
+ syncModuleVisibility();
  document.querySelectorAll('[data-owner-only]').forEach(el=>{el.hidden=currentRole!=='owner';});
  $('managerSectionTitle').textContent=MANAGER_VIEWS[view];
  $('ownerSectionTitle').textContent=view==='requests'?'RICHIESTE DI ACCESSO':'UTENTI REGISTRATI';
@@ -2904,7 +2938,7 @@ function klRows(list,editable){
 }
 function klRender(){
  const own=k.loadOwn,shared=own?.sharedWith||[],uid=auth.currentUser.uid;
- let h=kBack()+'<h3>I miei carichi</h3><p class="mini">Scrivi cosa devi portare su. La lista è privata finché non scegli di condividerla. Le spunte non cambiano le giacenze e non passano nelle consegne di fine turno.</p>';
+ let h=kBack()+'<div class="k-toolbar"><h3>I miei carichi</h3>'+((Object.keys(own?.items||{}).length)?kButton('Svuota lista','loadclear'):'')+'</div><p class="mini">Scrivi cosa devi portare su. La lista è privata finché non scegli di condividerla. Le spunte non cambiano le giacenze e non passano nelle consegne di fine turno.</p>';
  h+='<p><strong>'+(shared.length?'Condivisa con '+shared.length+' '+(shared.length===1?'collega':'colleghi'):'Privata · visibile solo a te')+'</strong></p>'+klRows(own,true);
  h+='<form id="klAddForm" class="k-form"><label>Cosa devo portare su? Una voce per riga<textarea name="text" required maxlength="40000" rows="6" placeholder="2 lattughe&#10;1 pacco di cheddar&#10;Pane hamburger">'+ke(k.loadTextDraft||'')+'</textarea></label><button class="button">Conferma elenco</button></form>';
  const people=new Map(k.loadPeople);for(const id of shared)if(!people.has(id))people.set(id,{name:'Collega · '+id.slice(-6)});
@@ -2941,7 +2975,7 @@ async function klWrite(action,id,value,epoch){
 $('kBody').addEventListener('input',event=>{if(event.target.closest('#klAddForm')){k.loadTextDraft=event.target.value;k.loadBatchDraft=null;}});
 $('kBody').addEventListener('change',event=>{const form=event.target.closest('#klShareForm');if(form)k.loadRecipientsDraft=new FormData(form).getAll('recipient');});
 $('kBody').addEventListener('change',async event=>{const el=event.target;if(!el.matches('[data-kl-done]'))return;el.checked=false;await kRun(epoch=>klWrite('done',el.dataset.klDone,null,epoch));});
-$('kBody').addEventListener('click',async event=>{const b=event.target.closest('[data-k]');if(!b||k.busy)return;const [action,id]=b.dataset.k.split(':');if(action==='loadremove')await kRun(epoch=>klWrite('remove',id,null,epoch));if(action==='loadundo')await kRun(epoch=>klWrite('undo',id,null,epoch));if(action==='loadprivate')await kRun(epoch=>klWrite('share','',[],epoch));});
+$('kBody').addEventListener('click',async event=>{const b=event.target.closest('[data-k]');if(!b||k.busy)return;const [action,id]=b.dataset.k.split(':');if(action==='loadclear'&&moduliConfirmClear('kitchen'))await kRun(epoch=>moduliClearLoads('kitchen',epoch));if(action==='loadremove')await kRun(epoch=>klWrite('remove',id,null,epoch));if(action==='loadundo')await kRun(epoch=>klWrite('undo',id,null,epoch));if(action==='loadprivate')await kRun(epoch=>klWrite('share','',[],epoch));});
 $('kBody').addEventListener('submit',async event=>{const form=event.target;if(!['klAddForm','klShareForm'].includes(form.id))return;event.preventDefault();if(k.busy)return;const data=new FormData(form);if(form.id==='klAddForm'){await kRun(epoch=>loadAddLines('kitchen',data.get('text'),epoch));}else await kRun(epoch=>klWrite('share','',data.getAll('recipient'),epoch));});
 
 function blButton(label,action){return '<button type="button" class="small-action" data-bl-action="'+ke(action)+'" '+(bar.busy?'disabled':'')+'>'+ke(label)+'</button>';}
@@ -2990,7 +3024,7 @@ function blRows(list,editable){
 }
 function blRender(){
  const own=bar.loadOwn,shared=own?.sharedWith||[],uid=auth.currentUser.uid;
- let h='<h3>I miei carichi</h3><p class="mini">Scrivi cosa devi portare su. La lista è privata finché non scegli di condividerla. Le spunte non cambiano le giacenze e non passano nelle consegne di fine turno.</p>';
+ let h='<div class="k-toolbar"><h3>I miei carichi</h3>'+((Object.keys(own?.items||{}).length)?blButton('Svuota lista','loadclear'):'')+'</div><p class="mini">Scrivi cosa devi portare su. La lista è privata finché non scegli di condividerla. Le spunte non cambiano le giacenze e non passano nelle consegne di fine turno.</p>';
  h+='<p><strong>'+(shared.length?'Condivisa con '+shared.length+' '+(shared.length===1?'collega':'colleghi'):'Privata · visibile solo a te')+'</strong></p>'+blRows(own,true);
  h+='<form id="blAddForm" class="k-form"><label>Cosa devo portare su? Una voce per riga<textarea name="text" required maxlength="40000" rows="6" placeholder="6 toniche&#10;12 Corona&#10;Tovaglioli">'+ke(bar.loadTextDraft||'')+'</textarea></label><button class="button">Conferma elenco</button></form>';
  const people=new Map(bar.loadPeople);for(const id of shared)if(!people.has(id))people.set(id,{name:'Collega · '+id.slice(-6)});
@@ -3027,8 +3061,43 @@ async function blWrite(action,id,value,epoch){
 $('bBody').addEventListener('input',event=>{if(event.target.closest('#blAddForm')){bar.loadTextDraft=event.target.value;bar.loadBatchDraft=null;}});
 $('bBody').addEventListener('change',event=>{const form=event.target.closest('#blShareForm');if(form)bar.loadRecipientsDraft=new FormData(form).getAll('recipient');});
 $('bBody').addEventListener('change',async event=>{const el=event.target;if(!el.matches('[data-bl-done]'))return;el.checked=false;await bRun(epoch=>blWrite('done',el.dataset.blDone,null,epoch));});
-$('bBody').addEventListener('click',async event=>{const b=event.target.closest('[data-bl-action]');if(!b||bar.busy)return;const [action,id]=b.dataset.bar.split(':');if(action==='loadremove')await bRun(epoch=>blWrite('remove',id,null,epoch));if(action==='loadundo')await bRun(epoch=>blWrite('undo',id,null,epoch));if(action==='loadprivate')await bRun(epoch=>blWrite('share','',[],epoch));});
+$('bBody').addEventListener('click',async event=>{const b=event.target.closest('[data-bl-action]');if(!b||bar.busy)return;const [action,id]=b.dataset.blAction.split(':');if(action==='loadclear'&&moduliConfirmClear('bar'))await bRun(epoch=>moduliClearLoads('bar',epoch));if(action==='loadremove')await bRun(epoch=>blWrite('remove',id,null,epoch));if(action==='loadundo')await bRun(epoch=>blWrite('undo',id,null,epoch));if(action==='loadprivate')await bRun(epoch=>blWrite('share','',[],epoch));});
 $('bBody').addEventListener('submit',async event=>{const form=event.target;if(!['blAddForm','blShareForm'].includes(form.id))return;event.preventDefault();if(bar.busy)return;const data=new FormData(form);if(form.id==='blAddForm'){await bRun(epoch=>loadAddLines('bar',data.get('text'),epoch));}else await bRun(epoch=>blWrite('share','',data.getAll('recipient'),epoch));});
+
+// Usa le regole attuali: una rimozione verificata per transazione.
+// Mantiene proprietario e destinatari; non tocca liste ricevute o giacenze.
+async function moduliClearLoads(kind,epoch){
+ const state=kind==='bar'?bar:k,assert=kind==='bar'?bAssert:kAssert;
+ const uid=auth.currentUser.uid,ref=doc(db,kind==='bar'?'barLoads':'kitchenLoads',uid);
+ const ids=Object.keys(state.loadOwn?.items||{});let expected=state.loadOwn?.revision||0,removed=0;
+ try{
+  for(const id of ids){
+   assert(epoch);if(!navigator.onLine)throw Error('Connessione interrotta.');
+   const next=await runTransaction(db,async tx=>{
+    const snap=await tx.get(ref);assert(epoch);
+    if(!snap.exists())throw Error('La lista non è più disponibile.');
+    const before=snap.data();
+    if(before.revision!==expected)throw Error('La lista è cambiata su un altro dispositivo. Ricontrollala prima di riprovare.');
+    if(!Object.hasOwn(before.items,id))throw Error('La lista è cambiata. Ricontrollala.');
+    const items={...before.items};delete items[id];
+    const value={...before,items,revision:expected+1,updatedAt:serverTimestamp(),updatedBy:uid,lastItemId:id,lastAction:'item'};
+    tx.set(ref,value);return value;
+   });
+   assert(epoch);state.loadOwn=next;expected=next.revision;removed++;
+  }
+  state.loadImportNotice='Lista svuotata. Le impostazioni di condivisione sono state mantenute.';
+  return state.loadImportNotice;
+ }catch(error){
+  state.loadImportNotice=removed+' voci rimosse. '+(error.message||'Svuotamento interrotto.')+' Le voci ancora presenti restano nella lista.';
+  // Rilegge il documento se il server ha salvato ma la conferma è andata persa.
+  try{const fresh=await getDocFromServer(ref);assert(epoch);if(fresh.exists())state.loadOwn=fresh.data();}catch(_){}
+  throw Error(state.loadImportNotice);
+ }
+}
+function moduliConfirmClear(kind){
+ const state=kind==='bar'?bar:k,count=Object.keys(state.loadOwn?.items||{}).length;
+ return count>0&&confirm('Svuotare tutta la tua lista carichi '+(kind==='bar'?'BAR':'CUCINA')+' ('+count+' voci), comprese quelle non ancora spuntate? Le liste dei colleghi e le giacenze restano invariate.');
+}
 
 const KC_LIST={daily:[['filtro-lavastoviglie','Filtro lavastoviglie'],['contenitori-formaggi','Contenitori formaggi'],['lavello','Lavello'],['esterno-lavastoviglie','Esterno lavastoviglie'],['esterno-friggitrice','Esterno friggitrice']],weekly:[['frigoriferi-cucina','Frigoriferi cucina'],['frigoriferi-magazzino','Frigoriferi magazzino'],['pareti-cucina','Pareti cucina'],['carrelli-sottovuotatrice','Carrelli e sottovuotatrice'],['sportello-teglie','Sportello teglie'],['abbattitori','Abbattitori'],['cappa-1','Cappa · prima pulizia'],['cappa-2','Cappa · seconda pulizia'],['zona-rifiuti','Zona rifiuti · pulizia approfondita dei bidoni']],monthly:[['porte-quadri','Porte e quadri elettrici'],['magazzino','Riorganizzare magazzino'],['affettatrice','Pulizia profonda affettatrice'],['mobili','Riordinare e pulire mobili']]};
 let kcTimer=null,kcCleaning=false,kcCleanupAt=0,kcLastPeriod='';
@@ -3128,7 +3197,7 @@ function kNotice(text,error=false){$('kMessage').textContent=text;$('kMessage').
 function kitchenUnsaved(){return k.busy||k.draft.size>0||k.orderDraft.size>0||k.formDirty||k.messageDraft.size>0;}
 function kitchenMayLeave(){if(k.busy){kNotice('Attendi la conferma del salvataggio.');return false;}if(k.formDirty){if(!confirm('Scartare la scheda non salvata e cambiare sezione?'))return false;if(k.page==='handover')kh.draft=null;k.formDirty=false;k.page='home';}return !kitchenUnsaved()||confirm('I controlli e le quantità non salvati restano aperti in questa sessione. Vuoi cambiare sezione?');}
 function kUnread(){return k.events.filter(e=>e.notify&&e.actorUid!==auth.currentUser?.uid&&k.prefs[e.kind]!==false&&!k.prefs.readIds.includes(e.id));}
-function kBadge(){const n=k.ready?kUnread().length:0;for(const el of document.querySelectorAll('[data-k-count]'))el.textContent=String(n);$('kHomeButton').hidden=!currentRole;}
+function kBadge(){const n=k.ready?kUnread().length:0;for(const el of document.querySelectorAll('[data-k-count]'))el.textContent=String(n);syncModuleVisibility();}
 function kitchenAccessStopped(message,state='denied'){
  kitchenReset();k.accessState=state;k.accessError=message;
  kNotice(message,true);kBadge();if(managerView==='kitchen')kRender();
@@ -3909,3 +3978,4 @@ window.TBSManagerUpdates?.setCanRefresh(() => {
 </script>
 </body>
 </html>
+
