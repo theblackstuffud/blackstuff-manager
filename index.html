@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it" data-privacy-app="manager">
 <head>
-<meta name="tbs-release" content="2026-11-04-carichi-bar-cucina-v18">
+<meta name="tbs-release" content="2026-11-04-titolari-v20">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
@@ -640,20 +640,19 @@ textarea{resize:vertical;}
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="history" data-owner-only hidden>Storico attività <span aria-hidden="true">→</span></button>
     <button type="button" role="menuitem" tabindex="-1" data-manager-go="wallet" data-owner-only hidden>Portafoglio IA <small>Non attivo</small></button>
     <div class="profile-menu-divider" role="separator"></div>
-    <button type="button" role="menuitem" tabindex="-1" id="profileMenuInstall">App sul telefono <span aria-hidden="true">→</span></button>
     <button type="button" role="menuitem" tabindex="-1" id="profileMenuLogout">Esci dall’account <span aria-hidden="true">↗</span></button>
   </div>
 </div>
 </header>
 <section class="top">
 <div class="eyebrow">AREA RISERVATA</div>
-<h2 class="heading">Il tuo menu.<br>A portata di mano.</h2>
+<h2 class="heading">GESTIONALE</h2>
 <p class="lead">Accedi per aggiornare il menu del locale.</p>
 <span class="badge"><span class="dot"></span> Accesso riservato</span>
 </section>
 <section id="managerHome" aria-labelledby="managerHomeTitle">
   <div class="home-intro">
-    <h2 id="managerHomeTitle" tabindex="-1">Il tuo menu.</h2>
+    <h2 id="managerHomeTitle" tabindex="-1">GESTIONALE</h2>
     <p>Tutto quello che serve, a portata di mano.</p>
   </div>
   <div class="menu-workspace">
@@ -1006,12 +1005,12 @@ $("logout").addEventListener("click",async()=>{
  if((themeDirty||editorDirty)&&!confirm('Uscire e scartare le modifiche non pubblicate?'))return;
  try{await signOut(auth);}catch(_){setProfileMessage('Uscita non riuscita. Riprova.','error');}
 });
-const ROLE_NAMES={owner:"PROPRIETARIO",admin:"AMMINISTRATORE",collaborator:"COLLABORATORE"};
+const ROLE_NAMES={owner:"TITOLARE",admin:"AMMINISTRATORE",collaborator:"COLLABORATORE"};
 const REQUEST_NAMES={pending:"IN ATTESA",approved:"APPROVATA",rejected:"RIFIUTATA"};
 const PERMISSION_LABELS={products:"PRODOTTI",prices:"PREZZI",availability:"DISPONIBILITÀ",ingredients:"INGREDIENTI E FILTRI",photos:"FOTOGRAFIE",translations:"TRADUZIONI",statistics:"STATISTICHE"};
 const PERMISSION_KEYS=Object.keys(PERMISSION_LABELS);
 const ACTION_LABELS={profile_created:"CREAZIONE PROFILO",profile_updated:"MODIFICA PROFILO",access_requested:"RICHIESTA DI ACCESSO",access_approved:"ACCESSO APPROVATO",access_rejected:"RICHIESTA RIFIUTATA",member_updated:"MODIFICA AUTORIZZAZIONI",menu_theme_updated:"TEMA DEL MENU"};
-function defaultPermissions(role){return Object.fromEntries(PERMISSION_KEYS.map(k=>[k,role==="admin"||(role==="collaborator"&&k==="availability")]));}
+function defaultPermissions(role){return Object.fromEntries(PERMISSION_KEYS.map(k=>[k,(role==="owner"||role==="admin")||(role==="collaborator"&&k==="availability")]));}
 function normalizePermissions(p){return Object.fromEntries(PERMISSION_KEYS.map(k=>[k,p?.[k]===true]));}
 function permissionText(p){return PERMISSION_KEYS.filter(k=>p?.[k]===true).map(k=>PERMISSION_LABELS[k]).join(", ")||"NESSUN PERMESSO OPERATIVO";}
 function accessBadgeText(member){return member?.role==="owner"?"GESTIONE COMPLETA":permissionText(member?.permissions);}
@@ -1026,9 +1025,9 @@ function makePermissionEditor(role,existing){
  const grid=make("div","permission-grid");panel.append(grid);
  const inputs={};const state={role};
  for(const k of PERMISSION_KEYS){const label=make("label","permission-choice"),checkbox=document.createElement("input");checkbox.type="checkbox";const v=make("span","",PERMISSION_LABELS[k]);label.append(checkbox,v);grid.append(label);inputs[k]=checkbox;}
- function assign(p){for(const k of PERMISSION_KEYS)inputs[k].checked=p?.[k]===true;}
+ function assign(p){for(const k of PERMISSION_KEYS){inputs[k].checked=state.role==="owner"||p?.[k]===true;inputs[k].disabled=state.role==="owner";}}
  assign(existing||defaultPermissions(role));
- return {panel,read:()=>Object.fromEntries(PERMISSION_KEYS.map(k=>[k,inputs[k].checked])),setRole:(r,reset=true)=>{state.role=r;if(reset)assign(defaultPermissions(r));}};
+ return {panel,read:()=>Object.fromEntries(PERMISSION_KEYS.map(k=>[k,state.role==="owner"||inputs[k].checked])),setRole:(r,reset=true)=>{state.role=r;if(reset)assign(defaultPermissions(r));}};
 }
 
 
@@ -2008,20 +2007,20 @@ async function loadMembers(){
     if(data.status==="active"){
      row.append(createButton("REVOCA ACCESSO",async()=>{
       if(!window.confirm("Revocare l'accesso di "+(data.email||"questo account")+"?"))return;
-      await runOwnerOperation(()=>changeMember(item,{status:"revoked"},"Accesso revocato da Proprietario."),"Accesso revocato.");
+      await runOwnerOperation(()=>changeMember(item,{status:"revoked"},"Accesso revocato da Titolare."),"Accesso revocato.");
      }));
     }else{
      row.append(createButton("RIATTIVA ACCESSO",async()=>{
       if(!window.confirm("Riattivare l'accesso di "+(data.email||"questo account")+"?"))return;
-      await runOwnerOperation(()=>changeMember(item,{status:"active"},"Accesso riattivato da Proprietario."),"Accesso riattivato.");
+      await runOwnerOperation(()=>changeMember(item,{status:"active"},"Accesso riattivato da Titolare."),"Accesso riattivato.");
      }));
     }
     card.append(row);
     const config=make("div","member-config");config.hidden=true;
-    config.append(make("div","permission-title","RUOLO ASSEGNATO"));
+    config.append(make("div","permission-title","RUOLO ASSEGNATO"));config.append(make("p","mini","Titolare: accesso completo a menu, Bar, Cucina, utenti e impostazioni. Per assegnarlo il profilo deve essere attivo."));
     const roleSel=make("select","select-role");roleSel.setAttribute("aria-label","Cambia ruolo");
-    for(const [value,name] of [["admin","AMMINISTRATORE"],["collaborator","COLLABORATORE"]]){
-     const opt=make("option","",name);opt.value=value;roleSel.append(opt);
+    for(const [value,name] of [["owner","TITOLARE · ACCESSO COMPLETO"],["admin","AMMINISTRATORE"],["collaborator","COLLABORATORE"]]){
+     const opt=make("option","",name);opt.value=value;opt.disabled=value==="owner"&&data.status!=="active";roleSel.append(opt);
     }
     roleSel.value=data.role;config.append(roleSel);
     const editor=makePermissionEditor(data.role,normalizePermissions(data.permissions));
@@ -2029,12 +2028,12 @@ async function loadMembers(){
     config.append(editor.panel);
     config.append(createButton("SALVA RUOLO E PERMESSI",async()=>{
      const role=roleSel.value,permissions=editor.read();
-     if(!window.confirm("Salvare il ruolo e i permessi per "+(data.email||"questo account")+"?"))return;
+     if(!window.confirm(role==="owner"?"Assegnare il ruolo TITOLARE a "+(data.email||"questo account")+"? Avrà accesso completo, inclusa la gestione di utenti e permessi.":"Salvare il ruolo e i permessi per "+(data.email||"questo account")+"?"))return;
      await runOwnerOperation(()=>changeMember(item,{role,permissions},"Aggiornamento ruolo e autorizzazioni operative."),"Permessi aggiornati.");
     },"primary-action"));
     card.append(config);
    }else{
-    card.append(make("p","mini","RUOLO PROPRIETARIO · CONTROLLO COMPLETO"));
+    card.append(make("p","mini","TITOLARE · CONTROLLO COMPLETO"));
    }
    list.append(card);
   }
@@ -2058,9 +2057,9 @@ async function loadRequests(){
    const code=make("div","member-uid",item.id);code.hidden=true;
    const showCode=createButton("VEDI CODICE",()=>{code.hidden=!code.hidden;showCode.textContent=code.hidden?"VEDI CODICE":"NASCONDI CODICE";});
    card.append(showCode,code);
-   card.append(make("div","permission-title","SCEGLI IL RUOLO DA ASSEGNARE"));
+   card.append(make("div","permission-title","SCEGLI IL RUOLO DA ASSEGNARE"));card.append(make("p","mini","Titolare concede il controllo completo del gestionale, compresa la gestione degli accessi."));
    const select=make("select","select-role");select.setAttribute("aria-label","Ruolo da assegnare");
-   for(const [value,name] of [["admin","AMMINISTRATORE"],["collaborator","COLLABORATORE"]]){
+   for(const [value,name] of [["owner","TITOLARE · ACCESSO COMPLETO"],["admin","AMMINISTRATORE"],["collaborator","COLLABORATORE"]]){
     const opt=make("option","",name);opt.value=value;select.append(opt);
    }
    select.value="collaborator";card.append(select);
@@ -2269,7 +2268,7 @@ document.addEventListener('focusin',e=>{if(!$('profileMenu').contains(e.target)&
 $('profileMenuLogout').addEventListener('click',()=>{
  closeProfileMenu();$('logout').click();
 });
-$('profileMenuInstall').addEventListener('click',()=>{closeProfileMenu();$('installDialog').hidden=false;$('closeInstallDialog').focus();});
+
 function closeInstallDialog(){ $('installDialog').hidden=true;$('profileTrigger').focus(); }
 $('closeInstallDialog').addEventListener('click',closeInstallDialog);
 $('installDialog').addEventListener('click',e=>{if(e.target===$('installDialog'))closeInstallDialog();});
