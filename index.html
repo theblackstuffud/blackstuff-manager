@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it" data-privacy-app="manager">
 <head>
-<meta name="tbs-release" content="2026-11-04-team-v21">
+<meta name="tbs-release" content="2026-11-04-azzera-bar-v22">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
@@ -3326,7 +3326,7 @@ function bRender(){
  let h='';
  if(!bar.items.size&&bar.page!=='loads'){h='<div class="b-card"><h3>Il tuo Bar</h3><p>L’elenco prodotti è già incluso nel codice. Al primo accesso della proprietaria si prepara automaticamente nel database condiviso.</p></div>';}
  else if(bar.page==='stock'){
-  h='<p class="mini">Controlla le quantità e conferma le voci selezionate. Passo 0,25. Le quantità iniziali sono un riferimento, non un controllo di oggi.</p><label class="b-search">Cerca prodotto<input id="bSearch" type="search" value="'+ke(bar.search)+'" placeholder="Es. gin, latte, tovaglioli"></label>';
+  h='<p class="mini">Controlla le quantità e conferma le voci selezionate. Passo 0,25. Le quantità iniziali sono un riferimento, non un controllo di oggi.</p><label class="b-search">Cerca prodotto<input id="bSearch" type="search" value="'+ke(bar.search)+'" placeholder="Es. gin, latte, tovaglioli"></label><div class="b-actions">'+bButton('Azzera giacenze','zerostock',!bActive().length)+'</div>';
   const items=bActive();
   for(const category of [...new Set(items.map(x=>x.category))].sort((a,b)=>B_CATS.indexOf(a)-B_CATS.indexOf(b))){const products=items.filter(p=>p.category===category);h+='<details class="b-category" data-b-category="'+ke(category)+'" '+(bar.open.has(category)?'open':'')+'><summary>'+ke(category)+' <span>'+products.length+'</span></summary>'+products.map(bStockRow).join('')+'</details>';}
   h+='<div class="b-sticky">'+bButton('Conferma controlli ('+bar.draft.size+')','confirm',!bar.draft.size)+bButton('Scarta controlli','discard',!bar.draft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('stock:')))+'</div><p class="mini">Una quantità lasciata vuota non viene interpretata come zero. La conferma aggiunge le mancanze alla lista; le quantità già presenti nella lista vengono conservate.</p>';
@@ -3379,6 +3379,16 @@ async function bInitialize(epoch){
  }
  return count+' prodotti aggiunti. Le schede già esistenti sono state mantenute.';
 }
+function bZeroStock(){
+ if(!bar.ready||!bar.allowed||bar.busy)return;
+ const products=bActive();if(!products.length){bNotice('Non ci sono prodotti attivi da azzerare.');return;}
+ const text='Portare a zero le giacenze di tutti i '+products.length+' prodotti attivi del Bar'+(bar.search.trim()?', anche quelli nascosti dalla ricerca':'')+'?\n\nI valori resteranno nel controllo in corso. Potrai correggerli e salvarli con Conferma controlli oppure annullare con Scarta controlli.';
+ if(!confirm(text))return;
+ for(const product of products){bStage(product.id,0);bar.invalid.delete('stock:'+product.id);}
+ bNotice('Giacenze portate a zero nel controllo in corso. Correggi le quantità effettive, poi premi Conferma controlli.');
+ bRender();
+}
+
 function bStage(id,value){
  const product=bar.items.get(id);if(!product?.active)throw Error('Prodotto non disponibile.');
  const before=bar.draft.get(id);
@@ -3481,6 +3491,7 @@ $('barPanel').addEventListener('click',async e=>{
    if(type==='stock')bStage(pid,qty);else{const old=bar.orderDraft.get(pid);bar.orderDraft.set(pid,{qty,revision:old?.revision??bar.orders.get(pid)?.revision});}bar.invalid.delete(type+':'+pid);
    bRender();return;
   }
+  if(action==='zerostock'){bZeroStock();return;}
   if(action==='confirm'){if($('bBody').querySelector('input:invalid'))throw Error('Correggi le quantità non valide prima di confermare.');await bRun(bConfirm);return;}
   if(action==='discard'){if(confirm('Scartare i controlli non confermati?')){bar.draft.clear();for(const key of bar.invalid.keys())if(key.startsWith('stock:'))bar.invalid.delete(key);bRender();}return;}
   if(action==='saveorders'){if($('bBody').querySelector('input:invalid'))throw Error('Correggi le quantità non valide prima di salvare.');await bRun(epoch=>bOrderSave([...bar.orderDraft.keys()],null,epoch));return;}
@@ -3626,4 +3637,3 @@ window.TBSManagerUpdates?.setCanRefresh(() => {
 </script>
 </body>
 </html>
-
