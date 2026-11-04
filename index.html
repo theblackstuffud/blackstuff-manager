@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it" data-privacy-app="manager">
 <head>
-<meta name="tbs-release" content="2026-11-04-manager-turno-v26">
+<meta name="tbs-release" content="2026-11-04-manager-turno-v28">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
@@ -636,7 +636,9 @@ body[data-manager-view="home"] #primaryNav{display:none}.home-intro{padding:28px
 @media(prefers-reduced-motion:reduce){.module-tile{transition:none}}
 </style>
 
-<style id="shiftToolsStyles">
+<style id="stockBulkStyles">
+.stock-reset{margin:24px 0 8px;padding:20px 0 8px;border-top:1px solid var(--border)}.stock-reset .small-action{display:block;width:100%;min-height:48px;margin:0;color:#a5372c;border-color:#a5372c;background:var(--card);font-size:15px;font-weight:600}.stock-reset .mini{margin:10px 0 0;line-height:1.5}.stock-reset button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.stock-save>[data-k="discardstock"]{width:100%;min-height:44px;margin:8px 0 0}.stock-reset button:disabled{opacity:.45;cursor:default}@media(prefers-color-scheme:dark){.stock-reset .small-action{color:#f4aba2;border-color:#b36e66}}
+</style><style id="shiftToolsStyles">
 .work-status{position:sticky;top:68px;z-index:19;background:var(--bg);padding:9px 0 12px;font-size:12px;line-height:1.5;color:var(--muted);min-height:36px;display:flex;align-items:center;gap:8px}.work-status:before{content:"";flex:0 0 7px;height:7px;border-radius:50%;background:currentColor}.work-status[data-state="saved"]{color:var(--accent)}.work-status[data-state="dirty"]{color:#8c601c}.work-status[data-state="error"],.work-status[data-state="offline"]{color:#a5372c}body[data-manager-view="home"] .work-status{top:0}.work-status[data-state="saving"]:before{background:transparent;border:2px solid currentColor;border-right-color:transparent;width:8px;height:8px;animation:shift-spin 1s linear infinite}@keyframes shift-spin{to{transform:rotate(360deg)}}
 #profileTrigger{position:relative;overflow:visible}#profileTrigger img{border-radius:50%}#profileTrigger[data-pending]:after{content:attr(data-pending);position:absolute;top:-5px;right:-6px;min-width:19px;height:19px;border:2px solid var(--bg);border-radius:12px;background:#ac392e;color:white;display:grid;place-items:center;font-size:10px;font-weight:700;padding:0 3px;pointer-events:none}#profileRequestCount{background:var(--accent-soft);color:var(--accent);margin-left:auto;margin-right:8px;padding:3px 7px;border-radius:8px}
 .draft-prompt{padding:17px;border:1px solid var(--accent-border);border-radius:14px;background:var(--accent-soft);margin:14px 0}.draft-prompt strong{font-size:15px}.draft-prompt p{margin:8px 0;line-height:1.6}.draft-actions{display:flex;gap:7px;flex-wrap:wrap}.draft-actions button{background:var(--card)}.draft-error{font-size:13px;color:var(--text)}[data-draft-locked]{opacity:.55}.undo-notice{position:fixed;z-index:70;bottom:max(16px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:560px;background:var(--text);color:var(--bg);border-radius:15px;padding:13px 12px 13px 17px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 35px #0004}.undo-notice span{flex:1;min-width:0;font-size:14px;overflow-wrap:anywhere}.undo-notice button{border:1px solid currentColor;background:transparent;color:inherit;font:inherit;font-size:14px;padding:10px;min-height:44px;border-radius:10px;cursor:pointer}.undo-notice button:disabled{opacity:.6}.undo-notice #undoDismiss{border:0;font-size:22px;padding:6px;min-width:34px}#draftReview{width:min(620px,calc(100% - 32px));max-height:85dvh;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:18px;padding:22px}#draftReview::backdrop{background:#0007}#draftReviewText{width:100%;height:45dvh;background:var(--card2);color:var(--text);padding:12px;border:1px solid var(--border);border-radius:10px;font-size:14px;line-height:1.6;margin:12px 0;resize:vertical}
@@ -3120,7 +3122,7 @@ let kitchenSearch='',kitchenCategory='',barCategory='';
 const ke=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const kNum=n=>Number(n).toLocaleString('it-IT',{maximumFractionDigits:3});
 const kTime=t=>t?.toDate?new Intl.DateTimeFormat('it-IT',{dateStyle:'short',timeStyle:'short',timeZone:'Europe/Rome'}).format(t.toDate()):'In attesa di conferma';
-function kButton(text,action,cls='small-action'){return `<button type="button" class="${cls}" data-k="${ke(action)}" ${k.busy?'disabled':''}>${ke(text)}</button>`;}
+function kButton(text,action,cls='small-action',disabled=false){return `<button type="button" class="${cls}" data-k="${ke(action)}" ${k.busy||disabled?'disabled':''}>${ke(text)}</button>`;}
 function kError(error){return error?.code==='permission-denied'?'La richiesta è stata negata dalle regole Firebase.':error?.code==='unavailable'?'Connessione a Firebase non disponibile. Controlla la rete e riprova.':error?.message||'Operazione non riuscita. Riprova.';}
 function kNotice(text,error=false){$('kMessage').textContent=text;$('kMessage').className='message'+(error?' error':'');if(error)shiftPhase('kitchen','error');else shiftRenderStatus();}
 function kitchenUnsaved(){return k.busy||k.draft.size>0||k.orderDraft.size>0||k.formDirty||k.messageDraft.size>0;}
@@ -3227,7 +3229,7 @@ function kRender(){
  if(k.page==='handover'||k.page==='tasks')h=ktRender();
  if(k.page==='loads')h=klRender();
  if(k.page==='stock'){
-  h+='<p class="mini">Controlla le quantità, poi conferma. Gli articoli a zero entrano nei riordini o nelle preparazioni.</p>'+stockTools('kSearch','kCategory',kitchenSearch,kitchenCategory,[...new Set(kActive().map(i=>i.category))]);
+  h+='<p class="mini">Controlla le quantità, poi premi Salva giacenze. Gli articoli a zero entrano nei riordini o nelle preparazioni.</p>'+stockTools('kSearch','kCategory',kitchenSearch,kitchenCategory,[...new Set(kActive().map(i=>i.category))]);
   for(const cat of [...new Set(kActive().map(i=>i.category))]){
    h+=`<section class="stock-group" data-k-category="${ke(cat)}"><h3>${ke(cat)}</h3>`;
    for(const i of kActive().filter(i=>i.category===cat)){
@@ -3235,7 +3237,7 @@ function kRender(){
     h+=`<div class="k-row" data-k-search="${ke(i.name.toLocaleLowerCase('it'))}"><div class="k-label"><strong>${ke(i.name)}</strong><small>${ke(i.stockUnit)} · ${ke(k.suppliers.get(i.supplierId)?.name||({prep:'Preparazione interna',auto:'Rifornimento automatico'}[i.mode]||'Fornitore da verificare'))}</small><small>${changed?'Controllato in questa sessione':incompatible?'Configurazione cambiata: ricontrolla':old?'Ultimo controllo: '+ke(kTime(old.checkedAt)):'Da controllare'}</small></div>${kStepper(i.id,qty,i.stockStep,'stock',i.name)}${changed?kButton('Annulla controllo','undo:'+i.id):qty!==undefined&&qty!==null?kButton('Conferma '+kNum(qty),'check:'+i.id):''}</div>`;
    }h+='</section>';
   }
-  h+=`<p class="stock-empty" id="kStockEmpty" hidden>Nessun articolo trovato. Prova un altro nome o una categoria diversa.</p><div class="stock-save"><p role="status">${k.draft.size} articoli da confermare · ${[...k.draft.values()].filter(d=>d.qty===0).length} a zero</p>`+kButton('Conferma giacenze','confirm','button')+'</div>';
+  h+=`<p class="stock-empty" id="kStockEmpty" hidden>Nessun articolo trovato. Prova un altro nome o una categoria diversa.</p><div class="stock-save"><p role="status">${k.draft.size} articoli da confermare · ${[...k.draft.values()].filter(d=>d.qty===0).length} a zero</p>`+kButton('Salva giacenze','confirm','button')+kButton('Annulla modifiche','discardstock')+'</div><div class="stock-reset">'+kButton('Azzera giacenze','zerostock','small-action',!kActive().length)+'<p class="mini">Porta a zero tutti gli articoli attivi della Cucina, anche quelli nascosti da ricerca o filtri. Salva giacenze conferma le nuove quantità.</p></div>';
  }
  if(k.page==='cart'){
   h+='<p>Le quantità qui indicano quanto acquistare. Salva prima di preparare il messaggio. Copiare non significa inviare.</p>';
@@ -3283,6 +3285,19 @@ function kEvent(tx,ref,kind,title,text,target,notify=true){tx.set(ref,{actorUid:
 function kMeta(before,event){return {revision:(before?.revision||0)+1,updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid,lastEventId:event.id};}
 async function kRun(action){if(k.busy||!k.allowed||!k.ready)return;if(!navigator.onLine){kNotice('Sei offline. Nessun salvataggio confermato. Le modifiche rimangono aperte.',true);return;}const epoch=k.epoch;let success=false;k.busy=true;const disabled=[...$('kBody').querySelectorAll('button,input,textarea,select')].map(el=>[el,el.disabled]);disabled.forEach(([el])=>el.disabled=true);kNotice('Salvataggio in corso…');try{await action(epoch);success=true;if(epoch===k.epoch){shiftPhase('kitchen','saved');kNotice('Salvataggio confermato.');}}catch(error){if(epoch===k.epoch)kNotice(kError(error),true);}finally{if(epoch===k.epoch){k.busy=false;queueMicrotask(shiftSync);if(success||!k.formDirty)kRender();else disabled.forEach(([el,was])=>el.disabled=was);}}}
 function kAssert(epoch){if(epoch!==k.epoch||!auth.currentUser||!k.allowed)throw Error('Sessione cambiata. Accedi di nuovo.');}
+function kZeroStock(){
+ if(!k.ready||!k.allowed||k.busy)return;
+ const products=kActive();if(!products.length){kNotice('Non ci sono articoli attivi da azzerare.');return;}
+ if(!confirm('Portare a zero le giacenze di tutti i '+products.length+' articoli attivi della Cucina, anche quelli nascosti da ricerca o filtri?\n\nI valori resteranno da salvare. Puoi correggerli, premere Salva giacenze oppure Annulla modifiche. Riordini e preparazioni si aggiornano solo al salvataggio.'))return;
+ for(const product of products){const before=k.draft.get(product.id);k.draft.set(product.id,{qty:0,revision:before?.revision??k.stock.get(product.id)?.revision??0,configRevision:before?.configRevision??product.revision});}
+ kNotice('Giacenze portate a zero nelle modifiche da salvare. Correggi le quantità effettive, poi premi Salva giacenze.');kRender();
+}
+function kDiscardStock(){
+ if(!k.ready||!k.allowed||k.busy)return;
+ if(!k.draft.size&&!$('kBody').querySelector('[data-k-qty][data-type="stock"]:invalid'))return;
+ if(!confirm('Annullare le modifiche alle giacenze non ancora salvate?'))return;
+ k.draft.clear();kNotice('Modifiche alle giacenze annullate.');kRender();
+}
 function kQuantity(value,step){const q=typeof value==='number'?value:Number(String(value).replace(',','.'));if(!Number.isFinite(q)||q<0||q>100000||Math.abs(q/step-Math.round(q/step))>0.00001)throw Error('Quantità non valida: usa multipli di '+kNum(step)+'.');return Math.round(q*1000)/1000;}
 function kOrder(item,event,old){return {itemId:item.id,name:item.name,supplierId:item.supplierId,unit:item.orderUnit,mode:item.mode,messageName:item.messageName,bundle:item.bundle,step:item.orderStep,qty:0,status:'draft',configRevision:item.revision,...kMeta(old,event)};}
 async function kSeed(epoch){
@@ -3349,6 +3364,8 @@ $('kBody').addEventListener('click',async event=>{
   if(['loads','handover','home','stock','cart','tasks','clean','settings','notifications','preferences'].includes(action)){if(k.formDirty&&!confirm('Scartare la scheda non salvata?'))return;if(k.formDirty&&k.page==='handover')kh.draft=null;k.formDirty=false;k.page=action;kRender();return;}
   if(action==='reload'){if(kitchenUnsaved()&&!confirm('Scartare le modifiche locali e riconnettere?'))return;await kitchenStart();return;}
   if(action==='seed'){if(confirm('Aggiungere solo i prodotti mancanti dell’elenco concordato? Nessuna quantità verrà impostata.'))await kRun(kSeed);return;}
+  if(action==='zerostock'){kZeroStock();return;}
+  if(action==='discardstock'){kDiscardStock();return;}
   if(action==='undo'){k.draft.delete(id);kRender();return;}
   if(action==='check'){const item=k.items.get(id),s=k.stock.get(id);if(s&&s.configRevision===item.revision){k.draft.set(id,{qty:s.qty,revision:s.revision,configRevision:item.revision});kRender();}return;}
   if(action==='confirm'){await kRun(kConfirm);return;}
@@ -3580,10 +3597,10 @@ function bRender(){
  let h='';
  if(!bar.items.size&&bar.page!=='loads'){h='<div class="b-card"><h3>Il tuo Bar</h3><p>L’elenco prodotti è già incluso nel codice. Al primo accesso della proprietaria si prepara automaticamente nel database condiviso.</p></div>';}
  else if(bar.page==='stock'){
-  h='<p class="mini">Controlla le quantità e conferma le voci selezionate. Passo 0,25. I dati iniziali non sono un controllo di oggi.</p>'+stockTools('bSearch','bCategory',bar.search,barCategory,[...new Set(bActive().map(i=>i.category))])+'<details class="b-advanced"><summary>Operazioni su tutte le giacenze</summary>'+bButton('Azzera giacenze','zerostock',!bActive().length)+'</details>';
+  h='<p class="mini">Controlla le quantità, poi premi Salva giacenze. Passo 0,25. I dati iniziali non sono un controllo di oggi.</p>'+stockTools('bSearch','bCategory',bar.search,barCategory,[...new Set(bActive().map(i=>i.category))]);
   const items=bActive();
   for(const category of [...new Set(items.map(x=>x.category))].sort((a,b)=>B_CATS.indexOf(a)-B_CATS.indexOf(b))){const products=items.filter(p=>p.category===category);h+='<section class="stock-group" data-b-category="'+ke(category)+'"><h3>'+ke(category)+' <span>'+products.length+'</span></h3>'+products.map(bStockRow).join('')+'</section>';}
-  h+='<p class="stock-empty" id="bStockEmpty" hidden>Nessun articolo trovato. Prova un altro nome o una categoria diversa.</p><div class="b-sticky">'+bButton('Conferma controlli ('+bar.draft.size+')','confirm',!bar.draft.size)+bButton('Scarta controlli','discard',!bar.draft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('stock:')))+'</div><p class="mini">Una quantità lasciata vuota non viene interpretata come zero. La conferma aggiunge le mancanze alla lista; le quantità già presenti nella lista vengono conservate.</p>';
+  h+='<p class="stock-empty" id="bStockEmpty" hidden>Nessun articolo trovato. Prova un altro nome o una categoria diversa.</p><div class="b-sticky">'+bButton('Salva giacenze ('+bar.draft.size+')','confirm',!bar.draft.size)+bButton('Annulla modifiche','discard',!bar.draft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('stock:')))+'</div><p class="mini">Una quantità lasciata vuota non viene interpretata come zero. La conferma aggiunge le mancanze alla lista; le quantità già presenti nella lista vengono conservate.</p><div class="stock-reset">'+bButton('Azzera giacenze','zerostock',!items.length)+'<p class="mini">Porta a zero tutti i prodotti attivi del Bar, anche quelli nascosti da ricerca o filtri. Salva giacenze conferma le nuove quantità.</p></div>';
  }else if(bar.page==='loads'){h=blRender();}
  else if(bar.page==='cart'){
   const orders=bOrders();h='<p class="mini">Lista condivisa del Bar. Gli ordini automatici sono arrotondati all’intero superiore, come nell’Excel. Per gli articoli manuali scegli tu la quantità.</p>';
@@ -3637,10 +3654,10 @@ async function bInitialize(epoch){
 function bZeroStock(){
  if(!bar.ready||!bar.allowed||bar.busy)return;
  const products=bActive();if(!products.length){bNotice('Non ci sono prodotti attivi da azzerare.');return;}
- const text='Portare a zero le giacenze di tutti i '+products.length+' prodotti attivi del Bar'+(bar.search.trim()?', anche quelli nascosti dalla ricerca':'')+'?\n\nI valori resteranno nel controllo in corso. Potrai correggerli e salvarli con Conferma controlli oppure annullare con Scarta controlli.';
+ const text='Portare a zero le giacenze di tutti i '+products.length+' prodotti attivi del Bar, anche quelli nascosti da ricerca o filtri?\n\nI valori resteranno nel controllo in corso. Potrai correggerli e salvarli con Salva giacenze oppure annullare con Annulla modifiche.';
  if(!confirm(text))return;
  for(const product of products){bStage(product.id,0);bar.invalid.delete('stock:'+product.id);}
- bNotice('Giacenze portate a zero nel controllo in corso. Correggi le quantità effettive, poi premi Conferma controlli.');
+ bNotice('Giacenze portate a zero nel controllo in corso. Correggi le quantità effettive, poi premi Salva giacenze.');
  bRender();
 }
 
@@ -3729,7 +3746,7 @@ $('bBody').addEventListener('input',e=>{
   else{const old=bar.orderDraft.get(el.dataset.id);bar.orderDraft.set(el.dataset.id,{qty:bQty(el.value,true),revision:old?.revision??bar.orders.get(el.dataset.id)?.revision});}
   bar.invalid.delete(el.dataset.bInput+':'+el.dataset.id);el.setCustomValidity('');
  }catch(error){bar.invalid.set(el.dataset.bInput+':'+el.dataset.id,el.value);el.setCustomValidity(error.message);bNotice(error.message,true);}
- const confirmButton=$('bBody').querySelector('[data-b="confirm"]');if(confirmButton){confirmButton.disabled=!bar.draft.size;confirmButton.textContent='Conferma controlli ('+bar.draft.size+')';}
+ const confirmButton=$('bBody').querySelector('[data-b="confirm"]');if(confirmButton){confirmButton.disabled=!bar.draft.size;confirmButton.textContent='Salva giacenze ('+bar.draft.size+')';}
  for(const action of ['discard','saveorders','discardorders']){const b=$('bBody').querySelector('[data-b="'+action+'"]');if(b)b.disabled=action==='discard'?(!bar.draft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('stock:'))):action==='discardorders'?(!bar.orderDraft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('order:'))):!bar.orderDraft.size;}
 });
 $('bBody').addEventListener('change',e=>{if(e.target.id==='bMode'){$('bTargetLabel').hidden=e.target.value==='manual';bar.dirty=true;}});
@@ -3748,7 +3765,7 @@ $('barPanel').addEventListener('click',async e=>{
   }
   if(action==='zerostock'){bZeroStock();return;}
   if(action==='confirm'){if($('bBody').querySelector('input:invalid'))throw Error('Correggi le quantità non valide prima di confermare.');await bRun(bConfirm);return;}
-  if(action==='discard'){if(confirm('Scartare i controlli non confermati?')){bar.draft.clear();for(const key of bar.invalid.keys())if(key.startsWith('stock:'))bar.invalid.delete(key);bRender();}return;}
+  if(action==='discard'){if(confirm('Annullare le modifiche alle giacenze non ancora salvate?')){bar.draft.clear();for(const key of bar.invalid.keys())if(key.startsWith('stock:'))bar.invalid.delete(key);bRender();}return;}
   if(action==='saveorders'){if($('bBody').querySelector('input:invalid'))throw Error('Correggi le quantità non valide prima di salvare.');await bRun(epoch=>bOrderSave([...bar.orderDraft.keys()],null,epoch));return;}
   if(action==='discardorders'){if(confirm('Scartare le quantità locali non salvate e mostrare quelle condivise?')){bar.orderDraft.clear();for(const key of bar.invalid.keys())if(key.startsWith('order:'))bar.invalid.delete(key);bRender();}return;}
   if(action==='remove'){await bRun(epoch=>bOrderSave([id],'removed',epoch));return;}
