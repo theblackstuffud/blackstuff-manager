@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it" data-privacy-app="manager">
 <head>
-<meta name="tbs-release" content="2026-11-08-magazzino-v33">
+<meta name="tbs-release" content="2026-11-08-riprendi-bozza-v35">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
@@ -643,7 +643,7 @@ body[data-manager-view="home"] #primaryNav{display:none}.home-intro{padding:28px
 #profileTrigger{position:relative;overflow:visible}#profileTrigger img{border-radius:50%}#profileTrigger[data-pending]:after{content:attr(data-pending);position:absolute;top:-5px;right:-6px;min-width:19px;height:19px;border:2px solid var(--bg);border-radius:12px;background:#ac392e;color:white;display:grid;place-items:center;font-size:10px;font-weight:700;padding:0 3px;pointer-events:none}#profileRequestCount{background:var(--accent-soft);color:var(--accent);margin-left:auto;margin-right:8px;padding:3px 7px;border-radius:8px}
 .draft-prompt{padding:17px;border:1px solid var(--accent-border);border-radius:14px;background:var(--accent-soft);margin:14px 0}.draft-prompt strong{font-size:15px}.draft-prompt p{margin:8px 0;line-height:1.6}.draft-actions{display:flex;gap:7px;flex-wrap:wrap}.draft-actions button{background:var(--card)}.draft-error{font-size:13px;color:var(--text)}[data-draft-locked]{opacity:.55}.undo-notice{position:fixed;z-index:70;bottom:max(16px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:560px;background:var(--text);color:var(--bg);border-radius:15px;padding:13px 12px 13px 17px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 35px #0004}.undo-notice span{flex:1;min-width:0;font-size:14px;overflow-wrap:anywhere}.undo-notice button{border:1px solid currentColor;background:transparent;color:inherit;font:inherit;font-size:14px;padding:10px;min-height:44px;border-radius:10px;cursor:pointer}.undo-notice button:disabled{opacity:.6}.undo-notice #undoDismiss{border:0;font-size:22px;padding:6px;min-width:34px}#draftReview{width:min(620px,calc(100% - 32px));max-height:85dvh;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:18px;padding:22px}#draftReview::backdrop{background:#0007}#draftReviewText{width:100%;height:45dvh;background:var(--card2);color:var(--text);padding:12px;border:1px solid var(--border);border-radius:10px;font-size:14px;line-height:1.6;margin:12px 0;resize:vertical}
 @media(prefers-color-scheme:dark){.work-status[data-state="dirty"]{color:#e1bd76}.work-status[data-state="error"],.work-status[data-state="offline"]{color:#f4aba2}}@media(prefers-reduced-motion:reduce){.work-status[data-state="saving"]:before{animation:none}}
-</style><style id="moduleAccessStyle">[hidden]{display:none!important}.module-tile strong{text-transform:uppercase}.module-grid:has(#kHomeButton[hidden]) #bHomeButton,.module-grid:has(#bHomeButton[hidden]) #kHomeButton{grid-column:1/-1}.home-profile-hint{display:none!important}</style><style id="reliabilityStyles">.order-conflicts{margin:16px 0}.order-conflict{padding:16px;border:1px solid var(--accent-border);border-radius:10px;background:var(--accent-soft);margin:10px 0}.order-conflict strong{display:block}.order-conflict p{margin:8px 0;font-size:14px;line-height:1.5}.order-conflict>div{display:flex;gap:8px;flex-wrap:wrap}.order-conflict button{margin:0!important;min-height:44px}.order-conflict .small-action{background:var(--card)}</style><style id="shoppingStyles">#shoppingPanel{display:none}body[data-manager-ready="true"][data-manager-view="shopping"] #shoppingPanel{display:block}.shopping-tile{grid-column:1/-1;min-height:110px;flex-direction:row;align-items:center;justify-content:flex-start;flex-wrap:wrap}.shopping-tile svg{margin:0 12px 0 0}.shopping-tile span{margin-left:auto}.shopping-row{display:flex;align-items:center;gap:12px;padding:17px 0;border-bottom:1px solid var(--border)}.shopping-row label{display:flex;align-items:center;gap:14px;flex:1;min-width:0;cursor:pointer;margin:0}.shopping-row input{width:24px;height:24px;min-width:24px;accent-color:var(--accent);margin:0}.shopping-row span{min-width:0;overflow-wrap:anywhere}.shopping-row strong{display:block;font-size:16px;font-weight:600}.shopping-row small{display:block;color:var(--muted);font-size:13px;margin-top:5px}.shopping-done strong{text-decoration:line-through;color:var(--muted)}#shoppingAddForm{margin:24px 0 16px}#shoppingAddForm label{display:block;font-size:12px;font-weight:600;margin-bottom:10px}#shoppingInput{display:block;box-sizing:border-box;width:100%;padding:14px;font:inherit;font-size:16px;color:var(--text);background:var(--card);border:1px solid var(--border);border-radius:12px;resize:vertical;margin-bottom:12px}#primaryNav{overflow-x:auto}#primaryNav button{flex-shrink:0;min-width:55px}@media(max-width:420px){#primaryNav button{font-size:13px;padding:9px 5px}.shopping-tile span{margin-left:0}}</style><style>#warehouseDialog{width:min(460px,calc(100vw - 32px));box-sizing:border-box;max-height:85dvh;overflow:auto;padding:24px;border:1px solid var(--border);border-radius:18px;background:var(--bg);color:var(--text)}#warehouseDialog::backdrop{background:#0006}#wmForm label{display:block;font-size:12px;font-weight:600;margin:18px 0 8px}#wmForm select,#wmForm input{box-sizing:border-box;width:100%;font:inherit;font-size:16px;min-height:48px;border:1px solid var(--border);border-radius:10px;padding:12px;background:var(--card);color:var(--text)}.wm-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:20px}#wmError{color:#a53629}.shopping-group{margin:24px 0}.shopping-group h3{font-size:14px;color:var(--muted)}</style></head>
+</style><style id="moduleAccessStyle">[hidden]{display:none!important}.module-tile strong{text-transform:uppercase}.module-grid:has(#kHomeButton[hidden]) #bHomeButton,.module-grid:has(#bHomeButton[hidden]) #kHomeButton{grid-column:1/-1}.home-profile-hint{display:none!important}</style><style id="reliabilityStyles">.order-conflicts{margin:16px 0}.order-conflict{padding:16px;border:1px solid var(--accent-border);border-radius:10px;background:var(--accent-soft);margin:10px 0}.order-conflict strong{display:block}.order-conflict p{margin:8px 0;font-size:14px;line-height:1.5}.order-conflict>div{display:flex;gap:8px;flex-wrap:wrap}.order-conflict button{margin:0!important;min-height:44px}.order-conflict .small-action{background:var(--card)}</style><style id="shoppingStyles">#shoppingPanel{display:none}body[data-manager-ready="true"][data-manager-view="shopping"] #shoppingPanel{display:block}.shopping-tile{grid-column:1/-1;min-height:110px;flex-direction:row;align-items:center;justify-content:flex-start;flex-wrap:wrap}.shopping-tile svg{margin:0 12px 0 0}.shopping-tile span{margin-left:auto}.shopping-row{display:flex;align-items:center;gap:12px;padding:17px 0;border-bottom:1px solid var(--border)}.shopping-row label{display:flex;align-items:center;gap:14px;flex:1;min-width:0;cursor:pointer;margin:0}.shopping-row input{width:24px;height:24px;min-width:24px;accent-color:var(--accent);margin:0}.shopping-row span{min-width:0;overflow-wrap:anywhere}.shopping-row strong{display:block;font-size:16px;font-weight:600}.shopping-row small{display:block;color:var(--muted);font-size:13px;margin-top:5px}.shopping-done strong{text-decoration:line-through;color:var(--muted)}#shoppingAddForm{margin:24px 0 16px}#shoppingAddForm label{display:block;font-size:12px;font-weight:600;margin-bottom:10px}#shoppingInput{display:block;box-sizing:border-box;width:100%;padding:14px;font:inherit;font-size:16px;color:var(--text);background:var(--card);border:1px solid var(--border);border-radius:12px;resize:vertical;margin-bottom:12px}#primaryNav{overflow-x:auto}#primaryNav button{flex-shrink:0;min-width:55px}@media(max-width:420px){#primaryNav button{font-size:13px;padding:9px 5px}.shopping-tile span{margin-left:0}}</style><style>#warehouseDialog{width:min(460px,calc(100vw - 32px));box-sizing:border-box;max-height:85dvh;overflow:auto;padding:24px;border:1px solid var(--border);border-radius:18px;background:var(--bg);color:var(--text)}#warehouseDialog::backdrop{background:#0006}#wmForm label{display:block;font-size:12px;font-weight:600;margin:18px 0 8px}#wmForm select,#wmForm input{box-sizing:border-box;width:100%;font:inherit;font-size:16px;min-height:48px;border:1px solid var(--border);border-radius:10px;padding:12px;background:var(--card);color:var(--text)}.wm-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:20px}#wmError{color:#a53629}.shopping-group{margin:24px 0}.shopping-group h3{font-size:14px;color:var(--muted)}</style><style>.draft-recovery{margin:16px 0;padding:14px;border:1px solid var(--border);border-radius:12px}.draft-recovery summary{cursor:pointer;font-size:14px}.draft-recovery textarea{box-sizing:border-box;width:100%;font:inherit;font-size:14px;padding:12px;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:8px}</style></head>
 <body>
 <main>
 <header class="brand">
@@ -859,7 +859,7 @@ body[data-manager-view="home"] #primaryNav{display:none}.home-intro{padding:28px
 <details class="app-settings" id="appSettings">
 <summary aria-label="Impostazioni e aggiornamenti" title="Impostazioni e aggiornamenti"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9.5 3-.5 2-1.7 1-2-.6-2.5 4.2 1.5 1.5v1.8l-1.5 1.5 2.5 4.2 2-.6 1.7 1 .5 2h5l.5-2 1.7-1 2 .6 2.5-4.2-1.5-1.5v-1.8l1.5-1.5-2.5-4.2-2 .6-1.7-1-.5-2Z"/><circle cx="12" cy="12" r="3"/></svg></summary>
 <div class="app-settings-panel"><strong>Aggiornamenti</strong>
-<p id="managerBuild" class="mini">Versione v33 · 08/11/2026</p><p id="appUpdateStatus" role="status" aria-live="polite">Controllo automatico degli aggiornamenti attivo.</p>
+<p id="managerBuild" class="mini">Versione v35 · 08/11/2026</p><p id="appUpdateStatus" role="status" aria-live="polite">Controllo automatico degli aggiornamenti attivo.</p>
 <button type="button" class="small-action" id="appUpdateCheck">Controlla aggiornamenti</button>
 </div></details>
 </footer>
@@ -1037,7 +1037,7 @@ function shiftStart(user){
 }
 function shiftReset(){
  shift.requestsOff?.();shift.requestsOff=null;shift.active=false;shift.uid=null;shift.pending={};shift.stored={};shift.phase={};shift.undo=null;shift.undoBusy=false;
- $('workStatus').hidden=true;$('undoNotice').hidden=true;if($('draftReview').open)$('draftReview').close();$('draftReviewText').value='';
+ $('workStatus').hidden=true;$('undoNotice').hidden=true;for(const scope of ['kitchen','bar'])$('draftRecovery-'+scope)?.remove();if($('draftReview').open)$('draftReview').close();$('draftReviewText').value='';
  for(const scope of SHIFT_SCOPES){const box=$('draftPrompt-'+scope);if(box){box.hidden=true;box.replaceChildren();}}
  shiftRequestBadge(null);
 }
@@ -1080,7 +1080,7 @@ function shiftRenderStatus(){
 }
 function shiftPrompt(scope){
  const box=$('draftPrompt-'+scope),saved=shift.pending[scope];if(!box)return;
- box.hidden=!saved||!shiftAllowed(scope);if(box.hidden){box.replaceChildren();return;}
+ box.hidden=!saved||!shiftAllowed(scope);if(box.hidden){box.replaceChildren();if(scope!=='catalog')shiftRecovery(scope);return;}
  if(box.dataset.at!==String(saved.at)||!box.childElementCount){
   box.dataset.at=String(saved.at);box.replaceChildren();
   const title=make('strong','','Bozza da riprendere'),note=make('p','mini','Salvata su questo dispositivo il '+new Date(saved.at).toLocaleString('it-IT',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+'. Non è stata pubblicata. Conservata per 7 giorni.');
@@ -1094,18 +1094,38 @@ function shiftPrompt(scope){
 function shiftUnlock(scope){const root=scope==='catalog'?$('catalogEditor'):$(scope==='kitchen'?'kBody':'bBody');root.querySelectorAll('[data-draft-locked]').forEach(el=>{el.disabled=false;delete el.dataset.draftLocked;});}
 function shiftPending(scope){if(!shift.active||!shift.pending[scope]||shift.restoring)return false;shiftPrompt(scope);$('draftPrompt-'+scope)?.scrollIntoView({block:'nearest'});return true;}
 function shiftCheckQuantities(scope,value){
- const state=scope==='kitchen'?k:bar;
+ const state=scope==='kitchen'?k:bar,result={stock:[],orders:[],invalid:[],recovery:[]},seen=new Set();
  for(const key of ['stock','orders','invalid'])if(!Array.isArray(value[key])||value[key].length>400)throw Error('Bozza non leggibile. Puoi consultarla e scartarla.');
- const seen=new Set();
  for(const [kind,entries]of [['stock',value.stock],['orders',value.orders]])for(const pair of entries){
   if(!Array.isArray(pair)||pair.length!==2)throw Error('Bozza non leggibile.');const [id,d]=pair;
-  if(!catalogId(id)||seen.has(kind+id)||!d||!Number.isSafeInteger(d.revision)||d.revision<0)throw Error('Bozza non leggibile.');seen.add(kind+id);
+  if(!catalogId(id)||seen.has(kind+id)||!d||typeof d!=='object')throw Error('Bozza non leggibile.');seen.add(kind+id);
   const item=state.items.get(id),record=(kind==='stock'?state.stock:state.orders).get(id);
-  if(!item?.active||(kind==='stock'&&(record?.revision||0)!==d.revision)||(kind==='stock'&&item.revision!==d.configRevision)||(kind==='orders'&&(!record||!['draft','sent'].includes(record.status))))throw Error('Alcuni dati sono cambiati dopo questa bozza. Non la applico ai dati nuovi: usa “Vedi bozza” per confrontarli.');
-  if(scope==='bar')bQty(d.qty,kind==='orders');else kQuantity(d.qty,kind==='stock'?item.stockStep:record.step);
+  if(!item?.active||(kind==='orders'&&(!record||!['draft','sent'].includes(record.status)))){result.recovery.push([kind,id,d.qty]);continue;}
+  if(typeof d.qty!=='number'||!Number.isFinite(d.qty)||d.qty<0||d.qty>100000){result.recovery.push([kind,id,String(d.qty).slice(0,100)]);continue;}
+  // Riprendi recupera una bozza editabile. Non pubblica e non richiede vecchie revisioni.
+  result[kind].push([id,{...d,revision:record?.revision||0,configRevision:kind==='stock'?item.revision:record.configRevision,
+   ...(kind==='orders'?{baseQty:record.qty,baseStatus:record.status}:{})}]);
  }
- if(scope==='bar')for(const pair of value.invalid){if(!Array.isArray(pair)||pair.length!==2||!/^((stock)|(order)):[a-z0-9-]+$/.test(pair[0])||typeof pair[1]!=='string'||pair[1].length>100)throw Error('Bozza non leggibile.');}
+ if(scope==='bar')for(const pair of value.invalid){
+  if(!Array.isArray(pair)||pair.length!==2||!/^((stock)|(order)):[a-z0-9-]+$/.test(pair[0])||typeof pair[1]!=='string'||pair[1].length>100)throw Error('Bozza non leggibile.');
+  const [type,id]=pair[0].split(':');
+  if(state.items.get(id)?.active&&(type==='stock'||['draft','sent'].includes(state.orders.get(id)?.status)))result.invalid.push(pair);else result.recovery.push(['da correggere',id,pair[1]]);
+ }
+ return result;
 }
+function shiftRecovery(scope,rows){
+ const key=shiftKey(scope)+':unavailable';
+ if(rows?.length){try{localStorage.setItem(key,JSON.stringify({uid:shift.uid,at:Date.now(),rows}));}catch(_){shift.storageError=true;}}
+ let saved;try{saved=JSON.parse(localStorage.getItem(key)||'null');}catch(_){}
+ const id='draftRecovery-'+scope;
+ if(!saved||saved.uid!==shift.uid||!Array.isArray(saved.rows)||!saved.rows.length||saved.rows.length>1200||Date.now()-saved.at>SHIFT_TTL){$(id)?.remove();return;}
+ const box=$('draftPrompt-'+scope);if(!box||!shiftAllowed(scope)||shift.pending[scope])return;
+ if($(id)?.dataset.at===String(saved.at))return;$(id)?.remove();
+ const details=make('details','draft-recovery');details.id=id;details.dataset.at=String(saved.at);details.append(make('summary','',saved.rows.length+' voci non più disponibili · valori recuperati'));
+ details.append(make('p','mini','Il resto della bozza è modificabile. Queste voci erano state eliminate o chiuse: i valori restano qui per poterli copiare.'));
+ const area=make('textarea');area.readOnly=true;area.rows=Math.min(8,saved.rows.length+1);area.setAttribute('aria-label','Valori recuperati dalla bozza');area.value=saved.rows.map(row=>Array.isArray(row)?row.map(x=>String(x??'')).join(' · '):'').join('\n');details.append(area);box.after(details);
+}
+
 function shiftRestore(scope){
  const saved=shift.pending[scope];if(!saved||!shiftAllowed(scope)||shiftBusy(scope))return;
  try{
@@ -1121,8 +1141,11 @@ function shiftRestore(scope){
    [...$('catalogEditor').querySelectorAll('input,select,textarea')].forEach((el,i)=>{const field=value.fields[i];if(typeof field.value!=='string'||field.value.length>5000)throw Error('Valore della bozza non valido.');el.value=field.value;if(['checkbox','radio'].includes(el.type))el.checked=field.checked===true;});
    editorDirty=true;updateCatalogFields();$('productVerificationStatus').textContent='Bozza ripristinata · controlla la scheda prima di pubblicare';
   }else{
-   if(value.kind!=='quantities')throw Error('Bozza non leggibile.');shiftCheckQuantities(scope,value);
-   const state=scope==='kitchen'?k:bar;state.draft=new Map(value.stock);state.orderDraft=new Map(value.orders);if(scope==='bar')state.invalid=new Map(value.invalid);state.page=value.stock.length||value.invalid.some(x=>x[0].startsWith('stock:'))?'stock':'cart';
+   if(value.kind!=='quantities')throw Error('Bozza non leggibile.');const restored=shiftCheckQuantities(scope,value);
+   const state=scope==='kitchen'?k:bar;state.draft=new Map(restored.stock);state.orderDraft=new Map(restored.orders);if(scope==='bar')state.invalid=new Map(restored.invalid);state.page=restored.stock.length||restored.invalid.some(x=>x[0].startsWith('stock:'))?'stock':'cart';
+   orderConflicts[scope].clear();state.error=false;state.message='Bozza ripresa. Puoi modificare le quantità e salvarle quando vuoi.';
+   if(scope==='kitchen')kNotice(state.message);else bNotice(state.message);
+   delete shift.pending[scope];shiftRecovery(scope,restored.recovery);
   }
   delete shift.pending[scope];shiftUnlock(scope);shift.phase[scope]={phase:'dirty',at:Date.now()};
   if(scope==='catalog')renderCatalog();else if(scope==='kitchen')kRender();else bRender();shiftSync();
@@ -3336,15 +3359,15 @@ function kRender(){
  if(k.page==='handover'||k.page==='tasks')h=ktRender();
  if(k.page==='loads')h=klRender();
  if(k.page==='stock'){
-  h+='<p class="mini">Controlla le quantità, poi premi Salva giacenze. Gli articoli a zero entrano nei riordini o nelle preparazioni.</p>'+stockTools('kSearch','kCategory',kitchenSearch,kitchenCategory,[...new Set(kActive().map(i=>i.category))]);
+  h+='<p class="mini">Modifica le quantità che hai contato, poi premi Salva giacenze una volta sola per confermare tutto. Le voci non modificate mantengono gli ultimi aggiornamenti di magazzino.</p>'+stockTools('kSearch','kCategory',kitchenSearch,kitchenCategory,[...new Set(kActive().map(i=>i.category))]);
   for(const cat of [...new Set(kActive().map(i=>i.category))]){
    h+=`<section class="stock-group" data-k-category="${ke(cat)}"><h3>${ke(cat)}</h3>`;
    for(const i of kActive().filter(i=>i.category===cat)){
     const old=k.stock.get(i.id),changed=k.draft.get(i.id),incompatible=!!old&&(old.unit!==i.stockUnit||old.configRevision!==i.revision),qty=changed?changed.qty:incompatible?null:old?.qty;
-    h+=`<div class="k-row" data-k-search="${ke(i.name.toLocaleLowerCase('it'))}"><div class="k-label"><strong>${ke(i.name)}</strong><small>${ke(wmStockLabel(i))} · ${ke(k.suppliers.get(i.supplierId)?.name||({prep:'Preparazione interna',auto:'Rifornimento automatico'}[i.mode]||'Fornitore da verificare'))}</small><small>${changed?'Controllato in questa sessione':incompatible?'Configurazione cambiata: ricontrolla':old?'Ultimo controllo: '+ke(kTime(old.checkedAt)):'Da controllare'}</small></div>${kStepper(i.id,qty,i.stockStep,'stock',i.name)}${changed?kButton('Annulla controllo','undo:'+i.id):qty!==undefined&&qty!==null?kButton('Conferma '+kNum(qty),'check:'+i.id):''}</div>`;
+    h+=`<div class="k-row" data-k-search="${ke(i.name.toLocaleLowerCase('it'))}"><div class="k-label"><strong>${ke(i.name)}</strong><small>${ke(wmStockLabel(i))} · ${ke(k.suppliers.get(i.supplierId)?.name||({prep:'Preparazione interna',auto:'Rifornimento automatico'}[i.mode]||'Fornitore da verificare'))}</small><small>${changed?'Controllato in questa sessione':incompatible?'Configurazione cambiata: ricontrolla':old?'Ultimo controllo: '+ke(kTime(old.checkedAt)):'Da controllare'}</small></div>${kStepper(i.id,qty,i.stockStep,'stock',i.name)}${changed?kButton('Annulla modifica','undo:'+i.id):''}</div>`;
    }h+='</section>';
   }
-  h+=`<p class="stock-empty" id="kStockEmpty" hidden>Nessun articolo trovato. Prova un altro nome o una categoria diversa.</p><div class="stock-save"><p role="status">${k.draft.size} articoli da confermare · ${[...k.draft.values()].filter(d=>d.qty===0).length} a zero</p>`+kButton('Salva giacenze','confirm','button')+kButton('Annulla modifiche','discardstock')+'</div><div class="stock-reset">'+kButton('Azzera giacenze','zerostock','small-action',!kActive().length)+'<p class="mini">Porta a zero tutti gli articoli attivi della Cucina, anche quelli nascosti da ricerca o filtri. Salva giacenze conferma le nuove quantità.</p></div>';
+  h+=`<p class="stock-empty" id="kStockEmpty" hidden>Nessun articolo trovato. Prova un altro nome o una categoria diversa.</p><div class="stock-save"><p role="status">${k.draft.size} quantità modificate · Salva conferma tutte le giacenze</p>`+kButton('Salva giacenze','confirm','button')+kButton('Annulla modifiche','discardstock')+'</div><div class="stock-reset">'+kButton('Azzera giacenze','zerostock','small-action',!kActive().length)+'<p class="mini">Porta a zero tutti gli articoli attivi della Cucina, anche quelli nascosti da ricerca o filtri. Salva giacenze conferma le nuove quantità.</p></div>';
  }
  if(k.page==='cart'){
   h+='<p>Le quantità qui indicano quanto acquistare. Salva prima di preparare il messaggio. Copiare non significa inviare.</p>';
@@ -3412,27 +3435,61 @@ async function kSeed(epoch){
  for(const [id,s] of Object.entries(K_SUPPLIERS)){const ref=doc(db,'kitchenSuppliers',id),ev=doc(collection(db,'kitchenEvents'));await runTransaction(db,async tx=>{const snap=await tx.get(ref);kAssert(epoch);if(snap.exists())return;tx.set(ref,{...s,...kMeta(null,ev)});kEvent(tx,ev,'settings','Fornitore aggiunto',s.name,'settings',false);});}
  for(let start=0;start<K_SEEDS.length;start+=6){const chunk=K_SEEDS.slice(start,start+6),ev=doc(collection(db,'kitchenEvents'));await runTransaction(db,async tx=>{const snaps=await Promise.all(chunk.map(i=>tx.get(doc(db,'kitchenItems',i.id))));kAssert(epoch);chunk.forEach((i,index)=>{if(!snaps[index].exists()){const {id,...fields}=i;tx.set(doc(db,'kitchenItems',id),{...fields,...kMeta(null,ev)});}});kEvent(tx,ev,'settings','Elenco cucina inizializzato','Aggiunti solo articoli mancanti; nessuna quantità impostata.','settings',false);});kNotice('Inizializzazione '+Math.min(start+6,K_SEEDS.length)+' / '+K_SEEDS.length);}
 }
-async function kConfirm(epoch){
- const selected=[...k.draft.entries()].map(([id,d])=>({id,...d}));if(!selected.length)throw Error('Controlla almeno un articolo.');let completed=0;const preparations=[];
- try{
-  for(let offset=0;offset<selected.length;offset+=4){const chunk=selected.slice(offset,offset+4),ev=doc(collection(db,'kitchenEvents'));
-   const added=await runTransaction(db,async tx=>{
-    const newPreparations=[];const all=await Promise.all(chunk.map(async d=>({d,item:await tx.get(doc(db,'kitchenItems',d.id)),stock:await tx.get(doc(db,'kitchenStock',d.id)),order:await tx.get(doc(db,'kitchenOrders',d.id)),task:await tx.get(doc(db,'kitchenTasks','prep-'+d.id))})));kAssert(epoch);
-    for(const x of all){const i={id:x.d.id,...x.item.data()},old=x.stock.data();if(!x.item.exists()||!i.active||i.revision!==x.d.configRevision||(old?.revision||0)!==x.d.revision)throw Error(i.name+': dati cambiati da un altro utente. Annulla il controllo di questa voce e ricontrollala.');const qty=kQuantity(x.d.qty,i.stockStep);
-     tx.set(doc(db,'kitchenStock',i.id),{itemId:i.id,qty,unit:i.stockUnit,configRevision:i.revision,checkedAt:serverTimestamp(),...kMeta(old,ev)});
-     if(qty===0){
-      if(i.mode==='prep'){const before=x.task.data();if(!before||before.status==='done'){newPreparations.push(i.name);tx.set(doc(db,'kitchenTasks','prep-'+i.id),{title:'Preparare '+i.name,notes:'Generata da giacenza confermata a zero.',assignee:'',due:'',kind:'tasks',status:'todo',productId:i.id,updatedByName:auth.currentUser.displayName||'Personale',...kMeta(before,ev)});}}
-      else if(['qty','name','bundle'].includes(i.mode)){const oldOrder=x.order.data();if(!oldOrder||['closed','removed'].includes(oldOrder.status))tx.set(doc(db,'kitchenOrders',i.id),kOrder(i,ev,oldOrder));}
-     }
-    }kEvent(tx,ev,'stock','Controllo giacenze','Porzione di controllo salvata.','stock',false);return newPreparations;
-   });preparations.push(...added);kAssert(epoch);for(const d of chunk)k.draft.delete(d.id);completed+=chunk.length;
+// Il pulsante conferma l'intero elenco; le sole quantità editate sono conteggi espliciti.
+async function confirmWholeStock(kind,epoch){
+ const state=kind==='bar'?bar:k,check=kind==='bar'?bAssert:kAssert;
+ const products=kind==='bar'?bActive():kActive();
+ if(kind==='bar'&&[...bar.invalid.keys()].some(key=>key.startsWith('stock:')))throw Error('Correggi i campi quantità non validi prima di salvare.');
+ if(!products.length)throw Error('Non ci sono prodotti attivi da confermare.');
+ const selected=products.map(p=>({id:p.id,name:p.name,unit:p.stockUnit,draft:state.draft.has(p.id)?{...state.draft.get(p.id)}:null}));
+ let saved=0,missing=0;const issues=[];
+ for(const d of selected){
+  const event=doc(collection(db,kind==='bar'?'barEvents':'kitchenEvents'));
+  const stockRef=doc(db,kind==='bar'?'barStock':'kitchenStock',d.id);let accepted=null;
+  try{
+   accepted=await runTransaction(db,async tx=>{
+    const [item,stock,order,task]=await Promise.all([tx.get(doc(db,kind==='bar'?'barItems':'kitchenItems',d.id)),tx.get(stockRef),tx.get(doc(db,kind==='bar'?'barOrders':'kitchenOrders',d.id)),kind==='kitchen'?tx.get(doc(db,'kitchenTasks','prep-'+d.id)):Promise.resolve(null)]);check(epoch);
+    if(!item.exists()||!item.data().active)return {skip:'inactive'};
+    const p={id:d.id,...item.data()},before=stock.data();
+    if(p.stockUnit!==d.unit)return {skip:'unit',name:p.name};
+    // Le voci non editate usano la quantità più recente, inclusi acquisti e scarichi.
+    if(!d.draft&&(!before||(kind==='bar'&&before.configRevision!==p.revision)||(kind==='kitchen'&&before.unit!==p.stockUnit)))return {skip:'missing',name:p.name};
+    const qty=kind==='bar'?bQty(d.draft?d.draft.qty:before.qty):kQuantity(d.draft?d.draft.qty:before.qty,p.stockStep);
+    const after={itemId:d.id,qty,configRevision:p.revision,checkedAt:serverTimestamp(),...(kind==='bar'?bMeta(before,event):kMeta(before,event))};if(kind==='kitchen')after.unit=p.stockUnit;
+    tx.set(stockRef,after);
+    if(kind==='bar'){
+     bEvent(tx,event,'stock',d.id,'check');const needed=bNeed(p,qty),old=order.data();
+     if((p.target===null?qty===0:needed>0)&&(!old||['closed','removed'].includes(old.status))){const ev=doc(collection(db,'barEvents'));tx.set(doc(db,'barOrders',d.id),{itemId:d.id,name:p.name,orderUnit:p.orderUnit,qty:needed,manual:p.target===null,status:'draft',configRevision:p.revision,...bMeta(old,ev)});bEvent(tx,ev,'order',d.id,'create');}
+    }else{
+     if(qty===0){if(p.mode==='prep'){const old=task.data();if(!old||old.status==='done')tx.set(doc(db,'kitchenTasks','prep-'+d.id),{title:'Preparare '+p.name,notes:'Generata da giacenza confermata a zero.',assignee:'',due:'',kind:'tasks',status:'todo',productId:d.id,updatedByName:auth.currentUser.displayName||'Personale',...kMeta(old,event)});}else if(['qty','name','bundle'].includes(p.mode)){const old=order.data();if(!old||['closed','removed'].includes(old.status))tx.set(doc(db,'kitchenOrders',d.id),kOrder(p,event,old));}}
+     kEvent(tx,event,'stock','Giacenze confermate',p.name,'stock',false);
+    }
+    return after;
+   });
+  }catch(error){
+   check(epoch);
+   // Una conferma di rete persa non deve obbligare a rifare un conteggio già scritto.
+   try{const latest=await getDocFromServer(stockRef);check(epoch);if(latest.exists()&&latest.data().lastEventId===event.id)accepted=latest.data();}catch(_){}
+   if(!accepted){
+    if(!error.code){issues.push(d.name+': '+error.message);continue;}
+    throw Error(saved+' giacenze confermate. '+(error.code==='permission-denied'?'Il salvataggio non è autorizzato: verifica accesso e regole Firebase.':'Connessione interrotta. Le quantità ancora da salvare sono conservate; puoi riprovare.'));
+   }
   }
- }catch(error){throw Error(completed+' di '+selected.length+' articoli salvati. '+kError(error)+' Le voci rimanenti restano aperte.');}
- const event=doc(collection(db,'kitchenEvents')),batch=writeBatch(db);kEvent(batch,event,'stock','Giacenze aggiornate',completed+' articoli controllati; '+selected.filter(d=>d.qty===0).length+' a zero.','stock');
- if(preparations.length)kEvent(batch,doc(collection(db,'kitchenEvents')),'tasks','Preparazioni da fare',preparations.length+' preparazioni: '+preparations.join(', '),'tasks');
- try{await batch.commit();}catch(_){throw Error('Giacenze salvate, ma riepilogo notifiche non registrato. Non ripetere il controllo: verifica le liste.');}
- k.page='cart';
+  check(epoch);
+  if(accepted.skip){if(accepted.skip==='missing')missing++;else if(accepted.skip==='unit')issues.push(accepted.name+': unità cambiata, inserisci il conteggio nella nuova unità');continue;}
+  const current=state.stock.get(d.id);if(!current||accepted.revision>=current.revision)state.stock.set(d.id,{id:d.id,...accepted});
+  const draft=state.draft.get(d.id);if(d.draft&&draft&&draft.qty===d.draft.qty&&draft.configRevision===d.draft.configRevision)state.draft.delete(d.id);
+  saved++;
+ }
+ const remaining=missing+issues.length;
+ if(kind==='kitchen'&&saved){try{const batch=writeBatch(db);kEvent(batch,doc(collection(db,'kitchenEvents')),'stock','Giacenze aggiornate',saved+' giacenze confermate. Riordini e preparazioni aggiornati.','stock');await batch.commit();}catch(_){/* Le giacenze sono già confermate: un riepilogo mancante non annulla il salvataggio. */}}
+ check(epoch);
+ if(!remaining)state.page='cart';
+ return saved+' giacenze confermate.'+(missing?' '+missing+' senza un conteggio valido: i valori mancanti non sono stati impostati a zero.':'')+(issues.length?' '+issues.join(' · ')+'. Le altre giacenze sono state salvate.':'');
 }
+async function kConfirm(epoch){return confirmWholeStock('kitchen',epoch);}
+async function bConfirm(epoch){return confirmWholeStock('bar',epoch);}
+
 // I cambiamenti a voci diverse si uniscono. Solo quantità realmente diverse
 // sulla stessa voce richiedono una scelta, direttamente nella lista.
 function orderStage(kind,id,qty){
@@ -3975,10 +4032,10 @@ function bRender(){
  let h='';
  if(!bar.items.size&&bar.page!=='loads'){h='<div class="b-card"><h3>Il tuo Bar</h3><p>L’elenco prodotti è già incluso nel codice. Al primo accesso della proprietaria si prepara automaticamente nel database condiviso.</p></div>';}
  else if(bar.page==='stock'){
-  h='<p class="mini">Controlla le quantità, poi premi Salva giacenze. Passo 0,25. I dati iniziali non sono un controllo di oggi.</p>'+stockTools('bSearch','bCategory',bar.search,barCategory,[...new Set(bActive().map(i=>i.category))]);
+  h='<p class="mini">Modifica le quantità che hai contato, poi premi Salva giacenze una volta sola per confermare tutto. Le voci non modificate mantengono gli ultimi aggiornamenti di magazzino.</p>'+stockTools('bSearch','bCategory',bar.search,barCategory,[...new Set(bActive().map(i=>i.category))]);
   const items=bActive();
   for(const category of [...new Set(items.map(x=>x.category))].sort((a,b)=>B_CATS.indexOf(a)-B_CATS.indexOf(b))){const products=items.filter(p=>p.category===category);h+='<section class="stock-group" data-b-category="'+ke(category)+'"><h3>'+ke(category)+' <span>'+products.length+'</span></h3>'+products.map(bStockRow).join('')+'</section>';}
-  h+='<p class="stock-empty" id="bStockEmpty" hidden>Nessun articolo trovato. Prova un altro nome o una categoria diversa.</p><div class="b-sticky">'+bButton('Salva giacenze ('+bar.draft.size+')','confirm',!bar.draft.size)+bButton('Annulla modifiche','discard',!bar.draft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('stock:')))+'</div><p class="mini">Una quantità lasciata vuota non viene interpretata come zero. La conferma aggiunge le mancanze alla lista; le quantità già presenti nella lista vengono conservate.</p><div class="stock-reset">'+bButton('Azzera giacenze','zerostock',!items.length)+'<p class="mini">Porta a zero tutti i prodotti attivi del Bar, anche quelli nascosti da ricerca o filtri. Salva giacenze conferma le nuove quantità.</p></div>';
+  h+='<p class="stock-empty" id="bStockEmpty" hidden>Nessun articolo trovato. Prova un altro nome o una categoria diversa.</p><div class="b-sticky">'+bButton('Salva giacenze','confirm',!items.length)+bButton('Annulla modifiche','discard',!bar.draft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('stock:')))+'</div><p class="mini">Una quantità lasciata vuota non viene interpretata come zero. La conferma aggiunge le mancanze alla lista; le quantità già presenti nella lista vengono conservate.</p><div class="stock-reset">'+bButton('Azzera giacenze','zerostock',!items.length)+'<p class="mini">Porta a zero tutti i prodotti attivi del Bar, anche quelli nascosti da ricerca o filtri. Salva giacenze conferma le nuove quantità.</p></div>';
  }else if(bar.page==='loads'){h=blRender();}
  else if(bar.page==='cart'){
   const orders=bOrders();h='<p class="mini">Lista condivisa del Bar. Gli ordini automatici sono arrotondati all’intero superiore, come nell’Excel. Per gli articoli manuali scegli tu la quantità.</p>';
@@ -4044,26 +4101,6 @@ function bStage(id,value){
  const before=bar.draft.get(id);
  bar.draft.set(id,{id,qty:bQty(value),revision:before?.revision??bar.stock.get(id)?.revision??0,configRevision:before?.configRevision??product.revision});
 }
-async function bConfirm(epoch){
- if(bar.invalid.size)throw Error('Correggi le quantità non valide prima di confermare.');
- const selected=[...bar.draft.values()];if(!selected.length)throw Error('Controlla almeno un prodotto.');let completed=0;
- for(const d of selected){
-  await runTransaction(db,async tx=>{
-   const itemRef=doc(db,'barItems',d.id),stockRef=doc(db,'barStock',d.id),orderRef=doc(db,'barOrders',d.id);
-   const [item,stock,order]=await Promise.all([tx.get(itemRef),tx.get(stockRef),tx.get(orderRef)]);bAssert(epoch);
-   const p=item.data(),old=stock.data();if(!item.exists()||!p.active||p.revision!==d.configRevision||(old?.revision||0)!==d.revision)throw Error((p?.name||'Prodotto')+': dati cambiati da un collega. Scarta questo controllo e ricontrolla la voce.');
-   const qty=bQty(d.qty),event=doc(collection(db,'barEvents'));
-   tx.set(stockRef,{itemId:d.id,qty,configRevision:p.revision,checkedAt:serverTimestamp(),...bMeta(old,event)});bEvent(tx,event,'stock',d.id,'check');
-   const needed=bNeed(p,qty),existing=order.data();
-   if((p.target===null?qty===0:needed>0)&&(!existing||['closed','removed'].includes(existing.status))){
-    const ev=doc(collection(db,'barEvents'));
-    tx.set(orderRef,{itemId:d.id,name:p.name,orderUnit:p.orderUnit,qty:needed,manual:p.target===null,status:'draft',configRevision:p.revision,...bMeta(existing,ev)});bEvent(tx,ev,'order',d.id,'create');
-   }
-  });
-  bAssert(epoch);bar.draft.delete(d.id);completed++;
- }
- bar.page='cart';return completed+' giacenze confermate. Lista aggiornata; quantità già in lista conservate.';
-}
 
 function bForm(){
  const p=bar.editing?.data;if(!p)return '';
@@ -4110,7 +4147,7 @@ $('bBody').addEventListener('input',e=>{
   else{const old=bar.orderDraft.get(el.dataset.id);orderStage('bar',el.dataset.id,bQty(el.value,true));}
   bar.invalid.delete(el.dataset.bInput+':'+el.dataset.id);el.setCustomValidity('');
  }catch(error){bar.invalid.set(el.dataset.bInput+':'+el.dataset.id,el.value);el.setCustomValidity(error.message);bNotice(error.message,true);}
- const confirmButton=$('bBody').querySelector('[data-b="confirm"]');if(confirmButton){confirmButton.disabled=!bar.draft.size;confirmButton.textContent='Salva giacenze ('+bar.draft.size+')';}
+ const confirmButton=$('bBody').querySelector('[data-b="confirm"]');if(confirmButton){confirmButton.disabled=bar.busy||!bActive().length;confirmButton.textContent='Salva giacenze';}
  for(const action of ['discard','saveorders','discardorders']){const b=$('bBody').querySelector('[data-b="'+action+'"]');if(b)b.disabled=action==='discard'?(!bar.draft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('stock:'))):action==='discardorders'?(!bar.orderDraft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('order:'))):!bar.orderDraft.size;}
 });
 $('bBody').addEventListener('change',e=>{if(e.target.id==='bMode'){$('bTargetLabel').hidden=e.target.value==='manual';bar.dirty=true;}});
@@ -4273,5 +4310,6 @@ window.TBSManagerUpdates?.setCanRefresh(() => {
 </script>
 </body>
 </html>
+
 
 
