@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it" data-privacy-app="manager">
 <head>
-<meta name="tbs-release" content="2026-11-08-riprendi-bozza-v35">
+<meta name="tbs-release" content="2026-11-09-riordini-coerenti-v37">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
@@ -688,9 +688,9 @@ body[data-manager-view="home"] #primaryNav{display:none}.home-intro{padding:28px
 <a class="public-menu-link" href="https://theblackstuffud.github.io/blackstuff-menu/?tbs_stats=off" target="_blank" rel="noopener noreferrer"><span class="public-menu-copy">Anteprima menu<small>Come lo vedono i clienti</small></span><span aria-hidden="true">↗</span></a>
 </section>
 <nav id="managerNav" aria-label="Navigazione gestionale"><button type="button" class="small-action" id="managerBack">← Home</button><span id="managerSectionTitle"></span></nav>
-<section id="kitchenPanel" class="panel" aria-labelledby="kHeading"><div class="k-toolbar"><h2 id="kHeading" tabindex="-1">Cucina</h2><div><button type="button" class="small-action" id="kOpenNotifications" aria-label="Notifiche cucina">Notifiche <span data-k-count class="k-alert-count">0</span></button><button type="button" class="small-action" id="kRetry">Riprova</button><button type="button" class="small-action" id="kEdit" data-owner-only>Modifica</button></div></div><div id="kMessage" class="message" role="status" aria-live="polite"></div><nav id="kQuickNav" class="module-tabs" aria-label="Operazioni cucina"></nav><div id="draftPrompt-kitchen" class="draft-prompt" hidden></div><div id="kBody"></div></section><dialog id="kMessageDialog" aria-labelledby="kMessageTitle"><h2 id="kMessageTitle">Messaggio da copiare</h2><p>Puoi correggere il testo. Le modifiche qui non cambiano la lista salvata.</p><textarea id="kMessageText" aria-label="Messaggio modificabile"></textarea><button type="button" class="button" id="kCopyMessage">Copia messaggio</button><button type="button" class="small-action" id="kCloseMessage">Chiudi</button><p id="kCopyStatus" role="status"></p></dialog>
+<section id="kitchenPanel" class="panel" aria-labelledby="kHeading"><div class="k-toolbar"><h2 id="kHeading" tabindex="-1">Cucina</h2><div><button type="button" class="small-action" id="kOpenNotifications" aria-label="Notifiche cucina">Notifiche <span data-k-count class="k-alert-count">0</span></button><button type="button" class="small-action" id="kRetry">Riprova</button><button type="button" class="small-action" id="kEdit" data-owner-only>Modifica</button></div></div><div id="kMessage" class="message" role="status" aria-live="polite"></div><nav id="kQuickNav" class="module-tabs" aria-label="Operazioni cucina"></nav><div id="draftPrompt-kitchen" class="draft-prompt" hidden></div><div id="kBody"></div></section><dialog id="kMessageDialog" aria-labelledby="kMessageTitle"><h2 id="kMessageTitle">Messaggio da copiare</h2><p>Puoi correggere il testo. Le modifiche qui non cambiano la lista salvata.</p><p id="kMessageNote" class="mini" role="status"></p><textarea id="kMessageText" aria-label="Messaggio modificabile"></textarea><button type="button" class="button" id="kCopyMessage">Copia messaggio</button><button type="button" class="small-action" id="kCloseMessage">Chiudi</button><p id="kCopyStatus" role="status"></p></dialog>
 
-<section id="barPanel" class="panel" aria-labelledby="bHeading"><div class="k-toolbar"><h2 id="bHeading" tabindex="-1">Bar</h2><button type="button" class="small-action" data-b="reload">Ricarica</button></div><div id="bMessage" class="message" role="status" aria-live="polite"></div><nav class="b-tabs" aria-label="Sezioni Bar"><button type="button" class="small-action" data-b-page="stock" aria-pressed="true">Giacenze</button><button type="button" class="small-action" id="bCartTab" data-b-page="cart" aria-pressed="false">Riordini (0)</button><button type="button" class="small-action" data-b-page="loads" aria-pressed="false">Carichi</button><button type="button" class="small-action" id="bSettings" data-b-page="settings" aria-pressed="false" hidden>Modifica</button></nav><div id="draftPrompt-bar" class="draft-prompt" hidden></div><div id="bBody"></div></section><dialog id="bMessageDialog" aria-labelledby="bMessageTitle"><h2 id="bMessageTitle">Lista Bar</h2><p>Soltanto prodotti e quantità. Puoi correggere il testo prima di copiarlo nel gruppo WhatsApp.</p><textarea id="bMessageText" aria-label="Lista Bar modificabile"></textarea><button type="button" class="button" id="bCopyMessage">Copia lista</button> <button type="button" class="small-action" id="bCloseMessage">Chiudi</button><p id="bCopyStatus" role="status" aria-live="polite"></p></dialog>
+<section id="barPanel" class="panel" aria-labelledby="bHeading"><div class="k-toolbar"><h2 id="bHeading" tabindex="-1">Bar</h2><button type="button" class="small-action" data-b="reload">Ricarica</button></div><div id="bMessage" class="message" role="status" aria-live="polite"></div><nav class="b-tabs" aria-label="Sezioni Bar"><button type="button" class="small-action" data-b-page="stock" aria-pressed="true">Giacenze</button><button type="button" class="small-action" id="bCartTab" data-b-page="cart" aria-pressed="false">Riordini (0)</button><button type="button" class="small-action" data-b-page="loads" aria-pressed="false">Carichi</button><button type="button" class="small-action" id="bSettings" data-b-page="settings" aria-pressed="false" hidden>Modifica</button></nav><div id="draftPrompt-bar" class="draft-prompt" hidden></div><div id="bBody"></div></section><dialog id="bMessageDialog" aria-labelledby="bMessageTitle"><h2 id="bMessageTitle">Lista Bar</h2><p>Soltanto prodotti e quantità. Puoi correggere il testo prima di copiarlo nel gruppo WhatsApp.</p><p id="bMessageNote" class="mini" role="status"></p><textarea id="bMessageText" aria-label="Lista Bar modificabile"></textarea><button type="button" class="button" id="bCopyMessage">Copia lista</button> <button type="button" class="small-action" id="bCloseMessage">Chiudi</button><p id="bCopyStatus" role="status" aria-live="polite"></p></dialog>
 <section id="shoppingPanel" class="panel" aria-labelledby="shoppingHeading"><h2 id="shoppingHeading" tabindex="-1">SPESA</h2><p id="shoppingSummary" class="mini" role="status" aria-live="polite"></p><p id="shoppingNotice" class="message" role="status" aria-live="polite"></p><button type="button" class="small-action" id="shoppingRetry" hidden>Riprova</button><div id="shoppingRows"></div><form id="shoppingAddForm"><label for="shoppingInput">AGGIUNGI ALLA SPESA</label><select id="shoppingSection" aria-label="Aggiungi a"><option value="kitchen">CUCINA</option><option value="bar">BAR</option></select><textarea id="shoppingInput" rows="3" placeholder="Una cosa per riga" maxlength="6500"></textarea><button type="submit" class="button">Aggiungi</button></form><p class="mini">Lista comune a tutti. Conferma i pezzi acquistati: vengono aggiunti al magazzino. Togliendo la spunta annulli il movimento. Nessun messaggio viene inviato.</p></section>
 <dialog id="warehouseDialog" aria-labelledby="wmTitle"><form id="wmForm"><h2 id="wmTitle">PEZZI E PRODOTTO</h2><p id="wmDescription"></p><label for="wmProduct">PRODOTTO DI MAGAZZINO</label><select id="wmProduct" required></select><label for="wmQty">PEZZI EFFETTIVI</label><input id="wmQty" type="number" min="1" max="100000" step="1" inputmode="numeric" required><p class="mini">Conta le unità singole, anche se acquistate in confezioni diverse. Una confezione di panna da 1 L è 1 pezzo.</p><p id="wmError" role="alert"></p><div class="wm-actions"><button type="button" id="wmCancel" class="small-action">Annulla</button><button type="submit" class="button">Conferma movimento</button></div></form></dialog>
 <section id="teamPanel" class="panel" aria-labelledby="teamHeading"><div class="k-toolbar"><h2 id="teamHeading" tabindex="-1">TEAM</h2><button type="button" id="teamReload" class="small-action">Ricarica team</button></div><p class="mini">Solo i titolari gestiscono ruoli e accessi. Le autorizzazioni a Cucina, Bar e Modifica menu si modificano da questa sezione.</p><p class="mini">“Elimina dal gestionale” rimuove profilo e accessi e blocca questo account. La cancellazione dal registro Firebase Authentication si completa dalla console Firebase.</p><div id="teamMessage" role="status" aria-live="polite"></div><div id="teamBody"></div><details class="team-invite"><summary>Invita una persona</summary>  <section class="manager-invite" aria-labelledby="managerInviteHeading">
@@ -859,7 +859,7 @@ body[data-manager-view="home"] #primaryNav{display:none}.home-intro{padding:28px
 <details class="app-settings" id="appSettings">
 <summary aria-label="Impostazioni e aggiornamenti" title="Impostazioni e aggiornamenti"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9.5 3-.5 2-1.7 1-2-.6-2.5 4.2 1.5 1.5v1.8l-1.5 1.5 2.5 4.2 2-.6 1.7 1 .5 2h5l.5-2 1.7-1 2 .6 2.5-4.2-1.5-1.5v-1.8l1.5-1.5-2.5-4.2-2 .6-1.7-1-.5-2Z"/><circle cx="12" cy="12" r="3"/></svg></summary>
 <div class="app-settings-panel"><strong>Aggiornamenti</strong>
-<p id="managerBuild" class="mini">Versione v35 · 08/11/2026</p><p id="appUpdateStatus" role="status" aria-live="polite">Controllo automatico degli aggiornamenti attivo.</p>
+<p id="managerBuild" class="mini">Versione v37 · 09/11/2026</p><p id="appUpdateStatus" role="status" aria-live="polite">Controllo automatico degli aggiornamenti attivo.</p>
 <button type="button" class="small-action" id="appUpdateCheck">Controlla aggiornamenti</button>
 </div></details>
 </footer>
@@ -1004,6 +1004,10 @@ provider.setCustomParameters({prompt:"select_account"});
 const $=id=>document.getElementById(id);
 const warehouse={key:'',epoch:0,off:[],catalog:new Map(),ready:false,error:'',dialogResolve:null};
 const shopping={key:'',epoch:0,off:[],sources:new Map(),checks:new Map(),manual:new Map(),pending:new Set(),errors:new Map(),busy:new Set(),text:''};
+let quotaUntil=0;
+function isQuotaError(error){return String(error?.code||'').endsWith('resource-exhausted')||/quota (exceeded|limit)|exceeded.*quota/i.test(error?.message||'');}
+function quotaHeld(){return Date.now()<quotaUntil;}
+function quotaMessage(error){quotaUntil=Math.max(quotaUntil,Date.now()+60000);return 'Limite temporaneo di Firebase raggiunto. Le modifiche restano in bozza: non risultano salvate finché manca la conferma. Se è esaurita la quota giornaliera gratuita, occorre attendere il rinnovo. Ricaricare ripetutamente non ripristina la quota.';}
 const orderConflicts={kitchen:new Map(),bar:new Map()};
 // Shift helpers: local drafts are separate from confirmed Firestore writes.
 const SHIFT_SCOPES=['catalog','kitchen','bar'],SHIFT_TTL=7*24*60*60*1000;
@@ -1011,12 +1015,13 @@ const shift={uid:null,active:false,pending:{},stored:{},phase:{},storageError:fa
 function shiftKey(scope){return 'tbs-shift-draft-v1:'+shift.uid+':'+scope;}
 function shiftAllowed(scope){return shift.active&&auth.currentUser?.uid===shift.uid&&!!currentRole&&(scope==='catalog'?canEditMenu():scope==='kitchen'?k.allowed&&k.ready:bar.allowed&&bar.ready);}
 function shiftBusy(scope){return scope==='catalog'?catalogBusy:scope==='kitchen'?k.busy:bar.busy;}
-function shiftDirty(scope){return scope==='catalog'?editorDirty&&!$('catalogEditor').hidden:scope==='kitchen'?k.draft.size>0||k.orderDraft.size>0||k.formDirty||!!k.loadTextDraft||k.loadRecipientsDraft!==null:bar.draft.size>0||bar.orderDraft.size>0||bar.invalid.size>0||bar.dirty||!!bar.loadTextDraft||bar.loadRecipientsDraft!==null;}
+function shiftDirty(scope){return scope==='catalog'?editorDirty&&!$('catalogEditor').hidden:scope==='kitchen'?k.draft.size>0||k.orderDraft.size>0||k.formDirty||k.invalid.size>0||!!k.loadTextDraft||k.loadRecipientsDraft!==null:bar.draft.size>0||bar.orderDraft.size>0||bar.invalid.size>0||bar.dirty||!!bar.loadTextDraft||bar.loadRecipientsDraft!==null;}
 function shiftFormValues(){return [...$('catalogEditor').querySelectorAll('input,select,textarea')].map(el=>({key:el.id||(el.closest('[id]')?.id+':'+el.type+':'+el.value),type:el.type,value:el.value,checked:!!el.checked}));}
 function shiftPayload(scope){
  if(scope==='catalog')return editorDirty&&catalogSelected&&!$('catalogEditor').hidden?{kind:'product',id:catalogSelected.item.id,revision:catalogSelected.revision,item:catalogSelected.item,fields:shiftFormValues()}:null;
  const state=scope==='kitchen'?k:bar;
- const stock=[...state.draft.entries()],orders=[...state.orderDraft.entries()],invalid=scope==='bar'?[...bar.invalid.entries()]:[];
+ orderReconcile(scope);
+ const stock=[...state.draft.entries()],orders=[...state.orderDraft.entries()],invalid=[...state.invalid.entries()];
  return stock.length||orders.length||invalid.length?{kind:'quantities',stock,orders,invalid}:null;
 }
 function shiftStart(user){
@@ -1071,7 +1076,7 @@ function shiftRenderStatus(){
  else if(scope&&shift.phase[scope]?.phase==='error'){text='Operazione non riuscita · controlla il messaggio';kind='error';}
  else if(shift.storageError){text='Recupero bozze non disponibile · tieni aperta questa pagina';kind='error';}
  else if(scope&&shift.pending[scope]){text='Bozza da riprendere · non pubblicata';kind='dirty';}
- else if(scope&&shiftDirty(scope)){text=shiftPayload(scope)?'Modifiche da salvare · bozza su questo dispositivo':'Modifiche da salvare · tieni aperta questa pagina';kind='dirty';}
+ else if(scope&&shiftDirty(scope)){text=scope==='catalog'?'Scheda prodotto da salvare':shiftQuantityStatus(scope);text+=shiftPayload(scope)?' · bozza su questo dispositivo':' · tieni aperta questa pagina';kind='dirty';}
  else if(scope&&shift.phase[scope]?.phase==='saved'){text='Salvato alle '+new Date(shift.phase[scope].at).toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'});kind='saved';}
  else if(scope==='catalog'&&catalogLoading){text='Caricamento dati…';}
  else if(scope&&!shiftAllowed(scope)){text=(scope==='kitchen'&&k.accessState==='denied'||scope==='bar'&&bar.phase==='denied')?'Accesso alla sezione non abilitato':'Verifica accesso e dati in corso';}
@@ -1106,7 +1111,7 @@ function shiftCheckQuantities(scope,value){
   result[kind].push([id,{...d,revision:record?.revision||0,configRevision:kind==='stock'?item.revision:record.configRevision,
    ...(kind==='orders'?{baseQty:record.qty,baseStatus:record.status}:{})}]);
  }
- if(scope==='bar')for(const pair of value.invalid){
+ for(const pair of value.invalid){
   if(!Array.isArray(pair)||pair.length!==2||!/^((stock)|(order)):[a-z0-9-]+$/.test(pair[0])||typeof pair[1]!=='string'||pair[1].length>100)throw Error('Bozza non leggibile.');
   const [type,id]=pair[0].split(':');
   if(state.items.get(id)?.active&&(type==='stock'||['draft','sent'].includes(state.orders.get(id)?.status)))result.invalid.push(pair);else result.recovery.push(['da correggere',id,pair[1]]);
@@ -1142,7 +1147,7 @@ function shiftRestore(scope){
    editorDirty=true;updateCatalogFields();$('productVerificationStatus').textContent='Bozza ripristinata · controlla la scheda prima di pubblicare';
   }else{
    if(value.kind!=='quantities')throw Error('Bozza non leggibile.');const restored=shiftCheckQuantities(scope,value);
-   const state=scope==='kitchen'?k:bar;state.draft=new Map(restored.stock);state.orderDraft=new Map(restored.orders);if(scope==='bar')state.invalid=new Map(restored.invalid);state.page=restored.stock.length||restored.invalid.some(x=>x[0].startsWith('stock:'))?'stock':'cart';
+   const state=scope==='kitchen'?k:bar;state.draft=new Map(restored.stock);state.orderDraft=new Map(restored.orders);state.invalid=new Map(restored.invalid);state.page=restored.stock.length||restored.invalid.some(x=>x[0].startsWith('stock:'))?'stock':'cart';
    orderConflicts[scope].clear();state.error=false;state.message='Bozza ripresa. Puoi modificare le quantità e salvarle quando vuoi.';
    if(scope==='kitchen')kNotice(state.message);else bNotice(state.message);
    delete shift.pending[scope];shiftRecovery(scope,restored.recovery);
@@ -2980,7 +2985,7 @@ async function loadWriteCurrent(kind,action,id,value,epoch){
   if(action==='add')state.loadTextDraft='';
   if(action==='share')state.loadRecipientsDraft=null;
   if(kind==='kitchen')state.formDirty=!!state.loadTextDraft||state.loadRecipientsDraft!==null;
- }catch(error){await loadRefreshOwn(kind,epoch,uid);throw error;}
+ }catch(error){if(!isQuotaError(error))await loadRefreshOwn(kind,epoch,uid);throw error;}
 }
 
 // Promemoria personali: nessun contenuto viene scritto nel registro condiviso della cucina.
@@ -3188,7 +3193,7 @@ async function kcTaskDone(tx,id,before){
 function kcStop(){clearInterval(kcTimer);kcTimer=null;kcLastPeriod='';kcCleanupAt=0;}
 function kcSchedule(){if(kcTimer)return;kcLastPeriod=JSON.stringify(kcPeriods());kcTimer=setInterval(()=>void kcTick(),15000);void kcTick();}
 async function kcTick(){
- if(!k.ready||!k.allowed||!navigator.onLine)return;const now=JSON.stringify(kcPeriods());if(now!==kcLastPeriod){kcLastPeriod=now;kcCleanupAt=0;if(k.page==='clean'&&!k.busy)kRender();}
+ if(!k.ready||!k.allowed||!navigator.onLine||quotaHeld())return;const now=JSON.stringify(kcPeriods());if(now!==kcLastPeriod){kcLastPeriod=now;kcCleanupAt=0;if(k.page==='clean'&&!k.busy)kRender();}
  if(k.busy||kcCleaning||Date.now()-kcCleanupAt<300000)return;
  kcCleanupAt=Date.now();kcCleaning=true;const epoch=k.epoch;try{const more=await kcCleanup(epoch);if(!more)kcCleanupAt=Infinity;}catch(e){if(epoch===k.epoch)kNotice('Pulizia degli storici da riprovare: '+kError(e),true);}finally{kcCleaning=false;}
 }
@@ -3233,7 +3238,7 @@ function kitchenReset(){orderConflicts.kitchen.clear();
  for(const off of k.off||[])off();
  if($('kMessageDialog')?.open)$('kMessageDialog').close();
  if($('kMessageText'))$('kMessageText').value='';
- k={off:[],epoch:(k.epoch||0)+1,accessState:'idle',accessError:'',failures:new Map(),ready:false,allowed:false,busy:false,openCategories:new Set(),taskMainOpen:false,page:'home',items:new Map(),suppliers:new Map(),stock:new Map(),orders:new Map(),tasks:new Map(),events:[],reports:new Map(),shiftNotes:new Map(),turnOpen:new Map(),turnDrafts:new Map(),turnTemplates:new Map(),turnHistory:new Map(),turnState:null,cleanPrivate:new Map(),cleanShared:new Map(),loadOwn:null,loadShared:new Map(),loadPeople:new Map(),loadTextDraft:'',loadRecipientsDraft:null,loadImportNotice:'',draft:new Map(),orderDraft:new Map(),messageDraft:new Map(),prefs:{handover:true,stock:true,orders:true,tasks:true,clean:true,readIds:[],muted:false,quietStart:'02:00',quietEnd:'10:00'},pending:new Set(),formDirty:false};
+ k={off:[],epoch:(k.epoch||0)+1,accessState:'idle',accessError:'',failures:new Map(),ready:false,allowed:false,busy:false,openCategories:new Set(),taskMainOpen:false,page:'home',items:new Map(),suppliers:new Map(),stock:new Map(),orders:new Map(),tasks:new Map(),events:[],reports:new Map(),shiftNotes:new Map(),turnOpen:new Map(),turnDrafts:new Map(),turnTemplates:new Map(),turnHistory:new Map(),turnState:null,cleanPrivate:new Map(),cleanShared:new Map(),loadOwn:null,loadShared:new Map(),loadPeople:new Map(),loadTextDraft:'',loadRecipientsDraft:null,loadImportNotice:'',draft:new Map(),orderDraft:new Map(),messageDraft:new Map(),prefs:{handover:true,stock:true,orders:true,tasks:true,clean:true,readIds:[],muted:false,quietStart:'02:00',quietEnd:'10:00'},pending:new Set(),formDirty:false,invalid:new Map()};
  if($('kBody'))$('kBody').replaceChildren();kBadge();
 }
 kitchenReset();
@@ -3242,9 +3247,9 @@ const ke=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&g
 const kNum=n=>Number(n).toLocaleString('it-IT',{maximumFractionDigits:3});
 const kTime=t=>t?.toDate?new Intl.DateTimeFormat('it-IT',{dateStyle:'short',timeStyle:'short',timeZone:'Europe/Rome'}).format(t.toDate()):'In attesa di conferma';
 function kButton(text,action,cls='small-action',disabled=false){return `<button type="button" class="${cls}" data-k="${ke(action)}" ${k.busy||disabled?'disabled':''}>${ke(text)}</button>`;}
-function kError(error){return error?.code==='permission-denied'?'La richiesta è stata negata dalle regole Firebase.':error?.code==='unavailable'?'Connessione a Firebase non disponibile. Controlla la rete e riprova.':error?.message||'Operazione non riuscita. Riprova.';}
+function kError(error){if(isQuotaError(error))return quotaMessage(error);return error?.code==='permission-denied'?'La richiesta è stata negata dalle regole Firebase.':error?.code==='unavailable'?'Connessione a Firebase non disponibile. Controlla la rete e riprova.':error?.message||'Operazione non riuscita. Riprova.';}
 function kNotice(text,error=false){$('kMessage').textContent=text;$('kMessage').className='message'+(error?' error':'');if(error)shiftPhase('kitchen','error');else shiftRenderStatus();}
-function kitchenUnsaved(){return k.busy||k.draft.size>0||k.orderDraft.size>0||k.formDirty||k.messageDraft.size>0||!!k.loadTextDraft||k.loadRecipientsDraft!==null;}
+function kitchenUnsaved(){return k.busy||k.draft.size>0||k.orderDraft.size>0||k.formDirty||k.invalid.size>0||k.messageDraft.size>0||!!k.loadTextDraft||k.loadRecipientsDraft!==null;}
 function kitchenMayLeave(){
  if(k.busy){kNotice('Salvataggio in corso…');return false;}
  // I carichi hanno campi dedicati; le quantità restano nelle Map e nella bozza locale.
@@ -3330,6 +3335,7 @@ function kDateInput(value){return value||'';}
 function kStepper(id,value,step,type,label){return `<div class="k-step"><button type="button" data-k-step="${ke(id)}" data-type="${type}" data-dir="-1" aria-label="Diminuisci ${ke(label)}" ${k.busy?'disabled':''}>−</button><input type="number" inputmode="decimal" min="0" max="100000" step="${step}" value="${value??''}" placeholder="—" aria-label="${ke(label)}" data-k-qty="${ke(id)}" data-type="${type}" ${k.busy?'disabled':''}><button type="button" data-k-step="${ke(id)}" data-type="${type}" data-dir="1" aria-label="Aumenta ${ke(label)}" ${k.busy?'disabled':''}>+</button></div>`;}
 function kBack(){return '';}
 function kRender(){
+ orderReconcile('kitchen');
  reliabilityPage('kitchen');
  queueMicrotask(shiftSync);
  if(k.page==='home')k.page='stock';
@@ -3370,13 +3376,13 @@ function kRender(){
   h+=`<p class="stock-empty" id="kStockEmpty" hidden>Nessun articolo trovato. Prova un altro nome o una categoria diversa.</p><div class="stock-save"><p role="status">${k.draft.size} quantità modificate · Salva conferma tutte le giacenze</p>`+kButton('Salva giacenze','confirm','button')+kButton('Annulla modifiche','discardstock')+'</div><div class="stock-reset">'+kButton('Azzera giacenze','zerostock','small-action',!kActive().length)+'<p class="mini">Porta a zero tutti gli articoli attivi della Cucina, anche quelli nascosti da ricerca o filtri. Salva giacenze conferma le nuove quantità.</p></div>';
  }
  if(k.page==='cart'){
-  h+='<p>Le quantità qui indicano quanto acquistare. Salva prima di preparare il messaggio. Copiare non significa inviare.</p>';
+  h+='<p class="mini">Indica quanto acquistare. Le voci a zero restano da scegliere e non entrano nel messaggio. Copiare non significa inviare.</p>';
   const orders=kActiveOrders();
   for(const sid of [...new Set(orders.map(o=>o.supplierId))]){
-   const supplier=k.suppliers.get(sid);h+=`<section class="k-group"><h3>${ke(supplier?.name||sid)}</h3>`;
+   const supplier=k.suppliers.get(sid);h+=`<section class="k-group" data-order-group="${ke(sid)}"><h3>${ke(supplier?.name||sid)}</h3><p class="mini" data-order-status role="status"></p>`;
    for(const o of orders.filter(o=>o.supplierId===sid)){
     const q=k.orderDraft.get(o.id)?.qty??o.qty,latest=k.stock.get(o.id);
-    h+=`<div class="k-row"><div class="k-label"><strong>${ke(o.name)}</strong><small>${o.mode==='qty'?ke(o.unit)+' da acquistare':'Quantità conosciuta dal fornitore'}</small><small>${o.status==='sent'?'Segnato come inviato':'Da inviare'}${latest?.qty>0?' · Giacenza ora positiva: verifica il riordino':''}${k.items.get(o.id)?.revision!==o.configRevision?' · Configurazione cambiata: verifica/rimuovi e aggiungi di nuovo':''}</small></div>${o.mode==='qty'?kStepper(o.id,q,o.step,'order',o.name):''}${kButton('Rimuovi','remove:'+o.id)}</div>`;
+    h+=`<div class="k-row"><div class="k-label"><strong>${ke(o.name)}</strong><small>${o.mode==='qty'?ke(o.unit)+' da acquistare':'Quantità conosciuta dal fornitore'}</small><small>${o.mode==='qty'&&q===0?'Quantità da scegliere · non inclusa nel messaggio':o.status==='sent'?'Segnato come inviato':'Da inviare'}${latest?.qty>0?' · Giacenza ora positiva: verifica il riordino':''}${k.items.get(o.id)?.revision!==o.configRevision?' · Configurazione cambiata: verifica/rimuovi e aggiungi di nuovo':''}</small></div>${o.mode==='qty'?kStepper(o.id,q,o.step,'order',o.name):''}${kButton('Rimuovi','remove:'+o.id)}</div>`;
    }
    h+=kButton('Salva quantità','saveorders:'+sid)+kButton('Anteprima messaggio','preview:'+sid)+kButton('Segna lista come inviata','sent:'+sid)+kButton('Archivia lista completata','close:'+sid)+'</section>';
   }
@@ -3409,11 +3415,11 @@ function kRender(){
   for(const [key,label] of [['handover','Consegne di turno'],['stock','Giacenze'],['orders','Riordini'],['tasks','Preparazioni e cose da fare'],['clean','Pulizie']])h+=`<label class="k-check"><input type="checkbox" name="${key}" ${k.prefs[key]?'checked':''}>${label}</label>`;
   h+='<p>Le notifiche sono interne al gestionale e non richiedono il permesso del telefono. Le consegne vengono aggiornate alle 4:00 se l’app è aperta, oppure alla prima apertura successiva. Nessun servizio a pagamento.</p><button class="button">Salva preferenze</button></form>';
  }
- body.innerHTML=h;filterKitchenStock();renderOrderConflicts('kitchen');
+ body.innerHTML=h;filterKitchenStock();renderOrderConflicts('kitchen');orderSyncControls('kitchen');
 }
 function kEvent(tx,ref,kind,title,text,target,notify=true){tx.set(ref,{actorUid:auth.currentUser.uid,actorName:(auth.currentUser.displayName||'Personale').slice(0,100),kind,title:title.slice(0,140),text:text.slice(0,600),target,notify,createdAt:serverTimestamp()});}
 function kMeta(before,event){return {revision:(before?.revision||0)+1,updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid,lastEventId:event.id};}
-async function kRun(action){if(k.busy||!k.allowed||!k.ready)return;if(!navigator.onLine){kNotice('Sei offline. Nessun salvataggio confermato. Le modifiche rimangono aperte.',true);return;}const epoch=k.epoch;let success=false;k.busy=true;const disabled=[...$('kBody').querySelectorAll('button,input,textarea,select')].map(el=>[el,el.disabled]);disabled.forEach(([el])=>el.disabled=true);kNotice('Salvataggio in corso…');try{const message=await action(epoch);success=true;if(epoch===k.epoch){shiftPhase('kitchen','saved');kNotice(typeof message==='string'?message:'Salvataggio confermato.');}}catch(error){if(epoch===k.epoch)kNotice(kError(error),true);}finally{if(epoch===k.epoch){k.busy=false;queueMicrotask(shiftSync);if(success||!k.formDirty)kRender();else disabled.forEach(([el,was])=>el.disabled=was);}}}
+async function kRun(action){if(k.busy||!k.allowed||!k.ready)return;if(!navigator.onLine){kNotice('Sei offline. Nessun salvataggio confermato. Le modifiche rimangono aperte.',true);return;}const epoch=k.epoch;let success=false;k.busy=true;const disabled=[...$('kBody').querySelectorAll('button,input,textarea,select')].map(el=>[el,el.disabled]);disabled.forEach(([el])=>el.disabled=true);kNotice('Salvataggio in corso…');try{const message=await action(epoch);success=true;if(epoch===k.epoch){const unresolved=orderConflicts.kitchen.size>0;shiftPhase('kitchen',unresolved?'error':'saved');kNotice(typeof message==='string'?message:'Salvataggio confermato.',unresolved);}}catch(error){if(epoch===k.epoch)kNotice(kError(error),true);}finally{if(epoch===k.epoch){k.busy=false;queueMicrotask(shiftSync);if(success||!k.formDirty)kRender();else disabled.forEach(([el,was])=>el.disabled=was);}}}
 function kAssert(epoch){if(epoch!==k.epoch||!auth.currentUser||!k.allowed)throw Error('Sessione cambiata. Accedi di nuovo.');}
 function kZeroStock(){
  if(!k.ready||!k.allowed||k.busy)return;
@@ -3468,6 +3474,7 @@ async function confirmWholeStock(kind,epoch){
    });
   }catch(error){
    check(epoch);
+   if(isQuotaError(error))throw Error(saved+' giacenze confermate. '+quotaMessage(error));
    // Una conferma di rete persa non deve obbligare a rifare un conteggio già scritto.
    try{const latest=await getDocFromServer(stockRef);check(epoch);if(latest.exists()&&latest.data().lastEventId===event.id)accepted=latest.data();}catch(_){}
    if(!accepted){
@@ -3492,12 +3499,92 @@ async function bConfirm(epoch){return confirmWholeStock('bar',epoch);}
 
 // I cambiamenti a voci diverse si uniscono. Solo quantità realmente diverse
 // sulla stessa voce richiedono una scelta, direttamente nella lista.
+// Un'unica definizione di modifica, quantità da scegliere e lista pronta.
+function orderRows(kind,supplier){
+ const state=kind==='bar'?bar:k;
+ return [...state.orders.values()].filter(o=>['draft','sent'].includes(o.status)&&(kind==='bar'||supplier===undefined||o.supplierId===supplier));
+}
+function orderReconcile(kind){
+ const state=kind==='bar'?bar:k;
+ for(const [id,draft] of state.orderDraft){
+  const record=state.orders.get(id);
+  if(record&&['draft','sent'].includes(record.status)&&record.qty===draft.qty&&record.configRevision===draft.configRevision&&!state.invalid.has('order:'+id)){
+   state.orderDraft.delete(id);orderConflicts[kind].delete(id);
+  }
+ }
+}
+function orderSummary(kind,supplier){
+ orderReconcile(kind);
+ const state=kind==='bar'?bar:k,rows=orderRows(kind,supplier),ids=new Set(rows.map(o=>o.id));
+ const pending=rows.filter(o=>state.orderDraft.has(o.id)).map(o=>o.id);
+ const invalid=[...state.invalid.keys()].filter(key=>key.startsWith('order:')&&ids.has(key.slice(6)));
+ const ready=rows.filter(o=>kind==='kitchen'&&o.mode!=='qty'||(state.orderDraft.get(o.id)?.qty??o.qty)>0);
+ return {rows,pending,invalid,ready,missing:rows.length-ready.length};
+}
+function orderStatusText(s){
+ return s.pending.length+' quantità modificate da salvare'+(s.invalid.length?' · '+s.invalid.length+' da correggere':'')+(s.missing?' · '+s.missing+' ancora a zero':'');
+}
+function shiftQuantityStatus(scope){
+ const state=scope==='kitchen'?k:bar,parts=[];
+ if(state.draft.size)parts.push('Giacenze da salvare: '+state.draft.size);
+ if(state.orderDraft.size)parts.push('Quantità riordini da salvare: '+state.orderDraft.size);
+ if(state.invalid.size)parts.push('Quantità da correggere: '+state.invalid.size);
+ if(state.loadTextDraft||state.loadRecipientsDraft!==null)parts.push('Carichi da confermare');
+ if(scope==='kitchen'?state.formDirty:state.dirty)parts.push('Scheda da salvare');
+ return parts.join(' · ')||'Modifiche da salvare';
+}
+function orderSyncControls(kind){
+ const state=kind==='bar'?bar:k,body=$(kind==='bar'?'bBody':'kBody');
+ if(!body)return;
+ for(const group of body.querySelectorAll('[data-order-group]')){
+  const supplier=kind==='bar'?undefined:group.dataset.orderGroup,s=orderSummary(kind,supplier);
+  const status=group.querySelector('[data-order-status]');if(status)status.textContent=orderStatusText(s);
+  const save=group.querySelector(kind==='bar'?'[data-b="saveorders"]':'[data-k^="saveorders:"]');
+  if(save){save.disabled=state.busy||!s.pending.length&&!s.invalid.length;save.textContent='Salva quantità'+(s.pending.length?' ('+s.pending.length+')':'');}
+  const preview=group.querySelector(kind==='bar'?'[data-b="message"]':'[data-k^="preview:"]');
+  if(preview)preview.textContent=s.pending.length?'Salva e mostra messaggio':'Anteprima messaggio';
+ }
+ const inputSelector=kind==='bar'?'[data-b-input="order"]':'[data-k-qty][data-type="order"]';
+ for(const el of body.querySelectorAll(inputSelector)){
+  const id=kind==='bar'?el.dataset.id:el.dataset.kQty;
+  if(state.invalid.has('order:'+id)){el.value=state.invalid.get('order:'+id);el.setCustomValidity('Indica una quantità valida oppure 0 per lasciarla da scegliere.');}
+ }
+ queueMicrotask(shiftSync);
+}
+function orderAssertReady(kind,supplier){
+ const s=orderSummary(kind,supplier);
+ if(s.invalid.length)throw Error('Correggi '+s.invalid.length+' quantità non valide in questa lista.');
+ if(!s.rows.length)throw Error('Questa lista è vuota.');
+ if(!s.ready.length)throw Error('Le '+s.missing+' voci di questa lista sono ancora a zero. Scegli quanto acquistare con +. Zero significa quantità da scegliere, non salvataggio mancante.');
+ return s;
+}
+async function prepareOrderMessage(kind,supplier){
+ const state=kind==='bar'?bar:k;
+ if(state.busy||!state.ready||!state.allowed)return;
+ const s=orderAssertReady(kind,supplier);
+ const open=()=>kind==='bar'?bOpenMessage():kPreview(supplier);
+ if(!s.pending.length){open();shiftPhase(kind,'idle');if(kind==='bar')bNotice('Anteprima pronta. Nessuna quantità modificata da salvare in questa lista.');else kNotice('Anteprima pronta. Nessuna quantità modificata da salvare per questo fornitore.');return;}
+ const run=kind==='bar'?bRun:kRun;
+ await run(async epoch=>{
+  await saveOrderRows(kind,s.pending,'save',epoch);
+  if(orderSummary(kind,supplier).pending.length)throw Error('Alcune quantità sono cambiate: scegli quale usare nella lista prima di preparare il messaggio.');
+  open();return 'Quantità salvate. Anteprima pronta.';
+ });
+}
+function orderMessageNote(kind,supplier){
+ const s=orderSummary(kind,supplier),names=s.rows.filter(o=>kind==='bar'||o.mode==='qty').filter(o=>o.qty<=0).map(o=>o.name);
+ return names.length?'Non incluse perché ancora a zero: '+names.join(', ')+'. Restano nei riordini.':'Tutte le voci di questa lista sono incluse.';
+}
+function bOpenMessage(){
+ $('bMessageText').value=bMessage();$('bCopyStatus').textContent='';$('bMessageNote').textContent=orderMessageNote('bar');$('bMessageDialog').showModal();
+}
+
 function orderStage(kind,id,qty){
  const state=kind==='bar'?bar:k,old=state.orderDraft.get(id),record=state.orders.get(id);
  state.orderDraft.set(id,{qty,revision:old?.revision??record?.revision??0,
   baseQty:old&&Object.hasOwn(old,'baseQty')?old.baseQty:record?.qty??null,
   baseStatus:old?.baseStatus??record?.status??'',configRevision:old?.configRevision??record?.configRevision??0});
- orderConflicts[kind].delete(id);
+ state.invalid.delete('order:'+id);orderConflicts[kind].delete(id);orderReconcile(kind);
 }
 function orderAccept(kind,id,record){
  const state=kind==='bar'?bar:k,existing=state.orders.get(id);
@@ -3506,12 +3593,13 @@ function orderAccept(kind,id,record){
 }
 async function saveOrderRows(kind,ids,action,epoch){
  const state=kind==='bar'?bar:k,check=kind==='bar'?bAssert:kAssert;
+ orderReconcile(kind);
  if(['sent','close'].includes(action)&&ids.some(id=>state.orderDraft.has(id)))throw Error('Salva le quantità modificate prima di inviare o archiviare questa lista.');
  let saved=0,conflicts=0;
  for(const id of [...new Set(ids)]){
   const draft=state.orderDraft.get(id),seen=state.orders.get(id);
   if(action==='save'&&!draft)continue;
-  if(kind==='bar'&&state.invalid.has('order:'+id))throw Error('Correggi la quantità non valida prima di salvare.');
+  if(state.invalid.has('order:'+id))throw Error('Correggi la quantità non valida prima di salvare.');
   try{
    const result=await runTransaction(db,async tx=>{
     const ref=doc(db,kind==='bar'?'barOrders':'kitchenOrders',id),snap=await tx.get(ref);check(epoch);
@@ -3525,7 +3613,7 @@ async function saveOrderRows(kind,ids,action,epoch){
     const config=draft?.configRevision||seen?.configRevision;
     if(config&&config!==old.configRevision)return {record:old,conflict:true,closed:true};
     if(baseQty===null||baseQty===undefined||old.qty!==baseQty||old.status!==baseStatus)return {record:old,conflict:true,closed:false};
-    if((action==='save'||action==='sent')&&(kind==='bar'||old.mode==='qty')&&desired<=0)throw Error(old.name+': indica quanto acquistare.');
+    if(action==='sent'&&(kind==='bar'||old.mode==='qty')&&desired<=0)throw Error(old.name+': indica quanto acquistare.');
     const status=action==='remove'?'removed':action==='close'?'closed':action==='sent'?'sent':'draft';
     if(old.qty===desired&&old.status===status)return {record:old};
     const ev=doc(collection(db,kind==='bar'?'barEvents':'kitchenEvents'));
@@ -3541,11 +3629,13 @@ async function saveOrderRows(kind,ids,action,epoch){
      current:result.record,closed:result.closed,action});conflicts++;
    }else{state.orderDraft.delete(id);orderConflicts[kind].delete(id);saved++;}
   }catch(error){
-   try{const fresh=await getDocFromServer(doc(db,kind==='bar'?'barOrders':'kitchenOrders',id));check(epoch);orderAccept(kind,id,fresh.exists()?fresh.data():null);}catch(_){}
+   check(epoch);
+   try{if(isQuotaError(error))throw error;const fresh=await getDocFromServer(doc(db,kind==='bar'?'barOrders':'kitchenOrders',id));check(epoch);orderAccept(kind,id,fresh.exists()?fresh.data():null);}catch(_){}
+   const confirmed=state.orders.get(id);if(action==='save'&&draft&&confirmed&&['draft','sent'].includes(confirmed.status)&&confirmed.qty===draft.qty&&confirmed.configRevision===draft.configRevision){state.orderDraft.delete(id);orderConflicts[kind].delete(id);saved++;continue;}
    throw Error((saved?saved+' voci salvate. ':'')+kError(error)+' Le quantità rimanenti sono conservate.');
   }
  }
- return conflicts?(saved?saved+' voci salvate. ':'')+conflicts+' voci aggiornate da un collega: scegli la quantità nella lista.':saved?'Quantità salvate.':'Nessuna quantità da salvare.';
+ return conflicts?(saved?saved+' voci salvate. ':'')+conflicts+' voci aggiornate da un collega: scegli la quantità nella lista.':saved?'Quantità salvate.'+(orderSummary(kind).missing?' Le voci a zero restano da scegliere.':''):'Le quantità sono già salvate.';
 }
 async function kOrderAction(ids,kind,epoch){
  if(ids.length>80)throw Error('Troppi articoli: dividi la lista.');return saveOrderRows('kitchen',ids,kind,epoch);
@@ -3585,14 +3675,14 @@ function reliabilityPage(kind){
 
 function kJoin(parts){return parts.length<2?parts.join(''):parts.slice(0,-1).join(', ')+' e '+parts.at(-1);}
 function kMessage(supplier,orders){
- const rows=orders.filter(o=>o.status==='draft'||o.status==='sent');if(!rows.length)throw Error('Lista vuota.');if(rows.some(o=>o.mode==='qty'&&o.qty<=0))throw Error('Completa e salva le quantità prima di preparare il messaggio.');
+ const active=orders.filter(o=>['draft','sent'].includes(o.status)),rows=active.filter(o=>o.mode!=='qty'||o.qty>0);if(!rows.length)throw Error(active.length?'Scegli quanto acquistare: le voci sono ancora a zero.':'Lista vuota.');
  const unit=(s,q)=>q===1?({'cartoni':'cartone','pezzi':'pezzo','confezioni':'confezione','bottiglie':'bottiglia','sacchi':'sacco','sacchetti':'sacchetto','pacchi':'pacco','cassette':'cassetta','secchielli':'secchiello','flaconi':'flacone','taniche':'tanica','litri':'litro','pezzi di carne':'pezzo di carne'}[s]||s):s;
  let list;
  if(supplier.id==='samu'){const terms=rows.map(o=>o.messageName.toLowerCase().trim());if(terms.some(t=>!['congelato','polli'].includes(t)))throw Error('Samu: per un nuovo prodotto aggiorna prima il modello o il nome nel messaggio.');list=terms.includes('congelato')?(terms.includes('polli')?'del congelato e i polli':'del congelato'):'i polli';}
  else {const lines=[...new Set(rows.flatMap(o=>o.mode==='bundle'?o.bundle.split('\n').map(s=>s.trim()).filter(Boolean):[o.mode==='qty'?kNum(o.qty)+' '+unit(o.unit,o.qty)+(supplier.id==='claudio'?' di ':' ')+o.messageName:o.messageName]))];list=supplier.id==='claudio'?kJoin(lines):supplier.id==='veg'?lines.map(l=>'- '+l).join('\n'):lines.join('\n');}
  return supplier.template.replaceAll('{lista}',list);
 }
-function kPreview(sid){if(k.orderDraft.size)throw Error('Salva prima le quantità modificate.');const supplier=k.suppliers.get(sid);if(!supplier)throw Error('Fornitore non disponibile.');const value=kMessage(supplier,kActiveOrders().filter(o=>o.supplierId===sid));k.previewSupplier=sid;$('kMessageText').value=value;$('kMessageDialog').showModal();$('kMessageText').focus();$('kCopyStatus').textContent='';}
+function kPreview(sid){const summary=orderAssertReady('kitchen',sid);if(summary.pending.length)throw Error(summary.pending.length+' quantità modificate da salvare per questo fornitore.');const supplier=k.suppliers.get(sid);if(!supplier)throw Error('Fornitore non disponibile.');const value=kMessage(supplier,summary.rows);k.previewSupplier=sid;$('kMessageText').value=value;$('kMessageNote').textContent=orderMessageNote('kitchen',sid);$('kMessageDialog').showModal();$('kMessageText').focus();$('kCopyStatus').textContent='';}
 function kItemForm(id){if(currentRole!=='owner')return;const stored=k.items.get(id);const i=stored?{...stored,category:kCategory(stored)}:{name:'',category:'Ingredienti',stockUnit:'pezzi',orderUnit:'pezzi',supplierId:'group',mode:'qty',stockStep:1,orderStep:1,messageName:'',bundle:'',active:true};k.editId=id;k.editRevision=i.revision||0;k.page='item';kRender();$('kBody').innerHTML=kBack()+`<form id="kItemForm" class="k-form"><label>Nome<input name="name" required maxlength="100" value="${ke(i.name)}"></label><label>Categoria<select name="category">${K_CATS.map(c=>`<option ${i.category===c?'selected':''}>${ke(c)}</option>`).join('')}</select></label><label>Unità di giacenza<input name="stockUnit" required maxlength="60" value="${ke(i.stockUnit)}"></label><label>Passo giacenza<select name="stockStep">${[1,.5,.1,.01].map(n=>`<option value="${n}" ${i.stockStep===n?'selected':''}>${kNum(n)}</option>`).join('')}</select></label><label>Modalità<select name="mode">${Object.entries({qty:'Acquisto con quantità',name:'Acquisto solo nome',bundle:'Acquisto lista ingredienti',prep:'Preparazione interna',auto:'Rifornimento automatico'}).map(([key,label])=>`<option value="${key}" ${i.mode===key?'selected':''}>${label}</option>`).join('')}</select></label><label>Fornitore<select name="supplierId"><option value="">Nessuno (preparazione/automatico)</option>${[...k.suppliers.values()].map(s=>`<option value="${ke(s.id)}" ${i.supplierId===s.id?'selected':''}>${ke(s.name)}</option>`).join('')}</select></label><label>Unità di ordine<input name="orderUnit" maxlength="60" value="${ke(i.orderUnit)}"></label><label>Passo ordine<select name="orderStep">${[1,.5,.1,.01].map(n=>`<option value="${n}" ${i.orderStep===n?'selected':''}>${kNum(n)}</option>`).join('')}</select></label><label>Nome nel messaggio<input name="messageName" maxlength="100" value="${ke(i.messageName)}"></label><label>Lista ingredienti (una riga per voce)<textarea name="bundle" maxlength="1000">${ke(i.bundle)}</textarea></label><label class="k-check"><input name="active" type="checkbox" ${i.active?'checked':''}>Articolo attivo</label><p>Cambiare configurazione richiede un nuovo controllo delle giacenze. Gli ordini già aperti mantengono i dati originali.</p><button class="button">Salva articolo</button></form>`;}
 function kSupplierForm(id){if(currentRole!=='owner')return;const s=k.suppliers.get(id)||{name:'',template:'{lista}'};k.editId=id;k.editRevision=s.revision||0;k.page='supplier';kRender();$('kBody').innerHTML=kBack()+`<form id="kSupplierForm" class="k-form"><label>Nome<input name="name" required maxlength="100" value="${ke(s.name)}"></label><label>Modello messaggio<textarea name="template" required maxlength="2000">${ke(s.template)}</textarea></label><p>Usa {lista} nel punto in cui devono comparire i prodotti. La destinazione viene scelta manualmente su WhatsApp.</p><button class="button">Salva fornitore</button></form>`;}
 async function kConfigSave(collectionName,id,data,expected,epoch){const ref=doc(db,collectionName,id||'p-'+crypto.randomUUID()),ev=doc(collection(db,'kitchenEvents'));await runTransaction(db,async tx=>{const old=await tx.get(ref);kAssert(epoch);if((old.data()?.revision||0)!==expected)throw Error('Configurazione modificata da un altro utente. Riapri la scheda.');tx.set(ref,{...data,...kMeta(old.data(),ev)});kEvent(tx,ev,'settings','Configurazione cucina aggiornata',data.name,'settings',false);});k.formDirty=false;k.page='settings';}
@@ -3602,7 +3692,8 @@ async function kMarkRead(ids,epoch){const ref=doc(db,'kitchenPreferences',auth.c
 async function kAccessPage(){if(currentRole==='owner')showManagerView('team',true);}
 $('kBody').addEventListener('input',event=>{
  const el=event.target;if(el.matches('[data-k-qty]')){
-  const id=el.dataset.kQty,stock=el.dataset.type==='stock',i=k.items.get(id),o=k.orders.get(id);try{if(el.value===''){if(stock)k.draft.delete(id);else orderStage('kitchen',id,0);return;}const qty=kQuantity(el.value,stock?i.stockStep:o.step);if(stock)k.draft.set(id,{qty,revision:k.draft.get(id)?.revision??k.stock.get(id)?.revision??0,configRevision:k.draft.get(id)?.configRevision??i.revision});else orderStage('kitchen',id,qty);el.setCustomValidity('');}catch(error){el.setCustomValidity(error.message);}return;
+  const id=el.dataset.kQty,stock=el.dataset.type==='stock',i=k.items.get(id),o=k.orders.get(id);
+  try{if(stock&&el.value===''){k.draft.delete(id);el.setCustomValidity('');return;}const qty=kQuantity(el.value,stock?i.stockStep:o.step);if(stock)k.draft.set(id,{qty,revision:k.draft.get(id)?.revision??k.stock.get(id)?.revision??0,configRevision:k.draft.get(id)?.configRevision??i.revision});else orderStage('kitchen',id,qty);el.setCustomValidity('');}catch(error){if(!stock)k.invalid.set('order:'+id,el.value);el.setCustomValidity(error.message);}orderSyncControls('kitchen');return;
  }if(el.closest('form'))k.formDirty=true;
 });
 $('kBody').addEventListener('change',event=>{if(event.target.closest('#kItemForm')&&event.target.name==='mode'&&event.target.value==='prep')event.target.form.elements.category.value='Preparazioni';if(event.target.matches('[data-k-qty]')){if(event.target.checkValidity())kRender();else event.target.reportValidity();}else if(event.target.closest('form'))k.formDirty=true;});
@@ -3619,8 +3710,8 @@ $('kBody').addEventListener('click',async event=>{
   if(action==='check'){const item=k.items.get(id),s=k.stock.get(id);if(s&&s.configRevision===item.revision){k.draft.set(id,{qty:s.qty,revision:s.revision,configRevision:item.revision});kRender();}return;}
   if(action==='confirm'){await kRun(kConfirm);return;}
   if(action==='saveorders'){const ids=kActiveOrders().filter(o=>o.supplierId===id).map(o=>o.id);await kRun(epoch=>kOrderAction(ids,'save',epoch));return;}
-  if(action==='preview'){kPreview(id);return;}
-  if(['remove','close','sent'].includes(action)){if(!confirm(action==='sent'?'Confermi di aver inviato personalmente il messaggio?':action==='close'?'Archiviare questa lista? Le giacenze restano invariate.':'Rimuovere questo articolo dalla lista?'))return;const ids=action==='remove'?[id]:kActiveOrders().filter(o=>o.supplierId===id).map(o=>o.id);await kRun(epoch=>kOrderAction(ids,action,epoch));return;}
+  if(action==='preview'){await prepareOrderMessage('kitchen',id);return;}
+  if(['remove','close','sent'].includes(action)){if(!confirm(action==='sent'?'Confermi di aver inviato personalmente il messaggio?':action==='close'?'Archiviare questa lista? Le giacenze restano invariate.':'Rimuovere questo articolo dalla lista?'))return;const ids=action==='remove'?[id]:kActiveOrders().filter(o=>o.supplierId===id&&(action!=='sent'||o.mode!=='qty'||o.qty>0)).map(o=>o.id);if(action==='sent'){orderAssertReady('kitchen',id);if(orderSummary('kitchen',id).pending.length)throw Error('Salva le quantità modificate prima di segnare il messaggio come inviato.');}await kRun(epoch=>kOrderAction(ids,action,epoch));return;}
   if(action==='manual'){const selected=$('kManual').value;if(!selected)return;await kRun(async epoch=>{const ev=doc(collection(db,'kitchenEvents')),ref=doc(db,'kitchenOrders',selected);await runTransaction(db,async tx=>{const item=await tx.get(doc(db,'kitchenItems',selected)),old=await tx.get(ref);kAssert(epoch);if(old.exists()&&['draft','sent'].includes(old.data().status))throw Error('Articolo già presente. Quantità conservata.');const i={id:selected,...item.data()};if(!item.exists()||!i.active||!['qty','name','bundle'].includes(i.mode))throw Error('Articolo non ordinabile.');tx.set(ref,kOrder(i,ev,old.data()));kEvent(tx,ev,'orders','Articolo aggiunto alla lista',i.name,'cart');});});return;}
   if(action==='newitem'||action==='edititem'){kItemForm(id);return;}
   if(action==='newsupplier'||action==='editsupplier'){kSupplierForm(id);return;}
@@ -3749,7 +3840,15 @@ async function verifySignedIn(user){
 function shoppingAllowed(){return !!currentRole;}
 function shoppingProjection(kind,id,o,cycle='legacy_'+kind+'__'+id){const visible=kind==='bar'||o.supplierId==='group';return {cycle,section:kind,productId:id,name:visible?o.name:'',qty:visible?o.qty:0,unit:visible?(o.orderUnit||o.unit||''):'',status:visible?o.status:'removed',sourceRevision:o.revision};}
 // La vista comune contiene solo dati di acquisto e viene scritta insieme al riordino.
-function runTransaction(database,action,options){return firestoreRunTransaction(database,tx=>{const prior=new Map(),sources=new Map();return action({async get(ref){const snap=await tx.get(ref);const col=ref.path.split('/')[0];if(['kitchenOrders','barOrders'].includes(col)){const kind=col==='barOrders'?'bar':'kitchen';prior.set(ref.path,snap);sources.set(ref.path,await tx.get(doc(database,'shoppingSources',kind+'__'+ref.id)));}return snap;},set(ref,value,...args){tx.set(ref,value,...args);const parts=ref.path.split('/');if(parts.length===2&&['kitchenOrders','barOrders'].includes(parts[0])){const kind=parts[0]==='barOrders'?'bar':'kitchen',old=prior.get(ref.path)?.data(),source=sources.get(ref.path)?.data(),cycle=(!old||['closed','removed'].includes(old.status))?value.lastEventId:(source?.cycle||'legacy_'+kind+'__'+ref.id);tx.set(doc(database,'shoppingSources',kind+'__'+ref.id),shoppingProjection(kind,ref.id,value,cycle));}return this;},update:(...args)=>tx.update(...args),delete:ref=>tx.delete(ref)});},options);} 
+function runTransaction(database,action,options){
+ if(quotaHeld()){const error=new Error('Quota exceeded');error.code='resource-exhausted';return Promise.reject(error);}
+ return firestoreRunTransaction(database,tx=>{
+  const cache=new Map(),prior=new Map(),sources=new Map();
+  const get=ref=>{if(!cache.has(ref.path))cache.set(ref.path,tx.get(ref));return cache.get(ref.path);};
+  return action({async get(ref){const snap=await get(ref),col=ref.path.split('/')[0];if(['kitchenOrders','barOrders'].includes(col)){const kind=col==='barOrders'?'bar':'kitchen';prior.set(ref.path,snap);sources.set(ref.path,await get(doc(database,'shoppingSources',kind+'__'+ref.id)));}return snap;},set(ref,value,...args){tx.set(ref,value,...args);const parts=ref.path.split('/');if(parts.length===2&&['kitchenOrders','barOrders'].includes(parts[0])){const kind=parts[0]==='barOrders'?'bar':'kitchen',old=prior.get(ref.path)?.data(),source=sources.get(ref.path)?.data(),cycle=(!old||['closed','removed'].includes(old.status))?value.lastEventId:(source?.cycle||'legacy_'+kind+'__'+ref.id);tx.set(doc(database,'shoppingSources',kind+'__'+ref.id),shoppingProjection(kind,ref.id,value,cycle));}return this;},update:(...args)=>tx.update(...args),delete:ref=>tx.delete(ref)});
+ },options).catch(error=>{if(isQuotaError(error))quotaMessage(error);throw error;});
+}
+
 function shoppingReset(){shopping.epoch++;for(const off of shopping.off)off();shopping.off=[];shopping.key='';shopping.sources.clear();shopping.checks.clear();shopping.manual.clear();shopping.pending.clear();shopping.errors.clear();shopping.busy.clear();shopping.text='';shopping.notice='';shopping.addDraft=null;if($('shoppingRows'))$('shoppingRows').replaceChildren();if($('shoppingInput'))$('shoppingInput').value='';}
 function shoppingSync(){
  const enabled=shoppingAllowed();$('shoppingHomeCard').hidden=!enabled;
@@ -3758,24 +3857,57 @@ function shoppingSync(){
  if(key!==shopping.key){shoppingReset();shopping.key=key;if(managerView==='shopping'&&!enabled)queueMicrotask(()=>showManagerView('home',false,false));}
  if(managerView==='shopping'&&enabled&&!shopping.off.length)shoppingStart();
 }
+// Una variazione di un riordino non deve rileggere tutta la collezione.
+function snapshotHasServerData(s){return !s.metadata.fromCache&&!s.metadata.hasPendingWrites;}
+function createShoppingRepair(epoch){
+ const pending=new Map();let running=false;
+ const live=()=>epoch===shopping.epoch&&shoppingAllowed();
+ function same(a,b){return !!a&&Object.keys(b).every(key=>a[key]===b[key]);}
+ function projected(kind,id,data,old){const cycle=old&&['closed','removed'].includes(old.status)&&['draft','sent'].includes(data.status)?data.lastEventId:old?.cycle||'legacy_'+kind+'__'+id;return shoppingProjection(kind,id,data,cycle);}
+ async function flush(){
+  if(running||!live()||shopping.pending.has('common:sources')||quotaHeld())return;
+  running=true;
+  try{
+   while(pending.size&&live()){
+    const [key,job]=pending.entries().next().value;pending.delete(key);
+    const cached=shopping.sources.get(key),desired=projected(job.kind,job.id,job.data,cached);
+    if(same(cached,desired)||(!cached&&desired.status==='removed'))continue;
+    const next=await runTransaction(db,async tx=>{
+     const [source,old]=await Promise.all([tx.get(doc(db,job.kind==='bar'?'barOrders':'kitchenOrders',job.id)),tx.get(doc(db,'shoppingSources',key))]);
+     if(!live()||!source.exists())return null;const value=projected(job.kind,job.id,source.data(),old.data());
+     if(same(old.data(),value)||(!old.exists()&&value.status==='removed'))return null;
+     tx.set(doc(db,'shoppingSources',key),value);return value;
+    });
+    if(next&&live()&&(!shopping.sources.has(key)||shopping.sources.get(key).sourceRevision<=next.sourceRevision))shopping.sources.set(key,{id:key,...next});
+   }
+   if(live())shopping.errors.delete('repair');
+  }catch(error){if(live())shopping.errors.set('repair',isQuotaError(error)?quotaMessage(error):'Sincronizzazione Spesa da completare. Premi Riprova.');}
+  finally{running=false;if(live()){if(!pending.size||quotaHeld()){shopping.pending.delete('migration:bar');shopping.pending.delete('migration:kitchen');}shoppingRender();}}
+ }
+ return {enqueue(kind,snapshot){
+  if(!live()||snapshot.metadata.fromCache||snapshot.metadata.hasPendingWrites)return;
+  const changes=snapshot.docChanges? snapshot.docChanges():snapshot.docs.map(doc=>({type:'added',doc}));
+  for(const change of changes)if(change.type!=='removed')pending.set(kind+'__'+change.doc.id,{kind,id:change.doc.id,data:change.doc.data()});
+  void flush();
+ },flush};
+}
+
 function shoppingStart(){
  const epoch=shopping.epoch,live=()=>epoch===shopping.epoch&&shoppingAllowed();
+ const repair=createShoppingRepair(epoch);
  const sources=[['manual','manual',query(collection(db,'shoppingManual'),where('deleted','==',false))],['common','sources',collection(db,'shoppingSources')],['common','checks',collection(db,'shoppingChecks')]];
  for(const [kind,type,ref]of sources){const key=kind+':'+type;shopping.pending.add(key);
   shopping.off.push(onSnapshot(ref,{includeMetadataChanges:true},snap=>{
    if(!live())return;if(snap.metadata.fromCache||snap.metadata.hasPendingWrites)return;
    const map=new Map(snap.docs.map(s=>[s.id,{...s.data(),id:s.id}]));
    shopping[type]=map;
-   shopping.pending.delete(key);shopping.errors.delete(key);shoppingRender();
+   shopping.pending.delete(key);shopping.errors.delete(key);void repair.flush();shoppingRender();
   },error=>{if(!live())return;shopping.pending.delete(key);shopping.errors.set(key,error.code==='permission-denied'?'SPESA non ancora abilitata: aggiungi il blocco Spesa alle regole Firebase.':'Collegamento interrotto. Riprova per aggiornare la lista.');shoppingRender();}));
  }
  for(const kind of ['kitchen','bar'])if(canOpenModule(kind)){
   const key='migration:'+kind;shopping.pending.add(key);
   const ref=collection(db,kind==='bar'?'barOrders':'kitchenOrders');
-  shopping.off.push(onSnapshot(ref,snap=>{if(!live()||snap.metadata.fromCache||snap.metadata.hasPendingWrites)return;
-   // Migrazione iniziale e compatibilità con dispositivi ancora sulla versione precedente.
-   void (async()=>{try{for(const d of snap.docs){if(!live())return;await runTransaction(db,async tx=>{const source=await tx.get(d.ref),target=doc(db,'shoppingSources',kind+'__'+d.id),old=await tx.get(target);if(!live()||!source.exists())return;const next=shoppingProjection(kind,d.id,source.data(),old.data()?.cycle||'legacy_'+kind+'__'+d.id);if(old.exists()&&Object.keys(next).every(k=>old.data()[k]===next[k]))return;if(!old.exists()&&next.status==='removed')return;tx.set(target,next);});}if(live())shopping.errors.delete(key);}catch(error){if(live())shopping.errors.set(key,'Aggiornamento Spesa da completare: verifica le regole Firebase e premi Riprova.');}finally{if(live()){shopping.pending.delete(key);shoppingRender();}}})();
-  },()=>{if(live()){shopping.pending.delete(key);shopping.errors.set(key,'Non riesco ad aggiornare le voci '+(kind==='bar'?'Bar':'Cucina')+'.');shoppingRender();}}));
+  shopping.off.push(onSnapshot(ref,snap=>{repair.enqueue(kind,snap);if(!snapshotHasServerData(snap))return;shopping.pending.delete(key);shoppingRender();},error=>{if(live()){shopping.pending.delete(key);shopping.errors.set(key,isQuotaError(error)?quotaMessage(error):'Non riesco ad aggiornare le voci '+(kind==='bar'?'Bar':'Cucina')+'.');shoppingRender();}}));
  }
  shoppingRender();
 }
@@ -3802,7 +3934,7 @@ async function shoppingRun(key,action){
  if(!navigator.onLine){shopping.notice='Sei offline. La modifica non è stata salvata: riprova quando torna la connessione.';shoppingRender();return;}
  const epoch=shopping.epoch,uid=auth.currentUser.uid;shopping.busy.add(key);shoppingRender();
  try{const outcome=await action(()=>{if(epoch!==shopping.epoch||auth.currentUser?.uid!==uid||!shoppingAllowed())throw Error('Accesso cambiato.');});if(epoch===shopping.epoch)shopping.notice=outcome===false?'Nessun movimento registrato.':'Salvato.';}
- catch(error){if(epoch===shopping.epoch)shopping.notice=error.code==='permission-denied'?'Salvataggio non autorizzato. Verifica il blocco Spesa nelle regole Firebase.':error.message||'Salvataggio non riuscito. Riprova.';}
+ catch(error){if(epoch===shopping.epoch)shopping.notice=error.code==='permission-denied'?'Salvataggio non autorizzato. Verifica il blocco Spesa nelle regole Firebase.':kError(error);}
  finally{if(epoch===shopping.epoch){shopping.busy.delete(key);shoppingRender();}}
 }
 async function shoppingAdd(){
@@ -3842,9 +3974,9 @@ function warehouseSync(){
   for(const section of ['bar','kitchen'])if(canOpenModule(section))warehouse.off.push(onSnapshot(collection(db,section==='bar'?'barItems':'kitchenItems'),s=>{
    if(!live()||s.metadata.fromCache||s.metadata.hasPendingWrites)return;
    const changed=s.docs.map(d=>({id:section+'__'+d.id,...wmCatalog(section,d.id,d.data())})).filter(p=>{const old=warehouse.catalog.get(p.id);return !old||Object.keys(p).some(key=>p[key]!==old[key]);});
-   void (async()=>{try{for(const p of changed){if(!live())return;const {id,...data}=p;const batch=writeBatch(db);batch.set(doc(db,'warehouseProducts',id),data);await batch.commit();}if(live())warehouse.error='';}catch(_){if(live())warehouse.error='Catalogo magazzino da aggiornare: verifica le nuove regole Firebase.';}})();
+   void (async()=>{try{for(const p of changed){if(!live()||quotaHeld())return;const {id,...data}=p;const batch=writeBatch(db);batch.set(doc(db,'warehouseProducts',id),data);await batch.commit();}if(live())warehouse.error='';}catch(error){if(live())warehouse.error=isQuotaError(error)?quotaMessage(error):'Catalogo magazzino da aggiornare: verifica le nuove regole Firebase.';}})();
   },()=>{if(live())warehouse.error='Catalogo prodotti non aggiornabile.';}));
- },()=>{if(live()){warehouse.ready=false;warehouse.error='Magazzino non collegato. Pubblica le regole complete aggiornate.';}}));
+ },error=>{if(live()){warehouse.ready=false;warehouse.error=isQuotaError(error)?quotaMessage(error):'Magazzino non collegato. Pubblica le regole complete aggiornate.';}}));
 }
 function wmId(kind,section,owner,target,cycle){return section+'__'+kind+'__'+owner+'__'+target+'__'+cycle;}
 function wmDialog(section,name,fixedId='',hint=0){
@@ -3924,7 +4056,7 @@ async function wmLoad(kind,action,id,value,epoch){
   result={...before,items,revision:before.revision+1,updatedAt:serverTimestamp(),updatedBy:uid,lastItemId:id,lastAction:'item'};
   wmWrite(tx,move);tx.set(ref,result);
  });assert();wmAccept(move);loadAcceptSnapshot(kind,result);return applied?'Carico confermato e magazzino aggiornato.':'Movimento annullato: pezzi ripristinati in magazzino.';
- }catch(error){await loadRefreshOwn(kind,epoch,uid);throw error;}
+ }catch(error){if(!isQuotaError(error))await loadRefreshOwn(kind,epoch,uid);throw error;}
 }
 async function klWrite(action,id,value,epoch){return ['done','undo'].includes(action)?wmLoad('kitchen',action,id,value,epoch):loadWriteCurrent('kitchen',action,id,value,epoch);}
 async function blWrite(action,id,value,epoch){return ['done','undo'].includes(action)?wmLoad('bar',action,id,value,epoch):loadWriteCurrent('bar',action,id,value,epoch);}
@@ -3966,7 +4098,7 @@ function bActive(){return [...bar.items.values()].filter(p=>p.active).map(p=>({.
 function bOrders(){return [...bar.orders.values()].filter(o=>['draft','sent'].includes(o.status)).sort((a,b)=>a.name.localeCompare(b.name,'it'));}
 function bNotice(text,error=false){bar.message=text;bar.error=error;$('bMessage').textContent=text;$('bMessage').className='message'+(error?' error':'');if(error)shiftPhase('bar','error');else shiftRenderStatus();}
 function bFailure(error){return error?.code==='permission-denied'?'Accesso Bar negato. Pubblica le regole Firebase complete e verifica l’abilitazione Bar del profilo.':kError(error);}
-function bBlock(text){bReset();bar.phase='denied';bNotice(text,true);bRender();}
+function bBlock(text){if(text.startsWith('Limite temporaneo di Firebase')){bNotice(text,true);bRender();return;}bReset();bar.phase='denied';bNotice(text,true);bRender();}
 function bServer(snapshot){return !snapshot.metadata?.fromCache;}
 async function bStart(){
  const page=bar.page;bReset();bar.page=page;const uid=auth.currentUser?.uid;if(!uid||!currentRole)return;
@@ -4023,6 +4155,7 @@ function bStockRow(p){
  return '<div class="b-row" data-b-row="'+ke(p.name.toLocaleLowerCase('it'))+'"><div class="b-label"><strong>'+ke(p.name)+'</strong><small>'+ke(wmStockLabel(p))+' · '+(p.target===null?'Ordine manuale a zero':'Scorta desiderata '+kNum(p.target))+'</small><small data-b-status="'+p.id+'">'+ke(status)+'</small></div>'+bCounter(p.id,qty,'stock','Giacenza '+p.name)+'</div>';
 }
 function bRender(){
+ orderReconcile('bar');
  reliabilityPage('bar');
  queueMicrotask(shiftSync);
  if(bar.ready)bRecord();
@@ -4041,7 +4174,7 @@ function bRender(){
   const orders=bOrders();h='<p class="mini">Lista condivisa del Bar. Gli ordini automatici sono arrotondati all’intero superiore, come nell’Excel. Per gli articoli manuali scegli tu la quantità.</p>';
   if(!orders.length)h+='<p>Non ci sono prodotti da acquistare.</p>';
   for(const o of orders){const qty=bar.orderDraft.has(o.id)?bar.orderDraft.get(o.id).qty:o.qty;h+='<div class="b-row"><div class="b-label"><strong>'+ke(o.name)+'</strong><small>'+ke(o.orderUnit)+(o.status==='sent'?' · Segnato come condiviso':'')+'</small>'+(qty===0?'<small class="b-warning">Scegli quanto acquistare</small>':'')+'</div>'+bCounter(o.id,qty,'order','Da acquistare '+o.name)+bButton('Rimuovi','remove:'+o.id)+'</div>';}
-  if(orders.length)h+='<div class="b-sticky">'+bButton('Salva quantità','saveorders',!bar.orderDraft.size)+bButton('Scarta quantità locali','discardorders',!bar.orderDraft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('order:')))+bButton('Prepara messaggio','message')+bButton('Segna come condivisa','sent')+bButton('Chiudi lista acquistata','close')+'</div><p class="mini">Copiare il messaggio non lo invia e non conferma l’acquisto. “Chiudi lista acquistata” archivia la lista senza aumentare automaticamente le giacenze.</p>';
+  if(orders.length)h+='<div data-order-group="bar"><p class="mini" data-order-status role="status"></p><div class="b-sticky">'+bButton('Salva quantità','saveorders',!bar.orderDraft.size)+bButton('Scarta quantità locali','discardorders',!bar.orderDraft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('order:')))+bButton('Prepara messaggio','message')+bButton('Segna come condivisa','sent')+bButton('Chiudi lista acquistata','close')+'</div><p class="mini">Copiare il messaggio non lo invia e non conferma l’acquisto. “Chiudi lista acquistata” archivia la lista senza aumentare automaticamente le giacenze. Le voci a zero non entrano nel messaggio e restano nei riordini.</p></div>';
  }else if(bar.page==='settings'&&currentRole==='owner'){
   h='<div class="b-actions">'+bButton('Nuovo prodotto','new')+'</div><p class="mini">Aggiungi prodotti e scegli quanti pezzi vuoi avere in giacenza: l’ordine automatico calcola quanto manca e arrotonda all’intero superiore. Puoi anche scegliere il riordino manuale a zero.</p>';
   for(const p of [...bar.items.values()].sort((a,b)=>a.name.localeCompare(b.name,'it')))h+='<div class="b-row"><div class="b-label"><strong>'+ke(p.name)+'</strong><small>'+ke(bCategory(p))+' · '+(p.target===null?'Manuale':'Scorta '+kNum(p.target))+(p.active?'':' · Archiviato')+'</small></div>'+bButton('Modifica','edit:'+p.id)+'</div>';
@@ -4050,7 +4183,7 @@ function bRender(){
   h='<h3>Accessi Bar</h3><p class="mini">Puoi abilitare il Bar indipendentemente dalla Cucina.</p>'+bButton('Aggiorna elenco','access');
   if(bar.people)for(const p of bar.people){h+='<div class="b-row"><div class="b-label"><strong>'+ke(p.name)+'</strong><small>'+(p.operate?'Abilitato':'Non abilitato')+'</small></div>'+bButton(p.operate?'Revoca':'Abilita','grant:'+p.id+':'+(p.operate?'0':'1'))+'</div>';}
  }
- $('bBody').innerHTML=h;bFilter();renderOrderConflicts('bar');
+ $('bBody').innerHTML=h;bFilter();renderOrderConflicts('bar');orderSyncControls('bar');
  for(const input of $('bBody').querySelectorAll('[data-b-input]'))if(bar.invalid.has(input.dataset.bInput+':'+input.dataset.id))input.setCustomValidity('Correggi questa quantità.');
 }
 function bFilter(){
@@ -4068,7 +4201,7 @@ async function bRun(action){
  if(!navigator.onLine){bNotice('Sei offline. Nessun salvataggio confermato.',true);return;}
  const epoch=bar.epoch;bar.busy=true;const controls=[...$('bBody').querySelectorAll('button,input,textarea,select')].map(el=>[el,el.disabled]);controls.forEach(([el])=>el.disabled=true);
  bNotice('Salvataggio in corso…');let success=false;
- try{const message=await action(epoch);bAssert(epoch);success=true;shiftPhase('bar',action===bAccess?'idle':'saved');bNotice(message||'Salvataggio confermato.');}
+ try{const message=await action(epoch);bAssert(epoch);success=true;const unresolved=orderConflicts.bar.size>0;shiftPhase('bar',unresolved?'error':action===bAccess?'idle':'saved');bNotice(message||'Salvataggio confermato.',unresolved);}
  catch(error){if(epoch===bar.epoch)bNotice(bFailure(error),true);}
  finally{if(epoch===bar.epoch){bar.busy=false;queueMicrotask(shiftSync);if(success||!bar.dirty)bRender();else controls.forEach(([el,was])=>el.disabled=was);}}
 }
@@ -4118,14 +4251,13 @@ async function bItemSave(form,epoch){
 async function bAccess(){if(currentRole==='owner')showManagerView('team',true);}
 async function bGrant(){throw Error('Gestisci gli accessi dalla sezione Team.');}
 function bMessage(){
- if([...bar.invalid.keys()].some(k=>k.startsWith('order:')))throw Error('Correggi le quantità non valide nella lista.');
- if(bar.orderDraft.size)throw Error('Salva le quantità prima di preparare il messaggio.');
- const orders=bOrders();if(!orders.length)throw Error('La lista è vuota.');
- if(orders.some(o=>o.qty<=0))throw Error('Scegli quanto acquistare per tutte le voci in lista.');
- return orders.map(o=>kNum(o.qty)+' '+o.name).join('\n');
+ const summary=orderAssertReady('bar');
+ if(summary.pending.length)throw Error(summary.pending.length+' quantità modificate da salvare nella lista Bar.');
+ return summary.ready.map(o=>kNum(o.qty)+' '+o.name).join('\n');
 }
+
 async function bCleanup(epoch){
- if(bar.cleanup)return;bar.cleanup=true;
+ if(bar.cleanup||quotaHeld())return;bar.cleanup=true;
  try{
   const cutoff=Timestamp.fromMillis(kcAt6(kcPeriods().weekly));
   for(const [name,field]of [['barEvents','createdAt'],['barOrders','updatedAt']]){
@@ -4148,6 +4280,7 @@ $('bBody').addEventListener('input',e=>{
   bar.invalid.delete(el.dataset.bInput+':'+el.dataset.id);el.setCustomValidity('');
  }catch(error){bar.invalid.set(el.dataset.bInput+':'+el.dataset.id,el.value);el.setCustomValidity(error.message);bNotice(error.message,true);}
  const confirmButton=$('bBody').querySelector('[data-b="confirm"]');if(confirmButton){confirmButton.disabled=bar.busy||!bActive().length;confirmButton.textContent='Salva giacenze';}
+ orderSyncControls('bar');
  for(const action of ['discard','saveorders','discardorders']){const b=$('bBody').querySelector('[data-b="'+action+'"]');if(b)b.disabled=action==='discard'?(!bar.draft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('stock:'))):action==='discardorders'?(!bar.orderDraft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('order:'))):!bar.orderDraft.size;}
 });
 $('bBody').addEventListener('change',e=>{if(e.target.id==='bMode'){$('bTargetLabel').hidden=e.target.value==='manual';bar.dirty=true;}});
@@ -4171,12 +4304,12 @@ $('barPanel').addEventListener('click',async e=>{
   if(action==='discardorders'){if(confirm('Scartare le quantità locali non salvate e mostrare quelle condivise?')){bar.orderDraft.clear();for(const key of bar.invalid.keys())if(key.startsWith('order:'))bar.invalid.delete(key);bRender();}return;}
   if(action==='remove'){await bRun(epoch=>bOrderSave([id],'removed',epoch));return;}
   if(action==='sent'||action==='close'){
-   if(bar.orderDraft.size)throw Error('Salva prima le quantità modificate.');
+   orderReconcile('bar');if(orderSummary('bar').pending.length)throw Error('Salva prima le quantità modificate.');
    if(action==='sent')bMessage();
    if(!confirm(action==='sent'?'Hai condiviso questa lista nel gruppo WhatsApp?':'Confermi che questa lista è stata acquistata? Le giacenze non aumentano automaticamente.'))return;
-   await bRun(epoch=>bOrderSave(bOrders().map(o=>o.id),action==='sent'?'sent':'closed',epoch));return;
+   await bRun(epoch=>bOrderSave(bOrders().filter(o=>action!=='sent'||o.qty>0).map(o=>o.id),action==='sent'?'sent':'closed',epoch));return;
   }
-  if(action==='message'){$('bMessageText').value=bMessage();$('bCopyStatus').textContent='';$('bMessageDialog').showModal();return;}
+  if(action==='message'){await prepareOrderMessage('bar');return;}
   if(action==='new'||action==='edit'){
    if(currentRole!=='owner')return;const p=bar.items.get(id);bar.editing={id:p?.id||null,revision:p?.revision||0,data:p||{name:'',category:'Prodotti bar',stockUnit:'pezzi',orderUnit:'pezzi',target:1,active:true}};bar.page='edit';bar.dirty=false;bRender();return;
   }
@@ -4310,6 +4443,7 @@ window.TBSManagerUpdates?.setCanRefresh(() => {
 </script>
 </body>
 </html>
+
 
 
 
