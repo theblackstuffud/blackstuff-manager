@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it" data-privacy-app="manager">
 <head>
-<meta name="tbs-release" content="2026-11-09-riordini-coerenti-v37">
+<meta name="tbs-release" content="2026-11-11-spesa-condivisa-v38">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
@@ -691,7 +691,9 @@ body[data-manager-view="home"] #primaryNav{display:none}.home-intro{padding:28px
 <section id="kitchenPanel" class="panel" aria-labelledby="kHeading"><div class="k-toolbar"><h2 id="kHeading" tabindex="-1">Cucina</h2><div><button type="button" class="small-action" id="kOpenNotifications" aria-label="Notifiche cucina">Notifiche <span data-k-count class="k-alert-count">0</span></button><button type="button" class="small-action" id="kRetry">Riprova</button><button type="button" class="small-action" id="kEdit" data-owner-only>Modifica</button></div></div><div id="kMessage" class="message" role="status" aria-live="polite"></div><nav id="kQuickNav" class="module-tabs" aria-label="Operazioni cucina"></nav><div id="draftPrompt-kitchen" class="draft-prompt" hidden></div><div id="kBody"></div></section><dialog id="kMessageDialog" aria-labelledby="kMessageTitle"><h2 id="kMessageTitle">Messaggio da copiare</h2><p>Puoi correggere il testo. Le modifiche qui non cambiano la lista salvata.</p><p id="kMessageNote" class="mini" role="status"></p><textarea id="kMessageText" aria-label="Messaggio modificabile"></textarea><button type="button" class="button" id="kCopyMessage">Copia messaggio</button><button type="button" class="small-action" id="kCloseMessage">Chiudi</button><p id="kCopyStatus" role="status"></p></dialog>
 
 <section id="barPanel" class="panel" aria-labelledby="bHeading"><div class="k-toolbar"><h2 id="bHeading" tabindex="-1">Bar</h2><button type="button" class="small-action" data-b="reload">Ricarica</button></div><div id="bMessage" class="message" role="status" aria-live="polite"></div><nav class="b-tabs" aria-label="Sezioni Bar"><button type="button" class="small-action" data-b-page="stock" aria-pressed="true">Giacenze</button><button type="button" class="small-action" id="bCartTab" data-b-page="cart" aria-pressed="false">Riordini (0)</button><button type="button" class="small-action" data-b-page="loads" aria-pressed="false">Carichi</button><button type="button" class="small-action" id="bSettings" data-b-page="settings" aria-pressed="false" hidden>Modifica</button></nav><div id="draftPrompt-bar" class="draft-prompt" hidden></div><div id="bBody"></div></section><dialog id="bMessageDialog" aria-labelledby="bMessageTitle"><h2 id="bMessageTitle">Lista Bar</h2><p>Soltanto prodotti e quantità. Puoi correggere il testo prima di copiarlo nel gruppo WhatsApp.</p><p id="bMessageNote" class="mini" role="status"></p><textarea id="bMessageText" aria-label="Lista Bar modificabile"></textarea><button type="button" class="button" id="bCopyMessage">Copia lista</button> <button type="button" class="small-action" id="bCloseMessage">Chiudi</button><p id="bCopyStatus" role="status" aria-live="polite"></p></dialog>
-<section id="shoppingPanel" class="panel" aria-labelledby="shoppingHeading"><h2 id="shoppingHeading" tabindex="-1">SPESA</h2><p id="shoppingSummary" class="mini" role="status" aria-live="polite"></p><p id="shoppingNotice" class="message" role="status" aria-live="polite"></p><button type="button" class="small-action" id="shoppingRetry" hidden>Riprova</button><div id="shoppingRows"></div><form id="shoppingAddForm"><label for="shoppingInput">AGGIUNGI ALLA SPESA</label><select id="shoppingSection" aria-label="Aggiungi a"><option value="kitchen">CUCINA</option><option value="bar">BAR</option></select><textarea id="shoppingInput" rows="3" placeholder="Una cosa per riga" maxlength="6500"></textarea><button type="submit" class="button">Aggiungi</button></form><p class="mini">Lista comune a tutti. Conferma i pezzi acquistati: vengono aggiunti al magazzino. Togliendo la spunta annulli il movimento. Nessun messaggio viene inviato.</p></section>
+<section id="shoppingPanel" class="panel" aria-labelledby="shoppingHeading"><h2 id="shoppingHeading" tabindex="-1">SPESA</h2><p id="shoppingSummary" class="mini" role="status" aria-live="polite"></p><p id="shoppingNotice" class="message" role="status" aria-live="polite"></p><button type="button" class="small-action" id="shoppingRetry" hidden>Riprova</button><div id="shoppingRows"></div><form id="shoppingAddForm"><label for="shoppingInput">AGGIUNGI ALLA SPESA</label><select id="shoppingSection" aria-label="Aggiungi a"><option value="kitchen">CUCINA</option><option value="bar">BAR</option></select><textarea id="shoppingInput" rows="3" placeholder="Una cosa per riga" maxlength="6500"></textarea><button type="submit" class="button">Aggiungi</button></form><p class="mini">Lista comune a tutti. Conferma i pezzi acquistati: vengono aggiunti al magazzino. Togliendo la spunta annulli il movimento. </p><div id="shoppingCopyActions" class="b-actions" role="group" aria-label="Copia lista della spesa"><button type="button" class="small-action" data-shop-copy="bar" disabled>Copia Bar</button><button type="button" class="small-action" data-shop-copy="kitchen" disabled>Copia Cucina</button><button type="button" class="button" data-shop-copy="all" disabled>Copia tutto</button></div><p id="shoppingCopyStatus" class="mini" role="status" aria-live="polite"></p><textarea id="shoppingCopyFallback" aria-label="Testo da copiare" rows="6" readonly hidden></textarea></section>
+<dialog id="shoppingEditDialog" aria-labelledby="shoppingEditTitle"><form id="shoppingEditForm" class="k-form"><h2 id="shoppingEditTitle">Modifica quantità</h2><p id="shoppingEditCurrent" class="mini"></p><label><span id="shoppingEditUnit">Quantità</span><input id="shoppingEditQty" inputmode="decimal" autocomplete="off" required></label><p id="shoppingEditError" class="message error" role="alert"></p><button id="shoppingEditSave" type="submit" class="button">Salva quantità</button> <button id="shoppingEditCancel" type="button" class="small-action">Annulla</button></form></dialog>
+<style>#shoppingCopyActions{display:flex;gap:8px;flex-wrap:wrap}#shoppingCopyActions button{margin:0}#shoppingCopyFallback{width:100%;font:inherit;color:var(--text);background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px}#shoppingEditDialog{width:min(440px,calc(100% - 30px));border:1px solid var(--border);border-radius:20px;background:var(--card);color:var(--text);padding:20px}#shoppingEditDialog::backdrop{background:rgba(0,0,0,.5)}#shoppingEditDialog form{margin:0}.shopping-row-actions{display:flex;flex-wrap:wrap;gap:6px}</style>
 <dialog id="warehouseDialog" aria-labelledby="wmTitle"><form id="wmForm"><h2 id="wmTitle">PEZZI E PRODOTTO</h2><p id="wmDescription"></p><label for="wmProduct">PRODOTTO DI MAGAZZINO</label><select id="wmProduct" required></select><label for="wmQty">PEZZI EFFETTIVI</label><input id="wmQty" type="number" min="1" max="100000" step="1" inputmode="numeric" required><p class="mini">Conta le unità singole, anche se acquistate in confezioni diverse. Una confezione di panna da 1 L è 1 pezzo.</p><p id="wmError" role="alert"></p><div class="wm-actions"><button type="button" id="wmCancel" class="small-action">Annulla</button><button type="submit" class="button">Conferma movimento</button></div></form></dialog>
 <section id="teamPanel" class="panel" aria-labelledby="teamHeading"><div class="k-toolbar"><h2 id="teamHeading" tabindex="-1">TEAM</h2><button type="button" id="teamReload" class="small-action">Ricarica team</button></div><p class="mini">Solo i titolari gestiscono ruoli e accessi. Le autorizzazioni a Cucina, Bar e Modifica menu si modificano da questa sezione.</p><p class="mini">“Elimina dal gestionale” rimuove profilo e accessi e blocca questo account. La cancellazione dal registro Firebase Authentication si completa dalla console Firebase.</p><div id="teamMessage" role="status" aria-live="polite"></div><div id="teamBody"></div><details class="team-invite"><summary>Invita una persona</summary>  <section class="manager-invite" aria-labelledby="managerInviteHeading">
    <div class="eyebrow">Invita un collaboratore</div><h3 id="managerInviteHeading">Condividi il Manager</h3>
@@ -859,7 +861,7 @@ body[data-manager-view="home"] #primaryNav{display:none}.home-intro{padding:28px
 <details class="app-settings" id="appSettings">
 <summary aria-label="Impostazioni e aggiornamenti" title="Impostazioni e aggiornamenti"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9.5 3-.5 2-1.7 1-2-.6-2.5 4.2 1.5 1.5v1.8l-1.5 1.5 2.5 4.2 2-.6 1.7 1 .5 2h5l.5-2 1.7-1 2 .6 2.5-4.2-1.5-1.5v-1.8l1.5-1.5-2.5-4.2-2 .6-1.7-1-.5-2Z"/><circle cx="12" cy="12" r="3"/></svg></summary>
 <div class="app-settings-panel"><strong>Aggiornamenti</strong>
-<p id="managerBuild" class="mini">Versione v37 · 09/11/2026</p><p id="appUpdateStatus" role="status" aria-live="polite">Controllo automatico degli aggiornamenti attivo.</p>
+<p id="managerBuild" class="mini">Versione v38 · 11/11/2026</p><p id="appUpdateStatus" role="status" aria-live="polite">Controllo automatico degli aggiornamenti attivo.</p>
 <button type="button" class="small-action" id="appUpdateCheck">Controlla aggiornamenti</button>
 </div></details>
 </footer>
@@ -2726,7 +2728,7 @@ function khCutoff(day){
 }
 function khLabel(day){return new Intl.DateTimeFormat('it-IT',{weekday:'long',day:'numeric',month:'long',timeZone:'Europe/Rome'}).format(new Date(day+'T12:00:00Z'));}
 function khPending(){return [...k.tasks.values()].filter(t=>t.status!=='done').sort((a,b)=>(a.due||'9999').localeCompare(b.due||'9999')||a.title.localeCompare(b.title,'it'));}
-function khOrders(){return kActiveOrders().filter(o=>o.status==='draft');}
+function khOrders(){return kActiveOrders().filter(o=>o.status==='draft'&&o.supplierId!=='group');}
 function khRender(){
  const day=khFinishedDay(),report=k.reports.get(day),notes=[...k.shiftNotes.values()].filter(n=>n.shiftDate===day).sort((a,b)=>(a.createdAt?.toMillis?.()||0)-(b.createdAt?.toMillis?.()||0));
  let h=kBack()+`<h3>Consegne del turno di ${ke(khLabel(day))}</h3>`;
@@ -3377,7 +3379,8 @@ function kRender(){
  }
  if(k.page==='cart'){
   h+='<p class="mini">Indica quanto acquistare. Le voci a zero restano da scegliere e non entrano nel messaggio. Copiare non significa inviare.</p>';
-  const orders=kActiveOrders();
+  const orders=kActiveOrders().filter(o=>o.supplierId!=='group');
+  h+='<p class="mini">Le mancanze per il gruppo WhatsApp sono nella lista della spesa.</p><button type="button" class="small-action" data-manager-go="shopping">Apri lista della spesa</button>';
   for(const sid of [...new Set(orders.map(o=>o.supplierId))]){
    const supplier=k.suppliers.get(sid);h+=`<section class="k-group" data-order-group="${ke(sid)}"><h3>${ke(supplier?.name||sid)}</h3><p class="mini" data-order-status role="status"></p>`;
    for(const o of orders.filter(o=>o.supplierId===sid)){
@@ -3386,7 +3389,7 @@ function kRender(){
    }
    h+=kButton('Salva quantità','saveorders:'+sid)+kButton('Anteprima messaggio','preview:'+sid)+kButton('Segna lista come inviata','sent:'+sid)+kButton('Archivia lista completata','close:'+sid)+'</section>';
   }
-  if(!orders.length)h+='<p>Carrello vuoto.</p>';
+  if(!orders.length)h+='<p>Nessun riordino per gli altri fornitori.</p>';
   h+='<details class="k-category"><summary>Aggiungi un articolo manualmente</summary><label>Prodotto<select id="kManual">'+kActive().filter(i=>['qty','name','bundle'].includes(i.mode)).map(i=>`<option value="${ke(i.id)}">${ke(i.name)}</option>`).join('')+'</select></label>'+kButton('Aggiungi alla lista','manual')+'</details>';
  }
  if(k.page==='clean'){h=kcRender();}
@@ -3712,7 +3715,7 @@ $('kBody').addEventListener('click',async event=>{
   if(action==='saveorders'){const ids=kActiveOrders().filter(o=>o.supplierId===id).map(o=>o.id);await kRun(epoch=>kOrderAction(ids,'save',epoch));return;}
   if(action==='preview'){await prepareOrderMessage('kitchen',id);return;}
   if(['remove','close','sent'].includes(action)){if(!confirm(action==='sent'?'Confermi di aver inviato personalmente il messaggio?':action==='close'?'Archiviare questa lista? Le giacenze restano invariate.':'Rimuovere questo articolo dalla lista?'))return;const ids=action==='remove'?[id]:kActiveOrders().filter(o=>o.supplierId===id&&(action!=='sent'||o.mode!=='qty'||o.qty>0)).map(o=>o.id);if(action==='sent'){orderAssertReady('kitchen',id);if(orderSummary('kitchen',id).pending.length)throw Error('Salva le quantità modificate prima di segnare il messaggio come inviato.');}await kRun(epoch=>kOrderAction(ids,action,epoch));return;}
-  if(action==='manual'){const selected=$('kManual').value;if(!selected)return;await kRun(async epoch=>{const ev=doc(collection(db,'kitchenEvents')),ref=doc(db,'kitchenOrders',selected);await runTransaction(db,async tx=>{const item=await tx.get(doc(db,'kitchenItems',selected)),old=await tx.get(ref);kAssert(epoch);if(old.exists()&&['draft','sent'].includes(old.data().status))throw Error('Articolo già presente. Quantità conservata.');const i={id:selected,...item.data()};if(!item.exists()||!i.active||!['qty','name','bundle'].includes(i.mode))throw Error('Articolo non ordinabile.');tx.set(ref,kOrder(i,ev,old.data()));kEvent(tx,ev,'orders','Articolo aggiunto alla lista',i.name,'cart');});});return;}
+  if(action==='manual'){const selected=$('kManual').value;if(!selected)return;let toShopping=false;await kRun(async epoch=>{const ev=doc(collection(db,'kitchenEvents')),ref=doc(db,'kitchenOrders',selected);await runTransaction(db,async tx=>{const item=await tx.get(doc(db,'kitchenItems',selected)),old=await tx.get(ref);kAssert(epoch);if(old.exists()&&['draft','sent'].includes(old.data().status))throw Error('Articolo già presente. Quantità conservata.');const i={id:selected,...item.data()};if(!item.exists()||!i.active||!['qty','name','bundle'].includes(i.mode))throw Error('Articolo non ordinabile.');tx.set(ref,kOrder(i,ev,old.data()));kEvent(tx,ev,'orders','Articolo aggiunto alla lista',i.name,'cart');return i.supplierId==='group';}).then(group=>{toShopping=group;});});if(toShopping&&managerView==='kitchen')showManagerView('shopping',true);return;}
   if(action==='newitem'||action==='edititem'){kItemForm(id);return;}
   if(action==='newsupplier'||action==='editsupplier'){kSupplierForm(id);return;}
   if(action==='task'){await kRun(epoch=>kTaskStatus(id,param,epoch));return;}
@@ -3849,7 +3852,7 @@ function runTransaction(database,action,options){
  },options).catch(error=>{if(isQuotaError(error))quotaMessage(error);throw error;});
 }
 
-function shoppingReset(){shopping.epoch++;for(const off of shopping.off)off();shopping.off=[];shopping.key='';shopping.sources.clear();shopping.checks.clear();shopping.manual.clear();shopping.pending.clear();shopping.errors.clear();shopping.busy.clear();shopping.text='';shopping.notice='';shopping.addDraft=null;if($('shoppingRows'))$('shoppingRows').replaceChildren();if($('shoppingInput'))$('shoppingInput').value='';}
+function shoppingReset(){shopping.epoch++;for(const off of shopping.off)off();shopping.off=[];shopping.key='';shopping.sources.clear();shopping.checks.clear();shopping.manual.clear();shopping.pending.clear();shopping.errors.clear();shopping.busy.clear();shopping.text='';shopping.notice='';shopping.addDraft=null;shoppingEdit=null;if($('shoppingEditDialog').open)$('shoppingEditDialog').close();$('shoppingCopyFallback').hidden=true;$('shoppingCopyFallback').value='';$('shoppingCopyStatus').textContent='';if($('shoppingRows'))$('shoppingRows').replaceChildren();if($('shoppingInput'))$('shoppingInput').value='';}
 function shoppingSync(){
  const enabled=shoppingAllowed();$('shoppingHomeCard').hidden=!enabled;
  const nav=document.querySelector('#primaryNav [data-manager-go="shopping"]');if(nav)nav.hidden=!enabled;
@@ -3915,11 +3918,16 @@ function shoppingRows(){
  const rows=[];
  for(const o of shopping.sources.values()){
   if(!['draft','sent'].includes(o.status))continue;
-  const check=shopping.checks.get(o.id),ready=Number(o.qty)>0;
+  const check=shopping.checks.get(o.id);
   rows.push({key:'source:'+o.id,kind:'source',section:o.section,id:o.id,name:o.name,qty:o.qty,unit:o.unit,revision:o.sourceRevision,cycle:o.cycle||'legacy_'+o.id,ready:true,done:!!(check?.done&&(check.sourceCycle?check.sourceCycle===(o.cycle||'legacy_'+o.id):check.sourceRevision===o.sourceRevision))});
  }
  for(const m of shopping.manual.values())if(!m.deleted)rows.push({key:'manual:'+m.id,kind:'manual',section:m.section,id:m.id,name:m.name,ready:true,done:m.done});
  return rows.sort((a,b)=>Number(a.done)-Number(b.done)||a.name.localeCompare(b.name,'it'));
+}
+function shoppingRowActions(row){
+ if(!canOpenModule(row.section))return '';
+ const button=(action,label)=>`<button type="button" class="small-action" data-shop-order="${action}" data-key="${ke(row.key)}" ${shopping.busy.has(row.key)?'disabled':''}>${label}</button>`;
+ return '<div class="shopping-row-actions">'+(row.done?button('archive','Archivia'):button('qty','Quantità')+button('remove','Togli'))+'</div>';
 }
 function shoppingRender(){
  if(managerView!=='shopping')return;
@@ -3927,16 +3935,92 @@ function shoppingRender(){
  $('shoppingSummary').textContent=shopping.pending.size?'Aggiornamento della lista…':rows.length?pending+' da prendere · '+(rows.length-pending)+' presi':'La lista è vuota.';
  $('shoppingNotice').textContent=[...new Set(shopping.errors.values())].join(' ')||shopping.notice||'';
  $('shoppingRetry').hidden=!shopping.errors.size;
- $('shoppingRows').innerHTML=[['bar','BAR'],['kitchen','CUCINA']].map(([section,label])=>{const group=rows.filter(r=>r.section===section);return `<section class="shopping-group"><h3>${label}</h3>`+(group.length?group.map(r=>`<div class="shopping-row${r.done?' shopping-done':''}"><label><input type="checkbox" data-shop-check="${ke(r.key)}" ${r.done?'checked':''} ${!r.ready||shopping.busy.has(r.key)?'disabled':''}><span><strong>${ke(r.name)}</strong><small>${r.kind==='manual'?'Aggiunta a mano':r.ready?ke(kNum(r.qty)+' '+r.unit):'Quantità da confermare nei riordini'}</small></span></label>${r.kind==='manual'?`<button type="button" class="small-action" data-shop-remove="${ke(r.id)}" ${shopping.busy.has(r.key)?'disabled':''}>Togli</button>`:''}</div>`).join(''):'<p class="mini">Niente da prendere.</p>')+'</section>';}).join('');
+ $('shoppingRows').innerHTML=[['bar','BAR'],['kitchen','CUCINA']].map(([section,label])=>{const group=rows.filter(r=>r.section===section);return `<section class="shopping-group"><h3>${label}</h3>`+(group.length?group.map(r=>`<div class="shopping-row${r.done?' shopping-done':''}"><label><input type="checkbox" data-shop-check="${ke(r.key)}" ${r.done?'checked':''} ${!r.ready||shopping.busy.has(r.key)?'disabled':''}><span><strong>${ke(r.name)}</strong><small>${r.kind==='manual'?'Aggiunta a mano':r.qty>0?ke((kNum(r.qty)+' '+r.unit).trim()):'Quantità non indicata'}</small></span></label>${r.kind==='manual'?`<button type="button" class="small-action" data-shop-remove="${ke(r.id)}" ${shopping.busy.has(r.key)?'disabled':''}>Togli</button>`:shoppingRowActions(r)}</div>`).join(''):'<p class="mini">Niente da prendere.</p>')+'</section>';}).join('');
+ for(const button of $('shoppingCopyActions').querySelectorAll('[data-shop-copy]'))button.disabled=!!(shopping.pending.size||shopping.errors.size||shopping.busy.size)||!rows.some(r=>!r.done&&(button.dataset.shopCopy==='all'||button.dataset.shopCopy===r.section));
 }
-async function shoppingRun(key,action){
+async function shoppingRun(key,action,onError){
  if(!shoppingAllowed()||shopping.busy.has(key))return;
- if(!navigator.onLine){shopping.notice='Sei offline. La modifica non è stata salvata: riprova quando torna la connessione.';shoppingRender();return;}
+ if(!navigator.onLine){shopping.notice='Sei offline. La modifica non è stata salvata: riprova quando torna la connessione.';onError?.(shopping.notice);shoppingRender();return;}
  const epoch=shopping.epoch,uid=auth.currentUser.uid;shopping.busy.add(key);shoppingRender();
  try{const outcome=await action(()=>{if(epoch!==shopping.epoch||auth.currentUser?.uid!==uid||!shoppingAllowed())throw Error('Accesso cambiato.');});if(epoch===shopping.epoch)shopping.notice=outcome===false?'Nessun movimento registrato.':'Salvato.';}
- catch(error){if(epoch===shopping.epoch)shopping.notice=error.code==='permission-denied'?'Salvataggio non autorizzato. Verifica il blocco Spesa nelle regole Firebase.':kError(error);}
+ catch(error){if(epoch===shopping.epoch)shopping.notice=error.code==='permission-denied'?'Salvataggio non autorizzato. Verifica il blocco Spesa nelle regole Firebase.':kError(error);if(epoch===shopping.epoch)onError?.(shopping.notice);}
  finally{if(epoch===shopping.epoch){shopping.busy.delete(key);shoppingRender();}}
 }
+const shoppingSections=[['bar','BAR'],['kitchen','CUCINA']];
+function shoppingCopyText(scope,rows=shoppingRows()){
+ return shoppingSections.filter(([section])=>scope==='all'||scope===section).flatMap(([section,label])=>{
+  const lines=rows.filter(r=>r.section===section&&!r.done).map(r=>{
+   const name=r.name.replace(/\s+/g,' ').trim(),unit=String(r.unit||'').replace(/\s+/g,' ').trim();
+   return '- '+(r.kind==='source'&&r.qty>0?(kNum(r.qty)+(unit?' '+unit:'')+' · '):'')+name;
+  });
+  return lines.length?[label+'\n'+lines.join('\n')]:[];
+ }).join('\n\n');
+}
+async function shoppingCopy(scope){
+ if(!shoppingAllowed()||managerView!=='shopping'||shopping.pending.size||shopping.errors.size||shopping.busy.size)return;
+ const value=shoppingCopyText(scope),status=$('shoppingCopyStatus'),fallback=$('shoppingCopyFallback'),epoch=shopping.epoch;
+ if(!value)return;
+ fallback.hidden=true;fallback.value='';status.textContent='';
+ try{await navigator.clipboard.writeText(value);if(epoch===shopping.epoch&&managerView==='shopping')status.textContent='Copiato. Incolla la lista nel gruppo WhatsApp.';}
+ catch{if(epoch!==shopping.epoch||managerView!=='shopping')return;fallback.hidden=false;fallback.value=value;fallback.focus();fallback.select();fallback.setSelectionRange(0,value.length);status.textContent='Copia automatica non disponibile. Tieni premuto sul testo e scegli Copia.';}
+}
+$('shoppingCopyActions').addEventListener('click',e=>{
+ const button=e.target.closest('[data-shop-copy]');if(button&&!button.disabled)void shoppingCopy(button.dataset.shopCopy);
+});
+let shoppingEdit=null;
+function shoppingEditOpen(row){
+ if(!canOpenModule(row.section)||row.done||shopping.busy.has(row.key))return;
+ const source=shopping.sources.get(row.id),state=row.section==='bar'?bar:k;
+ shoppingEdit=row;
+ $('shoppingEditTitle').textContent=row.name;
+ $('shoppingEditCurrent').textContent=row.qty>0?'Quantità attuale: '+kNum(row.qty)+' '+row.unit:'Quantità non ancora indicata. Puoi lasciare 0 per copiare solo il nome.';
+ $('shoppingEditQty').value=kNum(state.orderDraft.get(source?.productId)?.qty??row.qty);
+ $('shoppingEditUnit').textContent=row.unit?'Quantità ('+row.unit+')':'Quantità';
+ $('shoppingEditError').textContent='';$('shoppingEditDialog').showModal();
+}
+$('shoppingEditCancel').addEventListener('click',()=>$('shoppingEditDialog').close());
+$('shoppingEditDialog').addEventListener('close',()=>{shoppingEdit=null;});
+$('shoppingEditDialog').addEventListener('cancel',e=>{if(shoppingEdit&&shopping.busy.has(shoppingEdit.key))e.preventDefault();});
+$('shoppingEditForm').addEventListener('submit',async e=>{
+ e.preventDefault();const row=shoppingEdit;if(!row||shopping.busy.has(row.key))return;
+ const value=$('shoppingEditQty').value.trim(),submit=$('shoppingEditSave'),cancel=$('shoppingEditCancel');
+ if(!/^\d+(?:[.,]\d+)?$/.test(value)){$('shoppingEditError').textContent='Inserisci una quantità valida.';return;}
+ submit.disabled=cancel.disabled=true;
+ try{await shoppingRun(row.key,async assert=>{
+  await shoppingOrderAction(row,'qty',value,assert);
+  if(shoppingEdit===row)$('shoppingEditDialog').close();
+ },error=>{if(shoppingEdit===row)$('shoppingEditError').textContent=error;});}
+ finally{submit.disabled=cancel.disabled=false;}
+});
+async function shoppingOrderAction(row,action,value,assert){
+ const kind=row.section,isBar=kind==='bar';
+ if(!canOpenModule(kind))throw Error('Non hai accesso alla modifica di questa voce.');
+ const productId=shopping.sources.get(row.id)?.productId;
+ if(!productId)throw Error('Voce non più disponibile.');
+ const state=isBar?bar:k,draft=state.orderDraft.get(productId);
+ const col=isBar?'barOrders':'kitchenOrders',event=doc(collection(db,isBar?'barEvents':'kitchenEvents'));
+ const result=await runTransaction(db,async tx=>{
+  const ref=doc(db,col,productId);
+  const [order,source,check]=await Promise.all([tx.get(ref),tx.get(doc(db,'shoppingSources',row.id)),tx.get(doc(db,'shoppingChecks',row.id))]);
+  assert();const old=order.data(),visible=source.data(),checked=check.data();
+  if(!old||!visible||(!isBar&&old.supplierId!=='group')||!['draft','sent'].includes(old.status)||old.revision!==row.revision||visible.sourceRevision!==row.revision||(visible.cycle||'legacy_'+row.id)!==row.cycle)throw Error('La voce è cambiata. Chiudi e riaprila per vedere i dati aggiornati.');
+  const done=checked?.done&&(checked.sourceCycle?checked.sourceCycle===row.cycle:checked.sourceRevision===row.revision);
+  if((action==='archive')!==!!done)throw Error('Lo stato della spunta è cambiato. Riprova dalla lista aggiornata.');
+  const qty=action==='qty'?(isBar?bQty(value,true):kQuantity(value,old.step)):old.qty;
+  if(action==='qty'&&qty===old.qty)return old;
+  const status=action==='archive'?'closed':action==='remove'?'removed':'draft';
+  const next={...old,qty,status,...(isBar?bMeta(old,event):kMeta(old,event))};
+  tx.set(ref,next);
+  if(isBar)bEvent(tx,event,'order',productId,'update');
+  else kEvent(tx,event,'orders','Lista della spesa aggiornata',old.name,'cart',false);
+  return next;
+ });
+ assert();const latest=shopping.sources.get(row.id);
+ if(latest&&latest.cycle===row.cycle&&latest.sourceRevision<=result.revision)shopping.sources.set(row.id,{id:row.id,...shoppingProjection(kind,productId,result,row.cycle)});
+ orderAccept(kind,productId,result);
+ if(state.orderDraft.get(productId)===draft){state.orderDraft.delete(productId);state.invalid.delete('order:'+productId);orderConflicts[kind].delete(productId);queueMicrotask(shiftSync);}
+}
+
 async function shoppingAdd(){
  const raw=$('shoppingInput').value,lines=[...new Set(raw.split(/\r?\n/).map(s=>s.trim()).filter(Boolean))];
  if(!lines.length)return;if(lines.length>40||lines.some(s=>s.length>160)){$('shoppingNotice').textContent='Inserisci fino a 40 righe, ognuna di massimo 160 caratteri.';return;}
@@ -3954,7 +4038,16 @@ async function shoppingAdd(){
 $('shoppingInput').addEventListener('input',()=>shopping.text=$('shoppingInput').value);
 $('shoppingAddForm').addEventListener('submit',e=>{e.preventDefault();void shoppingAdd();});
 $('shoppingRows').addEventListener('change',e=>{const key=e.target.dataset.shopCheck;if(!key)return;const row=shoppingRows().find(r=>r.key===key);if(row)void shoppingCheck(row,e.target.checked);});
-$('shoppingRows').addEventListener('click',e=>{const button=e.target.closest('[data-shop-remove]');if(!button)return;const id=button.dataset.shopRemove;void shoppingRun('manual:'+id,async assert=>{const ref=doc(db,'shoppingManual',id);await runTransaction(db,async tx=>{const snap=await tx.get(ref);assert();if(snap.exists()&&!snap.data().deleted)tx.set(ref,{...snap.data(),deleted:true,updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid});});assert();shopping.manual.delete(id);});});
+$('shoppingRows').addEventListener('click',e=>{
+ const orderButton=e.target.closest('[data-shop-order]');
+ if(orderButton){
+  const row=shoppingRows().find(r=>r.key===orderButton.dataset.key),action=orderButton.dataset.shopOrder;
+  if(!row||!canOpenModule(row.section)||shopping.busy.has(row.key))return;
+  if(action==='qty'){shoppingEditOpen(row);return;}
+  if(confirm(action==='archive'?'Archiviare questa voce acquistata? Il movimento di magazzino resta registrato.':'Togliere questa voce dalla lista della spesa?'))void shoppingRun(row.key,async assert=>{await shoppingOrderAction(row,action,'',assert);});
+  return;
+ }
+ const button=e.target.closest('[data-shop-remove]');if(!button)return;const id=button.dataset.shopRemove;void shoppingRun('manual:'+id,async assert=>{const ref=doc(db,'shoppingManual',id);await runTransaction(db,async tx=>{const snap=await tx.get(ref);assert();if(snap.exists()&&!snap.data().deleted)tx.set(ref,{...snap.data(),deleted:true,updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid});});assert();shopping.manual.delete(id);});});
 $('shoppingRetry').addEventListener('click',()=>{for(const off of shopping.off)off();shopping.off=[];shopping.epoch++;shopping.pending.clear();shopping.errors.clear();shoppingStart();});
 window.addEventListener('beforeunload',e=>{if(shopping.text||shopping.busy.size){e.preventDefault();e.returnValue='';}});
 
@@ -4171,10 +4264,7 @@ function bRender(){
   h+='<p class="stock-empty" id="bStockEmpty" hidden>Nessun articolo trovato. Prova un altro nome o una categoria diversa.</p><div class="b-sticky">'+bButton('Salva giacenze','confirm',!items.length)+bButton('Annulla modifiche','discard',!bar.draft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('stock:')))+'</div><p class="mini">Una quantità lasciata vuota non viene interpretata come zero. La conferma aggiunge le mancanze alla lista; le quantità già presenti nella lista vengono conservate.</p><div class="stock-reset">'+bButton('Azzera giacenze','zerostock',!items.length)+'<p class="mini">Porta a zero tutti i prodotti attivi del Bar, anche quelli nascosti da ricerca o filtri. Salva giacenze conferma le nuove quantità.</p></div>';
  }else if(bar.page==='loads'){h=blRender();}
  else if(bar.page==='cart'){
-  const orders=bOrders();h='<p class="mini">Lista condivisa del Bar. Gli ordini automatici sono arrotondati all’intero superiore, come nell’Excel. Per gli articoli manuali scegli tu la quantità.</p>';
-  if(!orders.length)h+='<p>Non ci sono prodotti da acquistare.</p>';
-  for(const o of orders){const qty=bar.orderDraft.has(o.id)?bar.orderDraft.get(o.id).qty:o.qty;h+='<div class="b-row"><div class="b-label"><strong>'+ke(o.name)+'</strong><small>'+ke(o.orderUnit)+(o.status==='sent'?' · Segnato come condiviso':'')+'</small>'+(qty===0?'<small class="b-warning">Scegli quanto acquistare</small>':'')+'</div>'+bCounter(o.id,qty,'order','Da acquistare '+o.name)+bButton('Rimuovi','remove:'+o.id)+'</div>';}
-  if(orders.length)h+='<div data-order-group="bar"><p class="mini" data-order-status role="status"></p><div class="b-sticky">'+bButton('Salva quantità','saveorders',!bar.orderDraft.size)+bButton('Scarta quantità locali','discardorders',!bar.orderDraft.size&&![...bar.invalid.keys()].some(key=>key.startsWith('order:')))+bButton('Prepara messaggio','message')+bButton('Segna come condivisa','sent')+bButton('Chiudi lista acquistata','close')+'</div><p class="mini">Copiare il messaggio non lo invia e non conferma l’acquisto. “Chiudi lista acquistata” archivia la lista senza aumentare automaticamente le giacenze. Le voci a zero non entrano nel messaggio e restano nei riordini.</p></div>';
+  h='<p class="mini">Le mancanze del Bar si gestiscono nella lista della spesa.</p><button type="button" class="small-action" data-manager-go="shopping">Apri lista della spesa</button>';
  }else if(bar.page==='settings'&&currentRole==='owner'){
   h='<div class="b-actions">'+bButton('Nuovo prodotto','new')+'</div><p class="mini">Aggiungi prodotti e scegli quanti pezzi vuoi avere in giacenza: l’ordine automatico calcola quanto manca e arrotonda all’intero superiore. Puoi anche scegliere il riordino manuale a zero.</p>';
   for(const p of [...bar.items.values()].sort((a,b)=>a.name.localeCompare(b.name,'it')))h+='<div class="b-row"><div class="b-label"><strong>'+ke(p.name)+'</strong><small>'+ke(bCategory(p))+' · '+(p.target===null?'Manuale':'Scorta '+kNum(p.target))+(p.active?'':' · Archiviato')+'</small></div>'+bButton('Modifica','edit:'+p.id)+'</div>';
@@ -4443,7 +4533,3 @@ window.TBSManagerUpdates?.setCanRefresh(() => {
 </script>
 </body>
 </html>
-
-
-
-
